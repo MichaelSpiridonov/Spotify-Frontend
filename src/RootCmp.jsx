@@ -3,20 +3,17 @@ import { Routes, Route } from 'react-router'
 
 import { StationIndex } from './pages/StationIndex.jsx'
 
-import { AppHeader } from './cmps/AppHeader.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 
 export function RootCmp() {
     return (
-        <div className="main-container">
-            <AppHeader />
-            <UserMsg />
-
+        <div >
             <main>
                 <Routes>
                     <Route path="/home" element={<StationIndex />} />
                 </Routes>
             </main>
+            <UserMsg />
         </div>
     )
 }
