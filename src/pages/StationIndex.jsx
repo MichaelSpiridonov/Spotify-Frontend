@@ -17,7 +17,7 @@ export function StationIndex() {
     }, [])
 
     return (
-        <section>
+        <section className="list-container">
             <StationList stations={stations}/>
         </section>
     )
