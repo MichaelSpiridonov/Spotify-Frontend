@@ -1,17 +1,24 @@
-import React from 'react'
 import { Routes, Route } from 'react-router'
 
 import { StationIndex } from './pages/StationIndex.jsx'
+import { AppPlayer } from './cmps/AppPlayer.jsx'
+import { Sidebar } from './cmps/Sidebar.jsx'
+import { SideLibrary } from './cmps/SideLibrary.jsx'
+import { AppHeader } from './cmps/AppHeader.jsx'
 
 import { UserMsg } from './cmps/UserMsg.jsx'
 
 export function RootCmp() {
     return (
         <div >
-            <main>
+            <main className="main-container">
+            <AppHeader/>
+            <Sidebar />
+            <SideLibrary/>
                 <Routes>
                     <Route path="/home" element={<StationIndex />} />
                 </Routes>
+                <AppPlayer />
             </main>
             <UserMsg />
         </div>
