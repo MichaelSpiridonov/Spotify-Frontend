@@ -7,7 +7,7 @@ export function StationPreview({ station }) {
       <img src={playlistDefaultImage} alt='Station' className='station-image' />
       <div className='station-details'>
         <p className='station-name'>{station.name}</p>
-        <p className='station-createdBy'>{station.createdBy.fullname}</p>
+        <p className='station-createdby'>{station.createdBy.fullname}</p>
       </div>
     </div>
   )
