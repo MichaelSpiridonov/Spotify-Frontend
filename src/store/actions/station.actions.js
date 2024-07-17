@@ -1,6 +1,7 @@
-import { stationService } from '../../services/station'
+
 import { store } from '../store'
 import { ADD_STATION, REMOVE_STATION, SET_STATIONS, SET_STATION, UPDATE_STATION, ADD_STATION_MSG } from '../reducers/station.reducer'
+import { stationService } from '../../services/station/station.service.local'
 
 export async function loadStations() {
     try {

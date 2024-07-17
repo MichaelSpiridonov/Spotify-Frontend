@@ -5,7 +5,7 @@ export function StationPreview({ station }) {
     const date = new Date(timestamp)
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
   }
-
+console.log(station)
   return (
     <ul className='StationPreview'>
       {station.songs.map((song) => (
