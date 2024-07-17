@@ -1,24 +1,14 @@
 import React from 'react'
+import playlistDefaultImage from '../assets/icons/myplaylist.svg'
 
 export function StationPreview({ station }) {
-  const formatDate = (timestamp) => {
-    const date = new Date(timestamp)
-    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
-  }
-console.log(station)
   return (
-    <ul className='StationPreview'>
-      {station.songs.map((song) => (
-        <li key={song.id}>
-          <button>▶</button>
-          <img src={song.imgUrl} alt={song.title} />
-          <span>{song.title}</span>
-          <span></span> {/* Placeholder for song album */}
-          <span>{formatDate(song.addedAt)}</span>
-          <button>+</button>
-          <span>0:00</span> {/* Placeholder for song length */}
-        </li>
-      ))}
-    </ul>
+    <div className='station-preview' role='button'>
+      <img src={playlistDefaultImage} alt='Station' className='station-image' />
+      <div className='station-details'>
+        <p className='station-name'>{station.name}</p>
+        <p className='station-createdBy'>{station.createdBy.fullname}</p>
+      </div>
+    </div>
   )
 }
