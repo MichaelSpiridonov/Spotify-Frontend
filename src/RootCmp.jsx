@@ -14,7 +14,7 @@ export function RootCmp() {
 
             <main>
                 <Routes>
-                    <Route path="/" element={<StationIndex />} />
+                    <Route path="/home" element={<StationIndex />} />
                 </Routes>
             </main>
         </div>
