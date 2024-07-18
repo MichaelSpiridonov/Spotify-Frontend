@@ -11,21 +11,21 @@
 }
 
 .station-details img {
-  width: 60px; /* Adjust the size to your preference */
-  height: 60px; /* Adjust the size to your preference */
-  object-fit: cover; /* Ensures the image covers the entire area */
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
   margin-right: 10px;
-  border-radius: 4px; /* Optional: Adds slight rounding to the corners */
+  border-radius: 4px;
 }
 .station-details-container {
   padding: 20px;
-  color: #b3b3b3; // Adjust color as needed
+  color: #b3b3b3;
 }
 
 .back-link {
   display: inline-block;
   margin-bottom: 20px;
-  color: #1db954; // Spotify green color
+  color: #1db954;
   text-decoration: none;
   font-family: circular-bold;
 }
@@ -37,16 +37,23 @@
 }
 
 .station-details .song-item {
-  display: grid;
-  grid-template-columns: 30px 30px 60px 1fr 1fr 150px 30px 60px;
+  display: flex;
   align-items: center;
   margin-bottom: 10px;
   padding: 10px 0;
-  border-bottom: 1px solid #282828;
-}
 
-.station-details .song-item:hover {
-  background-color: #282828;
+  gap: 1vw;
+  height: 56px;
+
+  &:hover {
+    background-color: #282828;
+    border-radius: 6px;
+
+    .play-button svg {
+      color: white;
+      fill: currentColor;
+    }
+  }
 }
 
 .song-index {
@@ -61,10 +68,11 @@
   cursor: pointer;
 }
 
-.play-button img,
-.add-button img {
-  width: 20px;
-  height: 20px;
+.play-button svg {
+  width: 16px;
+  height: 16px;
+  color: #000000;
+  fill: currentColor;
 }
 
 .add-button svg {
@@ -84,13 +92,6 @@
     color: #1ac757;
     fill: currentColor;
   }
-}
-
-.song-image {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 4px;
 }
 
 .song-info {

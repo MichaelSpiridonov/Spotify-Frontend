@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import playIcon from '../assets/icons/play.svg?react'
-import addIcon from '../assets/icons/addsong.svg?react'
+import PlayIcon from '../assets/icons/play.svg?react'
+import AddIcon from '../assets/icons/addsong.svg?react'
 
 export function StationDetails() {
   const { stationId } = useParams()
@@ -31,16 +31,16 @@ export function StationDetails() {
       </Link>
       <ul className='station-details'>
         {station.songs.map((song) => (
-          <li key={song.id}>
+          <li key={song.id} className='song-item'>
             <button className='play-button'>
-              <img src={playIcon} alt='Play' />
+              <PlayIcon />
             </button>
-            <img className='station-image' src={song.imgUrl} alt={song.title} />
+            <img className='song-image' src={song.imgUrl} alt={song.title} />
             <span>{song.title}</span>
             <span></span> {/* Placeholder for song album */}
             <span>{formatDate(song.addedAt)}</span>
             <button className='add-button'>
-              <img src={addIcon} alt='Add' />
+              <AddIcon />
             </button>
             <span>0:00</span>
           </li>
