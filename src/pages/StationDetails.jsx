@@ -1,4 +1,4 @@
-import { loadStation, addStationMsg } from '../store/actions/station.actions.js'
+import { loadStation } from '../store/actions/station.actions.js'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,12 +6,8 @@ import { Link } from 'react-router-dom'
 
 export function StationDetails() {
   const { stationId } = useParams()
-  // const dispatch = useDispatch()
-  const station = useSelector((storeState) => storeState.stationModule.station)
 
-  // useEffect(() => {
-  //   dispatch(loadStation(stationId))
-  // }, [stationId, dispatch])
+  const station = useSelector((storeState) => storeState.stationModule.station)
 
   useEffect(() => {
     loadStation(stationId)
@@ -26,7 +22,7 @@ export function StationDetails() {
 
   return (
     <ul className='station-details'>
-      <Link to='/station'>Back to list</Link>
+      <Link to='/'>Back to list</Link>
       {station.songs.map((song) => (
         <li key={song.id}>
           <button>▶</button>
