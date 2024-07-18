@@ -27,10 +27,10 @@ export function AppPlayer() {
     }, [])
 
     console.log(station)
-
+  if (!station) return <div>Loading...</div>
   return (
     <section className="app-player">
-      {/* <section className="song-detail">
+      <section className="song-detail">
       <h1>{station.songs[1].title}</h1>
       <h2>{station.songs[1].title}</h2>
     </section>
@@ -60,7 +60,7 @@ export function AppPlayer() {
       <div className='control-btn'>
       <VolumeDown />
       </div>
-      </section> */}
+      </section>
     </section>
   )
 }
