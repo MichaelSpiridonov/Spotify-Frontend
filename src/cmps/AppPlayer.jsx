@@ -33,13 +33,13 @@ export function AppPlayer() {
 
   return (
     <section className="app-player">
-      <div className='song-image'>
+      {/* <div className='song-image'>
         <img src={station.songs[0].url}/>
         </div>
       <section className="song-detail">
       <h1>{station.songs[0].title}</h1>
       <h2>{station.songs[0].title}</h2>
-    </section>
+    </section> */}
 
       <section className="player-controls">
       <Shuffle />
