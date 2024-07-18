@@ -8,22 +8,33 @@
     font-size: em(10px);
     flex-direction: row nowarp;
     align-items: center;
+    justify-content: space-between;
+    
 }
 
 .song-detail {
     display: flex;
     flex-direction: column;
-
 }
 
 .player-controls {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
 }
 
-
+.control-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        color: white;
+        fill: currentColor; 
+    }
+}
 
 .app-player svg{
     width: 16px;
