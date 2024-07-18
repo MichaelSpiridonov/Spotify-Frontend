@@ -24,34 +24,7 @@
 
     }
 
-    form {
-        display: flex;
-        height: 48px;
-        width: 364px;
-        background-color: #242424;
-        border-radius: 20px;
-        padding-left: 10px;
-        opacity: 0;
-    }
-
-    form input {
-        width: 100%;
-        background-color: #242424;
-        color: white;
-        border: #242424;
-        margin-left: 3px;
-        margin-right: 3px;
-    }
-
-    form svg {
-        height: 16px;
-        width: 16px;
-        fill:white;
-    }
-
-    form input:focus-visible {
-        outline: #242424;
-    }
+  
 
     .page-forward,
     .page-backward {

@@ -13,8 +13,93 @@
 .search-page {
     background-color: #121212;
     padding: 10px;
+    margin-right: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    .song-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 10px 0;
+        font-size: 16px;
+        
+        gap: 1vw;
+        height: 56px;
+
+        img {
+            height: 40px;
+            width: 40px;
+        }
+        svg {
+            width: 16px;
+            height: 16px;
+            color: #b3b3b3;
+            fill: currentColor;
+            &:hover {
+              color: white;
+              fill: currentColor;
+            }
+            & .clicked {
+              color: #1db954;
+              fill: currentColor;
+            }
+            & .clicked:hover {
+              color: #1ac757;
+              fill: currentColor;
+            }
+          }
+
+        &:hover {
+            background-color: #282828;
+            border-radius: 6px;
+
+            .play-button svg {
+                color: white;
+                fill: currentColor;
+            }
+        }
+    }
 
     h1 {
         color: white;
+        margin: 0;
+    }
+
+    form {
+        position: absolute;
+        top: 15px;
+        margin-left: 90px;
+        /* right: 30vw; */
+        /* left: minmax(100px,200px); */
+        display: flex;
+        height: 48px;
+        width: 364px;
+        background-color: #242424;
+        border-radius: 20px;
+        padding-left: 10px;
+        opacity: 1;
+    }
+
+    form input {
+        width: 100%;
+        background-color: #242424;
+        color: white;
+        border: #242424;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+
+    form svg {
+        height: 16px;
+        width: 16px;
+        fill: white;
+    }
+
+    form input:focus-visible {
+        outline: #242424;
     }
 }

@@ -8,12 +8,12 @@ export function Sidebar() {
     function onClickSearch(){
         setClassSearch('active')
         setClassHome('not-active')
-        document.querySelector(`.header-container form`).style.opacity = 1
+        /* document.querySelector(`.header-container form`).style.opacity = 1 */
         Navigate('/search')
     }
     function onClickHome({target}){  
         setClassHome('active')
-        document.querySelector(`.header-container form`).style.opacity = 0
+       /*  document.querySelector(`.header-container form`).style.opacity = 0 */
         setClassSearch('not-active')
         Navigate('/')
     }

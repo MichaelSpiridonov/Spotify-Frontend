@@ -17,7 +17,6 @@ export function TopicPreview({ topic }) {
             });
     }, [])
     if(color === null) return
-    console.log(color)
     return <article style={{backgroundColor: color}} className="topic-box">
         <h1>{topic.name}</h1>
         <img src={topic.img} alt="" />
