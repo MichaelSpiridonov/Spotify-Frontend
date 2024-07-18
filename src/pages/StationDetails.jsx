@@ -4,6 +4,9 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import PlayIcon from '../assets/icons/play.svg?react'
+import AddIcon from '../assets/icons/addsong.svg?react'
+
 export function StationDetails() {
   const { stationId } = useParams()
 
@@ -15,25 +18,34 @@ export function StationDetails() {
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp)
-    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+    const options = { month: 'short', day: '2-digit', year: 'numeric' }
+    return date.toLocaleDateString('en-US', options)
   }
 
   if (!station) return <div>Loading...</div>
 
   return (
-    <ul className='station-details'>
-      <Link to='/'>Back to list</Link>
-      {station.songs.map((song) => (
-        <li key={song.id}>
-          <button>▶</button>
-          <img className='station-image' src={song.imgUrl} alt={song.title} />
-          <span>{song.title}</span>
-          <span></span> {/* Placeholder for song album */}
-          <span>{formatDate(song.addedAt)}</span>
-          <button>+</button>
-          <span>0:00</span> {/* Placeholder for song length */}
-        </li>
-      ))}
-    </ul>
+    <div className='station-details-container'>
+      <Link to='/' className='back-link'>
+        Back to list
+      </Link>
+      <ul className='station-details'>
+        {station.songs.map((song) => (
+          <li key={song.id} className='song-item'>
+            <button className='play-button'>
+              <PlayIcon />
+            </button>
+            <img className='song-image' src={song.imgUrl} alt={song.title} />
+            <span>{song.title}</span>
+            <span></span> {/* Placeholder for song album */}
+            <span>{formatDate(song.addedAt)}</span>
+            <button className='add-button'>
+              <AddIcon />
+            </button>
+            <span>0:00</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }

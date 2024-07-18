@@ -11,17 +11,117 @@
 }
 
 .station-details img {
-  width: 60px; /* Adjust the size to your preference */
-  height: 60px; /* Adjust the size to your preference */
-  object-fit: cover; /* Ensures the image covers the entire area */
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
   margin-right: 10px;
-  border-radius: 4px; /* Optional: Adds slight rounding to the corners */
+  border-radius: 4px;
+}
+.station-details-container {
+  padding: 20px;
+  color: #b3b3b3;
 }
 
-.station-details button {
-  margin-right: 10px;
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #1db954;
+  text-decoration: none;
+  font-family: circular-bold;
 }
 
-.station-details span {
-  margin-right: 10px;
+.station-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.station-details .song-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px 0;
+
+  gap: 1vw;
+  height: 56px;
+
+  &:hover {
+    background-color: #282828;
+    border-radius: 6px;
+
+    .play-button svg {
+      color: white;
+      fill: currentColor;
+    }
+  }
+}
+
+.song-index {
+  text-align: center;
+  font-family: circular-bold;
+}
+
+.play-button,
+.add-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.play-button svg {
+  width: 16px;
+  height: 16px;
+  color: #000000;
+  fill: currentColor;
+}
+
+.add-button svg {
+  width: 16px;
+  height: 16px;
+  color: #b3b3b3;
+  fill: currentColor;
+  &:hover {
+    color: white;
+    fill: currentColor;
+  }
+  & .clicked {
+    color: #1db954;
+    fill: currentColor;
+  }
+  & .clicked:hover {
+    color: #1ac757;
+    fill: currentColor;
+  }
+}
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.song-title {
+  font-family: circular-bold;
+  color: #fff;
+}
+
+.song-artist {
+  font-family: circular-black;
+  color: #b3b3b3;
+}
+
+.song-album {
+  font-family: circular-black;
+  color: #b3b3b3;
+}
+
+.song-date {
+  font-family: circular-black;
+  color: #b3b3b3;
+  text-align: right;
+}
+
+.song-length {
+  text-align: right;
+  font-family: circular-black;
+  color: #b3b3b3;
 }
