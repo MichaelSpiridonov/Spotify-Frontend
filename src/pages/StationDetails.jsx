@@ -36,13 +36,13 @@ export function StationDetails() {
               <PlayIcon />
             </button>
             <img className='song-image' src={song.imgUrl} alt={song.title} />
-            <span>{song.title}</span>
+            <span className='song-info'>{song.title}</span>
             <span></span> {/* Placeholder for song album */}
             <span>{formatDate(song.addedAt)}</span>
             <button className='add-button'>
               <AddIcon />
             </button>
-            <span>0:00</span>
+            <span className='song-length'>0:00</span>
           </li>
         ))}
       </ul>
