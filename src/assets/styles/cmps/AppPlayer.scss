@@ -4,4 +4,68 @@
     bottom: 0;
     background-color: black;
     height: 72px;
+    display: flex;
+    font-size: em(10px);
+    flex-direction: row nowarp;
+    align-items: center;
+}
+
+.song-detail {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.player-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+
+
+.app-player svg{
+    width: 16px;
+    height: 16px;
+    color: #b3b3b3;
+    fill: currentColor;
+    &:hover {
+        color: white;
+        fill: currentColor; 
+    }
+    & .clicked {
+        color: #1db954;
+        fill: currentColor; 
+    }
+    & .clicked:hover {
+        color: #1ac757;
+        fill: currentColor; 
+    }
+}
+
+
+.song-image {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+}
+
+.player{
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player svg {
+    color: black;
+    fill: currentColor;
+    &:hover {
+    color: black;
+    fill: currentColor;
+    }
 }

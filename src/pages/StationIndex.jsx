@@ -11,7 +11,7 @@ export function StationIndex() {
     useEffect(() => {
         loadStations()
             .catch(err => {
-                showErrorMsg('Cannot load toys!')
+                showErrorMsg('Cannot load stations!')
                 throw err
             })
     }, [])
