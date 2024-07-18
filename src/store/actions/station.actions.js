@@ -24,6 +24,7 @@ export async function loadStation(stationId) {
 }
 
 
+
 export async function removeStation(stationId) {
     try {
         await stationService.remove(stationId)
@@ -47,8 +48,9 @@ export async function addStation(station) {
 
 export async function updateStation(station) {
     try {
+        console.log(station)
         const savedStation = await stationService.save(station)
-        store.dispatch(getCmdUpdateStation(savedStation))
+        store.dispatch(getCmdUpdateStation(station))
         return savedStation
     } catch (err) {
         console.log('Cannot save Station', err)

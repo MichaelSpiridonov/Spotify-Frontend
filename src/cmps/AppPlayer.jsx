@@ -8,7 +8,6 @@ import Player from './Player.jsx';
 
 export function AppPlayer() {
     const station = useSelector((storeState) => storeState.stationModule.station)
-
     useEffect(() => {
         loadStation('5cksxjas89xjsa8xjsa8jxs09')
             .catch(err => {

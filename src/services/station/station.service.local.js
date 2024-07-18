@@ -1,7 +1,8 @@
 import { storageService } from '../async-storage.service'
 import { loadFromStorage, saveToStorage } from '../util.service'
 
-const STORAGE_KEY = 'station'
+const STATIONS_KEY = 'stations'
+const STATION_KEY = 'station'
 
 _createStations()
 
@@ -9,25 +10,31 @@ export const stationService = {
   query,
   getById,
   remove,
+  save
 }
 window.cs = stationService
 
 async function query() {
-  var stations = await storageService.query(STORAGE_KEY)
+  var stations = await storageService.query(STATIONS_KEY)
   return stations
 }
 
 function getById(stationId) {
-  return storageService.get(STORAGE_KEY, stationId)
+  return storageService.get(STATIONS_KEY, stationId)
 }
 
 async function remove(stationId) {
   // throw new Error('Nope')
-  await storageService.remove(STORAGE_KEY, stationId)
+  await storageService.remove(STATIONS_KEY, stationId)
+}
+async function save(stationId) {
+  // throw new Error('Nope')
+  localStorage.removeItem(STATION_KEY)
+  await storageService.post(STATION_KEY, stationId)
 }
 
 function _createStations() {
-  let stations = loadFromStorage(STORAGE_KEY)
+  let stations = loadFromStorage(STATIONS_KEY)
   const station = {
     _id: '5cksxjas89xjsa8xjsa8jxs09',
     name: "Or's Playlist",
@@ -98,5 +105,5 @@ function _createStations() {
     stations.push(station)
     stations.push(station2)
   }
-  saveToStorage(STORAGE_KEY, stations)
+  saveToStorage(STATIONS_KEY, stations)
 }

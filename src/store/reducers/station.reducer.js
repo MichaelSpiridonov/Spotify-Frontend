@@ -14,6 +14,8 @@ const initialState = {
 export function stationReducer(state = initialState, action) {
     var newState = state
     var stations
+    var station
+    console.log(action)
     switch (action.type) {
         case SET_STATIONS:
             newState = { ...state, stations: action.stations }
@@ -30,8 +32,10 @@ export function stationReducer(state = initialState, action) {
             newState = { ...state, stations: [...state.stations, action.station] }
             break
         case UPDATE_STATION:
-            stations = state.stations.map(station => (station._id === action.station._id) ? action.station : station)
-            newState = { ...state, stations }
+            /* stations = state.stations.map(station => (station._id === action.station._id) ? action.station : station)
+            newState = { ...state, stations } */
+            station = action.station
+            newState ={...state , station: action.station}
             break
         case ADD_STATION_MSG:
             newState = { ...state, station: { ...state.station, msgs: [...state.station.msgs || [], action.msg] } }
