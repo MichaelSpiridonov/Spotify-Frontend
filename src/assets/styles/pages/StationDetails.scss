@@ -17,11 +17,110 @@
   margin-right: 10px;
   border-radius: 4px; /* Optional: Adds slight rounding to the corners */
 }
-
-.station-details button {
-  margin-right: 10px;
+.station-details-container {
+  padding: 20px;
+  color: #b3b3b3; // Adjust color as needed
 }
 
-.station-details span {
-  margin-right: 10px;
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #1db954; // Spotify green color
+  text-decoration: none;
+  font-family: circular-bold;
+}
+
+.station-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.station-details .song-item {
+  display: grid;
+  grid-template-columns: 30px 30px 60px 1fr 1fr 150px 30px 60px;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #282828;
+}
+
+.station-details .song-item:hover {
+  background-color: #282828;
+}
+
+.song-index {
+  text-align: center;
+  font-family: circular-bold;
+}
+
+.play-button,
+.add-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.play-button img,
+.add-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.add-button svg {
+  width: 16px;
+  height: 16px;
+  color: #b3b3b3;
+  fill: currentColor;
+  &:hover {
+    color: white;
+    fill: currentColor;
+  }
+  & .clicked {
+    color: #1db954;
+    fill: currentColor;
+  }
+  & .clicked:hover {
+    color: #1ac757;
+    fill: currentColor;
+  }
+}
+
+.song-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.song-title {
+  font-family: circular-bold;
+  color: #fff;
+}
+
+.song-artist {
+  font-family: circular-black;
+  color: #b3b3b3;
+}
+
+.song-album {
+  font-family: circular-black;
+  color: #b3b3b3;
+}
+
+.song-date {
+  font-family: circular-black;
+  color: #b3b3b3;
+  text-align: right;
+}
+
+.song-length {
+  text-align: right;
+  font-family: circular-black;
+  color: #b3b3b3;
 }
