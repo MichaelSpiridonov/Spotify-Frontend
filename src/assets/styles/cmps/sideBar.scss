@@ -1,7 +1,24 @@
-.side-bar{
+.side-bar {
+    display: grid;
+    padding: 18px 22px;
+    align-content: center;
     grid-column: 1;
     grid-row: 1;
     background-color: #121212;
     border-radius: 10px;
-    margin:10px;
+    margin: 10px;
+    gap: 22px;
+    color: white;
+   section{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 16px;
+   }
+
+    .icon {
+        height: 23px;
+        width: 23px;
+        fill: white;
+    }
 }

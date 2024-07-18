@@ -1,7 +1,7 @@
 .main-container {
     display: grid;
-    grid-template-columns:minmax(250px,400px) minmax(70vw,80vw);
-    grid-template-rows: 1fr 9fr;
+    grid-template-columns:minmax(300px,400px) minmax(70vw,80vw);
+    grid-template-rows:128px auto;
     height: 93vh;
     
    /*  > * {
