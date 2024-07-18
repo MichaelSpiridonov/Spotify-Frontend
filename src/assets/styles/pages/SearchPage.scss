@@ -1,0 +1,20 @@
+.topics-container {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(254px, 1fr));
+    height: max-content;
+    grid-auto-flow: dense;
+    gap: 25px;
+
+    width: 100%;
+
+}
+
+.search-page {
+    background-color: #121212;
+    padding: 10px;
+
+    h1 {
+        color: white;
+    }
+}
