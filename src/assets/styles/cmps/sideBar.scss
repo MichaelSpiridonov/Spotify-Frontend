@@ -8,17 +8,41 @@
     border-radius: 10px;
     margin: 10px;
     gap: 22px;
-    color: white;
-   section{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 16px;
-   }
 
+    section {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color 0.8s;
+    }
     .icon {
         height: 23px;
         width: 23px;
-        fill: white;
+
     }
+    .active {
+        color: white;
+        .icon {
+            fill: white;
+        }
+    }
+
+    .not-active {
+        color: gray;
+        .icon {
+            fill: gray;
+            transition: 0.8s;
+        }
+    }
+    .not-active:hover {
+        color: white;
+
+        .icon {
+            fill: white;
+        }
+
+    }
+
 }

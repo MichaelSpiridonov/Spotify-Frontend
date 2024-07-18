@@ -2,13 +2,74 @@
     /* position: fixed; */
     /* top: 0;
     right: 10px; */
+
     grid-column: 2;
     grid-row: 1;
-    background-color: #121212; 
+    background-color: #121212;
     margin-top: 10px;
     height: 10vh;
     margin-right: 10px;
-    border-top-left-radius:10px;
-    border-top-right-radius:10px;
-   
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.header-container {
+    display: flex;
+    padding: 9px;
+    align-items: center;
+    gap: 10px;
+    .pageing {
+        display: flex;
+        gap: 10px;
+
+    }
+
+    form {
+        display: flex;
+        height: 48px;
+        width: 364px;
+        background-color: #242424;
+        border-radius: 20px;
+        padding-left: 10px;
+        opacity: 0;
+    }
+
+    form input {
+        width: 100%;
+        background-color: #242424;
+        color: white;
+        border: #242424;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+
+    form svg {
+        height: 16px;
+        width: 16px;
+        fill:white;
+    }
+
+    form input:focus-visible {
+        outline: #242424;
+    }
+
+    .page-forward,
+    .page-backward {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 80%;
+        background-color: black;
+    }
+
+    .pageing svg {
+        height: 16px;
+        width: 16px;
+        color: white;
+        border-radius: 50%;
+        fill: white;
+    }
+
 }

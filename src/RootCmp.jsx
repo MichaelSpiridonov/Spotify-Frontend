@@ -17,7 +17,7 @@ export function RootCmp() {
             <Sidebar />
             <SideLibrary/>
                 <Routes>
-                    <Route path="/home" element={<StationIndex />} />
+                    <Route path="/" element={<StationIndex />} />
                 </Routes>
                 <AppPlayer />
             </main>
