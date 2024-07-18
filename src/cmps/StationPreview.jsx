@@ -8,7 +8,7 @@ export function StationPreview({ station }) {
     <Link to={`/station/${station._id}`}>
       <div className='station-preview' role='button'>
         <img
-          src={playlistDefaultImage}
+          src={station.createdBy.imgUrl || playlistDefaultImage}
           alt='Station'
           className='station-image'
         />
