@@ -1,0 +1,27 @@
+.station-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.station-details li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.station-details img {
+  width: 60px; /* Adjust the size to your preference */
+  height: 60px; /* Adjust the size to your preference */
+  object-fit: cover; /* Ensures the image covers the entire area */
+  margin-right: 10px;
+  border-radius: 4px; /* Optional: Adds slight rounding to the corners */
+}
+
+.station-details button {
+  margin-right: 10px;
+}
+
+.station-details span {
+  margin-right: 10px;
+}

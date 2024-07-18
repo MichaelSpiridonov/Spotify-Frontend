@@ -26,7 +26,7 @@ export function StationDetails() {
       {station.songs.map((song) => (
         <li key={song.id}>
           <button>▶</button>
-          <img src={song.imgUrl} alt={song.title} />
+          <img className='station-image' src={song.imgUrl} alt={song.title} />
           <span>{song.title}</span>
           <span></span> {/* Placeholder for song album */}
           <span>{formatDate(song.addedAt)}</span>
