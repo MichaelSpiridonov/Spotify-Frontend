@@ -17,7 +17,6 @@ import Player from './Player.jsx';
 
 export function AppPlayer() {
     const station = useSelector((storeState) => storeState.stationModule.station)
-
     useEffect(() => {
         loadStation('5cksxjas89xjsa8xjsa8jxs09')
             .catch(err => {
@@ -31,8 +30,8 @@ export function AppPlayer() {
   return (
     <section className="app-player">
       <section className="song-detail">
-      <h1>{station.songs[1].title}</h1>
-      <h2>{station.songs[1].title}</h2>
+      <h1>{station.songs[0].title}</h1>
+      <h2>{station.songs[0].title}</h2>
     </section>
 
       <section className="player-controls">
@@ -42,7 +41,7 @@ export function AppPlayer() {
       <div className='control-btn'>
       <Previous />
       </div>
-      <Player videoId={station.songs[1].id} />
+      <Player videoId={station.songs[0].id} />
       <div className='control-btn'>
       <Next />
       </div>
