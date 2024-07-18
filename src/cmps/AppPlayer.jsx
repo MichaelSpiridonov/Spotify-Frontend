@@ -1,17 +1,8 @@
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { loadStation } from "../store/actions/station.actions";
-import Shuffle from '../assets/icons/shuffle.svg?react'
-import Previous from '../assets/icons/previous.svg?react'
-import Next from '../assets/icons/next.svg?react'
-import Repeat from '../assets/icons/repeatlist.svg?react'
-
-import NowPlaying from '../assets/icons/nowplaying.svg?react'
-import Queue from '../assets/icons/queue.svg?react'
-import VolumeDown from '../assets/icons/volumedown.svg?react';
-import VolumeUp from '../assets/icons/volumeup.svg?react';
-
 import { showErrorMsg } from '../services/event-bus.service';
+import AddIcon from '../assets/icons/addsong.svg?react'
 import Player from './Player.jsx';
 
 
@@ -31,36 +22,14 @@ export function AppPlayer() {
   return (
     <section className="app-player">
       <section className="song-detail">
-      <h1>{station.songs[1].title}</h1>
-      <h2>{station.songs[1].title}</h2>
+        <img className="song-image" src={station.songs[1].imgUrl} />
+        <section className='song-info'>
+        <h2 className='song-title'>{station.songs[1].title}</h2>
+        <h1 className='artist'>{station.songs[1].title}</h1>
+        </section>
+        <AddIcon className="add-icn"/>
     </section>
-
-      <section className="player-controls">
-      <div className='control-btn'>
-      <Shuffle />
-      </div>
-      <div className='control-btn'>
-      <Previous />
-      </div>
-      <Player videoId={station.songs[1].id} />
-      <div className='control-btn'>
-      <Next />
-      </div>
-      <div className='control-btn'>
-      <Repeat />
-      </div>
-      </section>
-      <section className="player-controls">
-      <div className='control-btn'>
-      <NowPlaying />
-      </div>
-      <div className='control-btn'>
-      <Queue />
-      </div>
-      <div className='control-btn'>
-      <VolumeDown />
-      </div>
-      </section>
+      <Player videoId="A4pasf5ci8s" />
     </section>
   )
 }

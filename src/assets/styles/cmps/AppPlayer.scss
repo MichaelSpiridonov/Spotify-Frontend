@@ -9,57 +9,58 @@
     flex-direction: row nowarp;
     align-items: center;
     justify-content: space-between;
+    padding-right: 8px;
     
 }
 
+.song-info h1:hover{
+    text-decoration: underline;
+}
+.song-info h2:hover {
+    text-decoration: underline;
+}
+
 .song-detail {
+    padding-left: 25px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
 }
 
 .player-controls {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 8px;
 }
 
-.control-btn {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &:hover {
-        color: white;
-        fill: currentColor; 
-    }
+.clicked {
+    color: #1db954;
+    fill: currentColor; 
+}
+ .clicked:hover {
+    color: #1ac760;
+    fill: currentColor; 
 }
 
 .app-player svg{
     width: 16px;
     height: 16px;
+    margin: 8px;
     color: #b3b3b3;
     fill: currentColor;
     &:hover {
         color: white;
         fill: currentColor; 
     }
-    & .clicked {
-        color: #1db954;
-        fill: currentColor; 
-    }
-    & .clicked:hover {
-        color: #1ac757;
-        fill: currentColor; 
-    }
 }
-
 
 .song-image {
     width: 56px;
     height: 56px;
     object-fit: cover;
+    border-radius: 4px;
+    margin-inline-end: 8px;
 }
 
 .player{
@@ -80,3 +81,66 @@
     fill: currentColor;
     }
 }
+
+.volume-slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 93px;
+    height: 12px;
+  }
+  
+  .volume-slider {
+    width: 100%;
+    height: 6px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    accent-color: white;
+  }
+  .volume-slider:hover {
+    accent-color: #1ed760;
+  }
+
+  .volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #1db954; /* Spotify green */
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  }
+
+
+  .progress-bar-container {
+    display: flex;
+    align-items: center;
+    width: 499px;
+    gap: 8px;
+  }
+  
+  .progress-bar {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #535353;
+    border-radius: 2px;
+    outline: none;
+    accent-color: white;
+  }
+  
+  .progress-bar:hover {
+    accent-color: #1ed760;
+  }
+  
+.player-seek-and-control {
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.time {
+    color: #a7a7a7;
+    font-size: 0.75rem;
+  }
