@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router'
 
 import { StationIndex } from './pages/StationIndex.jsx'
+import { StationDetails } from './pages/StationDetails.jsx'
 import { AppPlayer } from './cmps/AppPlayer.jsx'
 import { Sidebar } from './cmps/Sidebar.jsx'
 
@@ -10,20 +11,19 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 import { SideLibrary } from './cmps/sideLibrary.jsx'
 
 export function RootCmp() {
-    return (
-        <div >
-            <main className="main-container">
-            <AppHeader/>
-            <Sidebar />
-            <SideLibrary/>
-                <Routes>
-                    <Route path="/home" element={<StationIndex />} />
-                </Routes>
-                <AppPlayer />
-            </main>
-            <UserMsg />
-        </div>
-    )
+  return (
+    <div>
+      <main className='main-container'>
+        <AppHeader />
+        <Sidebar />
+        <SideLibrary />
+        <Routes>
+          <Route path='/home' element={<StationIndex />} />
+          <Route path='/station/:stationId' element={<StationDetails />} />
+        </Routes>
+        <AppPlayer />
+      </main>
+      <UserMsg />
+    </div>
+  )
 }
-
-
