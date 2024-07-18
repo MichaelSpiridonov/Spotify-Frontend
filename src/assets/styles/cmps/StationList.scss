@@ -11,29 +11,37 @@
 
 .station-preview {
   display: flex;
-  flex-direction: column;
+  height: 70px;
+  flex-direction: row;
   align-items: center;
   margin: 1em;
   gap: 1em;
   cursor: pointer;
   .station-image {
-    font-size: 1em;
+    height: 48px;
+    width: 48px;
+    /* font-size: 1em;
     width: 10em; // 231px in em
-    height: 10em; // 231px in em
+    height: 10em; // 231px in em */
     background-color: #262626;
-    border-radius: 15px;
+    border-radius: 10px;
     object-fit: cover;
   }
   .station-details {
+    display: flex;
+    flex-direction: column;
+    height: max-content;
     text-align: center;
     .station-name {
       font-size: 1.2em;
       font-weight: bold;
+      margin: 0;
     }
     .station-createdby {
       font-family: circular-bold, sans-serif;
       font-size: 1em;
       color: gray;
+      margin: 0;
     }
   }
 }
