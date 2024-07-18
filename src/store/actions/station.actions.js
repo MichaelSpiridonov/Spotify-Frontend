@@ -1,6 +1,6 @@
 
 import { store } from '../store'
-import { ADD_STATION, REMOVE_STATION, SET_STATIONS, SET_STATION, UPDATE_STATION, ADD_STATION_MSG } from '../reducers/station.reducer'
+import { ADD_STATION, REMOVE_STATION, SET_STATIONS, SET_STATION, UPDATE_STATION } from '../reducers/station.reducer'
 import { stationService } from '../../services/station/station.service.local'
 
 export async function loadStations() {
@@ -13,9 +13,9 @@ export async function loadStations() {
     }
 }
 
-export async function loadStation(StationId) {
+export async function loadStation(stationId) {
     try {
-        const Station = await stationService.getById(StationId)
+        const Station = await stationService.getById(stationId)
         store.dispatch(getCmdSetStation(Station))
     } catch (err) {
         console.log('Cannot load Station', err)
@@ -24,19 +24,19 @@ export async function loadStation(StationId) {
 }
 
 
-export async function removeStation(StationId) {
+export async function removeStation(stationId) {
     try {
-        await stationService.remove(StationId)
-        store.dispatch(getCmdRemoveStation(StationId))
+        await stationService.remove(stationId)
+        store.dispatch(getCmdRemoveStation(stationId))
     } catch (err) {
         console.log('Cannot remove Station', err)
         throw err
     }
 }
 
-export async function addStation(Station) {
+export async function addStation(station) {
     try {
-        const savedStation = await stationService.save(Station)
+        const savedStation = await stationService.save(station)
         store.dispatch(getCmdAddStation(savedStation))
         return savedStation
     } catch (err) {
@@ -45,9 +45,9 @@ export async function addStation(Station) {
     }
 }
 
-export async function updateStation(Station) {
+export async function updateStation(station) {
     try {
-        const savedStation = await stationService.save(Station)
+        const savedStation = await stationService.save(station)
         store.dispatch(getCmdUpdateStation(savedStation))
         return savedStation
     } catch (err) {
@@ -56,16 +56,6 @@ export async function updateStation(Station) {
     }
 }
 
-export async function addStationMsg(StationId, txt) {
-    try {
-        const msg = await stationService.addStationMsg(StationId, txt)
-        store.dispatch(getCmdAddStationMsg(msg))
-        return msg
-    } catch (err) {
-        console.log('Cannot add Station msg', err)
-        throw err
-    }
-}
 
 // Command Creators:
 function getCmdSetStations(stations) {
@@ -98,10 +88,3 @@ function getCmdUpdateStation(station) {
         station
     }
 }
-function getCmdAddStationMsg(msg) {
-    return {
-        type: ADD_STATION_MSG,
-        msg
-    }
-}
-
