@@ -29,6 +29,7 @@ class Player extends React.Component {
     this.onStateChange = this.onStateChange.bind(this);
     this.handleVolumeChange = this.handleVolumeChange.bind(this);
     this.toggleRepeat = this.toggleRepeat.bind(this)
+    this.toggleShuffle = this.toggleShuffle.bind(this)
     this.togglePlayPause = this.togglePlayPause.bind(this);
     this.handleSeek = this.handleSeek.bind(this);
     this.updateTime = this.updateTime.bind(this);
@@ -40,6 +41,7 @@ class Player extends React.Component {
       duration: event.target.getDuration(),
     });
     event.target.setVolume(this.state.volume);
+    event.target.playVideo();
   }
 
   onStateChange(event) {
@@ -49,6 +51,13 @@ class Player extends React.Component {
     } else if (event.data === window.YT.PlayerState.ENDED) {
       this.setState({
         isPlaying: false,
+        currentTime: 0,
+        duration: player.getDuration(),
+      });
+    } else {
+      player.playVideo();
+      this.setState({
+        isPlaying: true,
       });
     }
     if (event.data === window.YT.PlayerState.PLAYING) {
@@ -78,6 +87,13 @@ class Player extends React.Component {
             isRepeat: !isRepeat,
           });
     } 
+  }
+
+  toggleShuffle() {
+    const { isShuffle } = this.state;
+        this.setState({
+            isShuffle: !isShuffle,
+          });
   }
 
   handleVolumeChange(event) {
@@ -117,13 +133,13 @@ class Player extends React.Component {
       },
     };
     const { videoId } = this.props;
-    const { isPlaying, volume, currentTime, duration, isRepeat } = this.state;
+    const { isPlaying, volume, currentTime, duration, isRepeat, isShuffle } = this.state;
 
     return (
       <>
         <section className="player-seek-and-control">
           <section className="player-controls">
-            <Shuffle />
+            <Shuffle className={(isShuffle) ? 'clicked' : ''} onClick={this.toggleShuffle} />
             <Previous />
           <section className="player">
             <YouTube

@@ -9,7 +9,7 @@ export const ADD_STATION_MSG = 'ADD_STATION_MSG'
 const initialState = {
     stations: [],
     station: null,
-    currSong:null
+    currSong: null
 }
 
 export function stationReducer(state = initialState, action) {

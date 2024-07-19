@@ -14,10 +14,6 @@ export function StationDetails() {
   const currSong = useSelector((storeState) => storeState.stationModule.currSong)
   useEffect(() => {
     loadStation(stationId)
-    if (station) {
-      updateSong(station.songs[0])
-    }
-
   }, [stationId])
 
   const formatDate = (timestamp) => {

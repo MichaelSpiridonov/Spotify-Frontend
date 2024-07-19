@@ -13,6 +13,10 @@
     
 }
 
+.app-player a {
+  color: #535353;
+}
+
 .song-info h1:hover{
     text-decoration: underline;
 }
@@ -34,13 +38,13 @@
     gap: 8px;
 }
 
-.clicked {
-    color: #1db954;
-    fill: currentColor; 
+.app-player .clicked {
+  color: #1db954;
+  fill: currentColor; 
 }
- .clicked:hover {
-    color: #1ac760;
-    fill: currentColor; 
+.app-player .clicked:hover {
+  color: #1ac760;
+  fill: currentColor; 
 }
 
 .app-player svg{
@@ -92,7 +96,7 @@
   
   .volume-slider {
     width: 100%;
-    height: 6px;
+    height: 4px;
     background: #ddd;
     border-radius: 5px;
     outline: none;
@@ -120,8 +124,6 @@
   }
   
   .progress-bar {
-    -webkit-appearance: none;
-    appearance: none;
     width: 100%;
     height: 4px;
     background: #535353;
