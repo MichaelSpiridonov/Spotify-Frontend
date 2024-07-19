@@ -8,27 +8,28 @@ import Player from './Player.jsx';
 
 export function AppPlayer() {
     const station = useSelector((storeState) => storeState.stationModule.station)
-    useEffect(() => {
-        loadStation('5cksxjas89xjsa8xjsa8jxs09')
-            .catch(err => {
-                showErrorMsg('Cannot load station!')
-                throw err
-            })
-    }, [])
-
-    console.log(station)
+    const currSong = useSelector((storeState) => storeState.stationModule.currSong)
+    /* useEffect(() => {
+        /* loadStation('5cksxjas89xjsa8xjsa8jxs09') */
+            //.catch(err => {
+          //      showErrorMsg('Cannot load station!')
+        //        throw err
+      //      })
+    //}, [])
+ 
   if (!station) return <div>Loading...</div>
   return (
     <section className="app-player">
-      <section className="song-detail">
-        <img className="song-image" src={station.songs[1].imgUrl} />
+      <section>
+     {currSong && <section className="song-detail">
+        <img className="song-image" src={currSong.imgUrl} />
         <section className='song-info'>
-        <h2 className='song-title'>{station.songs[1].title}</h2>
-        <h1 className='artist'>{station.songs[1].title}</h1>
+        <h2 className='song-title'>{currSong.title}</h2>
+        {/* <h1 className='artist'>{currSong.title}</h1> */}
         </section>
         <AddIcon className="add-icn"/>
-    </section>
-      <Player videoId="A4pasf5ci8s" />
+    </section>}</section>
+      <Player videoId={(currSong !== null) ? currSong.id : ''} />
     </section>
   )
 }

@@ -5,7 +5,6 @@ import { useSelector } from "react-redux"
 
 export function SideLibrary() {
     const stations = useSelector(storeState => storeState.stationModule.stations)
-    console.log(stations)
     useEffect(() => {
         loadStations()
             .catch(err => {

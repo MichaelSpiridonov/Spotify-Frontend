@@ -3,7 +3,7 @@ import { loadFromStorage, saveToStorage } from '../util.service'
 
 const STATIONS_KEY = 'stations'
 const STATION_KEY = 'station'
-
+const CURR_SONG = 'currSong'
 _createStations()
 
 export const stationService = {
@@ -27,10 +27,11 @@ async function remove(stationId) {
   // throw new Error('Nope')
   await storageService.remove(STATIONS_KEY, stationId)
 }
-async function save(stationId) {
+async function save(currSongId) {
   // throw new Error('Nope')
-  localStorage.removeItem(STATION_KEY)
-  await storageService.post(STATION_KEY, stationId)
+  console.log(currSongId)
+  localStorage.removeItem(CURR_SONG)
+  await storageService.post(CURR_SONG, currSongId)
 }
 
 function _createStations() {

@@ -1,4 +1,4 @@
-import { loadStation } from '../store/actions/station.actions.js'
+import { loadStation, updateSong } from '../store/actions/station.actions.js'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,9 +11,13 @@ export function StationDetails() {
   const { stationId } = useParams()
 
   const station = useSelector((storeState) => storeState.stationModule.station)
-
+  const currSong = useSelector((storeState) => storeState.stationModule.currSong)
   useEffect(() => {
     loadStation(stationId)
+    if (station) {
+      updateSong(station.songs[0])
+    }
+
   }, [stationId])
 
   const formatDate = (timestamp) => {
@@ -21,6 +25,11 @@ export function StationDetails() {
     const options = { month: 'short', day: '2-digit', year: 'numeric' }
     return date.toLocaleDateString('en-US', options)
   }
+  function onClickPlay(song){
+    console.log(song)
+    let station = {title:song.title,id :song.id, imgUrl: song.imgUrl}
+    updateSong(station)
+}
 
   if (!station) return <div>Loading...</div>
 
@@ -31,7 +40,7 @@ export function StationDetails() {
       </Link>
       <ul className='station-details'>
         {station.songs.map((song) => (
-          <li key={song.id} className='song-item'>
+          <li key={song.id} onClick={()=> onClickPlay(song)} className='song-item'>
             <button className='play-button'>
               <PlayIcon />
             </button>

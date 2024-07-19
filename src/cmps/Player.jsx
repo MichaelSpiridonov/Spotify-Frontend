@@ -13,7 +13,8 @@ import VolumeUp from '../assets/icons/volumeup.svg?react';
 import ProgressBar from './ProgressBar';
 
 class Player extends React.Component {
-  constructor(props) {
+  constructor(props) { 
+    console.log(props)
     super(props);
     this.state = {
       isPlaying: false,

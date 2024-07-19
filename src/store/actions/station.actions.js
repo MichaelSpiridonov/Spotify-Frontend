@@ -1,6 +1,6 @@
 
 import { store } from '../store'
-import { ADD_STATION, REMOVE_STATION, SET_STATIONS, SET_STATION, UPDATE_STATION } from '../reducers/station.reducer'
+import { ADD_STATION, REMOVE_STATION, SET_STATIONS, SET_STATION, UPDATE_SONG } from '../reducers/station.reducer'
 import { stationService } from '../../services/station/station.service.local'
 
 export async function loadStations() {
@@ -46,12 +46,12 @@ export async function addStation(station) {
     }
 }
 
-export async function updateStation(station) {
+export async function updateSong(song) {
     try {
-        console.log(station)
-        const savedStation = await stationService.save(station)
-        store.dispatch(getCmdUpdateStation(station))
-        return savedStation
+        console.log(song)
+        const savedSong = await stationService.save(song)
+        store.dispatch(getCmdUpdateStation(song))
+        return savedSong
     } catch (err) {
         console.log('Cannot save Station', err)
         throw err
@@ -84,9 +84,9 @@ function getCmdAddStation(station) {
         station
     }
 }
-function getCmdUpdateStation(station) {
+function getCmdUpdateStation(song) {
     return {
-        type: UPDATE_STATION,
-        station
+        type: UPDATE_SONG,
+        song
     }
 }

@@ -9,7 +9,9 @@
     width: 100%;
 
 }
-
+.search-page:active{
+    color: green;
+}
 .search-page {
     background-color: #121212;
     padding: 10px;
@@ -25,7 +27,7 @@
         align-items: center;
         margin-bottom: 10px;
         padding: 10px 0;
-        font-size: 16px;
+        font-size: 12px;
         
         gap: 1vw;
         height: 56px;
