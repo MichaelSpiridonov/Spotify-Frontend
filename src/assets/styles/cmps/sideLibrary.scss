@@ -1,27 +1,61 @@
-.side-library{
+.side-library {
     grid-column: 1;
     grid-row: 2;
     background-color: #121212;
     border-radius: 10px;
-    margin-right:10px;
-    margin-left:10px;
-    .library-header{
+    margin-right: 10px;
+    margin-left: 10px;
+
+    .library-header {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 10px;
+        padding: 12px 14px;
         justify-content: space-between;
-        svg{
-            height: 24px;
+        font-size: 13px;
+
+        .add-svg {
             fill: #a7a7a7;
+            background-color: #121212;
+            height: 16px;
+            width: 16px;
+            transition: 0.8s
         }
-        h1{
+
+        .add-svg:hover {
+            fill: white;
+            border-radius: 50%;
+            background-color: black;
+            /* padding: 8px;   */     
+        }
+
+        h1 {
             margin: 0;
+            width: max-content;
+            transition:color 0.8s;
         }
-        div{
+
+        div {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            padding: 4px 8px;
+        }
+
+        .library-svg {
+            fill: #a7a7a7;
+            height: 24px;
+            width: 24px;
+            transition:fill 0.8s;
+        }
+
+        div:hover {
+            h1 {
+                color: white;
+            }
+
+            svg {
+                fill: white;
+            }
         }
     }
 }

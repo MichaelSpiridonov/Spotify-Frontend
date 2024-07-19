@@ -9,33 +9,39 @@
     margin: 10px;
     gap: 22px;
 
+
     section {
         display: flex;
         align-items: center;
         gap: 20px;
         font-size: 16px;
         cursor: pointer;
-        transition: color 0.8s;
     }
+
     .icon {
         height: 23px;
         width: 23px;
 
     }
+
     .active {
         color: white;
+
         .icon {
             fill: white;
+            
         }
     }
 
     .not-active {
         color: #b3b3b3;
+        transition: 0.8s;  
         .icon {
             fill: #b3b3b3;
             transition: 0.8s;
         }
     }
+
     .not-active:hover {
         color: white;
 

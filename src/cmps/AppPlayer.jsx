@@ -17,7 +17,7 @@ export function AppPlayer() {
       //      })
     //}, [])
  
-  if (!station) return <div>Loading...</div>
+  /* if (!station) return  */
   return (
     <section className="app-player">
       <section>
