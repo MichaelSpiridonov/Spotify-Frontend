@@ -10,10 +10,13 @@ import { AppHeader } from './cmps/AppHeader.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { SideLibrary } from './cmps/sideLibrary.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
+import { MoreModal } from './cmps/MoreModal.jsx'
 
 export function RootCmp() {
   return (
     <div>
+
+
       <main className='main-container'>
         <AppHeader />
         <Sidebar />
@@ -25,6 +28,7 @@ export function RootCmp() {
         </Routes>
         <AppPlayer />
       </main>
+      <MoreModal />
       <UserMsg />
     </div>
   )

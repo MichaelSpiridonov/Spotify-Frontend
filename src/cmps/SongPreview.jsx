@@ -1,20 +1,27 @@
-import { useSelector } from 'react-redux'
+
 import AddIcon from '../assets/icons/addsong.svg?react'
 import Play from '../assets/icons/play.svg?react'
-import {  updateSong } from '../store/actions/station.actions'
+import { updateSong } from '../store/actions/station.actions'
 export function SongPreview({ song }) {
-    function onClickPlay(song,target){
+    function onClickPlay(song, target) {
         console.log(target)
-        let station = {title:song.title,id :song.videoId, imgUrl: song.thumbnail}
+        let station = { title: song.title, id: song.videoId, imgUrl: song.thumbnail }
         updateSong(station)
     }
-    function onActive({target}){ 
-        
+    function onAddTo(event,) {
+        const x = event.clientX 
+        const y = event.clientY +20
+
+        console.log(`Clicked at X=${x}, Y=${y}`)
+        const element = document.querySelector('.more-modal')
+        element.style.left = `${x}px`
+        element.style.top = `${y}px`
+        element.style.display = 'block'
     }
-    return <article onClick={onActive} className="song-item">
-        <img src={song.thumbnail} alt="" /> 
-        <button onClick={({target})=> onClickPlay(song,target)}><Play /></button>
+    return <article /* onClick={onActive} */ className="song-item">
+        <img src={song.thumbnail} alt="" />
+        <button onClick={({ target }) => onClickPlay(song, target)}><Play /></button>
         <h1>{song.title}</h1>
-        <AddIcon />
+            <AddIcon  onClick={onAddTo}/>
     </article>
 }

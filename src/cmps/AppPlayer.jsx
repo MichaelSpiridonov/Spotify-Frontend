@@ -25,7 +25,6 @@ export function AppPlayer() {
         <img className="song-image" src={currSong.imgUrl} />
         <section className='song-info'>
         <h2 className='song-title'>{currSong.title}</h2>
-        {/* <h1 className='artist'>{currSong.title}</h1> */}
         </section>
         <AddIcon className="add-icn"/>
     </section>}</section>
