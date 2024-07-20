@@ -1,0 +1,1226 @@
+[
+  {
+    "_id": "8d07de09-e171-4318-b2a6-a55634115014",
+    "name": "Pop",
+    "tags": [],
+    "createdBy": {
+      "_id": "a8d4b163-1346-4d5a-94db-41ac2a704226",
+      "fullname": "Pop",
+      "imgUrl": "https://t.scdn.co/media/derived/pop-274x274_447148649685019f5e2a03a39e78ba52_0_0_274_274.jpg"
+    },
+    "likedByUsers": [],
+    "songs": [
+      {
+        "id": "0Wr6wZgEP1npYg0vrsWPIZ",
+        "title": "רוז",
+        "artist": "Peer Tasi",
+        "album": "רדיו שטח 2",
+        "url": "https://www.youtube.com/watch?v=6EvjmgtR2rI",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27364262898e2dc5b99349e5b15",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:06.303Z",
+        "duration": 224000
+      },
+      {
+        "id": "0h8eZd7eqwZISaz9bkj1zV",
+        "title": "מערב ראשון",
+        "artist": "Itay Levi",
+        "album": "מערב ראשון",
+        "url": "https://www.youtube.com/watch?v=Rpn5s235RTk",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2732960eb7b774db6a0ec5c62de",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:06.207Z",
+        "duration": 204078
+      },
+      {
+        "id": "3FihyZ7YA7vrNiSUfWww10",
+        "title": "באמפרים",
+        "artist": "STILLA",
+        "album": "באמפרים",
+        "url": "https://www.youtube.com/watch?v=_I56eDHwQr8",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273cef99adb7e9fc45697d1ca88",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:06.303Z",
+        "duration": 147000
+      },
+      {
+        "id": "17Gbwxyhsj0dznw9DSruNC",
+        "title": "ראיתי עולם",
+        "artist": "Omer Adam",
+        "album": "ראיתי עולם",
+        "url": "https://www.youtube.com/watch?v=Md21OZKntbg",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27359a73ea4e3ee1f6c5dda0e03",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:06.332Z",
+        "duration": 189000
+      },
+      {
+        "id": "6qB33ch9RK0aoMfxfnlXa1",
+        "title": "פלסטרים",
+        "artist": "Osher Cohen",
+        "album": "פלסטרים",
+        "url": "https://www.youtube.com/watch?v=psKClFBw5S4",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27340eb76ca31d27e1dcca8a1b9",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:06.311Z",
+        "duration": 178236
+      },
+      {
+        "id": "1Jx6aZyJR985kw8CWUZ15O",
+        "title": "צמוד צמוד",
+        "artist": "Omer Adam",
+        "album": "צמוד צמוד",
+        "url": "https://www.youtube.com/watch?v=dFqAtitDNvs",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2734c2cbbed96747d44c3fe0816",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:06.394Z",
+        "duration": 163464
+      },
+      {
+        "id": "7rdPtMBZmQpSBraOq8ppuI",
+        "title": "למה את?",
+        "artist": "ילד.",
+        "album": "למה את?",
+        "url": "https://www.youtube.com/watch?v=Kk04Kox6VnE",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273fd70005fd2cfeea41b3b6fca",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:06.339Z",
+        "duration": 193000
+      },
+      {
+        "id": "2WDgnb44mEO7gWUtECuNLJ",
+        "title": "מכשפה",
+        "artist": "Static",
+        "album": "להרים",
+        "url": "https://www.youtube.com/watch?v=kq70EhdMj60",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2731821551fb34eb28a9e44e6a5",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:06.284Z",
+        "duration": 138496
+      },
+      {
+        "id": "4zXfQYhcSboWEOAwIQST9N",
+        "title": "רק שלך",
+        "artist": "Omer Adam",
+        "album": "חמישה לילות",
+        "url": "https://www.youtube.com/watch?v=Jw02uPan7RU",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273e14295d1a6eebd53fd6223dd",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:06.345Z",
+        "duration": 234844
+      },
+      {
+        "id": "6g84RaMubeO44LyTDghqUB",
+        "title": "נאדי באדי",
+        "artist": "Shahar Tavoch",
+        "album": "נאדי באדי",
+        "url": "https://www.youtube.com/watch?v=xqr9rZ8eBBc",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273436d7fcc6c3bba5ce98019c2",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:06.303Z",
+        "duration": 150420
+      }
+    ]
+  },
+  {
+    "_id": "a69b2f50-f2aa-4eb3-a0e9-015fefe50816",
+    "name": "Hip-Hop",
+    "tags": [],
+    "createdBy": {
+      "_id": "9d783a94-248e-4bb6-87a5-b7f15ce553c5",
+      "fullname": "Hip-Hop",
+      "imgUrl": "https://t.scdn.co/images/728ed47fc1674feb95f7ac20236eb6d7.jpeg"
+    },
+    "likedByUsers": [],
+    "songs": [
+      {
+        "id": "7iabz12vAuVQYyekFIWJxD",
+        "title": "BAND4BAND (feat. Lil Baby)",
+        "artist": "Central Cee",
+        "album": "BAND4BAND (feat. Lil Baby)",
+        "url": "https://www.youtube.com/watch?v=pDddlvCfTiw",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2737b588bf0555bde606f8b27c7",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:07.160Z",
+        "duration": 140733
+      },
+      {
+        "id": "0izPpjfwsu2DuzWGqsABkT",
+        "title": "KEHLANI",
+        "artist": "Jordan Adetunji",
+        "album": "KEHLANI",
+        "url": "https://www.youtube.com/watch?v=ULCb3krc5LI",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2739423fae8aceca453648a13d7",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:07.424Z",
+        "duration": 122360
+      },
+      {
+        "id": "6AI3ezQ4o3HUoP6Dhudph3",
+        "title": "Not Like Us",
+        "artist": "Kendrick Lamar",
+        "album": "Not Like Us",
+        "url": "https://www.youtube.com/watch?v=H58vbez_m4E",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2731ea0c62b2339cbf493a999ad",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:07.429Z",
+        "duration": 274192
+      },
+      {
+        "id": "4IFd7EVCyJsUHesBMXI8ju",
+        "title": "Parking Lot",
+        "artist": "Mustard",
+        "album": "Parking Lot",
+        "url": "https://www.youtube.com/watch?v=qyOcPYeFByA",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273ad3e25785fe6f26690797468",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:07.166Z",
+        "duration": 172794
+      },
+      {
+        "id": "0SdBkFh6u5IHIXqlBu0NyI",
+        "title": "Yeah Glo!",
+        "artist": "GloRilla",
+        "album": "Yeah Glo!",
+        "url": "https://www.youtube.com/watch?v=voT9hOs6FZc",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2731da67131f071aa3c7fe13f6e",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:07.144Z",
+        "duration": 142702
+      },
+      {
+        "id": "4Na2HfNSr58chvfX69fy36",
+        "title": "one of wun",
+        "artist": "Gunna",
+        "album": "One of Wun",
+        "url": "https://www.youtube.com/watch?v=HqiZRQHhqQs",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273c67636f3021f5869095c0fc5",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:07.167Z",
+        "duration": 144000
+      },
+      {
+        "id": "4KWeGKChLKcnZsj3sIOSkW",
+        "title": "Tobey (feat. Big Sean and BabyTron)",
+        "artist": "Eminem",
+        "album": "Tobey (feat. Big Sean and BabyTron)",
+        "url": "https://www.youtube.com/watch?v=9xn0OHEZZ8Q",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273133d7c014b5bec0d7eea09b7",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:07.413Z",
+        "duration": 284892
+      },
+      {
+        "id": "09imUl1oyaB2R86qBgEhCN",
+        "title": "Talk My Shit (feat. Amaarae & Flo Milli)",
+        "artist": "Childish Gambino",
+        "album": "Bando Stone and The New World",
+        "url": "https://www.youtube.com/watch?v=DbJqlIXqR6s",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27305c9a49574cc249f1c5405ab",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:07.090Z",
+        "duration": 225906
+      },
+      {
+        "id": "5b3XJ1pjrHO5JtY2PcTjnI",
+        "title": "Mamushi (feat. Yuki Chiba)",
+        "artist": "Megan Thee Stallion",
+        "album": "MEGAN",
+        "url": "https://www.youtube.com/watch?v=mPeWgGMSb0s",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2732538afd3580d0424bbe28a01",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:07.284Z",
+        "duration": 156988
+      },
+      {
+        "id": "2tudvzsrR56uom6smgOcSf",
+        "title": "Like That",
+        "artist": "Future",
+        "album": "WE DON'T TRUST YOU",
+        "url": "https://www.youtube.com/watch?v=N9bKBAA22Go",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273a46b07c291e6dfdee13b3ee8",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:07.161Z",
+        "duration": 267706
+      }
+    ]
+  },
+  {
+    "_id": "f6cc0b69-b1b4-485e-92f2-2c839fb0204e",
+    "name": "Rock",
+    "tags": [],
+    "createdBy": {
+      "_id": "4825eae0-84a6-4103-9c94-31e7cb05c82f",
+      "fullname": "Rock",
+      "imgUrl": "https://t.scdn.co/media/derived/rock_9ce79e0a4ef901bbd10494f5b855d3cc_0_0_274_274.jpg"
+    },
+    "likedByUsers": [],
+    "songs": [
+      {
+        "id": "6Pur3hWy6Nzc27ilmsp5HA",
+        "title": "Lamento Boliviano",
+        "artist": "Los Enanitos Verdes",
+        "album": "Big Bang",
+        "url": "https://www.youtube.com/watch?v=0A0d5f1eNhQ",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27335bf8a2179962114b8ec7585",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:08.530Z",
+        "duration": 222226
+      },
+      {
+        "id": "3b1IQflSLrgzYQPGFzI9cl",
+        "title": "Es Por Ti",
+        "artist": "Juanes",
+        "album": "Un Día Normal",
+        "url": "https://www.youtube.com/watch?v=-9l5t3MWss8",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27323a1613112c1ecf946f51177",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:08.225Z",
+        "duration": 250693
+      },
+      {
+        "id": "5EJ2THuhAapEIeQOtXUQ0x",
+        "title": "Oye Mi Amor",
+        "artist": "Maná",
+        "album": "¿Dónde Jugarán Los Niños?",
+        "url": "https://www.youtube.com/watch?v=6ldw5Zmx1RI",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27363f3b7f5abf86ad483b57b77",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:08.224Z",
+        "duration": 263306
+      },
+      {
+        "id": "78dbqYDvx6FOefROApu9w0",
+        "title": "Inevitable",
+        "artist": "Shakira",
+        "album": "Donde Estan Los Ladrones",
+        "url": "https://www.youtube.com/watch?v=nYbcVK2jjXc",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273bfcff1dd252b22bba16a2a5d",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:08.258Z",
+        "duration": 192866
+      },
+      {
+        "id": "1Wrzhfa5bNlqvsnCztz190",
+        "title": "Devuélveme a mi chica",
+        "artist": "Hombres G",
+        "album": "Hombres G (Edición 30 Aniversario)",
+        "url": "https://www.youtube.com/watch?v=zzIOxHIZEis",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2734bebefadddafd8c9e20a8c35",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:08.297Z",
+        "duration": 194080
+      },
+      {
+        "id": "19CmuECYssqkPWANF4nLWM",
+        "title": "Para No Verte Más",
+        "artist": "La Mosca Tse-Tse",
+        "album": "Visperas De Carnaval",
+        "url": "https://www.youtube.com/watch?v=4MULjbUhIz4",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27360fc79eea7acba5248619f82",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:08.241Z",
+        "duration": 191560
+      },
+      {
+        "id": "2lpIh6Gr6HYjg1CFBaucS5",
+        "title": "De Música Ligera - Remasterizado 2007",
+        "artist": "Soda Stereo",
+        "album": "Canción Animal (Remastered)",
+        "url": "https://www.youtube.com/watch?v=fcggVMh5dAo",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273c451ed28353639e79b4d97d9",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:08.245Z",
+        "duration": 212746
+      },
+      {
+        "id": "1p7m9H4H8s0Y7SgRm7j3ED",
+        "title": "Flaca",
+        "artist": "Andrés Calamaro",
+        "album": "Alta Suciedad",
+        "url": "https://www.youtube.com/watch?v=UCF9oHXhDMU",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273e4b8ec3d2ffe1f77c7185d48",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:08.254Z",
+        "duration": 277653
+      },
+      {
+        "id": "6kdCN6gTWLcLxmLXoUcwuI",
+        "title": "Eres",
+        "artist": "Café Tacvba",
+        "album": "Cuatro Caminos",
+        "url": "https://www.youtube.com/watch?v=98Akpf1ph2o",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273624927252564ef4625307897",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:08.385Z",
+        "duration": 267600
+      },
+      {
+        "id": "1nULBrlzWatdcjA2ZctIMv",
+        "title": "Labios Rotos - En Vivo Desde México / 2010",
+        "artist": "Zoé",
+        "album": "MTV Unplugged Música De Fondo (Reissue/Live)",
+        "url": "https://www.youtube.com/watch?v=7h2ryr_uUEs",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2739abba2e4a7600af6c16988a9",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:08.531Z",
+        "duration": 243040
+      }
+    ]
+  },
+  {
+    "_id": "a084203b-f0a1-42ca-9cce-d8db71b02d6e",
+    "name": "Indie",
+    "tags": [],
+    "createdBy": {
+      "_id": "7a484982-a788-4f7a-82eb-57a024aca6e1",
+      "fullname": "Indie",
+      "imgUrl": "https://t.scdn.co/images/fe06caf056474bc58862591cd60b57fc.jpeg"
+    },
+    "likedByUsers": [],
+    "songs": [
+      {
+        "id": "0YMe6PHRbeDcN7KJdCG0bW",
+        "title": "The Dress",
+        "artist": "Dijon",
+        "album": "Absolutely",
+        "url": "https://www.youtube.com/watch?v=ws5K_5G_xvI",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273a68442f97c3ad2dcba0beae6",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:09.479Z",
+        "duration": 184767
+      },
+      {
+        "id": "7H0ya83CMmgFcOhw0UB6ow",
+        "title": "Space Song",
+        "artist": "Beach House",
+        "album": "Depression Cherry",
+        "url": "https://www.youtube.com/watch?v=RBtlPT23PTM",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2739b7190e673e46271b2754aab",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:09.540Z",
+        "duration": 320466
+      },
+      {
+        "id": "6UFivO2zqqPFPoQYsEMuCc",
+        "title": "Bags",
+        "artist": "Clairo",
+        "album": "Immunity",
+        "url": "https://www.youtube.com/watch?v=L9HYJbe9Y18",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27333ccb60f9b2785ef691b2fbc",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:09.236Z",
+        "duration": 260519
+      },
+      {
+        "id": "25Syi9wnfn6ZGAmiOBypPq",
+        "title": "Motion Sickness",
+        "artist": "Phoebe Bridgers",
+        "album": "Stranger in the Alps (Deluxe Edition)",
+        "url": "https://www.youtube.com/watch?v=9sfYpolGCu8",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27378d8e579122e4b9446954ee9",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:09.269Z",
+        "duration": 229760
+      },
+      {
+        "id": "7cs7MLtAWvsdf3w5kBvfK2",
+        "title": "Nothing's Gonna Hurt You Baby",
+        "artist": "Cigarettes After Sex",
+        "album": "I.",
+        "url": "https://www.youtube.com/watch?v=QI8VrXkffcg",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2739da736813eb8d9de94d46828",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:09.554Z",
+        "duration": 286293
+      },
+      {
+        "id": "0EDQwboQDmswDRn58wcslg",
+        "title": "Kingston",
+        "artist": "Faye Webster",
+        "album": "Atlanta Millionaires Club",
+        "url": "https://www.youtube.com/watch?v=-5_tGEao_GQ",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2732e132a81fd103d3ee20033cf",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:09.501Z",
+        "duration": 202160
+      },
+      {
+        "id": "1XrSjpNe49IiygZfzb74pk",
+        "title": "What Once Was",
+        "artist": "Her's",
+        "album": "Songs of Her's",
+        "url": "https://www.youtube.com/watch?v=5mKX21of0sM",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273fc1bc1cf80c431c2bdbde601",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:09.255Z",
+        "duration": 255067
+      },
+      {
+        "id": "3qhlB30KknSejmIvZZLjOD",
+        "title": "End of Beginning",
+        "artist": "Djo",
+        "album": "DECIDE",
+        "url": "https://www.youtube.com/watch?v=xy3AcmW0lrQ",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273fddfffec51b4580acae727c1",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:09.396Z",
+        "duration": 159245
+      },
+      {
+        "id": "01TyFEZu6mHbffsVfxgrFn",
+        "title": "Show Me How",
+        "artist": "Men I Trust",
+        "album": "Show Me How",
+        "url": "https://www.youtube.com/watch?v=OZRYzH0Q0pU",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27340faefaf8ebe0e1564c60faa",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:09.261Z",
+        "duration": 215110
+      },
+      {
+        "id": "5hc71nKsUgtwQ3z52KEKQk",
+        "title": "Somebody Else",
+        "artist": "The 1975",
+        "album": "I like it when you sleep, for you are so beautiful yet so unaware of it",
+        "url": "https://www.youtube.com/watch?v=Bimd2nZirT4",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273d3de03550f715df1ea7e0c08",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:09.266Z",
+        "duration": 347520
+      }
+    ]
+  },
+  {
+    "_id": "83ca8610-9408-45df-80ab-486960809ce4",
+    "name": "Chill",
+    "tags": [],
+    "createdBy": {
+      "_id": "a9fa408e-65c0-4a32-b3aa-81c55f230ad8",
+      "fullname": "Chill",
+      "imgUrl": "https://t.scdn.co/media/derived/chill-274x274_4c46374f007813dd10b37e8d8fd35b4b_0_0_274_274.jpg"
+    },
+    "likedByUsers": [],
+    "songs": [
+      {
+        "id": "76IEfReNvVfRG0xD334ggb",
+        "title": "רכבת חזרה",
+        "artist": "Inbal Bibi",
+        "album": "רוקדת בשקיעה",
+        "url": "https://www.youtube.com/watch?v=mbNAN5-_pFM",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2739f3accdccb8520a647d886ea",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:10.601Z",
+        "duration": 199024
+      },
+      {
+        "id": "2L2vg2n4bU1CVLlpKbQhef",
+        "title": "שיר ללא שם",
+        "artist": "Eviatar Banai",
+        "album": "עוגן במים",
+        "url": "https://www.youtube.com/watch?v=GNNIu2R8v2o",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273a77178c8eea4900a58b743fa",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:10.615Z",
+        "duration": 218692
+      },
+      {
+        "id": "5rqeYyQ1EpbEJKkH4cgncs",
+        "title": "בין העיר לפרדס",
+        "artist": "Tuna",
+        "album": "בין העיר לפרדס",
+        "url": "https://www.youtube.com/watch?v=R9cVn4bMjIk",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27324fed376eb2231da772d2d97",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:10.638Z",
+        "duration": 232284
+      },
+      {
+        "id": "2hmKpvdywJSBEqHjIilPrE",
+        "title": "ללמוד לעוף",
+        "artist": "Akiva",
+        "album": "ללמוד לעוף",
+        "url": "https://www.youtube.com/watch?v=vkzfmRRqf8o",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2739c7045ca58b89a8c4dafd955",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:10.600Z",
+        "duration": 207717
+      },
+      {
+        "id": "6qB33ch9RK0aoMfxfnlXa1",
+        "title": "פלסטרים",
+        "artist": "Osher Cohen",
+        "album": "פלסטרים",
+        "url": "https://www.youtube.com/watch?v=psKClFBw5S4",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27340eb76ca31d27e1dcca8a1b9",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:10.626Z",
+        "duration": 178236
+      },
+      {
+        "id": "1mvEAM3YO6997JkxkSAGw9",
+        "title": "Feel It Still",
+        "artist": "Lola Marsh",
+        "album": "Feel it Still",
+        "url": "https://www.youtube.com/watch?v=F2sOcmpU7_M",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273bbac248637aab0f5cb6f7185",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:10.810Z",
+        "duration": 174730
+      },
+      {
+        "id": "6N77PmBuiZnIXGjJVx6E28",
+        "title": "רבות הדרכים / עושה לי צרות - Live",
+        "artist": "Odeya",
+        "album": "רבות הדרכים / עושה לי צרות (Live)",
+        "url": "https://www.youtube.com/watch?v=aeC-d12mFC4",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273bb82d6fabeb71fb893e68663",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:10.657Z",
+        "duration": 378118
+      },
+      {
+        "id": "6OQ4tEPSC68EwqZeAuU9KF",
+        "title": "ואת - Live",
+        "artist": "Arkadi Duchin",
+        "album": "ואת (Live)",
+        "url": "https://www.youtube.com/watch?v=aYFPO-m1eyU",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273f6adf48b9f2f34f3efecf3e5",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:10.641Z",
+        "duration": 230000
+      },
+      {
+        "id": "0Wr6wZgEP1npYg0vrsWPIZ",
+        "title": "רוז",
+        "artist": "Peer Tasi",
+        "album": "רדיו שטח 2",
+        "url": "https://www.youtube.com/watch?v=6EvjmgtR2rI",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27364262898e2dc5b99349e5b15",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:10.804Z",
+        "duration": 224000
+      },
+      {
+        "id": "61NVr8MWFSum94stOYgCnv",
+        "title": "איפה אתה",
+        "artist": "Yuval Dayan",
+        "album": "תישארי את",
+        "url": "https://www.youtube.com/watch?v=oNKD_8hkpJs",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27378f53987d9a8964a0a7874e9",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:10.629Z",
+        "duration": 202590
+      }
+    ]
+  },
+  {
+    "_id": "856d6ed0-767a-457e-8ab9-2115b75daf93",
+    "name": "Sleep",
+    "tags": [],
+    "createdBy": {
+      "_id": "4bb97df6-d836-4029-b97b-5263ec18042f",
+      "fullname": "Sleep",
+      "imgUrl": "https://t.scdn.co/media/derived/sleep-274x274_0d4f836af8fab7bf31526968073e671c_0_0_274_274.jpg"
+    },
+    "likedByUsers": [],
+    "songs": [
+      {
+        "id": "0TT2Tzi8mEETCqYZ1ffiHh",
+        "title": "Serene Reflections",
+        "artist": "Eternalistic",
+        "album": "Serene Reflections",
+        "url": "https://www.youtube.com/watch?v=JwvGLISUXyg",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273b55aba87924bd8b1a5f6190f",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:11.482Z",
+        "duration": 189750
+      },
+      {
+        "id": "6KzdWw8Hi1bz1lVw2AXDzb",
+        "title": "Touches",
+        "artist": "Somnum Magnam",
+        "album": "Touches",
+        "url": "https://www.youtube.com/watch?v=PPU14bn8Mdg",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273d910a45ca207d04a86563542",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:11.506Z",
+        "duration": 144750
+      },
+      {
+        "id": "5PFe4q5VmBRaYUnXSeZ6EX",
+        "title": "Aeterna",
+        "artist": "Luna Novina",
+        "album": "Aeterna",
+        "url": "https://www.youtube.com/watch?v=GCM7FGozKUQ",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273772132cb7bda074a5e0d5491",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:11.731Z",
+        "duration": 188531
+      },
+      {
+        "id": "14BiZ33a6hZeAw3NWtRbl0",
+        "title": "Onto",
+        "artist": "Leander Vaughn",
+        "album": "Onto",
+        "url": "https://www.youtube.com/watch?v=Ks4KZFjS4fE",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273e246b2ea0f72279609e4f5cb",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:11.464Z",
+        "duration": 201000
+      },
+      {
+        "id": "0T6MlMNUB10hPTou6NaMRL",
+        "title": "Emotional privilege",
+        "artist": "Jody R",
+        "album": "Emotional privilege",
+        "url": "https://www.youtube.com/watch?v=UlNMfY8uDUE",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2735d81e91b9d6d7cbec1bd0087",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:11.756Z",
+        "duration": 176000
+      },
+      {
+        "id": "6SbFBs5pon9flXihCWlfO4",
+        "title": "Ara",
+        "artist": "Placidous",
+        "album": "Ara",
+        "url": "https://www.youtube.com/watch?v=_XNOUiFNkbA",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27396b19da4638985c91ff0c3e6",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:11.494Z",
+        "duration": 165020
+      },
+      {
+        "id": "0LEzTG4JEiFgNg6XbgGQh2",
+        "title": "Anthazit Plastics",
+        "artist": "Starshine Strum",
+        "album": "Anthazit Plastics",
+        "url": "https://www.youtube.com/results?search_query=Anthazit%20Plastics%20Starshine%20Strum",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273792aa6a9d893c1068360fca7",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:11.411Z",
+        "duration": 211583
+      },
+      {
+        "id": "0KXcQySPBhAvDT5c6J1KxH",
+        "title": "Essence",
+        "artist": "Rufus Ziegler",
+        "album": "Essence",
+        "url": "https://www.youtube.com/watch?v=GwQSO2DAQOc",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273e93cec154a859365fe442613",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:11.502Z",
+        "duration": 144560
+      },
+      {
+        "id": "79VaizbXk2cpZy3nzUxjN7",
+        "title": "Slumber",
+        "artist": "Celestros",
+        "album": "Slumber",
+        "url": "https://www.youtube.com/watch?v=mw-nSzp07l8",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273fc565d978ba56290f92c8a5b",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:11.716Z",
+        "duration": 161413
+      },
+      {
+        "id": "74uFbc3D8QpxBn5CObGShi",
+        "title": "Existing",
+        "artist": "Decanõe",
+        "album": "Existing",
+        "url": "https://www.youtube.com/watch?v=BmQnBQdw6aA",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273f2e0c79c08cb9856f9120a18",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:11.455Z",
+        "duration": 168258
+      }
+    ]
+  },
+  {
+    "_id": "20dd0377-2e32-4fca-81f2-8aee245f0136",
+    "name": "Party",
+    "tags": [],
+    "createdBy": {
+      "_id": "f8fe9ea9-9f6d-450f-9d4a-6018ae6757c1",
+      "fullname": "Party",
+      "imgUrl": "https://t.scdn.co/images/7ee6530d5b3c4acc9a0957046bf11d63"
+    },
+    "likedByUsers": [],
+    "songs": [
+      {
+        "id": "5OwAhFlvFZ4ZdGDfroYgAm",
+        "title": "Cuando Te Vi | CROSSOVER #5",
+        "artist": "Big One",
+        "album": "Cuando Te Vi | CROSSOVER #5",
+        "url": "https://www.youtube.com/watch?v=auDMCMqiW8U",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2738530c1a3956e584fe1ddb2a4",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:12.547Z",
+        "duration": 218400
+      },
+      {
+        "id": "6WatFBLVB0x077xWeoVc2k",
+        "title": "Si Antes Te Hubiera Conocido",
+        "artist": "KAROL G",
+        "album": "Si Antes Te Hubiera Conocido",
+        "url": "https://www.youtube.com/watch?v=gwALjjrg6gA",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273491678beaffcefac517a699e",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:12.522Z",
+        "duration": 195824
+      },
+      {
+        "id": "63pLfjK6FvcYJYMGwtHjd6",
+        "title": "SORRY 4 THAT MUCH",
+        "artist": "Feid",
+        "album": "SORRY 4 THAT MUCH",
+        "url": "https://www.youtube.com/watch?v=Q2ftMmazZCU",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273746cdeef8d4a4110f1b5af29",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:12.581Z",
+        "duration": 207746
+      },
+      {
+        "id": "6SJ01hvFkBLTUnkLyZ72G5",
+        "title": "Tengo Un Plan - Remix",
+        "artist": "Key-Key",
+        "album": "Tengo Un Plan (Remix)",
+        "url": "https://www.youtube.com/watch?v=XxIF0bJba8k",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273e365e6b7c6ccb1e8b8001046",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:12.598Z",
+        "duration": 215448
+      },
+      {
+        "id": "5bi0gh89wRuH2OgjdAKFsb",
+        "title": "Santa",
+        "artist": "Rvssian",
+        "album": "Santa",
+        "url": "https://www.youtube.com/watch?v=9V_HpS9p4QY",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273f02899736a6ff8dd538ae70b",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:12.514Z",
+        "duration": 193038
+      },
+      {
+        "id": "2btNsI4OvcVl7SAHQQDHFB",
+        "title": "Mirame",
+        "artist": "Blessd",
+        "album": "Mirame",
+        "url": "https://www.youtube.com/watch?v=zcw8NlHljF4",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273b62a2ec2d61d48f34a368144",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:12.498Z",
+        "duration": 157453
+      },
+      {
+        "id": "5Uptvz6j1sjDKxidAcnH2L",
+        "title": "SI NO ES CONTIGO",
+        "artist": "Cris Mj",
+        "album": "SI NO ES CONTIGO",
+        "url": "https://www.youtube.com/watch?v=vX1fgqKXSsk",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273b5a456d85aa63ef612e73edb",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:12.523Z",
+        "duration": 156000
+      },
+      {
+        "id": "1pymWRCuZfCd0zdiBJo0Hj",
+        "title": "REAL GANGSTA LOVE",
+        "artist": "Trueno",
+        "album": "EL ÚLTIMO BAILE",
+        "url": "https://www.youtube.com/watch?v=gaxbVfsoF6Q",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27368a450f7bcdc187e20f0ba0a",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:12.552Z",
+        "duration": 145342
+      },
+      {
+        "id": "33Nj9AdncSmHbCN3QeSZTL",
+        "title": "Volver Al Futuro",
+        "artist": "Oscar Maydon",
+        "album": "Volver Al Futuro",
+        "url": "https://www.youtube.com/watch?v=sa52xabMSB8",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b27306116ae20d0a4c09d65c7d1d",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:12.513Z",
+        "duration": 204102
+      },
+      {
+        "id": "6KOnLTb1xLfKDAjMC43I76",
+        "title": "Giza",
+        "artist": "Natanael Cano",
+        "album": "Giza",
+        "url": "https://www.youtube.com/watch?v=eXCS6-MSQ_Y",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273a708ecde93d99f552f4c5b0f",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:12.504Z",
+        "duration": 177580
+      }
+    ]
+  },
+  {
+    "_id": "82d20e2c-9ce7-48b1-8613-2c973cc0b631",
+    "name": "Focus",
+    "tags": [],
+    "createdBy": {
+      "_id": "6fe1bde6-f327-42e5-926a-66e97eaaf7cc",
+      "fullname": "Focus",
+      "imgUrl": "https://t.scdn.co/media/original/genre-images-square-274x274_5e50d72b846a198fcd2ca9b3aef5f0c8_274x274.jpg"
+    },
+    "likedByUsers": [],
+    "songs": [
+      {
+        "id": "1ELJ66txni1o86RVvdcgHb",
+        "title": "Augury",
+        "artist": "Lynx XII",
+        "album": "Augury",
+        "url": "https://www.youtube.com/watch?v=bkoGyewObws",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273332b15a62abb6b8d99e155dc",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:13.533Z",
+        "duration": 156066
+      },
+      {
+        "id": "2MveOWtavb89Lk09bcPoi8",
+        "title": "Orange Sky",
+        "artist": "Auðura",
+        "album": "Orange Sky",
+        "url": "https://www.youtube.com/watch?v=Cl_qE3BCGR4",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2737ab30bfdd04bfe288a215c88",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:13.727Z",
+        "duration": 129187
+      },
+      {
+        "id": "1HsNwZPWvrN8gZ44YnjOCo",
+        "title": "the echoing truth",
+        "artist": "Tall Towers",
+        "album": "the echoing truth",
+        "url": "https://www.youtube.com/watch?v=5MahZFj9d0Q",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2735cb7a62b6b565c219a20f0ea",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:13.565Z",
+        "duration": 126505
+      },
+      {
+        "id": "4FmITkvf6U8iH4nQqDf29F",
+        "title": "Tell A Story",
+        "artist": "BBG's",
+        "album": "Tell A Story",
+        "url": "https://www.youtube.com/watch?v=YOq4Idxu0N8",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273ad8344777e061be5065752bf",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:13.565Z",
+        "duration": 160000
+      },
+      {
+        "id": "1K2pzcuinGj4FEzIgruh4B",
+        "title": "Photographic",
+        "artist": "Skeru",
+        "album": "Photographic",
+        "url": "https://www.youtube.com/watch?v=DS7UbEWPWs8",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273a4653122d501a02774b8c1e7",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:13.509Z",
+        "duration": 139934
+      },
+      {
+        "id": "0rZ0wSyuHnIb5ViR9EDdgH",
+        "title": "Oscillation",
+        "artist": "Mimber",
+        "album": "Oscillation",
+        "url": "https://www.youtube.com/watch?v=6BNk8CeGB2I",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273b45f80555e47f7df350905ce",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:13.558Z",
+        "duration": 143060
+      },
+      {
+        "id": "7cpZLMamKPbJnV3hMAof98",
+        "title": "Extension",
+        "artist": "Oblivion",
+        "album": "Extension",
+        "url": "https://www.youtube.com/watch?v=qtpm6blDbU4",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2734a3d6abd66b8e9b93d45ecc6",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:13.555Z",
+        "duration": 150133
+      },
+      {
+        "id": "47tOl9FF9r6tNJypRo3Pe9",
+        "title": "Long Distances",
+        "artist": "Barkérby",
+        "album": "Long Distances",
+        "url": "https://www.youtube.com/watch?v=JM2v_2H_XF0",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273c40db6aa7702961f3709efb1",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:13.715Z",
+        "duration": 124315
+      },
+      {
+        "id": "1NMxmBVNn7fP2nzl8dzHrj",
+        "title": "Lunar Rainbow",
+        "artist": "Louaminé",
+        "album": "Lunar Rainbow",
+        "url": "https://www.youtube.com/watch?v=cFOJ1Uwr2r4",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b273b54842df6b21c6b8f838b608",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:13.498Z",
+        "duration": 147946
+      },
+      {
+        "id": "2O07AvxSLB2UNfANa6SzLi",
+        "title": "Another Day",
+        "artist": "Francis Flo",
+        "album": "Another Day",
+        "url": "https://www.youtube.com/watch?v=AiNWB73hLZ8",
+        "imgUrl": "https://i.scdn.co/image/ab67616d0000b2736fa67d2523c8145572a109e1",
+        "addedBy": "{minimal-user}",
+        "likedBy": [
+          "{minimal-user}"
+        ],
+        "addedAt": "2024-07-20T16:51:13.611Z",
+        "duration": 113428
+      }
+    ]
+  }
+]
