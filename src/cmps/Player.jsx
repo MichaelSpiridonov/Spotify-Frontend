@@ -11,6 +11,7 @@ import Queue from '../assets/icons/queue.svg?react';
 import VolumeDown from '../assets/icons/volumedown.svg?react';
 import VolumeUp from '../assets/icons/volumeup.svg?react';
 import ProgressBar from './ProgressBar';
+import { updateSong } from '../store/actions/station.actions.js';
 
 class Player extends React.Component {
   constructor(props) { 
@@ -24,6 +25,8 @@ class Player extends React.Component {
       volume: 25,
       currentTime: 0,
       duration: 0,
+      isMuted: false,
+      previousVolume: 25,
     };
     this.onReady = this.onReady.bind(this);
     this.onStateChange = this.onStateChange.bind(this);
@@ -33,6 +36,10 @@ class Player extends React.Component {
     this.togglePlayPause = this.togglePlayPause.bind(this);
     this.handleSeek = this.handleSeek.bind(this);
     this.updateTime = this.updateTime.bind(this);
+    this.onPlayNext = this.onPlayNext.bind(this);
+    this.onPlayPrevious = this.onPlayPrevious.bind(this);
+    this.toggleMute = this.toggleMute.bind(this);
+    this.interval = null;
   }
 
   onReady(event) {
@@ -44,32 +51,50 @@ class Player extends React.Component {
     event.target.playVideo();
   }
 
-  onStateChange(event) {
+  async onStateChange(event) {
     const { player, isRepeat } = this.state;
     if (isRepeat && event.data === window.YT.PlayerState.ENDED) {
-      player.playVideo();
+      this.onPlayNext();
+      setTimeout(() => {
+        player.playVideo();
+      }, 1000);
     } else if (event.data === window.YT.PlayerState.ENDED) {
+      this.onPlayNext();
       this.setState({
         isPlaying: false,
         currentTime: 0,
         duration: player.getDuration(),
       });
-    } else {
+    } else if(event.data !== window.YT.PlayerState.PAUSED){
       player.playVideo();
       this.setState({
         isPlaying: true,
       });
     }
     if (event.data === window.YT.PlayerState.PLAYING) {
-      this.interval = setInterval(this.updateTime, 1000);
+      this.startProgressUpdate();
     } else {
-      clearInterval(this.interval);
+      this.stopProgressUpdate();
+    }
+  }
+
+  startProgressUpdate() {
+    const update = () => {
+      this.updateTime();
+      this.interval = requestAnimationFrame(update);
+    };
+    update();
+  }
+
+  stopProgressUpdate() {
+    if (this.interval) {
+      cancelAnimationFrame(this.interval);
+      this.interval = null;
     }
   }
 
   togglePlayPause() {
     const { player, isPlaying } = this.state;
-    console.log(player)
     if (isPlaying) {
       player.pauseVideo();
     } else {
@@ -81,19 +106,17 @@ class Player extends React.Component {
   }
 
   toggleRepeat() {
-    const {isPlaying, isRepeat } = this.state;
-    if (isPlaying) {
-        this.setState({
-            isRepeat: !isRepeat,
-          });
-    } 
+    const { isRepeat } = this.state;
+    this.setState({
+      isRepeat: !isRepeat,
+    });
   }
 
   toggleShuffle() {
     const { isShuffle } = this.state;
-        this.setState({
-            isShuffle: !isShuffle,
-          });
+    this.setState({
+      isShuffle: !isShuffle,
+    });
   }
 
   handleVolumeChange(event) {
@@ -107,10 +130,30 @@ class Player extends React.Component {
     });
   }
 
+  toggleMute() {
+    const { player, isMuted, previousVolume } = this.state;
+    if (isMuted) {
+      player.setVolume(previousVolume);
+      this.setState({
+        isMuted: false,
+        volume: previousVolume,
+      });
+    } else {
+      player.setVolume(0);
+      this.setState({
+        isMuted: true,
+        volume: 0,
+      });
+    }
+  }
+
   handleSeek(time) {
     const { player } = this.state;
     if (player) {
       player.seekTo(time);
+      this.setState({
+        currentTime: time,
+      });
     }
   }
 
@@ -121,6 +164,42 @@ class Player extends React.Component {
         currentTime: player.getCurrentTime(),
       });
     }
+  }
+
+  onPlayNext(event) {
+    const { player, isRepeat, isPlaying } = this.state;
+    const { station, currSong } = this.props;
+    let nextSongIdx = station.songs.findIndex(song => song.id === currSong.id) + 1;
+    if (station.songs[nextSongIdx]) {
+      const nextSong = station.songs[nextSongIdx];
+      updateSong(nextSong);
+    } else if(!station.songs[nextSongIdx] && isRepeat || isPlaying || !isPlaying){
+      nextSongIdx = 0;
+      const nextSong = station.songs[nextSongIdx];
+      updateSong(nextSong);
+    } else {
+      return
+    }
+    setTimeout(() => {
+      player.playVideo();
+    }, 1000);
+  }
+
+  onPlayPrevious() {
+    const { player } = this.state;
+    const { station, currSong } = this.props;
+    let previousSongIdx = station.songs.findIndex(song => song.id === currSong.id) - 1;
+    if (station.songs[previousSongIdx]) {
+      const previousSong = station.songs[previousSongIdx];
+      updateSong(previousSong);
+    } else {
+      previousSongIdx = station.songs.length - 1;
+      const previousSong = station.songs[previousSongIdx];
+      updateSong(previousSong);
+    }
+    setTimeout(() => {
+      player.playVideo();
+    }, 1000);
   }
 
   render() {
@@ -139,45 +218,45 @@ class Player extends React.Component {
       <>
         <section className="player-seek-and-control">
           <section className="player-controls">
-            <Shuffle className={(isShuffle) ? 'clicked' : ''} onClick={this.toggleShuffle} />
-            <Previous />
-          <section className="player">
-            <YouTube
-              className="video-player"
-              videoId={videoId}
-              opts={opts}
-              onReady={this.onReady}
-              onStateChange={this.onStateChange}
-            />
-            {isPlaying ? (
-              <Pause onClick={this.togglePlayPause} />
-            ) : (
-              <Play onClick={this.togglePlayPause} />
-            )}
-          </section>
-            <Next />
-            <Repeat className={(isRepeat) ? 'clicked' : ''} onClick={this.toggleRepeat} />
+            <Shuffle className={isShuffle ? 'clicked' : ''} onClick={this.toggleShuffle} />
+            <Previous onClick={this.onPlayPrevious} />
+            <section className="player">
+              <YouTube
+                className="video-player"
+                videoId={videoId}
+                opts={opts}
+                onReady={this.onReady}
+                onStateChange={this.onStateChange}
+              />
+              {isPlaying ? (
+                <Pause onClick={this.togglePlayPause} />
+              ) : (
+                <Play onClick={this.togglePlayPause} />
+              )}
             </section>
-            <ProgressBar
-          currentTime={currentTime}
-          duration={duration}
-          onSeek={this.handleSeek}
-        />
+            <Next onClick={this.onPlayNext} />
+            <Repeat className={isRepeat ? 'clicked' : ''} onClick={this.toggleRepeat} />
+          </section>
+          <ProgressBar
+            currentTime={currentTime}
+            duration={duration}
+            onSeek={this.handleSeek}
+          />
         </section>
         <section className="player-controls">
-            <NowPlaying />
-            <Queue />
-            {(volume > 75) ? <VolumeUp /> : <VolumeDown />}
-            <div className="volume-slider-container">
+          <NowPlaying />
+          <Queue />
+          {volume > 75 ? <VolumeUp onClick={this.toggleMute}/> : <VolumeDown onClick={this.toggleMute} />}
+          <div className="volume-slider-container">
             <input
-                type="range"
-                min="0"
-                max="100"
-                value={volume}
-                step="1"
-                onChange={this.handleVolumeChange}
-                className="volume-slider"
-              />
+              type="range"
+              min="0"
+              max="100"
+              value={volume}
+              step="1"
+              onChange={this.handleVolumeChange}
+              className="volume-slider"
+            />
           </div>
         </section>
       </>

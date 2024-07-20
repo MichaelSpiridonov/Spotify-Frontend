@@ -13,18 +13,18 @@ const ProgressBar = ({ currentTime, duration, onSeek }) => {
   };
 
   const progressPercentage = (currentTime / duration) * 100;
-
   return (
     <div className="progress-bar-container">
     <span className="time">{formatTime(currentTime)}</span>
       <input
         type="range"
         min="0"
-        max="101"
+        max="100"
         step="1"
         value={progressPercentage || 0}
         onChange={handleSeek}
         className="progress-bar"
+        style={{ '--progress': `${progressPercentage}%` }}
       />
       <span className="time">{formatTime(duration)}</span>
     </div>

@@ -10,7 +10,7 @@ export const stationService = {
   query,
   getById,
   remove,
-  save,,
+  save,
   updateStations
 }
 window.cs = stationService
@@ -114,10 +114,58 @@ function _createStations() {
       },
     ],
   }
+  const station3 = {
+    _id: 'dseq31kigrq9419sjdsa',
+    name: "Michael's Playlist",
+    tags: ['Funk', 'Happy'],
+    createdBy: {
+      _id: 'u101',
+      fullname: 'Michael Spiridonov',
+      imgUrl: 'https://i.ytimg.com/vi/iT6MEoRywDY/mqdefault.jpg',
+    },
+    likedByUsers: ['{minimal-user}', '{minimal-user}'],
+    songs: [
+      {
+        id: 'Sis_JJZoAfQ',
+        title: 'Juice WRLD - Cigarettes',
+        url: 'https://www.youtube.com/watch?v=Sis_JJZoAfQ',
+        imgUrl: 'https://i.ytimg.com/vi/Sis_JJZoAfQ/mqdefault.jpg',
+        addedAt: 162521765266,
+        duration: 220000,
+      },
+      {
+        id: 'A4pasf5ci8s',
+        title: 'Juice WRLD - Purple Potion',
+        url: 'https://www.youtube.com/watch?v=A4pasf5ci8s',
+        imgUrl: 'https://i.ytimg.com/vi/A4pasf5ci8s/mqdefault.jpg',
+        addedBy: '{minimal-user}',
+        likedBy: ['{minimal-user}'],
+        addedAt: 162521765262,
+        duration: 212000,
+      },
+      {
+        id: 'Trv80iyv8qs',
+        title: 'Juice WRLD - High and Alone ',
+        url: 'https://www.youtube.com/watch?v=Trv80iyv8qs',
+        imgUrl: 'https://i.ytimg.com/vi/Trv80iyv8qs/mqdefault.jpg',
+        addedAt: 162521765264,
+        duration: 193000,
+      },
+      {
+        id: 'iT6MEoRywDY',
+        title: 'Juice WRLD - Rockstar In His Prime',
+        url: 'https://www.youtube.com/watch?v=iT6MEoRywDY',
+        imgUrl: 'https://i.ytimg.com/vi/iT6MEoRywDY/mqdefault.jpg',
+        addedAt: 162521765266,
+        duration: 220000,
+      },
+    ],
+  }
   if (!stations || stations.length) {
     stations = []
     stations.push(station)
     stations.push(station2)
+    stations.push(station3)
   }
   if(localStorage.getItem(STATIONS_KEY)) return
   saveToStorage(STATIONS_KEY, stations)
