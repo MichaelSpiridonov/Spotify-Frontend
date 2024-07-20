@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 import PlayIcon from '../assets/icons/play.svg?react'
 import AddIcon from '../assets/icons/addsong.svg?react'
+import SongOptionsIcon from '../assets/icons/song_options.svg?react'
 
 export function StationDetails() {
   const { stationId } = useParams()
@@ -61,6 +62,9 @@ export function StationDetails() {
               <AddIcon />
             </button>
             <span className='song-length'>{formatDuration(song.duration)}</span>
+            <button className='song-options-button'>
+              <SongOptionsIcon />
+            </button>
           </li>
         ))}
       </ul>
