@@ -10,8 +10,8 @@ export const stationService = {
   query,
   getById,
   remove,
-  save,,
-  updateStations
+  save,
+  updateStations,
 }
 window.cs = stationService
 
@@ -31,7 +31,7 @@ async function remove(stationId) {
 async function updateStations(stations) {
   // throw new Error('Nope')
   console.log(stations)
-  localStorage.setItem(STATIONS_KEY,JSON.stringify(stations))
+  localStorage.setItem(STATIONS_KEY, JSON.stringify(stations))
   /* console.log(...stations)
   await storageService.post(STATIONS_KEY, ...stations) */
 }
@@ -119,6 +119,6 @@ function _createStations() {
     stations.push(station)
     stations.push(station2)
   }
-  if(localStorage.getItem(STATIONS_KEY)) return
+  if (localStorage.getItem(STATIONS_KEY)) return
   saveToStorage(STATIONS_KEY, stations)
 }

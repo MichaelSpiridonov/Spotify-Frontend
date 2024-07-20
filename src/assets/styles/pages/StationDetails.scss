@@ -57,7 +57,8 @@
 }
 
 .play-button,
-.add-button {
+.add-button,
+.song-options-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -73,6 +74,25 @@
 .add-button svg {
   width: 16px;
   height: 16px;
+  color: #b3b3b3;
+  fill: currentColor;
+  &:hover {
+    color: white;
+    fill: currentColor;
+  }
+  & .clicked {
+    color: #1db954;
+    fill: currentColor;
+  }
+  & .clicked:hover {
+    color: #1ac757;
+    fill: currentColor;
+  }
+}
+
+.song-options-button svg {
+  width: 240 px;
+  height: 24px;
   color: #b3b3b3;
   fill: currentColor;
   &:hover {
