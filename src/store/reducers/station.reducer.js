@@ -16,6 +16,7 @@ export function stationReducer(state = initialState, action) {
     var newState = state
     var stations
     var station
+    console.log(action.stations)
     switch (action.type) {
         case SET_STATIONS:
             newState = { ...state, stations: action.stations }

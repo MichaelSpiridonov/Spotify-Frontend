@@ -22,6 +22,19 @@ export async function loadStation(stationId) {
         throw err
     }
 }
+export async function updateStations(idx,song) {
+    try {
+        const Stations = await stationService.query()
+        Stations[idx].songs.push(song)
+        console.log(Stations)
+        stationService.updateStations(Stations)
+        store.dispatch(getCmdSetStations(Stations))
+    } catch (err) {
+        console.log('Cannot save Station', err)
+        throw err
+    }
+}
+
 
 
 
@@ -66,6 +79,7 @@ function getCmdSetStations(stations) {
         stations
     }
 }
+
 function getCmdSetStation(station) {
     return {
         type: SET_STATION,

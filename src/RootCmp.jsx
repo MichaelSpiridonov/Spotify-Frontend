@@ -28,7 +28,6 @@ export function RootCmp() {
         </Routes>
         <AppPlayer />
       </main>
-      <MoreModal />
       <UserMsg />
     </div>
   )
