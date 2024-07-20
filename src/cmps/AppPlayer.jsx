@@ -4,6 +4,7 @@ import { loadStation } from "../store/actions/station.actions";
 import { showErrorMsg } from '../services/event-bus.service';
 import AddIcon from '../assets/icons/addsong.svg?react'
 import Player from './Player.jsx';
+import { Link } from 'react-router-dom';
 
 
 export function AppPlayer() {
@@ -25,6 +26,7 @@ export function AppPlayer() {
         <img className="song-image" src={currSong.imgUrl} />
         <section className='song-info'>
         <h2 className='song-title'>{currSong.title}</h2>
+        <Link to={`artist/${currSong.title.replace(/-.*$/, '')}`} className='artist-name'>{currSong.title.replace(/-.*$/, '')}</Link>
         </section>
         <AddIcon className="add-icn"/>
     </section>}</section>

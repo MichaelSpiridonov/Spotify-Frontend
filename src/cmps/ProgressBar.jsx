@@ -22,7 +22,7 @@ const ProgressBar = ({ currentTime, duration, onSeek }) => {
         min="0"
         max="101"
         step="1"
-        value={progressPercentage}
+        value={progressPercentage || 0}
         onChange={handleSeek}
         className="progress-bar"
       />
