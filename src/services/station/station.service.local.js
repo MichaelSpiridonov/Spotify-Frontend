@@ -10,7 +10,7 @@ export const stationService = {
   query,
   getById,
   remove,
-  save
+  save,
 }
 window.cs = stationService
 
@@ -55,6 +55,7 @@ function _createStations() {
         addedBy: '{minimal-user}',
         likedBy: ['{minimal-user}'],
         addedAt: 162521765262,
+        duration: 212000,
       },
       {
         id: '_4gUVl5pjps',
@@ -62,6 +63,7 @@ function _createStations() {
         url: 'https://www.youtube.com/watch?v=_4gUVl5pjps',
         imgUrl: 'https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg',
         addedBy: {},
+        duration: 193000,
       },
     ],
   }
@@ -84,6 +86,7 @@ function _createStations() {
         addedBy: '{minimal-user}',
         likedBy: ['{minimal-user}'],
         addedAt: 162521765262,
+        duration: 212000,
       },
       {
         id: '_4gUVl5pjps',
@@ -91,6 +94,7 @@ function _createStations() {
         url: 'https://www.youtube.com/watch?v=_4gUVl5pjps',
         imgUrl: 'https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg',
         addedBy: 162521765264,
+        duration: 193000,
       },
       {
         id: 'r8GXHS4s9K4',
@@ -98,6 +102,7 @@ function _createStations() {
         url: 'https://www.youtube.com/watch?v=r8GXHS4s9K4',
         imgUrl: 'https://i.ytimg.com/vi/r8GXHS4s9K4/mqdefault.jpg',
         addedAt: 162521765266,
+        duration: 220000,
       },
     ],
   }

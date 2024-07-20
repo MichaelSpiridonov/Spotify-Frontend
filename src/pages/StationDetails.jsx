@@ -11,7 +11,9 @@ export function StationDetails() {
   const { stationId } = useParams()
 
   const station = useSelector((storeState) => storeState.stationModule.station)
-  const currSong = useSelector((storeState) => storeState.stationModule.currSong)
+  const currSong = useSelector(
+    (storeState) => storeState.stationModule.currSong
+  )
   useEffect(() => {
     loadStation(stationId)
   }, [stationId])
@@ -21,11 +23,18 @@ export function StationDetails() {
     const options = { month: 'short', day: '2-digit', year: 'numeric' }
     return date.toLocaleDateString('en-US', options)
   }
-  function onClickPlay(song){
+  function onClickPlay(song) {
     console.log(song)
-    let station = {title:song.title,id :song.id, imgUrl: song.imgUrl}
+    let station = { title: song.title, id: song.id, imgUrl: song.imgUrl }
     updateSong(station)
-}
+  }
+
+  const formatDuration = (duration) => {
+    if (!duration) return '00:00'
+    const minutes = Math.floor(duration / 60000)
+    const seconds = Math.floor((duration % 60000) / 1000)
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+  }
 
   if (!station) return <div>Loading...</div>
 
@@ -36,7 +45,11 @@ export function StationDetails() {
       </Link>
       <ul className='station-details'>
         {station.songs.map((song) => (
-          <li key={song.id} onClick={()=> onClickPlay(song)} className='song-item'>
+          <li
+            key={song.id}
+            onClick={() => onClickPlay(song)}
+            className='song-item'
+          >
             <button className='play-button'>
               <PlayIcon />
             </button>
@@ -47,7 +60,7 @@ export function StationDetails() {
             <button className='add-button'>
               <AddIcon />
             </button>
-            <span className='song-length'>0:00</span>
+            <span className='song-length'>{formatDuration(song.duration)}</span>
           </li>
         ))}
       </ul>
