@@ -2,7 +2,6 @@ import { storageService } from '../async-storage.service'
 import { loadFromStorage, saveToStorage } from '../util.service'
 
 const STATIONS_KEY = 'stations'
-const STATION_KEY = 'station'
 const CURR_SONG = 'currSong'
 const LIKED_SONGS = 'likedsongs'
 _createStations()
@@ -136,6 +135,7 @@ function _createStations() {
         title: 'Juice WRLD - Cigarettes',
         url: 'https://www.youtube.com/watch?v=Sis_JJZoAfQ',
         imgUrl: 'https://i.ytimg.com/vi/Sis_JJZoAfQ/mqdefault.jpg',
+        likedBy: ['{minimal-user}'],
         addedAt: 162521765266,
         duration: 220000,
       },
@@ -154,6 +154,7 @@ function _createStations() {
         title: 'Juice WRLD - High and Alone ',
         url: 'https://www.youtube.com/watch?v=Trv80iyv8qs',
         imgUrl: 'https://i.ytimg.com/vi/Trv80iyv8qs/mqdefault.jpg',
+        likedBy: ['{minimal-user}'],
         addedAt: 162521765264,
         duration: 193000,
       },
@@ -162,6 +163,7 @@ function _createStations() {
         title: 'Juice WRLD - Rockstar In His Prime',
         url: 'https://www.youtube.com/watch?v=iT6MEoRywDY',
         imgUrl: 'https://i.ytimg.com/vi/iT6MEoRywDY/mqdefault.jpg',
+        likedBy: ['{minimal-user}'],
         addedAt: 162521765266,
         duration: 220000,
       },

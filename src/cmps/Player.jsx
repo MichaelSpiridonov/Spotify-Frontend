@@ -1,5 +1,6 @@
-import YouTube from 'react-youtube';
 import React, { Component } from 'react';
+import YouTube from 'react-youtube';
+import ProgressBar from './ProgressBar';
 import Play from '../assets/icons/play.svg?react';
 import Pause from '../assets/icons/pause.svg?react';
 import Shuffle from '../assets/icons/shuffle.svg?react';
@@ -12,12 +13,10 @@ import VolumeMin from '../assets/icons/volume.svg?react';
 import VolumeMuted from '../assets/icons/volumemute.svg?react';
 import VolumeMedium from '../assets/icons/volumedown.svg?react';
 import VolumeMax from '../assets/icons/volumemax.svg?react';
-import ProgressBar from './ProgressBar';
 import { updateSong } from '../store/actions/station.actions.js';
 
-class Player extends React.Component {
-  constructor(props) { 
-    console.log(props)
+class Player extends Component {
+  constructor(props) {
     super(props);
     this.state = {
       isPlaying: false,
@@ -29,12 +28,14 @@ class Player extends React.Component {
       duration: 0,
       isMuted: false,
       previousVolume: 25,
+      shuffledSongs: [],
+      currentIndex: 0,
     };
     this.onReady = this.onReady.bind(this);
     this.onStateChange = this.onStateChange.bind(this);
     this.handleVolumeChange = this.handleVolumeChange.bind(this);
-    this.toggleRepeat = this.toggleRepeat.bind(this)
-    this.toggleShuffle = this.toggleShuffle.bind(this)
+    this.toggleRepeat = this.toggleRepeat.bind(this);
+    this.toggleShuffle = this.toggleShuffle.bind(this);
     this.togglePlayPause = this.togglePlayPause.bind(this);
     this.handleSeek = this.handleSeek.bind(this);
     this.updateTime = this.updateTime.bind(this);
@@ -67,7 +68,7 @@ class Player extends React.Component {
         currentTime: 0,
         duration: player.getDuration(),
       });
-    } else if(event.data !== window.YT.PlayerState.PAUSED){
+    } else if (event.data !== window.YT.PlayerState.PAUSED) {
       player.playVideo();
       this.setState({
         isPlaying: true,
@@ -87,18 +88,18 @@ class Player extends React.Component {
     };
     update();
   }
-  
+
   stopProgressUpdate() {
     if (this.interval) {
       cancelAnimationFrame(this.interval);
       this.interval = null;
     }
   }
-  
+
   componentDidMount() {
     this.startProgressUpdate();
   }
-  
+
   componentWillUnmount() {
     this.stopProgressUpdate();
   }
@@ -127,8 +128,18 @@ class Player extends React.Component {
     this.setState({
       isShuffle: !isShuffle,
     });
+    if(!isShuffle){
+      console.log('Hey, Shuffle is on')
+      const { station } = this.props;
+      const shuffledSongs = [...station.songs];
+     for (let i = shuffledSongs.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledSongs[i], shuffledSongs[j]] = [shuffledSongs[j], shuffledSongs[i]];
+    }
+    console.log(shuffledSongs)
+     this.setState({ shuffledSongs });
+    }
   }
-
   handleVolumeChange(event) {
     const { player } = this.state;
     const volume = +event.target.value;
@@ -173,7 +184,7 @@ class Player extends React.Component {
     if (player) {
       const currentTime = player.getCurrentTime();
       const duration = player.getDuration();
-      if (duration > 0) {  
+      if (duration > 0) {
         const progressPercentage = (currentTime / duration) * 100;
         this.setState({ currentTime });
         const progressBar = document.querySelector('.progress-bar');
@@ -183,21 +194,21 @@ class Player extends React.Component {
       }
     }
   }
-  
 
-  onPlayNext(event) {
-    const { player, isRepeat, isPlaying } = this.state;
+  onPlayNext() {
+    const { player, isRepeat, isShuffle, isPlaying, shuffledSongs } = this.state;
     const { station, currSong } = this.props;
-    let nextSongIdx = station.songs.findIndex(song => song.id === currSong.id) + 1;
-    if (station.songs[nextSongIdx]) {
-      const nextSong = station.songs[nextSongIdx];
+    const songs = isShuffle ? shuffledSongs : station.songs;
+    let nextSongIdx = songs.findIndex((song) => song.id === currSong.id) + 1;
+    if (songs[nextSongIdx]) {
+      const nextSong = songs[nextSongIdx];
       updateSong(nextSong);
-    } else if(!station.songs[nextSongIdx] && isRepeat || isPlaying || !isPlaying){
+    } else if (!songs[nextSongIdx] && isRepeat || isShuffle) {
       nextSongIdx = 0;
-      const nextSong = station.songs[nextSongIdx];
+      const nextSong = songs[nextSongIdx];
       updateSong(nextSong);
     } else {
-      return
+      return;
     }
     setTimeout(() => {
       player.playVideo();
@@ -207,7 +218,7 @@ class Player extends React.Component {
   onPlayPrevious() {
     const { player } = this.state;
     const { station, currSong } = this.props;
-    let previousSongIdx = station.songs.findIndex(song => song.id === currSong.id) - 1;
+    let previousSongIdx = station.songs.findIndex((song) => song.id === currSong.id) - 1;
     if (station.songs[previousSongIdx]) {
       const previousSong = station.songs[previousSongIdx];
       updateSong(previousSong);
@@ -256,36 +267,22 @@ class Player extends React.Component {
             <Next onClick={this.onPlayNext} />
             <Repeat className={isRepeat ? 'clicked' : ''} onClick={this.toggleRepeat} />
           </section>
-          <ProgressBar
-            currentTime={currentTime}
-            duration={duration}
-            onSeek={this.handleSeek}
-          />
+          <ProgressBar currentTime={currentTime} duration={duration} onSeek={this.handleSeek} />
         </section>
         <section className="player-controls">
           <NowPlaying />
           <Queue />
-          {
-                (() => {
-                    if(volume === 0) {
-                            return (
-                                <VolumeMuted onClick={this.toggleMute} />
-                            )
-                        } else if (volume > 0 && volume < 35) {
-                          return( 
-                            <VolumeMin onClick={this.toggleMute} />
-                          )
-                        } else if (volume >= 35 && volume < 65) {
-                            return (
-                            <VolumeMedium onClick={this.toggleMute} />
-                            )
-                        } else if (volume >= 65){
-                            return (
-                              <VolumeMax onClick={this.toggleMute} />
-                            )
-                        }
-                })()  
+          {(() => {
+            if (volume === 0) {
+              return <VolumeMuted onClick={this.toggleMute} />;
+            } else if (volume > 0 && volume < 35) {
+              return <VolumeMin onClick={this.toggleMute} />;
+            } else if (volume >= 35 && volume < 65) {
+              return <VolumeMedium onClick={this.toggleMute} />;
+            } else if (volume >= 65) {
+              return <VolumeMax onClick={this.toggleMute} />;
             }
+          })()}
           <div className="volume-slider-container">
             <input
               type="range"
@@ -295,7 +292,7 @@ class Player extends React.Component {
               step="1"
               onChange={this.handleVolumeChange}
               className="volume-slider"
-              style={{ '--volume': `${volume}%`}}
+              style={{ '--volume': `${volume}%` }}
             />
           </div>
         </section>

@@ -20,17 +20,19 @@ const ProgressBar = ({ currentTime, duration, onSeek }) => {
   const handleSeek = (event) => {
     const value = parseFloat(event.target.value);
     setSeekValue(value);
-  };
-
-  const handleMouseUp = (event) => {
-    const value = parseFloat(event.target.value);
     const seekTime = (value / 100) * duration;
-    setIsSeeking(false);
     onSeek(seekTime);
   };
 
   const handleMouseDown = () => {
     setIsSeeking(true);
+  };
+
+  const handleMouseUp = (event) => {
+    setIsSeeking(false);
+    const value = parseFloat(event.target.value);
+    const seekTime = (value / 100) * duration;
+    onSeek(seekTime);
   };
 
   return (
