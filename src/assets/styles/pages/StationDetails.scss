@@ -5,6 +5,25 @@
   grid-row: 1 / -1; /* Span from the first row to the last */
 }
 
+.nav-button {
+  width: 36px; /* Increase clickable area */
+  height: 36px; /* Increase clickable area */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.2s ease; /* Smooth transition */
+}
+
+.nav-button:hover {
+  background-color: #1db954; /* Spotify green on hover */
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+}
 .station-details {
   list-style: none;
   padding: 0;
@@ -153,6 +172,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .station-image {
