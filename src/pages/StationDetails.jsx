@@ -14,6 +14,8 @@ import LikedIcon from '../assets/icons/likedsong.svg?react'
 import { SongOptionsModal } from '../cmps/SongOptionsModal.jsx'
 import { MoreModal } from '../cmps/MoreModal.jsx'
 import { stationService } from '../services/station/station.service.local.js'
+import { AppHeader } from '../cmps/AppHeader.jsx'
+import { FastAverageColor } from 'fast-average-color'
 
 export function StationDetails() {
   const { stationId } = useParams()
@@ -23,9 +25,10 @@ export function StationDetails() {
   const [selectedSong, setSelectedSong] = useState(null)
   const [buttonRef, setButtonRef] = useState(null) // State to store the button ref
   const [station, setStation] = useState(null)
-
+  const [color, setColor] = useState(null)
   useEffect(() => {
     loadStation(stationId)
+
   }, [stationId])
 
   async function loadStation(stationId) {
@@ -60,12 +63,22 @@ export function StationDetails() {
     const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl }
     updateSong(songData)
   }
+  if (station) {
+    console.log(station)
+    const fac = new FastAverageColor();
 
+    fac.getColorAsync(station.createdBy.imgUrl)
+      .then(color => {
+        setColor(color.rgb)
+      })
+  }
+  const gradientStyle = { backgroundImage: `linear-gradient(${color}, black)` }
   if (!station) return <div>Loading...</div>
 
   return (
     <React.Fragment>
-      <div className='station-details-container'>
+      <div style={gradientStyle} className='station-details-container'>
+        <AppHeader />
         {/* <AppHeader /> */}
         {/* <Link to='/' className='back-link'>
         Back to list

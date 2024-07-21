@@ -1,0 +1,45 @@
+.liked-details-container {
+    background-image: linear-gradient(red, black);
+    border-radius: 12px;
+
+    .liked-header {
+        display: flex;
+        margin: 30px 10px;
+        align-items: center;
+        color: white;
+        gap: 10px;
+
+        .liked-image {
+            width: 128px;
+            height: 128px;
+            border-radius: 4px;
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 14px;
+        }
+    }
+    .liked-item{
+        align-items:center;
+        display: flex;
+        .liked-button{
+            background-color: black;
+            opacity: 0.3;
+            position: relative;
+            margin: 0;
+        }
+        .liked-image{
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+
+    
+    
+}
