@@ -1,4 +1,4 @@
-import { loadStation, updateSong } from '../store/actions/station.actions.js'
+import { updateSong } from '../store/actions/station.actions.js'
 import { useParams } from 'react-router-dom'
 import React, { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
@@ -13,19 +13,25 @@ import LikedIcon from '../assets/icons/likedsong.svg?react'
 
 import { SongOptionsModal } from '../cmps/SongOptionsModal.jsx'
 import { MoreModal } from '../cmps/MoreModal.jsx'
+import { stationService } from '../services/station/station.service.local.js'
 
 export function StationDetails() {
   const { stationId } = useParams()
-  const station = useSelector((storeState) => storeState.stationModule.station)
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
   )
   const [selectedSong, setSelectedSong] = useState(null)
   const [buttonRef, setButtonRef] = useState(null) // State to store the button ref
+  const [station, setStation] = useState(null)
 
   useEffect(() => {
     loadStation(stationId)
   }, [stationId])
+
+  async function loadStation(stationId) {
+      const station = await stationService.getById(stationId)
+      setStation(station)
+  }
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp)

@@ -5,10 +5,8 @@
   background-color: black;
   display: flex;
   font-size: em(10px);
-  flex-direction: row nowarp;
   align-items: center;
   justify-content: space-between;
-  padding: 8px;
   font-family: circular-bold, sans-serif;
 }
 
@@ -37,13 +35,46 @@
 }
 
 .app-player .clicked {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.app-player .clicked svg {
   color: #1db954;
   fill: currentColor;
 }
 
-.app-player .clicked:hover {
+.app-player .clicked svg:hover {
   color: #1ac760;
   fill: currentColor;
+}
+
+.app-player .clicked::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background-color: #1db954;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.app-player .clicked::after:hover {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background-color: #1db760;
+  border-radius: 50%;
+  transition: background-color 0.3s;
 }
 
 .app-player svg {

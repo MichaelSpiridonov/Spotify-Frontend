@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import AddIcon from '../assets/icons/addsong.svg?react'
-import Player from './Player.jsx';
-import { Link } from 'react-router-dom';
+import Player from './Player.jsx'
+import { Link } from 'react-router-dom'
 
 
 export function AppPlayer() {
