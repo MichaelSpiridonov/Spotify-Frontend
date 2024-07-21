@@ -212,23 +212,24 @@ class Player extends Component {
   }
 
   onPlayNext() {
-    const { player, isRepeat, isShuffle, isPlaying, shuffledSongs } = this.state
+    const { player, isRepeat, isShuffle, isPlaying, shuffledSongs, isRepeatSong } = this.state
     const { station, currSong } = this.props
     const songs = isShuffle ? shuffledSongs : station.songs
     let nextSongIdx = songs.findIndex((song) => song.id === currSong.id) + 1
-    if (songs[nextSongIdx]) {
+    if (songs[nextSongIdx] && !isRepeatSong) {
       const nextSong = songs[nextSongIdx]
       updateSong(nextSong)
+      this.playVideoWhenReady(player);
     } else if (!songs[nextSongIdx] && isRepeat || isShuffle) {
       nextSongIdx = 0
       const nextSong = songs[nextSongIdx]
       updateSong(nextSong)
-    } else {
+    } else if (isRepeatSong){
+      player.playVideo()
+    }else {
       return
     }
-    setTimeout(() => {
-      player.playVideo()
-    }, 1000)
+    this.playVideoWhenReady(player);
   }
 
   onPlayPrevious() {
@@ -244,9 +245,15 @@ class Player extends Component {
       const previousSong = songs[previousSongIdx]
       updateSong(previousSong)
     }
-    setTimeout(() => {
-      player.playVideo()
-    }, 1000)
+    this.playVideoWhenReady(player);
+  }
+
+  playVideoWhenReady(player) {
+    if (player && player.playVideo) {
+      player.playVideo();
+    } else {
+      setTimeout(() => this.playVideoWhenReady(player), 100);
+    }
   }
 
   render() {

@@ -1,4 +1,4 @@
-import { updateSong } from '../store/actions/station.actions.js'
+import { loadStation, updateSong } from '../store/actions/station.actions.js'
 import { useParams } from 'react-router-dom'
 import React, { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
@@ -27,11 +27,10 @@ export function StationDetails() {
   const [station, setStation] = useState(null)
   const [color, setColor] = useState(null)
   useEffect(() => {
-    loadStation(stationId)
-
+    loadLocalStation(stationId)
   }, [stationId])
 
-  async function loadStation(stationId) {
+  async function loadLocalStation(stationId) {
       const station = await stationService.getById(stationId)
       setStation(station)
   }
@@ -62,6 +61,7 @@ export function StationDetails() {
   const onClickPlay = (song) => {
     const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl }
     updateSong(songData)
+    loadStation(stationId)
   }
   if (station) {
     console.log(station)

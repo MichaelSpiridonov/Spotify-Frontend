@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 export function AppPlayer() {
     const station = useSelector((storeState) => storeState.stationModule.station)
     const currSong = useSelector((storeState) => storeState.stationModule.currSong)
-
+    
     /* useEffect(() => {
         /* loadStation('5cksxjas89xjsa8xjsa8jxs09') */
             //.catch(err => {
