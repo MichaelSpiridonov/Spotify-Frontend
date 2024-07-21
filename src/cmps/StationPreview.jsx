@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import playlistDefaultImage from '../assets/icons/myplaylist.svg'
 
 export function StationPreview({ station }) {
-  console.log(station)
+  
   return (
     <Link to={`/station/${station._id}`}>
       <div className='station-preview' role='button'>

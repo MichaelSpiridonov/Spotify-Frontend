@@ -24,6 +24,7 @@ export function CreateStationModal() {
     const targetElement = document.querySelector('.create-modal')
     function clickOutsideListener(event) {
         count++
+        if(!targetElement) return
         if (!targetElement.contains(event.target) && count == 2) {
             count = 0
             // Click outside the target element 

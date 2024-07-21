@@ -4,6 +4,7 @@ import { loadFromStorage, saveToStorage } from '../util.service'
 const STATIONS_KEY = 'stations'
 const STATION_KEY = 'station'
 const CURR_SONG = 'currSong'
+const LIKED_SONGS = 'likedsongs'
 _createStations()
 
 export const stationService = {
@@ -12,6 +13,7 @@ export const stationService = {
   remove,
   save,
   updateStations,
+  addToLikedSongs
 }
 window.cs = stationService
 
@@ -40,6 +42,10 @@ async function save(currSongId) {
   console.log(currSongId)
   localStorage.removeItem(CURR_SONG)
   await storageService.post(CURR_SONG, currSongId)
+}
+async function addToLikedSongs(likedSongs){
+  console.log(likedSongs)
+  localStorage.setItem(LIKED_SONGS, JSON.stringify(likedSongs))
 }
 
 function _createStations() {

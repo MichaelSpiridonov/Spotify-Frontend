@@ -11,6 +11,7 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 import { SideLibrary } from './cmps/sideLibrary.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
 import { MoreModal } from './cmps/MoreModal.jsx'
+import { LikeSongsDeatils } from './pages/LikedSongDetails.jsx'
 
 export function RootCmp() {
   return (
@@ -25,6 +26,7 @@ export function RootCmp() {
           <Route path='/' element={<StationIndex />} />
           <Route path='/station/:stationId' element={<StationDetails />} />
           <Route path='/search' element={<SearchPage />} />
+          <Route path='/likedSongs' element={<LikeSongsDeatils />} />
         </Routes>
         <AppPlayer />
       </main>
