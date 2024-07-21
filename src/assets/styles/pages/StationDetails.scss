@@ -1,3 +1,10 @@
+.station-details-container {
+  padding: 20px;
+  color: #b3b3b3;
+  grid-column: 2 / 3; /* Ensure it's placed in the second column */
+  grid-row: 1 / -1; /* Span from the first row to the last */
+}
+
 .station-details {
   list-style: none;
   padding: 0;
@@ -139,5 +146,34 @@
 .song-length {
   text-align: right;
   font-family: circular-black;
+  color: #b3b3b3;
+}
+
+.station-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.station-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10%;
+  margin-right: 20px;
+}
+
+.station-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.station-name {
+  font-size: 2em;
+  color: #fff;
+  margin: 0;
+}
+
+.station-creator {
   color: #b3b3b3;
 }
