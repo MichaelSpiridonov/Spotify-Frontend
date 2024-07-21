@@ -13,22 +13,27 @@ import LikedIcon from '../assets/icons/likedsong.svg?react'
 
 import { SongOptionsModal } from '../cmps/SongOptionsModal.jsx'
 import { MoreModal } from '../cmps/MoreModal.jsx'
+import { stationService } from '../services/station/station.service.local.js'
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { FastAverageColor } from 'fast-average-color'
 
 export function StationDetails() {
   const { stationId } = useParams()
-  const station = useSelector((storeState) => storeState.stationModule.station)
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
   )
   const [selectedSong, setSelectedSong] = useState(null)
   const [buttonRef, setButtonRef] = useState(null) // State to store the button ref
+  const [station, setStation] = useState(null)
   const [color, setColor] = useState(null)
   useEffect(() => {
-    loadStation(stationId)
-
+    loadLocalStation(stationId)
   }, [stationId])
+
+  async function loadLocalStation(stationId) {
+      const station = await stationService.getById(stationId)
+      setStation(station)
+  }
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp)
@@ -56,6 +61,7 @@ export function StationDetails() {
   const onClickPlay = (song) => {
     const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl }
     updateSong(songData)
+    loadStation(stationId)
   }
   if (station) {
     console.log(station)

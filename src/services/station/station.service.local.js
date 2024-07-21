@@ -31,14 +31,12 @@ async function remove(stationId) {
 }
 async function updateStations(stations) {
   // throw new Error('Nope')
-  console.log(stations)
   localStorage.setItem(STATIONS_KEY, JSON.stringify(stations))
   /* console.log(...stations)
   await storageService.post(STATIONS_KEY, ...stations) */
 }
 async function save(currSongId) {
   // throw new Error('Nope')
-  console.log(currSongId)
   localStorage.removeItem(CURR_SONG)
   await storageService.post(CURR_SONG, currSongId)
 }
