@@ -13,13 +13,26 @@ import LikedIcon from '../assets/icons/likedsong.svg?react'
 
 import { SongOptionsModal } from '../cmps/SongOptionsModal.jsx'
 import { MoreModal } from '../cmps/MoreModal.jsx'
+import { AppHeader } from '../cmps/AppHeader.jsx'
+import { FastAverageColor } from 'fast-average-color'
 
 export function LikeSongsDeatils() {
   const likedSongs = useSelector((storeState) => storeState.stationModule.likedSongs)
   console.log(likedSongs)
-  const currSong = useSelector(
-    (storeState) => storeState.stationModule.currSong
-  )
+  const currSong = useSelector((storeState) => storeState.stationModule.currSong )
+  const [color, setColor] = useState(null)
+
+    useEffect(() => {
+        const fac = new FastAverageColor();
+
+        fac.getColorAsync(likedSongs.createdBy.imgUrl)
+            .then(color => {
+                setColor(color.rgb)
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }, [])
   const [selectedSong, setSelectedSong] = useState(null)
   const [buttonRef, setButtonRef] = useState(null) // State to store the button ref
 
@@ -50,12 +63,14 @@ export function LikeSongsDeatils() {
     const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl }
     updateSong(songData)
   }
-
+  
+  const gradientStyle = { backgroundImage: `linear-gradient(${color}, black)`}
   if (!likedSongs) return <div>Loading...</div>
 
   return (
     <React.Fragment>
-      <div className='liked-details-container'>
+      <div  style={gradientStyle} className='liked-details-container'>
+      <AppHeader/>
         {/* <AppHeader /> */}
         {/* <Link to='/' className='back-link'>
         Back to list
@@ -75,17 +90,17 @@ export function LikeSongsDeatils() {
           />
           <div className='liked-info'>
             <h1 className='liked-name'>{likedSongs.name}</h1>
-           
+           <h2>Or Bracha · {likedSongs.songs.length}  songs</h2>
           </div>
         </div>
-        <ul className='liked-details'>
+        <ul className='station-details'>
           {likedSongs.songs.map((song) => (
-            <li key={song.id} className='liked-item'>
-              <button className='liked-button' onClick={() => onClickPlay(song)}>
+            <li key={song.id} className='song-item'>
+              <button className='play-button' onClick={() => onClickPlay(song)}>
                 <PlayIcon />
               </button>
-              <img className='liked-image' src={song.imgUrl} alt={song.title} />
-              <span className='liked-info'>{song.title}</span>
+              <img className='song-image' src={song.imgUrl} alt={song.title} />
+              <span className='song-info'>{song.title}</span>
               <span></span> {/* Placeholder for song album */}
               <span>{formatDate(song.addedAt)}</span>
               <button className='add-button'>

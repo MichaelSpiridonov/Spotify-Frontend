@@ -62,15 +62,20 @@
   align-items: center;
   margin-bottom: 10px;
   padding: 10px 0;
-
   gap: 1vw;
   height: 56px;
-
+  span{
+    color: white;
+  }
+  svg{
+    fill: white;
+  }
   &:hover {
-    background-color: #282828;
+    background-color:#b3b3b3;
     border-radius: 6px;
 
-    .play-button svg {
+    .play-button {
+      opacity: 1;
       color: white;
       fill: currentColor;
     }
@@ -87,13 +92,22 @@
 .song-options-button {
   background: none;
   border: none;
+  opacity: 0;
+  fill: white;
   cursor: pointer;
 }
-
+.song-item:hover{
+  .play-button,
+  .add-button,
+  .song-options-button {
+    opacity: 1;
+    fill: white;
+  }
+}
 .play-button svg {
   width: 16px;
   height: 16px;
-  color: #000000;
+  color: white;
   fill: currentColor;
 }
 
@@ -139,6 +153,8 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  font-size: 16px;
+  color: white;
 }
 
 .song-title {
@@ -186,6 +202,7 @@
 .station-info {
   display: flex;
   flex-direction: column;
+  
 }
 
 .station-name {
