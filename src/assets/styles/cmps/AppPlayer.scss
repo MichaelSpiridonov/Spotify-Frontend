@@ -97,28 +97,53 @@
 }
 
 .volume-slider {
+  -webkit-appearance: none; /* Remove default appearance in WebKit */
+  appearance: none; /* Remove default appearance */
   width: 100%;
   height: 4px;
   background: #ddd;
   border-radius: 5px;
   outline: none;
   accent-color: white;
+  background: linear-gradient(to right, #ffffff var(--volume, 0%), #535353 0%);
+  position: relative;
 }
 
 .volume-slider:hover {
-  accent-color: #1ed760;
+  background: linear-gradient(to right, #1ed760 var(--volume, 0%), #535353 0%);
 }
 
-.volume-slider::-moz-range-thumb {
+/* Track styling */
+.volume-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+/* Customize the thumb for WebKit browsers */
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0; /* Initially make the thumb invisible */
+  height: 0; /* Initially make the thumb invisible */
+  background: transparent;
+  border-radius: 50%;
+  border: none;
+}
+
+.volume-slider:hover::-webkit-slider-thumb {
+  background: #ffffff; /* Color of the thumb */
   width: 12px;
   height: 12px;
-  background: #1db954;
-  /* Spotify green */
-  border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  left: var(--volume);
+  margin-left: -6px;
+  margin-top: -3px;
+  position: absolute;
+  will-change: left;
+  z-index: 100;
 }
-
 
 .progress-bar-container {
   display: flex;
@@ -136,22 +161,22 @@
   border-radius: 2px;
   outline: none;
   accent-color: white;
+  position: relative;
 }
 
-.progress-bar:hover {
-  accent-color: #1ed760;
-  background: #1ed760;
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress, 0%);
+  background: #ffffff; /* Progress fill color */
+  border-radius: 2px;
 }
 
-/* Customize the thumb for WebKit browsers */
-.progress-bar::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 10px; /* Small size */
-  height: 10px; /* Small size */
-  background: transparent; /* Transparent color */
-  border-radius: 50%; /* Circular shape */
-  border: none; /* Remove any border */
+.progress-bar:hover::before {
+  background: #1ed760; /* Hover fill color */
 }
 
 /* Track styling */
@@ -159,13 +184,35 @@
   width: 100%;
   height: 4px;
   cursor: pointer;
-  background: #535353;
   border-radius: 2px;
 }
 
-.progress-bar::-webkit-slider-runnable-track:hover {
-  background: #1ed760;
+/* Customize the thumb for WebKit browsers */
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0; /* Initially make the thumb invisible */
+  height: 0; /* Initially make the thumb invisible */
+  background: transparent;
+  border-radius: 50%;
+  border: none;
 }
+
+.progress-bar:hover::-webkit-slider-thumb {
+  background: #ffffff; /* Color of the thumb */
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  left: var(--progress);
+  margin-left: -6px;
+  margin-top: -3px;
+  position: absolute;
+  will-change: left;
+  z-index: 100;
+}
+
+
+
 
 .time {
   color: #a7a7a7;

@@ -8,8 +8,10 @@ import Next from '../assets/icons/next.svg?react';
 import Repeat from '../assets/icons/repeatlist.svg?react';
 import NowPlaying from '../assets/icons/nowplaying.svg?react';
 import Queue from '../assets/icons/queue.svg?react';
-import VolumeDown from '../assets/icons/volumedown.svg?react';
-import VolumeUp from '../assets/icons/volumeup.svg?react';
+import VolumeMin from '../assets/icons/volume.svg?react';
+import VolumeMuted from '../assets/icons/volumemute.svg?react';
+import VolumeMedium from '../assets/icons/volumedown.svg?react';
+import VolumeMax from '../assets/icons/volumemax.svg?react';
 import ProgressBar from './ProgressBar';
 import { updateSong } from '../store/actions/station.actions.js';
 
@@ -85,12 +87,20 @@ class Player extends React.Component {
     };
     update();
   }
-
+  
   stopProgressUpdate() {
     if (this.interval) {
       cancelAnimationFrame(this.interval);
       this.interval = null;
     }
+  }
+  
+  componentDidMount() {
+    this.startProgressUpdate();
+  }
+  
+  componentWillUnmount() {
+    this.stopProgressUpdate();
   }
 
   togglePlayPause() {
@@ -128,6 +138,7 @@ class Player extends React.Component {
     this.setState({
       volume: volume,
     });
+    document.querySelector('.volume-slider').style.setProperty('--volume', `${volume}%`);
   }
 
   toggleMute() {
@@ -160,11 +171,19 @@ class Player extends React.Component {
   updateTime() {
     const { player } = this.state;
     if (player) {
-      this.setState({
-        currentTime: player.getCurrentTime(),
-      });
+      const currentTime = player.getCurrentTime();
+      const duration = player.getDuration();
+      if (duration > 0) {  
+        const progressPercentage = (currentTime / duration) * 100;
+        this.setState({ currentTime });
+        const progressBar = document.querySelector('.progress-bar');
+        if (progressBar) {
+          progressBar.style.setProperty('--progress', `${progressPercentage}%`);
+        }
+      }
     }
   }
+  
 
   onPlayNext(event) {
     const { player, isRepeat, isPlaying } = this.state;
@@ -246,7 +265,27 @@ class Player extends React.Component {
         <section className="player-controls">
           <NowPlaying />
           <Queue />
-          {volume > 75 ? <VolumeUp onClick={this.toggleMute}/> : <VolumeDown onClick={this.toggleMute} />}
+          {
+                (() => {
+                    if(volume === 0) {
+                            return (
+                                <VolumeMuted onClick={this.toggleMute} />
+                            )
+                        } else if (volume > 0 && volume < 35) {
+                          return( 
+                            <VolumeMin onClick={this.toggleMute} />
+                          )
+                        } else if (volume >= 35 && volume < 65) {
+                            return (
+                            <VolumeMedium onClick={this.toggleMute} />
+                            )
+                        } else if (volume >= 65){
+                            return (
+                              <VolumeMax onClick={this.toggleMute} />
+                            )
+                        }
+                })()  
+            }
           <div className="volume-slider-container">
             <input
               type="range"
@@ -256,6 +295,7 @@ class Player extends React.Component {
               step="1"
               onChange={this.handleVolumeChange}
               className="volume-slider"
+              style={{ '--volume': `${volume}%`}}
             />
           </div>
         </section>
