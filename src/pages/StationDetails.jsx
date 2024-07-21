@@ -1,8 +1,4 @@
-import {
-  loadStation,
-  updateSong,
-  addToLikedSongs,
-} from '../store/actions/station.actions.js'
+import { loadStation, updateSong } from '../store/actions/station.actions.js'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
@@ -11,6 +7,8 @@ import { Link } from 'react-router-dom'
 import PlayIcon from '../assets/icons/play.svg?react'
 import AddIcon from '../assets/icons/addsong.svg?react'
 import SongOptionsIcon from '../assets/icons/song_options.svg?react'
+import LikedIcon from '../assets/icons/likedsong.svg?react'
+
 import { SongOptionsModal } from '../cmps/SongOptionsModal.jsx'
 
 export function StationDetails() {
@@ -23,7 +21,7 @@ export function StationDetails() {
   const [buttonRef, setButtonRef] = useState(null) // State to store the button ref
 
   useEffect(() => {
-    loadStation(stationId) // Directly call loadStation without dispatch
+    loadStation(stationId)
   }, [stationId])
 
   const formatDate = (timestamp) => {
@@ -40,27 +38,40 @@ export function StationDetails() {
   }
 
   const handleOptionsClick = (song, button) => {
-    setSelectedSong(song) // Set selected song for options modal
-    setButtonRef(button) // Store the button ref
+    setSelectedSong(song)
+    setButtonRef(button)
   }
 
   const handleCloseModal = () => {
-    setSelectedSong(null) // Close options modal
-    setButtonRef(null) // Clear the button ref
+    setSelectedSong(null)
+    setButtonRef(null)
   }
 
   const onClickPlay = (song) => {
     const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl }
-    updateSong(songData) // Directly call updateSong without dispatch
+    updateSong(songData)
   }
 
   if (!station) return <div>Loading...</div>
 
   return (
     <div className='station-details-container'>
-      <Link to='/' className='back-link'>
+      {/* <Link to='/' className='back-link'>
         Back to list
-      </Link>
+      </Link> */}
+      <div className='station-header'>
+        <img
+          className='station-image'
+          src={station.createdBy.imgUrl}
+          alt={station.createdBy.fullname}
+        />
+        <div className='station-info'>
+          <h1 className='station-name'>{station.name}</h1>
+          <p className='station-creator'>
+            Created by {station.createdBy.fullname}
+          </p>
+        </div>
+      </div>
       <ul className='station-details'>
         {station.songs.map((song) => (
           <li key={song.id} className='song-item'>
@@ -77,7 +88,7 @@ export function StationDetails() {
             <span className='song-length'>{formatDuration(song.duration)}</span>
             <button
               className='song-options-button'
-              onClick={(e) => handleOptionsClick(song, e.currentTarget)} // Pass the button ref on click
+              onClick={(e) => handleOptionsClick(song, e.currentTarget)}
             >
               <SongOptionsIcon />
             </button>
