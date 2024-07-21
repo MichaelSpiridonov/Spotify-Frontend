@@ -6,7 +6,7 @@ import { updateSong } from '../store/actions/station.actions'
 import { MoreModal } from './MoreModal'
 export function SongPreview({ song }) {
     const [songToAdd, setSongToAdd] = useState(null)
-    let modalIsOpen = false
+    var modalIsOpen = false
     function onClickPlay(song, target) {
         console.log(target)
         let station = { title: song.title, id: song.videoId, imgUrl: song.thumbnail }

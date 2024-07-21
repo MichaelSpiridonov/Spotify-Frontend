@@ -40,6 +40,19 @@ export async function updateStations(idx, song) {
     throw err
   }
 }
+export async function addNewStation(station) {
+    try {
+      const Stations = await stationService.query()
+      Stations.push(station)
+      console.log(Stations)
+      stationService.updateStations(Stations)
+      store.dispatch(getCmdSetStations(Stations))
+    } catch (err) {
+      console.log('Cannot save Station', err)
+      throw err
+    }
+  }
+
 
 export async function removeStation(stationId) {
   try {

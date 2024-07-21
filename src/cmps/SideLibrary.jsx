@@ -6,6 +6,7 @@ import { CreateStationModal } from "./CreateStationModal"
 
 export function SideLibrary() {
     const stations = useSelector(storeState => storeState.stationModule.stations)
+    
     useEffect(() => {
         loadStations()
             .catch(err => {
@@ -21,9 +22,8 @@ export function SideLibrary() {
             element.style.left = `${x}px`
             element.style.top = `${y}px`
             element.style.display = 'block'
-            modalIsOpen = true
-            console.log('hi')
     }
+
     return (
         <section className="side-library">
             <section className="library-header">
