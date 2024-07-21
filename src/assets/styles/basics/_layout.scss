@@ -1,9 +1,9 @@
 .main-container {
     display: grid;
-    grid-template-columns:minmax(300px,400px) minmax(70vw,80vw);
-    grid-template-rows:128px auto;
-    height: 93vh;
-    
+    grid-template-columns:minmax(295px,400px)auto;
+    grid-template-rows:91vh 7vh;
+    padding: 8px;
+    gap: 8px;
    /*  > * {
         grid-column: 2;
 
@@ -30,4 +30,10 @@
     //         minmax(auto, $normal-breakpoint)
     //         minmax(20px, 1fr);
     // }
+}
+.side-layout{
+    grid-column: 1;
+    display: grid;
+    grid-template-rows: 112px auto;
+    gap: 8px;
 }

@@ -12,16 +12,14 @@ import { SideLibrary } from './cmps/sideLibrary.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
 import { MoreModal } from './cmps/MoreModal.jsx'
 import { LikeSongsDeatils } from './pages/LikedSongDetails.jsx'
-
+import { SideLayout } from './cmps/sideLayout.jsx'
 export function RootCmp() {
   return (
     <div>
 
 
       <main className='main-container'>
-        <AppHeader />
-        <Sidebar />
-        <SideLibrary />
+        <SideLayout/>
         <Routes>
           <Route path='/' element={<StationIndex />} />
           <Route path='/station/:stationId' element={<StationDetails />} />

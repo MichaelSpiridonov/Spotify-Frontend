@@ -5,15 +5,15 @@ export  function LikeSongsPreview() {
     const likedSongs = useSelector(storeState => storeState.stationModule.likedSongs)
     console.log(likedSongs)
     return <Link to={`/likedSongs`}>
-        <div className='liked-preview' role='button'>
+        <div className='station-preview' role='button'>
             <img
                 src='https://misc.scdn.co/liked-songs/liked-songs-64.png'
                 alt='likedSongs'
-                className='liked-image'
+                className='station-image'
             />
-            <div className='liked-details'>
-                <p className='liked-name'>{likedSongs.name}</p>
-                <p className='liked-createdby'>Playlist </p>
+            <div className='station-details'>
+                <p className='station-name'>{likedSongs.name}</p>
+                <p className='station-createdby'>Playlist </p>
             </div>
         </div>
     </Link>

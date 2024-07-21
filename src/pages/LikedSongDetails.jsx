@@ -55,12 +55,12 @@ export function LikeSongsDeatils() {
 
   return (
     <React.Fragment>
-      <div className='station-details-container'>
+      <div className='liked-details-container'>
         {/* <AppHeader /> */}
         {/* <Link to='/' className='back-link'>
         Back to list
       </Link> */}
-        <div className='station-header'>
+        <div className='liked-header'>
           {/* <div className='nav-button' onClick={() => history.goBack()}>
             <BackIcon className='nav-icon' />
           </div>
@@ -69,25 +69,23 @@ export function LikeSongsDeatils() {
           </div> */}
 
           <img
-            className='station-image'
+            className='liked-image'
             src={likedSongs.createdBy.imgUrl}
             alt={likedSongs.createdBy.fullname}
           />
-          <div className='station-info'>
-            <h1 className='station-name'>{likedSongs.name}</h1>
-            <p className='station-creator'>
-              Created by {likedSongs.createdBy.fullname}
-            </p>
+          <div className='liked-info'>
+            <h1 className='liked-name'>{likedSongs.name}</h1>
+           
           </div>
         </div>
-        <ul className='station-details'>
+        <ul className='liked-details'>
           {likedSongs.songs.map((song) => (
-            <li key={song.id} className='song-item'>
-              <button className='play-button' onClick={() => onClickPlay(song)}>
+            <li key={song.id} className='liked-item'>
+              <button className='liked-button' onClick={() => onClickPlay(song)}>
                 <PlayIcon />
               </button>
-              <img className='song-image' src={song.imgUrl} alt={song.title} />
-              <span className='song-info'>{song.title}</span>
+              <img className='liked-image' src={song.imgUrl} alt={song.title} />
+              <span className='liked-info'>{song.title}</span>
               <span></span> {/* Placeholder for song album */}
               <span>{formatDate(song.addedAt)}</span>
               <button className='add-button'>
