@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux"
 import { updateStations } from "../store/actions/station.actions"
+import { makeId } from "../services/util.service"
+import { addNewStation } from "../store/actions/station.actions"
 
 export function MoreModal({ song }) {
     const stations = useSelector((storeState) => storeState.stationModule.stations)
-    
+    console.log(song)
     function onOpenStations() {
         const element = document.querySelector('.stations-modal')
         element.style.display = 'block'
@@ -17,7 +19,19 @@ export function MoreModal({ song }) {
         const newSong = { id: song.videoId, imgUrl: song.thumbnail, title: song.title }
         updateStations(idx, newSong)
     }
-
+    async function onAddNewStation() {
+        const element = document.querySelector('.create-modal')
+        element.style.display = 'none'
+        const station = {
+            createdBy: { imgUrl: song.thumbnail },
+            likedByUsers: ["{minimal-user}", "{minimal-user}"],
+            name: song.title ,
+            songs: [{ id: song.videoId, imgUrl: song.thumbnail, title: song.title }],
+            tags: [],
+            _id: makeId()
+        }
+        await addNewStation(station)
+    }
     return <article className="more-modal">
         <ul key={'modal-container'}>
             <li key={'add'} onMouseOver={onOpenStations} className="add-to-playlist"><svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" ><path d="M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z" ></path></svg>Add to playlist</li>
@@ -27,6 +41,7 @@ export function MoreModal({ song }) {
         </ul>
         <div className="stations-modal" key={'stations-modal'}>
             <ul>
+                <li onClick={onAddNewStation}><svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" ><path d="M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z" ></path></svg>New playlist</li>
                 {stations.map((station, idx) => <li key={idx} onClick={() => onAddToPlaylst(station, idx)}>{station.name}</li>)}
             </ul>
         </div>
