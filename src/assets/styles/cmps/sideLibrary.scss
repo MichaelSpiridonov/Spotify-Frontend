@@ -3,13 +3,12 @@
     grid-row: 2;
     background-color: #121212;
     border-radius: 10px;
-    margin-right: 10px;
     margin-left: 10px;
-
+    margin-right: 10px;
     .library-header {
         display: flex;
         align-items: center;
-        padding: 12px 14px;
+        padding: 8px 16px;
         justify-content: space-between;
         font-size: 13px;
 
@@ -37,8 +36,10 @@
         div {
             display: flex;
             align-items: center;
-            gap: 12px;
             padding: 4px 8px;
+            svg{
+                margin-right: 10px;
+            }
         }
 
         .library-svg {

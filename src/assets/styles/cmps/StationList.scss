@@ -4,50 +4,59 @@
   background-color: #121212;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-
+  width: 100%;
   margin-right: 10px;
   height: 100%;
 }
 
 .station-preview {
+  width: 260px;
   display: flex;
   height: 70px;
   flex-direction: row;
   align-items: center;
-  margin: 1em;
-  gap: 1em;
+  border-radius: 6px;
   cursor: pointer;
   .station-image {
     height: 48px;
     width: 48px;
+    margin: 0;
+    margin-right: 10px;
+    margin-left: 10px;
     /* font-size: 1em;
     width: 10em; // 231px in em
     height: 10em; // 231px in em */
     background-color: #262626;
-    border-radius: 10px;
+    border-radius: 6px;
     object-fit: cover;
   }
   .station-details {
     display: flex;
     flex-direction: column;
     height: max-content;
-    text-align: center;
+    text-align: left;
     .station-name {
-      font-size: 1.2em;
+
+      font-size: 16px;
       font-weight: bold;
       margin: 0;
     }
     .station-createdby {
       font-family: circular-bold, sans-serif;
-      font-size: 1em;
+      font-size: 14px;
       color: gray;
       margin: 0;
     }
   }
 }
 
-.StationList {
+.station-list {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  padding: 0px 8px 8px;
   // justify-content: space-around;
+}
+.station-preview:hover{
+  background-color: #282828  ;
 }
