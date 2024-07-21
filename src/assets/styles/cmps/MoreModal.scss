@@ -39,10 +39,11 @@
 
 .stations-modal {
     display: none;
+    width: 250px;
     position: absolute;
     top: 10px;
     background-color: #282828;
-    left: -100px;
+    left: -250px;
     border-radius: 4px;
     box-shadow: (0, 0, 0, 0.3) 0px 16px 24px 0px, rgba(0, 0, 0, 0.2) 0px 6px 8px 0px;
 }

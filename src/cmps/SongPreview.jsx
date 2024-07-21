@@ -6,7 +6,7 @@ import { updateSong } from '../store/actions/station.actions'
 import { MoreModal } from './MoreModal'
 export function SongPreview({ song }) {
     const [songToAdd, setSongToAdd] = useState(null)
-    var modalIsOpen = false
+    var count = 0
     function onClickPlay(song, target) {
         console.log(target)
         let station = { title: song.title, id: song.videoId, imgUrl: song.thumbnail }
@@ -21,20 +21,22 @@ export function SongPreview({ song }) {
         element.style.left = `${x}px`
         element.style.top = `${y}px`
         element.style.display = 'block'
-        modalIsOpen = true
-        console.log('hi')
     }
-   /*  document.addEventListener('click', function (event) {
-        var elModal = document.querySelector('.more-modal'); // Replace with your element's ID
-        var clickedInside = elModal.contains(event.target);
-        if (!clickedInside && modalIsOpen === true) {
-            // Clicked outside the element
-            console.log('hi')
-            modalIsOpen = false
-            elModal.style.display = 'none'
-            // Perform your desired action here
+    const targetElement = document.querySelector('.more-modal');
+
+    // Function to check if the click is outside the target element
+    function clickOutsideListener(event) {
+        count++
+        if (!targetElement.contains(event.target) && count == 2) {
+            count = 0
+            // Click outside the target element 
+            targetElement.style.display = 'none'
+            // Do something here, such as closing a modal, hiding a dropdown, etc.
         }
-    }) */
+    }
+
+    // Adding click event listener to the document
+    document.addEventListener('click', clickOutsideListener);
     return <article /* onClick={onActive} */ className="song-item">
         <img src={song.thumbnail} alt="" />
         <button onClick={({ target }) => onClickPlay(song, target)}><Play /></button>
