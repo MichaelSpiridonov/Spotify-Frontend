@@ -1,8 +1,7 @@
 .station-details-container {
   padding: 20px;
   color: #b3b3b3;
-  grid-column: 2 / 3; /* Ensure it's placed in the second column */
-  grid-row: 1 / -1; /* Span from the first row to the last */
+  grid-column: 2 /* Ensure it's placed in the second column *//* Span from the first row to the last */
 }
 
 .nav-button {
@@ -40,6 +39,8 @@
 .station-details-container {
   padding: 20px;
   color: #b3b3b3;
+  background-color:#121212;
+  border-radius: 10px;
 }
 
 .back-link {

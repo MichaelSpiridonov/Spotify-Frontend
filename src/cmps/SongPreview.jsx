@@ -24,7 +24,7 @@ export function SongPreview({ song }) {
         element.style.display = 'block'
     }
     const targetElement = document.querySelector('.more-modal');
-
+    if (!targetElement) return
     // Function to check if the click is outside the target element
     function clickOutsideListener(event) {
         count++
@@ -35,17 +35,17 @@ export function SongPreview({ song }) {
             // Do something here, such as closing a modal, hiding a dropdown, etc.
         }
     }
-    function onAddToLikedSongs(){
+    function onAddToLikedSongs() {
         const newSong = { title: song.title, id: song.videoId, imgUrl: song.thumbnail }
         addToLikedSongs(newSong)
     }
     // Adding click event listener to the document
     document.addEventListener('click', clickOutsideListener);
-    return <article /* onClick={onActive} */ className="song-item">
-        <img src={song.thumbnail} alt="" />
-        <button onClick={({ target }) => onClickPlay(song, target)}><Play /></button>
-        <h1>{song.title}</h1>
-         <AddIcon onClick={onAddToLikedSongs}/>
+    return <article className="song-item">
+        <button className='play-button' onClick={({ target }) => onClickPlay(song, target)}><Play /></button>
+        <img className='song-image' src={song.thumbnail} alt="" />
+        <h1 className='song-info' >{song.title}</h1>
+        <AddIcon onClick={onAddToLikedSongs} />
         <svg onClick={onAddTo} data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" class="Svg-sc-ytk21e-0 dYnaPI"><path d="M3 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm6.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM16 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path></svg>
         <MoreModal song={songToAdd} />
     </article>

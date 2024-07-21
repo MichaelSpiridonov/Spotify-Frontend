@@ -78,8 +78,10 @@ export function SearchPage() {
                 {topics.map(topic => <TopicPreview key={topic.name} topic={topic} />)}
             </section>
         </section>}
-        {search && songs.map(song => <SongPreview key={song.videoId} song={song}/> )
-        }
+        <section className='station-details' >
+        {search && songs.map(song => <SongPreview key={song.videoId} song={song}/> ) }
+
+        </section>
 
     </section>
 }
