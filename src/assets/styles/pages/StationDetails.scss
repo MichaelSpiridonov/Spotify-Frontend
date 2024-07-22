@@ -1,7 +1,7 @@
 .station-details-container {
   padding: 20px;
   color: #b3b3b3;
-  grid-column: 2 /* Ensure it's placed in the second column *//* Span from the first row to the last */
+  grid-column: 2; /* Ensure it's placed in the second column */ /* Span from the first row to the last */
 }
 
 .nav-button {
@@ -39,7 +39,7 @@
 .station-details-container {
   padding: 20px;
   color: #b3b3b3;
-  background-color:#121212;
+  background-color: #121212;
   border-radius: 10px;
 }
 
@@ -65,14 +65,14 @@
   padding: 10px 0;
   gap: 1vw;
   height: 56px;
-  span{
+  span {
     color: white;
   }
-  svg{
+  svg {
     fill: white;
   }
   &:hover {
-    background-color:#b3b3b3;
+    background-color: #b3b3b3;
     border-radius: 6px;
 
     .play-button {
@@ -97,7 +97,7 @@
   fill: white;
   cursor: pointer;
 }
-.song-item:hover{
+.song-item:hover {
   .play-button,
   .add-button,
   .song-options-button {
@@ -203,7 +203,6 @@
 .station-info {
   display: flex;
   flex-direction: column;
-  
 }
 
 .station-name {

@@ -77,7 +77,6 @@ export async function addStation(station) {
 
 export async function updateSong(song) {
     try {
-        console.log(song)
         const savedSong = await stationService.save(song)
         store.dispatch(getCmdUpdateStation(song))
         return savedSong
@@ -88,10 +87,15 @@ export async function updateSong(song) {
 }
 
 export async function addToLikedSongs(likedsong) {
-    console.log(likedsong)
+    let songs = []
     try {
         let prevLikedsongs = JSON.parse(localStorage.getItem('likedsongs')) || ''
-        console.log(prevLikedsongs)
+        if(prevLikedsongs){
+             songs =[...prevLikedsongs.songs ,likedsong]
+        } else{
+            songs.push(likedsong)
+        }
+        console.log(songs)
         const likedSongsStation = {
             _id: 'dseq31kigrq9419wqdt',
             name: 'Liked Songs',
@@ -101,7 +105,7 @@ export async function addToLikedSongs(likedsong) {
                 imgUrl:
                     'https://res.cloudinary.com/dvubhdy64/image/upload/v1721520195/spotify/kkjpfxtcj9xetuqaeg0q.png',
             },
-            songs: [prevLikedsongs.songs? prevLikedsongs.push(likedsong): likedsong],
+            songs:songs,
         }
         console.log(likedSongsStation)
         stationService.addToLikedSongs(likedSongsStation)
