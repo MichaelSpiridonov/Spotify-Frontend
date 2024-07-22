@@ -1,49 +1,39 @@
 .song-options-modal {
-  position: absolute; // Make the modal absolute to position it relative to the button
+  position: absolute;
+  font-size: 13px;
+  color: #b3b3b3;
   background-color: #282828;
+  padding: 4px;
   border-radius: 4px;
-  padding: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 
-  .modal-content {
+  ul {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    position: relative; // Added relative positioning to the modal content
+    margin: 0;
+    padding: 0;
+  }
 
-    .close-button {
-      position: absolute;
-      top: -12px;
-      right: -12px;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
+  svg {
+    height: 16px;
+    width: 16px;
+    fill: #b3b3b3;
+  }
 
-      &:before {
-        content: '⨂'; // Ensure the content is "⨂"
-        position: relative; // Position relative for fine-tuning
-        top: -5px; // Move slightly upwards
-        right: -5px; // Move slightly to the right
-      }
-    }
+  li {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 12px 8px 12px 12px;
+    cursor: pointer;
+  }
 
-    .option-button {
-      display: flex;
-      align-items: center;
-      background: none;
-      border: none;
-      color: #fff;
-      cursor: pointer;
-      font-size: 14px;
-      padding: 10px 0;
+  li:hover {
+    background-color: #3d3d3d;
+    color: white;
 
-      .add-button {
-        margin-right: 8px;
-        width: 16px;
-        height: 16px;
-      }
+    svg {
+      fill: white;
     }
   }
 }

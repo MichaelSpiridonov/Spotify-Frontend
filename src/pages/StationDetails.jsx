@@ -31,8 +31,8 @@ export function StationDetails() {
   }, [stationId])
 
   async function loadLocalStation(stationId) {
-      const station = await stationService.getById(stationId)
-      setStation(station)
+    const station = await stationService.getById(stationId)
+    setStation(station)
   }
 
   const formatDate = (timestamp) => {
@@ -65,12 +65,11 @@ export function StationDetails() {
   }
   if (station) {
     console.log(station)
-    const fac = new FastAverageColor();
+    const fac = new FastAverageColor()
 
-    fac.getColorAsync(station.createdBy.imgUrl)
-      .then(color => {
-        setColor(color.rgb)
-      })
+    fac.getColorAsync(station.createdBy.imgUrl).then((color) => {
+      setColor(color.rgb)
+    })
   }
   const gradientStyle = { backgroundImage: `linear-gradient(${color}, black)` }
   if (!station) return <div>Loading...</div>
@@ -129,7 +128,7 @@ export function StationDetails() {
           ))}
         </ul>
         {selectedSong && (
-          <MoreModal
+          <SongOptionsModal
             song={selectedSong}
             onClose={handleCloseModal}
             buttonRef={buttonRef}

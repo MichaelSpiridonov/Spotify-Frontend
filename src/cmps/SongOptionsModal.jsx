@@ -36,15 +36,15 @@ export function SongOptionsModal({ song, onClose, buttonRef }) {
 
   return (
     <div ref={modalRef} className='song-options-modal'>
-      <div className='modal-content'>
-        <button className='close-button' onClick={onClose}>
-          {/* ⨂ */}
-        </button>
-        <button className='option-button' onClick={handleAddToLikedSongs}>
+      <ul className='modal-content'>
+        <li className='option-button' onClick={handleAddToLikedSongs}>
           <AddIcon className='add-button' />
           Save to your Liked Songs
-        </button>
-      </div>
+        </li>
+        <li className='option-button' onClick={onClose}>
+          Close
+        </li>
+      </ul>
     </div>
   )
 }
