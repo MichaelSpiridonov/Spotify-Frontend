@@ -15,16 +15,39 @@ export function SongPreview({ song }) {
     }
     function onAddTo(event) {
         setSongToAdd(song)
-        const x = event.clientX
+        const x = event.clientX - 110
         const y = event.clientY + 20
         console.log(`Clicked at X=${x}, Y=${y}`)
-        const element = document.querySelector('.more-modal')
-        element.style.left = `${x}px`
-        element.style.top = `${y}px`
-        element.style.display = 'block'
+        const elModal = document.querySelector('.more-modal')
+        elModal.style.left = `${x}px`
+        elModal.style.top = `${y}px`
+        elModal.style.display = 'block'
     }
+
     const targetElement = document.querySelector('.more-modal');
-    
+    const element= document.querySelector('.search-page .station-details')
+    if (element) {
+        element.addEventListener('contextmenu', function (event) {
+            // Prevent the default context menu from appearing
+            event.preventDefault();
+            setSongToAdd(song)
+            // Check if the right mouse button was clicked
+            if (event.button === 2) {
+                // Right-click was detected
+                console.log('Right-click detected!');
+                event.preventDefault();
+                const x = event.clientX
+                const y = event.clientY + 20
+
+                const elModal = document.querySelector('.more-modal')
+                elModal.style.left = `${x}px`
+                elModal.style.top = `${y}px`
+                elModal.style.display = 'block'
+                // You can add your own custom logic here
+            }
+        });
+    }
+
     // Function to check if the click is outside the target element
     function clickOutsideListener(event) {
         count++
@@ -42,18 +65,18 @@ export function SongPreview({ song }) {
     }
     // Adding click event listener to the document
     document.addEventListener('click', clickOutsideListener);
-    return <article className="song-item">
+    return <article id={song.title} className="song-item">
         <button className='play-button' onClick={({ target }) => onClickPlay(song, target)}><Play /></button>
         <img className='song-image' src={song.thumbnail} alt="" />
         <h1 className='song-info' >{song.title}</h1>
         <button className='add-button'>
-        <AddIcon onClick={onAddToLikedSongs} />
+            <AddIcon onClick={onAddToLikedSongs} />
 
         </button>
-        
-        <button  className='song-options-button' >
+
+        <button className='song-options-button' >
             <svg onClick={onAddTo} data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" ><path d="M3 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm6.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM16 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path></svg>
-            </button>
+        </button>
         <MoreModal song={songToAdd} />
     </article>
 }

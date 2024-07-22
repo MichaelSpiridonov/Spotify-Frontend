@@ -1,20 +1,18 @@
 import axios from "axios"
 import { loadFromStorage, saveToStorage } from "./util.service"
 
-const YT_API_KEY = 'AIzaSyAUHMkVG650Iu3_XEycGH3RLjz0zKkEk14'
+const YT_API_KEY = import.meta.env.VITE_YT_API_KEY
 
 const YOUTUBE_CACHE = 'ytDB'
-const WIKIPEDIA_CACHE = 'wkDB'
 
 const gVideosAmount = 5
 
 let gYoutubeCache = loadFromStorage(YOUTUBE_CACHE) || {}
-let gWikiCache = loadFromStorage(WIKIPEDIA_CACHE) || {}
 
 export function getVideos(searchVal) {
 	if (gYoutubeCache[searchVal]) return Promise.resolve(gYoutubeCache[searchVal])
 
-	const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${gVideosAmount}&videoEmbeddable=true&type=video&key=${YT_API_KEY}&q=${searchVal}`
+	const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${gVideosAmount}&videoEmbeddable=true&type=video&key=${YT_API_KEY}&q=music${searchVal}`
 	return axios
 		.get(url)
 		.then(res => res.data.items)

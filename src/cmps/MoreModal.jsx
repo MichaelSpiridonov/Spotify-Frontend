@@ -13,9 +13,10 @@ export function MoreModal({ song }) {
         const element = document.querySelector('.stations-modal')
         element.style.display = 'none'
     }
-    function onAddToPlaylst(station, idx) {
+    function onAddToPlaylst(station,idx) {
+
         const newSong = { id: song.videoId, imgUrl: song.thumbnail, title: song.title }
-        updateStations(idx, newSong)
+        updateStations(newSong, station)
     }
     async function onAddNewStation() {
         const element = document.querySelector('.create-modal')
@@ -30,7 +31,7 @@ export function MoreModal({ song }) {
         }
         await addNewStation(station)
     }
-    
+    if(!stations) return
     return <article className="more-modal">
         <ul key={'modal-container'}>
             <li key={'add'} onMouseOver={onOpenStations} className="add-to-playlist"><svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" ><path d="M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z" ></path></svg>Add to playlist</li>

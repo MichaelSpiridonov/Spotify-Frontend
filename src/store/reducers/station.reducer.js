@@ -6,28 +6,32 @@ export const ADD_STATION = 'ADD_STATION'
 export const UPDATE_SONG = 'UPDATE_SONG'
 export const ADD_STATION_MSG = 'ADD_STATION_MSG'
 export const UPDATE_LIKED_SONGS = 'UPDATE_LIKED_SONGS'
-
+export const UPDATE_STATIONS = 'UPDATE_STATIONS'
 const initialState = {
     stations: [],
     station: null,
     currSong: null,
     likedSongs: JSON.parse(localStorage.getItem('likedsongs')) || null,
+    currStation: null
 }
 
 export function stationReducer(state = initialState, action) {
     var newState = state
     var stations
     var station
-
+    console.log(action)
     switch (action.type) {
         case SET_STATIONS:
             newState = { ...state, stations: action.stations }
             break
+        /* case UPDATE_STATIONS:
+            newState = { ...state, stations[action.station.idx]: action.station._id }
+            break */
         case SET_STATION:
             newState = { ...state, station: action.station }
             break
         case REMOVE_STATION:
-            const lastRemovedStation = state.station.find(
+            const lastRemovedStation = state.stations.find(
                 (station) => station._id === action.stationId
             )
             stations = state.stations.filter(

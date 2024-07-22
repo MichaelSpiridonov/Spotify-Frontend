@@ -29,20 +29,21 @@ async function remove(stationId) {
   // throw new Error('Nope')
   await storageService.remove(STATIONS_KEY, stationId)
 }
-async function updateStations(stations) {
+async function updateStations(stationId) {
   // throw new Error('Nope')
-  localStorage.setItem(STATIONS_KEY, JSON.stringify(stations))
+  await storageService.post(STATIONS_KEY,stationId)
+  /* localStorage.setItem(STATIONS_KEY, JSON.stringify(stations)) */
   /* console.log(...stations)
   await storageService.post(STATIONS_KEY, ...stations) */
 }
 async function save(currSongId) {
   // throw new Error('Nope')
-  localStorage.removeItem(CURR_SONG)
   await storageService.post(CURR_SONG, currSongId)
 }
 async function addToLikedSongs(likedSongs){
   console.log(likedSongs)
-  localStorage.setItem(LIKED_SONGS, JSON.stringify(likedSongs))
+  
+  await storageService.post(LIKED_SONGS, likedSongs)
 }
 
 function _createStations() {

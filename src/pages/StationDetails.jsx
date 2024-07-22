@@ -28,11 +28,12 @@ export function StationDetails() {
   const [color, setColor] = useState(null)
   useEffect(() => {
     loadLocalStation(stationId)
+
   }, [stationId])
 
   async function loadLocalStation(stationId) {
-      const station = await stationService.getById(stationId)
-      setStation(station)
+    const station = await stationService.getById(stationId)
+    setStation(station)
   }
 
   const formatDate = (timestamp) => {
@@ -63,21 +64,19 @@ export function StationDetails() {
     updateSong(songData)
     loadStation(stationId)
   }
-  if (station) {
-    console.log(station)
-    const fac = new FastAverageColor();
 
-    fac.getColorAsync(station.createdBy.imgUrl)
-      .then(color => {
-        setColor(color.rgb)
-      })
-  }
-  const gradientStyle = { backgroundImage: `linear-gradient(${color}, black)` }
+
   if (!station) return <div>Loading...</div>
-
+  const fac = new FastAverageColor();
+  /* console.log(station.createdBy.imgUrl) */
+  fac.getColorAsync('https://i.scdn.co/image/ab67616d0000b27338f0b282ea6497b296def873')
+    .then(color => {
+      setColor(color.rgb)
+    })
+  const gradientStyle = { backgroundImage: `linear-gradient(${color}, black)` }
   return (
     <React.Fragment>
-      <div style={gradientStyle} className='station-details-container'>
+      <div /* style={gradientStyle} */ className='station-details-container'>
         <AppHeader />
         {/* <AppHeader /> */}
         {/* <Link to='/' className='back-link'>
@@ -90,7 +89,6 @@ export function StationDetails() {
           <div className='nav-button' onClick={() => history.goForward()}>
             <ForwardIcon className='nav-icon' />
           </div> */}
-
           <img
             className='station-image'
             src={station.createdBy.imgUrl}

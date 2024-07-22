@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 
 export  function LikeSongsPreview() {
     const likedSongs = useSelector(storeState => storeState.stationModule.likedSongs)
-    console.log(likedSongs)
     return <Link to={`/likedSongs`}>
         <div className='station-preview' role='button'>
             <img

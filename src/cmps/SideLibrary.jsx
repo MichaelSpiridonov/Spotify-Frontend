@@ -23,7 +23,7 @@ export function SideLibrary() {
             element.style.top = `${y}px`
             element.style.display = 'block'
     }
-
+    if(!stations) return
     return (
         <section className="side-library">
             <section className="library-header">

@@ -6,9 +6,9 @@
     .library-header {
         display: flex;
         align-items: center;
-        padding: 8px 16px;
+        padding: 10px 16px;
         justify-content: space-between;
-        font-size: 13px;
+        font-size: 15px;
 
         .add-svg {
             fill: #a7a7a7;
@@ -35,6 +35,8 @@
             display: flex;
             align-items: center;
             padding: 4px 8px;
+            width: 142px;
+            height: 40px;
             svg{
                 margin-right: 10px;
             }
