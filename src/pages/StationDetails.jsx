@@ -30,7 +30,6 @@ export function StationDetails() {
   const [color, setColor] = useState(null)
   useEffect(() => {
     loadLocalStation(stationId)
-
   }, [stationId])
 
   async function loadLocalStation(stationId) {
@@ -76,16 +75,15 @@ export function StationDetails() {
     loadStation(stationId)
   }
 
-
   if (station) {
-    const fac = new FastAverageColor();
+    const fac = new FastAverageColor()
 
-    fac.getColorAsync(station.createdBy.imgUrl)
-      .then(color => {
-        setColor(color.rgb)
-      })
+    fac.getColorAsync(station.createdBy.imgUrl).then((color) => {
+      setColor(color.rgb)
+    })
   }
   console.log(station)
+  if (!station) return
   if (!station) return
   const gradientStyle = { backgroundImage: `linear-gradient(${color}, black)` }
   return (
