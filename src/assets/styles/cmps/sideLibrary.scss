@@ -3,12 +3,26 @@
     background-color: #121212;
     border-radius: 10px;
     height: 100%;
+    overflow-y: hidden;
+
+    .station-list {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0px 8px 8px;
+    }
+
     .library-header {
         display: flex;
         align-items: center;
         padding: 10px 16px;
         justify-content: space-between;
         font-size: 15px;
+        position: fixed;
+        background-color: inherit;
+        width: 400px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
 
         .add-svg {
             fill: #a7a7a7;
@@ -22,13 +36,13 @@
             fill: white;
             border-radius: 50%;
             background-color: black;
-            /* padding: 8px;   */     
+            /* padding: 8px;   */
         }
 
         h1 {
             margin: 0;
             width: max-content;
-            transition:color 0.8s;
+            transition: color 0.8s;
         }
 
         div {
@@ -37,7 +51,8 @@
             padding: 4px 8px;
             width: 142px;
             height: 40px;
-            svg{
+
+            svg {
                 margin-right: 10px;
             }
         }
@@ -46,7 +61,7 @@
             fill: #a7a7a7;
             height: 24px;
             width: 24px;
-            transition:fill 0.8s;
+            transition: fill 0.8s;
         }
 
         div:hover {
@@ -59,4 +74,15 @@
             }
         }
     }
+}
+
+.side-library::-webkit-scrollbar {
+    width: 0;
+    /* width of the scrollbar */
+   
+    
+    /* height of the scrollbar */
+}
+.side-library:hover {
+    overflow-y: auto; /* Show the vertical scrollbar on hover */
 }
