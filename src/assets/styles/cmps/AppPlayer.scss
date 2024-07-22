@@ -15,7 +15,15 @@
 .song-title {
   font-weight: bold;
   font-family: circular-bold, sans-serif;
+  color: #ffffff;
   font-size: rem(14px);
+}
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .artist-name {
@@ -36,31 +44,38 @@
   gap: 8px;
 }
 
+.app-player .effects::before {
+  content: '';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 7px;
+} 
+
 .app-player .clicked {
   display: inline-block;
   position: relative;
-  margin-bottom: -4px;
 }
 
 .app-player .clicked svg {
-  color: #1db954;
+  color: $green1;
   fill: currentColor;
 }
 
 .app-player .clicked svg:hover {
-  color: #1ac760;
+  color: $green2;
   fill: currentColor;
 }
 
 .app-player .clicked::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: 2px;
   left: 50%;
   transform: translateX(-50%);
   width: 4px;
   height: 4px;
-  background-color: #1db954;
+  background-color: $green1;
   border-radius: 50%;
   transition: background-color 0.3s;
 }
@@ -73,7 +88,7 @@
   transform: translateX(-50%);
   width: 4px;
   height: 4px;
-  background-color: #1db760;
+  background-color: $green2;
   border-radius: 50%;
   transition: background-color 0.3s;
 }
@@ -107,11 +122,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.1s ease, transform 0.1s ease;
+}
+.player:hover {
+  transform: scale(1.07);
 }
 
 .player svg {
   color: black;
   fill: currentColor;
+  transition: color 0.1s ease;
 
   &:hover {
     color: black;
@@ -141,7 +161,7 @@
 }
 
 .volume-slider:hover {
-  background: linear-gradient(to right, #1ed760 var(--volume, 0%), #535353 0%);
+  background: linear-gradient(to right, $green2 var(--volume, 0%), #535353 0%);
 }
 
 /* Track styling */
@@ -179,8 +199,11 @@
 .progress-bar-container {
   display: flex;
   align-items: center;
-  width: 499px;
+  width: 615px;
   gap: 8px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .progress-bar {
@@ -207,7 +230,7 @@
 }
 
 .progress-bar:hover::before {
-  background: #1ed760; /* Hover fill color */
+  background: $green2; /* Hover fill color */
 }
 
 /* Track styling */
