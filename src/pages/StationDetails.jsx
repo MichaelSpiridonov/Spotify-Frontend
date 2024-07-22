@@ -16,6 +16,8 @@ import { MoreModal } from '../cmps/MoreModal.jsx'
 import { stationService } from '../services/station/station.service.local.js'
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { FastAverageColor } from 'fast-average-color'
+import YouTube from 'react-youtube'
+import { getVideos } from '../services/youtube.service.js'
 
 export function StationDetails() {
   const { stationId } = useParams()
@@ -58,14 +60,24 @@ export function StationDetails() {
     setSelectedSong(null)
     setButtonRef(null)
   }
-
-  const onClickPlay = (song) => {
+  var id
+  async function getVideoId(name) {
+    id = await getVideos(name)
+    console.log(id[0].videoId)
+    return id[0].videoId
+  }
+  const onClickPlay = async (song) => {
+    if (!song.id) {
+      song.id = await getVideoId(song.title)
+    }
+    console.log(song.id)
     const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl }
     updateSong(songData)
     loadStation(stationId)
   }
+
+
   if (station) {
-    console.log()
     const fac = new FastAverageColor();
 
     fac.getColorAsync(station.createdBy.imgUrl)
@@ -74,7 +86,7 @@ export function StationDetails() {
       })
   }
   console.log(station)
-  if(!station) return
+  if (!station) return
   const gradientStyle = { backgroundImage: `linear-gradient(${color}, black)` }
   return (
     <React.Fragment>

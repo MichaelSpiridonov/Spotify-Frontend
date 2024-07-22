@@ -185,7 +185,7 @@ function _createStations() {
   if (localStorage.getItem(STATIONS_KEY)) return
   saveToStorage(STATIONS_KEY, stations)
 }
-
+var id
 
 async function _createSpotifyStations() {
   let stations = loadFromStorage(STATIONS_KEY);
@@ -200,7 +200,6 @@ async function _createSpotifyStations() {
         //const videos = await getVideos(track.name);
         //const videoId = videos.length > 0 ? videos[0].videoId : null; 
         return {
-          id: track.id,
           title: track.name,
           duration: track.duration_ms,
           isExplicit: track.explicit,
