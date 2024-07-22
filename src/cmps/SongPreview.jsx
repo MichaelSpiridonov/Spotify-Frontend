@@ -24,10 +24,11 @@ export function SongPreview({ song }) {
         element.style.display = 'block'
     }
     const targetElement = document.querySelector('.more-modal');
-    if (!targetElement) return
+    
     // Function to check if the click is outside the target element
     function clickOutsideListener(event) {
         count++
+        if (!targetElement) return
         if (!targetElement.contains(event.target) && count == 2) {
             count = 0
             // Click outside the target element 
@@ -45,8 +46,14 @@ export function SongPreview({ song }) {
         <button className='play-button' onClick={({ target }) => onClickPlay(song, target)}><Play /></button>
         <img className='song-image' src={song.thumbnail} alt="" />
         <h1 className='song-info' >{song.title}</h1>
+        <button className='add-button'>
         <AddIcon onClick={onAddToLikedSongs} />
-        <svg onClick={onAddTo} data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" class="Svg-sc-ytk21e-0 dYnaPI"><path d="M3 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm6.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM16 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path></svg>
+
+        </button>
+        
+        <button  className='song-options-button' >
+            <svg onClick={onAddTo} data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" class="Svg-sc-ytk21e-0 dYnaPI"><path d="M3 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm6.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM16 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path></svg>
+            </button>
         <MoreModal song={songToAdd} />
     </article>
 }
