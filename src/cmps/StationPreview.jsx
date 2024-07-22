@@ -46,7 +46,7 @@ export function StationPreview({ station }) {
     <Link to={`/station/${station._id}`}>
       <div id={station.name} className='station-preview' role='button'>
         <img
-          src={station.songs[0].imgUrl || playlistDefaultImage}
+          src={(station.songs[0])?station.songs[0].imgUrl: null || playlistDefaultImage}
           alt='Station'
           className='station-image'
         />

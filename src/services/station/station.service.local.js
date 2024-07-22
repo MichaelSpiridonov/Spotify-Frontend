@@ -22,7 +22,8 @@ export const stationService = {
   remove,
   save,
   updateStations,
-  addToLikedSongs
+  addToLikedSongs,
+  addNewStation
 }
 window.cs = stationService
 
@@ -43,6 +44,14 @@ async function updateStations(station) {
   // throw new Error('Nope')
   console.log(station)
   await storageService.put(STATIONS_KEY,station)
+  /* localStorage.setItem(STATIONS_KEY, JSON.stringify(stations)) */
+  /* console.log(...stations)
+  await storageService.post(STATIONS_KEY, ...stations) */
+}
+async function addNewStation(station) {
+  // throw new Error('Nope')
+  console.log(station)
+  await storageService.post(STATIONS_KEY,station)
   /* localStorage.setItem(STATIONS_KEY, JSON.stringify(stations)) */
   /* console.log(...stations)
   await storageService.post(STATIONS_KEY, ...stations) */

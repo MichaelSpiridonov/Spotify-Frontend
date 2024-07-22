@@ -50,7 +50,7 @@ export async function addNewStation(station) {
         const Stations = await stationService.query()
         Stations.push(station)
         console.log(Stations)
-        stationService.updateStations(Stations)
+        stationService.addNewStation(station)
         store.dispatch(getCmdSetStations(Stations))
     } catch (err) {
         console.log('Cannot save Station', err)
