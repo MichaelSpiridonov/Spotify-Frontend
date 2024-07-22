@@ -9,14 +9,18 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    margin-top: 40px;
     color: white;
-    gap: 10px;
+    gap: 20px;
 
     .station-image {
-      width: 100px;
-      height: 100px;
-      border-radius: 4px;
+      width: 232px; // Fixed width for square box
+      height: 232px; // Fixed height for square box
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      object-position: center; // Center the image
+      border-radius: 4px; // Set border radius
+      box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 60px 0px; // Apply box shadow
     }
 
     .station-info {
@@ -24,15 +28,75 @@
       flex-direction: column;
 
       .station-name {
+        font-family: 'circular-black', helvetica, arial, 'MS Gothic';
         font-size: 72px;
-        font-weight: bold;
+        line-height: normal;
+        text-align: left;
+        letter-spacing: normal;
+        color: #ffffff;
         margin: 0;
       }
 
       .station-creator {
+        font-family: 'circular-black', helvetica, arial, 'MS Gothic';
         font-size: 14px;
+        line-height: normal;
+        text-align: start;
+        letter-spacing: normal;
+        color: rgba(255, 255, 255, 0.7);
         margin-top: 10px;
-        color: #b3b3b3;
+      }
+    }
+  }
+
+  .station-controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .play-button {
+      background-color: #1db954;
+      border: none;
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      svg {
+        width: 32px;
+        height: 32px;
+        fill: white;
+      }
+
+      &:hover {
+        background-color: #1ed760;
+      }
+    }
+  }
+
+  .table-header {
+    display: grid;
+    grid-template-columns: 50px 4fr 3fr 2fr 50px;
+    color: #b3b3b3;
+    font-family: 'circular-black', helvetica, arial, 'MS Gothic';
+    margin-bottom: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #282828;
+
+    span {
+      &:nth-child(1) {
+        text-align: center;
+      }
+      &:nth-child(2),
+      &:nth-child(3) {
+        text-align: left;
+      }
+      &:nth-child(4),
+      &:nth-child(5) {
+        text-align: right;
       }
     }
   }
@@ -43,14 +107,15 @@
     margin: 0;
 
     .song-item {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 50px 4fr 3fr 2fr 50px;
       align-items: center;
       margin-bottom: 10px;
       padding: 10px 0;
       gap: 1vw;
       height: 56px;
       border-radius: 6px;
+      font-family: 'circular-black', helvetica, arial, 'MS Gothic';
 
       &:hover {
         background-color: rgba(179, 179, 179, 0.1);
@@ -71,39 +136,14 @@
         background: none;
         border: none;
         opacity: 0;
-        cursor: pointer;
         fill: white;
-        transition: opacity 0.2s ease;
-
-        svg {
-          width: 16px;
-          height: 16px;
-        }
-
-        &:hover {
-          opacity: 1;
-          fill: currentColor;
-        }
-
-        &.clicked {
-          color: #1db954;
-          fill: currentColor;
-
-          &:hover {
-            color: #1ac757;
-            fill: currentColor;
-          }
-        }
-      }
-
-      .play-button svg {
-        color: white;
-        fill: currentColor;
+        cursor: pointer;
       }
 
       .add-button {
         background: none;
         border: none;
+        fill: white;
         cursor: pointer;
 
         svg {
@@ -111,43 +151,19 @@
           height: 16px;
           color: #b3b3b3;
           fill: currentColor;
-          transition: color 0.2s ease, fill 0.2s ease;
-        }
-
-        &:hover svg {
-          color: white;
-          fill: currentColor;
-        }
-
-        &.clicked svg {
-          color: #1db954;
-          fill: currentColor;
 
           &:hover {
-            color: #1ac757;
+            color: white;
             fill: currentColor;
           }
         }
       }
 
-      .song-options-button svg {
-        color: #b3b3b3;
-        fill: currentColor;
-
-        &:hover {
-          color: white;
-          fill: currentColor;
-        }
-
-        &.clicked {
-          color: #1db954;
-          fill: currentColor;
-
-          &:hover {
-            color: #1ac757;
-            fill: currentColor;
-          }
-        }
+      .song-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 4px;
       }
 
       .song-info {
@@ -156,24 +172,11 @@
         flex-grow: 1;
         font-size: 16px;
         color: white;
+      }
 
-        .song-title {
-          font-family: circular-bold;
-          color: #fff;
-        }
-
-        .song-artist,
-        .song-album,
-        .song-date,
-        .song-length {
-          font-family: circular-black;
-          color: #b3b3b3;
-        }
-
-        .song-date,
-        .song-length {
-          text-align: right;
-        }
+      .song-length {
+        text-align: right;
+        color: #b3b3b3;
       }
     }
   }
