@@ -7,7 +7,6 @@ import { useNavigate } from "react-router"
 
 export function StationModal({ station }) {
     const stations = useSelector(storeState => storeState.stationModule.stations)
-    console.log(station)
     const navigate = useNavigate()
     var count = 0
     async function onAddNewStation() {

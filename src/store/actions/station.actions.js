@@ -39,7 +39,6 @@ export async function updateStations(song,station,idx) {
         /* console.log(Stations) */
         stationService.updateStations(station) 
         station.songs.push(song)
-        console.log(station,idx)
         store.dispatch(getCmdUpdateStations({station,idx}))
     } catch (err) {
         console.log('Cannot save Station', err)

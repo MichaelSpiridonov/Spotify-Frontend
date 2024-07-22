@@ -39,9 +39,10 @@ async function remove(stationId) {
   // throw new Error('Nope')
   await storageService.remove(STATIONS_KEY, stationId)
 }
-async function updateStations(stationId) {
+async function updateStations(station) {
   // throw new Error('Nope')
-  await storageService.post(STATIONS_KEY,stationId)
+  console.log(station)
+  await storageService.put(STATIONS_KEY,station)
   /* localStorage.setItem(STATIONS_KEY, JSON.stringify(stations)) */
   /* console.log(...stations)
   await storageService.post(STATIONS_KEY, ...stations) */

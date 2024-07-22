@@ -65,7 +65,7 @@ export function StationDetails() {
     loadStation(stationId)
   }
   if (station) {
-    console.log(station)
+    console.log()
     const fac = new FastAverageColor();
 
     fac.getColorAsync(station.createdBy.imgUrl)
@@ -73,6 +73,8 @@ export function StationDetails() {
         setColor(color.rgb)
       })
   }
+  console.log(station)
+  if(!station) return
   const gradientStyle = { backgroundImage: `linear-gradient(${color}, black)` }
   return (
     <React.Fragment>

@@ -24,9 +24,15 @@ export function stationReducer(state = initialState, action) {
         case SET_STATIONS:
             newState = { ...state, stations: action.stations }
             break
-        /* case UPDATE_STATIONS:
-            newState = { ...state, stations[action.station.idx]: action.station._id }
-            break */
+        case UPDATE_STATIONS:
+            const stationIdx = state.stations.findIndex(
+                (station) => station._id === action.stations.station._id )
+                console.log(stationIdx)
+                station = action.stations.station
+             stations = state.stations
+             stations[stationIdx] = station
+            newState = { ...state , stations: stations }
+            break
         case SET_STATION:
             newState = { ...state, station: action.station }
             break
