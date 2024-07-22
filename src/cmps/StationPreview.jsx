@@ -45,13 +45,13 @@ export function StationPreview({ station }) {
     <Link to={`/station/${station._id}`}>
       <div id={station.name} className='station-preview' role='button'>
         <img
-          src={station.createdBy.imgUrl || playlistDefaultImage}
+          src={station.imgUrl || playlistDefaultImage}
           alt='Station'
           className='station-image'
         />
         <div className='station-details'>
           <p className='station-name'>{station.name}</p>
-          <p className='station-createdby'>Playlist {station.createdBy.fullname}</p>
+          <p className='station-createdby'>Playlist {station.name}</p>
         </div>
         <StationModal station={currStation} />
       </div>

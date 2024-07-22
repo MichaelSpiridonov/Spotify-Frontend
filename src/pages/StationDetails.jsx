@@ -64,15 +64,15 @@ export function StationDetails() {
     updateSong(songData)
     loadStation(stationId)
   }
+  if (station) {
+    console.log(station)
+    const fac = new FastAverageColor();
 
-
-  if (!station) return <div>Loading...</div>
-  const fac = new FastAverageColor();
-  /* console.log(station.createdBy.imgUrl) */
-  fac.getColorAsync('https://i.scdn.co/image/ab67616d0000b27338f0b282ea6497b296def873')
-    .then(color => {
-      setColor(color.rgb)
-    })
+    fac.getColorAsync(station.createdBy.imgUrl)
+      .then(color => {
+        setColor(color.rgb)
+      })
+  }
   const gradientStyle = { backgroundImage: `linear-gradient(${color}, black)` }
   return (
     <React.Fragment>
@@ -127,7 +127,7 @@ export function StationDetails() {
           ))}
         </ul>
         {selectedSong && (
-          <MoreModal
+          <SongOptionsModal
             song={selectedSong}
             onClose={handleCloseModal}
             buttonRef={buttonRef}

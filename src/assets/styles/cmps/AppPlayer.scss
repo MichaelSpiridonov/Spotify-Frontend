@@ -1,6 +1,6 @@
 .app-player {
   grid-column: 1/3;
-  width: 100%;
+  width: 99%;
   bottom: 0;
   background-color: black;
   display: flex;
@@ -8,6 +8,8 @@
   align-items: center;
   justify-content: space-between;
   font-family: circular-bold, sans-serif;
+  position: fixed;
+  height: 72px;
 }
 
 .song-title {
@@ -35,10 +37,9 @@
 }
 
 .app-player .clicked {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   position: relative;
+  margin-bottom: -4px;
 }
 
 .app-player .clicked svg {
