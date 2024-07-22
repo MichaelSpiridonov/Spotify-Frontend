@@ -6,6 +6,8 @@
     overflow-y: hidden;
 
     .station-list {
+        position: relative;
+        top: 100px;
         width: 100%;
         display: flex;
         flex-wrap: wrap;
@@ -20,7 +22,7 @@
         font-size: 15px;
         position: fixed;
         background-color: inherit;
-        width: 400px;
+        width: 360px;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
 
