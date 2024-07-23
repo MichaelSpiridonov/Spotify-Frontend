@@ -101,7 +101,7 @@ async function _createSpotifyStations() {
       createdBy: {
         _id: 'u101',
         fullname: 'Or Barcha',
-        imgUrl: 'https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg',
+        imgUrl: 'https://i.scdn.co/image/ab67616d00001e0215ebbedaacef61af244262a8',
       },
       likedByUsers: ['{minimal-user}', '{minimal-user}'],
       songs: [{
@@ -143,7 +143,7 @@ async function _createSpotifyStations() {
       createdBy: {
         _id: 'u101',
         fullname: 'Amit Gal',
-        imgUrl: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
+        imgUrl: 'https://i.scdn.co/image/ab67616d00001e02280689ecc5e4b2038bb5e4bd',
       },
       likedByUsers: ['{minimal-user}', '{minimal-user}'],
       songs: [{
@@ -204,7 +204,7 @@ async function _createSpotifyStations() {
       createdBy: {
         _id: 'u101',
         fullname: 'Michael Spiridonov',
-        imgUrl: 'https://i.ytimg.com/vi/iT6MEoRywDY/mqdefault.jpg',
+        imgUrl: 'https://i.scdn.co/image/ab67616d00001e027459992b444de38842b9bee7',
       },
       likedByUsers: ['{minimal-user}', '{minimal-user}'],
       songs: [{
