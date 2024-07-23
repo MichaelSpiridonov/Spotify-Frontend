@@ -117,7 +117,7 @@ export function StationDetails() {
           <span>Date added</span>
           <span>Duration</span>
         </div>
-        <ul className='station-details'>
+        <section className='station-details'>
           {station.songs.map((song) => (
             <section key={song.id} className='item'>
               <div className='play-button' onClick={() => onClickPlay(song)}>
@@ -141,7 +141,7 @@ export function StationDetails() {
               </div>
             </section>
           ))}
-        </ul>
+        </section>
         {selectedSong && (
           <SongOptionsModal
             song={selectedSong}

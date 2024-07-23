@@ -11,7 +11,7 @@
     padding-bottom: 120px;
     color: white;
     gap: 20px;
-    border-bottom: 1px solid #282828;
+    // border-bottom: 1px solid #282828;
     .station-image {
       width: 232px; // Fixed width for square box
       height: 232px; // Fixed height for square box
@@ -80,26 +80,35 @@
 
   .table-header {
     display: grid;
-    grid-template-columns: 50px 4fr 3fr 2fr 50px;
+    grid-template-columns: 50px 3fr 1fr 1fr 1fr 50px;
     color: #b3b3b3;
-    font-family: 'circular-black', helvetica, arial, 'MS Gothic';
+    font-family: 'circular-book', helvetica, arial, 'MS Gothic';
+    font-size: 14px;
     margin-bottom: 10px;
     padding: 10px 0;
     border-bottom: 1px solid #282828;
 
     span {
       &:nth-child(1) {
-        text-align: center;
+        text-align: left;
+        margin-right: 50px;
       }
 
-      &:nth-child(2),
-      &:nth-child(3) {
+      &:nth-child(2) {
         text-align: left;
       }
+      &:nth-child(3) {
+        text-align: left;
+        margin-left: 70px;
+      }
 
-      &:nth-child(4),
+      &:nth-child(4) {
+        text-align: left;
+        margin-left: 40px;
+      }
       &:nth-child(5) {
-        text-align: right;
+        text-align: left;
+        margin-left: 40px;
       }
     }
   }
@@ -253,7 +262,7 @@
   width: max-content;
   opacity: 0;
   fill: white;
- /*  margin: 10px; */
+  /*  margin: 10px; */
   margin-top: 5px;
   margin-right: 5px;
 }
@@ -273,20 +282,30 @@
   width: 100%;
   align-items: center;
   padding-left: 10px;
-  padding-right:10px ;
+  padding-right: 10px;
   padding-top: 3px;
+  padding-bottom: 3px;
   margin-bottom: 3px;
   gap: 10px;
-  /* padding-bottom: 15px; */
   span {
     width: 200px;
   }
-  .song-info{
+
+  .song-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
+  }
+
+  .song-info {
     display: flex;
     width: 38vw;
     justify-content: end;
+    align-items: start;
   }
-  .add-button{
+  .add-button {
     margin-right: 5px;
   }
 }
@@ -298,16 +317,13 @@
   .play-button svg,
   .add-button svg,
   .options-button svg {
-
     opacity: 1;
-
   }
 }
 
 .station-details-container::-webkit-scrollbar {
   width: 0;
   /* width of the scrollbar */
-
 
   /* height of the scrollbar */
 }
