@@ -7,6 +7,16 @@ html {
   line-height: 1.6;
   color: #b3b3b3;
 }
+html::-webkit-scrollbar {
+  width: 0;
+  /* width of the scrollbar */
+ 
+  
+  /* height of the scrollbar */
+}
+html:hover {
+  overflow-y: hidden; /* Show the vertical scrollbar on hover */
+}
 
 body {
   margin: 0 auto;

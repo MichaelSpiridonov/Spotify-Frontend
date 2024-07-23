@@ -85,7 +85,7 @@ export function StationDetails() {
   }
   console.log(station)
   if (!station) return
-  const gradientStyle = { backgroundImage: `linear-gradient(${color}, black 50%)` }
+  const gradientStyle = { backgroundImage: `linear-gradient(${color}, #121212 50%)` }
   return (
     <React.Fragment>
       <div style={gradientStyle} className='station-details-container'>

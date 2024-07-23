@@ -1,4 +1,5 @@
 .app-player {
+  position: relative;
   grid-column: 1/3;
   grid-row: 2;
   width: 100%;
@@ -8,7 +9,12 @@
   align-items: center;
   justify-content: space-between;
   font-family: circular-bold, sans-serif;
-  height: 72px;
+  height: 100%;
+  .player-seek-and-control{
+    position: absolute;
+    right: 31vw;
+    
+  }
   & .effects::before {
     content: '';
     display: flex;
