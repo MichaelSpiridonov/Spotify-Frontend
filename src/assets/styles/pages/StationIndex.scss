@@ -10,7 +10,7 @@
         padding: 10px;
         grid-template-columns: auto;
         grid-template-rows: auto auto;
-
+        height: 270px;
         transition: 0.8s;
         border-radius: 10px;
         font-size: 14px;
@@ -67,7 +67,7 @@ button:first-child {
 }
 
 .list-container {
-
+    border-radius: 10px;
     overflow-y: auto;
 }
 

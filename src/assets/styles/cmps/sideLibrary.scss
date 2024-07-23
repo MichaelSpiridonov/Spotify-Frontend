@@ -45,13 +45,14 @@
             margin: 0;
             width: max-content;
             transition: color 0.8s;
+            padding: 0;
         }
 
         div {
             display: flex;
             align-items: center;
             padding: 4px 8px;
-            width: 142px;
+            width: 162px;
             height: 40px;
 
             svg {

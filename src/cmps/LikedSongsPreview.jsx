@@ -11,8 +11,8 @@ export  function LikeSongsPreview() {
                 className='station-image'
             />
             <div className='station-details'>
-                <p className='station-name'>{likedSongs.name}</p>
-                <p className='station-createdby'>Playlist </p>
+                <p className='station-name'>Liked songs</p>
+                <p className='station-createdby'>Playlist ·  {likedSongs[0].songs.length} songs</p>
             </div>
         </div>
     </Link>

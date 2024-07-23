@@ -98,7 +98,7 @@ export async function addToLikedSongs(likedsong) {
         console.log(prevLikedsongs[0])
         if(prevLikedsongs){
             console.log(prevLikedsongs.songs)
-             songs =[...prevLikedsongs[0].songs , likedsong]
+             songs =[prevLikedsongs[0].songs , likedsong]
         } else{
             songs.push(likedsong)
         }
