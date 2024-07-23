@@ -27,30 +27,42 @@ const spotifyService = {
       }
     });
 
+    const rapPromise = axios.get(`${BASE_URL}/browse/categories/hiphop/playlists`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+
+    const [featuredPlaylistsResponse, rapResponse] = await Promise.all([
+      featuredPlaylistsPromise,
+      rapPromise,
+    ]);
+
+    const playlists = {
+      featured: featuredPlaylistsResponse.data.playlists.items,
+      rap: rapResponse.data.playlists.items,
+    };
+    return playlists;
+  },
+
+  getAlbums: async () => {
+    const token = await getToken();
+
     const newReleasesPromise = axios.get(`${BASE_URL}/browse/new-releases`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
     });
 
-    const categoriesPromise = axios.get(`${BASE_URL}/browse/categories`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-
-    const [featuredPlaylistsResponse, newReleasesResponse, categoriesResponse] = await Promise.all([
-      featuredPlaylistsPromise,
+    const [newReleasesResponse] = await Promise.all([
       newReleasesPromise,
-      categoriesPromise
     ]);
 
-    const playlists = {
-      featured: featuredPlaylistsResponse.data.playlists.items,
+    const albums = {
       newReleases: newReleasesResponse.data.albums.items,
-      categories: categoriesResponse.data.categories.items
     };
-    return playlists;
+    return albums;
   },
 
   getArtist: async (artistId) => {

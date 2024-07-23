@@ -1,6 +1,11 @@
-import { storageService } from '../async-storage.service'
+import {
+  storageService
+} from '../async-storage.service'
 import spotifyService from '../spotify.service'
-import { loadFromStorage, saveToStorage} from '../util.service'
+import {
+  loadFromStorage,
+  saveToStorage
+} from '../util.service'
 
 const STATIONS_KEY = 'stations'
 const ALBUMS_KEY = 'albums'
@@ -62,42 +67,47 @@ async function addToLikedSongs(likedSongs) {
 
 async function _createSpotifyStations() {
   let stations = loadFromStorage(STATIONS_KEY);
-  let albums = loadFromStorage(STATIONS_KEY);
+  let albums = loadFromStorage(ALBUMS_KEY);
 
   if (!stations || !stations.length || albums || !albums.length) {
     stations = [];
     albums = [];
     const playlists = await spotifyService.getPlaylists();
     console.log(playlists)
-    const stationPromises = playlists.featured.map(async playlist => {
-      const tracks = await spotifyService.getTracks(playlist.id)
-      const songs = await Promise.all(tracks.map(async track => {
-        return {
-          title: track.name,
-          duration: track.duration_ms,
-          isExplicit: track.explicit,
-          artists: track.artists,
-          imgUrl: track.album.images[0].url,
-          albumName: track.album.name,
-          addedAt: new Date(track.album.release_date).getTime()
-        };
-      }));
+    const stationPromises = Object.entries(playlists).map(async ([category, categoryPlaylists]) => {
+      const categoryStationPromises = categoryPlaylists.map(async playlist => {
+        const tracks = await spotifyService.getTracks(playlist.id);
+        const songs = await Promise.all(tracks.map(async track => {
+          return {
+            title: track.name,
+            duration: track.duration_ms,
+            isExplicit: track.explicit,
+            artists: track.artists,
+            imgUrl: track.album.images[0].url,
+            albumName: track.album.name,
+            addedAt: new Date(track.album.release_date).getTime()
+          };
+        }));
 
-      return {
-        _id: playlist.id,
-        name: playlist.name,
-        description: playlist.description,
-        imgUrl: playlist.images[0].url,
-        songs: songs,
-        createdBy: {
-          _id: playlist.owner.id,
-          fullname: playlist.owner.display_name,
+        return {
+          _id: playlist.id,
+          name: playlist.name,
+          description: playlist.description,
           imgUrl: playlist.images[0].url,
-        },
-      };
+          songs: songs,
+          createdBy: {
+            _id: playlist.owner.id,
+            fullname: playlist.owner.display_name,
+            imgUrl: playlist.images[0].url,
+          },
+          category: category // Add the category to each station object
+        };
+      });
+
+      return Promise.all(categoryStationPromises);
     });
 
-    stations = await Promise.all(stationPromises);
+    stations = (await Promise.all(stationPromises)).flat();
     const station = {
       _id: '5cksxjas89xjsa8xjsa8jxs09',
       name: "Or's Playlist",
@@ -188,16 +198,17 @@ async function _createSpotifyStations() {
           addedAt: 162521765266,
           duration: 220000,
           artists: [{
-            id: "7lwdlhwSxbB36wqnOwo5Kd",
-            name: "Lady Gaga",
-            type: "artist",
-          },
-        {
-          id: 'feq991jreo012313',
-          name: 'Beyoncé',
-          type: 'artist'
-        }],
-        albumName: 'Album',
+              id: "7lwdlhwSxbB36wqnOwo5Kd",
+              name: "Lady Gaga",
+              type: "artist",
+            },
+            {
+              id: 'feq991jreo012313',
+              name: 'Beyoncé',
+              type: 'artist'
+            }
+          ],
+          albumName: 'Album',
         },
       ],
     }
@@ -278,25 +289,30 @@ async function _createSpotifyStations() {
     stations.push(station2)
     stations.push(station3)
 
-    const albumPromises = playlists.newReleases.map(async album => {
-      const tracks = await spotifyService.getAlbumTracks(album.id)
-      const songs = await Promise.all(tracks.map(async track => {
-        return {
-          title: track.name,
-          duration: track.duration_ms,
-          isExplicit: track.explicit,
-          artists: track.artists,
-        };
-      }));
+    const albumSongs = await spotifyService.getAlbums()
+    const albumPromises = Object.entries(albumSongs).map(async ([category, categoryPlaylists]) => {
+      const categoryAlbumPromises = categoryPlaylists.map(async album => {
+        const tracks = await spotifyService.getAlbumTracks(album.id);
+        const songs = await Promise.all(tracks.map(async track => {
+          return {
+            title: track.name,
+            duration: track.duration_ms,
+            isExplicit: track.explicit,
+            artists: track.artists,
+          };
+        }));
 
-      return {
-        _id: album.id,
-        name: album.name,
-        imgUrl: album.images[2].url,
-        songs: songs,
-        releaseDate: album.release_date,
-      }
-    });
+        return {
+          _id: album.id,
+          name: album.name,
+          imgUrl: album.images[2].url,
+          songs: songs,
+          releaseDate: album.release_date,
+          category: category
+        };
+      })
+      return Promise.all(categoryAlbumPromises);
+    })
 
     albums = await Promise.all(albumPromises);
   }
