@@ -120,10 +120,10 @@ export function StationDetails() {
         <ul className='station-details'>
           {station.songs.map((song) => (
             <section key={song.id} className='item'>
-              <div  className='play-button' onClick={() => onClickPlay(song)}>
+              <div className='play-button' onClick={() => onClickPlay(song)}>
                 <PlayIcon />
               </div>
-              <img className='song-image' src={song[0].imgUrl} alt={song.title} />
+              <img className='song-image' src={song.imgUrl} alt={song.title} />
               <span className='song-info'>{song.title}</span>
               <span className='song-album'>{song.album}</span>
               <span>{formatDate(song.addedAt)}</span>
@@ -141,7 +141,7 @@ export function StationDetails() {
               </div>
             </section>
           ))}
-        </section>
+        </ul>
         {selectedSong && (
           <SongOptionsModal
             song={selectedSong}
