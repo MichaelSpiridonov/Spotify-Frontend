@@ -54,7 +54,8 @@
     align-items: center;
     margin-bottom: 20px;
 
-    .play-button {
+    .header-play-button {
+      // More specific class for header play button
       background-color: #1db954;
       border: none;
       border-radius: 50%;
@@ -107,15 +108,14 @@
     margin: 0;
 
     .song-item {
-      display: grid;
-      grid-template-columns: 50px 4fr 3fr 2fr 50px;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
       padding: 10px 0;
       gap: 1vw;
       height: 56px;
       border-radius: 6px;
-      font-family: 'circular-black', helvetica, arial, 'MS Gothic';
 
       &:hover {
         background-color: rgba(179, 179, 179, 0.1);
@@ -136,14 +136,39 @@
         background: none;
         border: none;
         opacity: 0;
-        fill: white;
         cursor: pointer;
+        fill: white;
+        transition: opacity 0.2s ease;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        &:hover {
+          opacity: 1;
+          fill: currentColor;
+        }
+
+        &.clicked {
+          color: #1db954;
+          fill: currentColor;
+
+          &:hover {
+            color: #1ac757;
+            fill: currentColor;
+          }
+        }
+      }
+
+      .play-button svg {
+        color: white;
+        fill: currentColor;
       }
 
       .add-button {
         background: none;
         border: none;
-        fill: white;
         cursor: pointer;
 
         svg {
@@ -151,19 +176,43 @@
           height: 16px;
           color: #b3b3b3;
           fill: currentColor;
+          transition: color 0.2s ease, fill 0.2s ease;
+        }
+
+        &:hover svg {
+          color: white;
+          fill: currentColor;
+        }
+
+        &.clicked svg {
+          color: #1db954;
+          fill: currentColor;
 
           &:hover {
-            color: white;
+            color: #1ac757;
             fill: currentColor;
           }
         }
       }
 
-      .song-image {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-        border-radius: 4px;
+      .song-options-button svg {
+        color: #b3b3b3;
+        fill: currentColor;
+
+        &:hover {
+          color: white;
+          fill: currentColor;
+        }
+
+        &.clicked {
+          color: #1db954;
+          fill: currentColor;
+
+          &:hover {
+            color: #1ac757;
+            fill: currentColor;
+          }
+        }
       }
 
       .song-info {
@@ -172,11 +221,24 @@
         flex-grow: 1;
         font-size: 16px;
         color: white;
-      }
 
-      .song-length {
-        text-align: right;
-        color: #b3b3b3;
+        .song-title {
+          font-family: circular-bold;
+          color: #fff;
+        }
+
+        .song-artist,
+        .song-album,
+        .song-date,
+        .song-length {
+          font-family: circular-black;
+          color: #b3b3b3;
+        }
+
+        .song-date,
+        .song-length {
+          text-align: right;
+        }
       }
     }
   }

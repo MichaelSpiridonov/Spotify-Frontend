@@ -76,6 +76,7 @@ export function StationDetails() {
   }
 
   if (station) {
+    console.log()
     const fac = new FastAverageColor()
 
     fac.getColorAsync(station.createdBy.imgUrl).then((color) => {
@@ -84,23 +85,12 @@ export function StationDetails() {
   }
   console.log(station)
   if (!station) return
-  if (!station) return
   const gradientStyle = { backgroundImage: `linear-gradient(${color}, black)` }
   return (
     <React.Fragment>
       <div /* style={gradientStyle} */ className='station-details-container'>
         <AppHeader />
-        {/* <AppHeader /> */}
-        {/* <Link to='/' className='back-link'>
-        Back to list
-      </Link> */}
         <div className='station-header'>
-          {/* <div className='nav-button' onClick={() => history.goBack()}>
-            <BackIcon className='nav-icon' />
-          </div>
-          <div className='nav-button' onClick={() => history.goForward()}>
-            <ForwardIcon className='nav-icon' />
-          </div> */}
           <img
             className='station-image'
             src={station.createdBy.imgUrl}
@@ -113,6 +103,20 @@ export function StationDetails() {
             </p>
           </div>
         </div>
+        <div className='station-controls'>
+          <button className='header-play-button'>
+            {' '}
+            {/* Updated className */}
+            <PlayIcon />
+          </button>
+        </div>
+        <div className='table-header'>
+          <span>#</span>
+          <span>Title</span>
+          <span>Album</span>
+          <span>Date added</span>
+          <span>Duration</span>
+        </div>
         <ul className='station-details'>
           {station.songs.map((song) => (
             <li key={song.id} className='song-item'>
@@ -121,7 +125,7 @@ export function StationDetails() {
               </button>
               <img className='song-image' src={song.imgUrl} alt={song.title} />
               <span className='song-info'>{song.title}</span>
-              <span></span> {/* Placeholder for song album */}
+              <span className='song-album'>{song.album}</span>
               <span>{formatDate(song.addedAt)}</span>
               <button className='add-button'>
                 <AddIcon />
