@@ -7,13 +7,12 @@
 
     .station-list {
         position: relative;
-        top: 100px;
+        top: 70px;
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         padding: 0px 8px 8px;
     }
-
     .library-header {
         display: flex;
         align-items: center;
@@ -22,7 +21,7 @@
         font-size: 15px;
         position: fixed;
         background-color: inherit;
-        width: 360px;
+        width: 420px;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
 
@@ -44,8 +43,10 @@
         h1 {
             margin: 0;
             width: max-content;
+            font-size: 16px;
             transition: color 0.8s;
             padding: 0;
+            word-spacing: 0.1px;
         }
 
         div {
@@ -54,7 +55,7 @@
             padding: 4px 8px;
             width: 162px;
             height: 40px;
-
+            gap: 2px;
             svg {
                 margin-right: 10px;
             }
