@@ -85,10 +85,10 @@ export function StationDetails() {
   }
   console.log(station)
   if (!station) return
-  const gradientStyle = { backgroundImage: `linear-gradient(${color}, black)` }
+  const gradientStyle = { backgroundImage: `linear-gradient(${color}, black 50%)` }
   return (
     <React.Fragment>
-      <div /* style={gradientStyle} */ className='station-details-container'>
+      <div style={gradientStyle} className='station-details-container'>
         <AppHeader />
         <div className='station-header'>
           <img
