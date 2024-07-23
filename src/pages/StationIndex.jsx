@@ -9,14 +9,13 @@ import { StationIndexPreview } from '../cmps/StationIndexPreview.jsx';
 
 export function StationIndex() {
     const stations = useSelector(storeState => storeState.stationModule.stations)
-
+    if (!stations) return <div>Loading....</div>
     return (
         <section className="list-container">
             <AppHeader />
             <h1>Try some thing else</h1>
             <section className="home-container">
-                
-              {stations.map((station) => (
+              {stations.slice(0, 6).map((station) => (
                 <StationIndexPreview key={station._id} station={station} />
             ))}   
             </section>

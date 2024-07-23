@@ -3,6 +3,7 @@ import spotifyService from '../spotify.service'
 import { loadFromStorage, saveToStorage} from '../util.service'
 
 const STATIONS_KEY = 'stations'
+const ALBUMS_KEY = 'albums'
 const CURR_SONG = 'currSong'
 const LIKED_SONGS = 'likedsongs'
 //_createStations()
@@ -61,11 +62,14 @@ async function addToLikedSongs(likedSongs) {
 
 async function _createSpotifyStations() {
   let stations = loadFromStorage(STATIONS_KEY);
+  let albums = loadFromStorage(STATIONS_KEY);
 
-  if (!stations || !stations.length) {
+  if (!stations || !stations.length || albums || !albums.length) {
     stations = [];
+    albums = [];
     const playlists = await spotifyService.getPlaylists();
-    const stationPromises = playlists.map(async playlist => {
+    console.log(playlists)
+    const stationPromises = playlists.featured.map(async playlist => {
       const tracks = await spotifyService.getTracks(playlist.id)
       const songs = await Promise.all(tracks.map(async track => {
         return {
@@ -273,9 +277,31 @@ async function _createSpotifyStations() {
     stations.push(station)
     stations.push(station2)
     stations.push(station3)
+
+    const albumPromises = playlists.newReleases.map(async album => {
+      const tracks = await spotifyService.getAlbumTracks(album.id)
+      const songs = await Promise.all(tracks.map(async track => {
+        return {
+          title: track.name,
+          duration: track.duration_ms,
+          isExplicit: track.explicit,
+          artists: track.artists,
+        };
+      }));
+
+      return {
+        _id: album.id,
+        name: album.name,
+        imgUrl: album.images[2].url,
+        songs: songs,
+        releaseDate: album.release_date,
+      }
+    });
+
+    albums = await Promise.all(albumPromises);
   }
-  console.log(stations)
   if (!localStorage.getItem(STATIONS_KEY)) {
     saveToStorage(STATIONS_KEY, stations);
+    saveToStorage(ALBUMS_KEY, albums);
   }
 }
