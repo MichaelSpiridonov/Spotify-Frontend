@@ -8,7 +8,7 @@ import {
     UPDATE_LIKED_SONGS,
     UPDATE_STATIONS
 } from '../reducers/station.reducer'
-import { stationService } from '../../services/station/station.service.local'
+import { stationService } from '../../services/station'
 
 export async function loadStations() {
     try {
