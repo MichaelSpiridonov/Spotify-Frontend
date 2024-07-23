@@ -113,28 +113,28 @@ export function StationDetails() {
             </p>
           </div>
         </div>
-        <ul className='station-details'>
+        <ul className='station-details-gtid'>
           {station.songs.map((song) => (
-            <li key={song.id} className='song-item'>
-              <button className='play-button' onClick={() => onClickPlay(song)}>
+            <li key={song.id} className='item'>
+              <div  className='play-button' onClick={() => onClickPlay(song)}>
                 <PlayIcon />
-              </button>
+              </div>
               <img className='song-image' src={song.imgUrl} alt={song.title} />
               <span className='song-info'>{song.title}</span>
               <span></span> {/* Placeholder for song album */}
               <span>{formatDate(song.addedAt)}</span>
-              <button className='add-button'>
+              <div className='add-button'>
                 <AddIcon />
-              </button>
+              </div>
               <span className='song-length'>
                 {formatDuration(song.duration)}
               </span>
-              <button
-                className='song-options-button'
+              <div
+                className='options-button'
                 onClick={(e) => handleOptionsClick(song, e.currentTarget)}
               >
                 <SongOptionsIcon />
-              </button>
+              </div>
             </li>
           ))}
         </ul>
