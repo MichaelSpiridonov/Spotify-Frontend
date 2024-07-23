@@ -1,14 +1,74 @@
 .app-player {
   grid-column: 1/3;
   grid-row: 2;
-  width: 99%;
+  width: 100%;
   background-color: black;
   display: flex;
   font-size: em(10px);
   align-items: center;
   justify-content: space-between;
   font-family: circular-bold, sans-serif;
-  height: max-content;
+  & .effects::before {
+    content: '';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7px;
+  } 
+  
+  & .clicked {
+    display: inline-block;
+    position: relative;
+  }
+  
+  & .clicked svg {
+    color: $green1;
+    fill: currentColor;
+  }
+  
+  & .clicked svg:hover {
+    color: $green2;
+    fill: currentColor;
+  }
+  
+  & .clicked::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: $green1;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  & .clicked::after:hover {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: $green2;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  & svg {
+    width: 16px;
+    height: 16px;
+    margin: 8px;
+    color: #b3b3b3;
+    fill: currentColor;
+  
+    &:hover {
+      color: white;
+      fill: currentColor;
+    }
+  }
 }
 
 .song-title {
@@ -23,11 +83,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-inline-end: 8px;
 }
 
 .artist-name {
   font-size: rem(12px);
   color: #b3b3b3;
+  align-self: flex-start;
 }
 
 .song-detail {
@@ -41,68 +103,6 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-}
-
-.app-player .effects::before {
-  content: '';
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 7px;
-} 
-
-.app-player .clicked {
-  display: inline-block;
-  position: relative;
-}
-
-.app-player .clicked svg {
-  color: $green1;
-  fill: currentColor;
-}
-
-.app-player .clicked svg:hover {
-  color: $green2;
-  fill: currentColor;
-}
-
-.app-player .clicked::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  background-color: $green1;
-  border-radius: 50%;
-  transition: background-color 0.3s;
-}
-
-.app-player .clicked::after:hover {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  background-color: $green2;
-  border-radius: 50%;
-  transition: background-color 0.3s;
-}
-
-.app-player svg {
-  width: 16px;
-  height: 16px;
-  margin: 8px;
-  color: #b3b3b3;
-  fill: currentColor;
-
-  &:hover {
-    color: white;
-    fill: currentColor;
-  }
 }
 
 .song-image {
@@ -122,149 +122,21 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.1s ease, transform 0.1s ease;
-}
-.player:hover {
-  transform: scale(1.07);
-}
-
-.player svg {
-  color: black;
-  fill: currentColor;
-  transition: color 0.1s ease;
-
-  &:hover {
+   &:hover {
+      transform: scale(1.07);
+  }
+  
+  & svg {
     color: black;
     fill: currentColor;
+    transition: color 0.1s ease;
+  
+    &:hover {
+      color: black;
+      fill: currentColor;
+    }
   }
 }
 
-.volume-slider-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 93px;
-  height: 12px;
-}
 
-.volume-slider {
-  -webkit-appearance: none; /* Remove default appearance in WebKit */
-  appearance: none; /* Remove default appearance */
-  width: 100%;
-  height: 4px;
-  background: #ddd;
-  border-radius: 5px;
-  outline: none;
-  accent-color: white;
-  background: linear-gradient(to right, #ffffff var(--volume, 0%), #535353 0%);
-  position: relative;
-}
 
-.volume-slider:hover {
-  background: linear-gradient(to right, $green2 var(--volume, 0%), #535353 0%);
-}
-
-/* Track styling */
-.volume-slider::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 4px;
-  cursor: pointer;
-  border-radius: 2px;
-}
-
-/* Customize the thumb for WebKit browsers */
-.volume-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 0; /* Initially make the thumb invisible */
-  height: 0; /* Initially make the thumb invisible */
-  background: transparent;
-  border-radius: 50%;
-  border: none;
-}
-
-.volume-slider:hover::-webkit-slider-thumb {
-  background: #ffffff; /* Color of the thumb */
-  width: 12px;
-  height: 12px;
-  cursor: pointer;
-  left: var(--volume);
-  margin-left: -6px;
-  margin-top: -3px;
-  position: absolute;
-  will-change: left;
-  z-index: 100;
-}
-
-.progress-bar-container {
-  display: flex;
-  align-items: center;
-  width: 615px;
-  gap: 8px;
-  padding: 0 20px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.progress-bar {
-  -webkit-appearance: none; /* Remove default appearance in WebKit */
-  appearance: none; /* Remove default appearance */
-  width: 100%;
-  height: 4px;
-  background: #535353;
-  border-radius: 2px;
-  outline: none;
-  accent-color: white;
-  position: relative;
-}
-
-.progress-bar::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: var(--progress, 0%);
-  background: #ffffff; /* Progress fill color */
-  border-radius: 2px;
-}
-
-.progress-bar:hover::before {
-  background: $green2; /* Hover fill color */
-}
-
-/* Track styling */
-.progress-bar::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 4px;
-  cursor: pointer;
-  border-radius: 2px;
-}
-
-/* Customize the thumb for WebKit browsers */
-.progress-bar::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 0; /* Initially make the thumb invisible */
-  height: 0; /* Initially make the thumb invisible */
-  background: transparent;
-  border-radius: 50%;
-  border: none;
-}
-
-.progress-bar:hover::-webkit-slider-thumb {
-  background: #ffffff; /* Color of the thumb */
-  width: 12px;
-  height: 12px;
-  cursor: pointer;
-  left: var(--progress);
-  margin-left: -6px;
-  margin-top: -3px;
-  position: absolute;
-  will-change: left;
-  z-index: 100;
-}
-
-.time {
-  color: #a7a7a7;
-  font-size: 0.75rem;
-}
