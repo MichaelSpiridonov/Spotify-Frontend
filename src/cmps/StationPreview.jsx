@@ -7,7 +7,7 @@ import { StationModal } from './stationModal'
 
 export function StationPreview({ station }) {
   const [currStation,setCurrStation] = useState(null)
-  const element = document.querySelector('.station-preview')
+  const element = document.querySelector('.station-list')
   var count = 0
   if (element) {
     element.addEventListener('contextmenu', function (event) {
@@ -19,7 +19,7 @@ export function StationPreview({ station }) {
         // Right-click was detected
         
         const x = event.clientX
-        const y = event.clientY + 20
+        const y = event.clientY -230
         const elModal = document.querySelector('.station-modal')
         elModal.style.left = `${x}px`
         elModal.style.top = `${y}px`
@@ -52,7 +52,7 @@ export function StationPreview({ station }) {
         />
         <div className='station-details'>
           <p className='station-name'>{station.name}</p>
-          <p className='station-createdby'>Playlist · {station.name}</p>
+          <p className='station-createdby'>Playlist {station.name}</p>
         </div>
         <StationModal station={currStation} />
       </div>

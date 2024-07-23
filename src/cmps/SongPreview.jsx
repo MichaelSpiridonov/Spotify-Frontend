@@ -25,7 +25,7 @@ export function SongPreview({ song }) {
     }
 
     const targetElement = document.querySelector('.more-modal');
-    const element= document.querySelector('.search-page .station-details')
+    const element = document.querySelector('.search-page .station-details')
     if (element) {
         element.addEventListener('contextmenu', function (event) {
             // Prevent the default context menu from appearing
@@ -65,18 +65,18 @@ export function SongPreview({ song }) {
     }
     // Adding click event listener to the document
     document.addEventListener('click', clickOutsideListener);
-    return <article id={song.title} className="song-item">
-        <button className='play-button' onClick={({ target }) => onClickPlay(song, target)}><Play /></button>
+    return <article id={song.title} className="item">
+        <div className='play-button' onClick={({ target }) => onClickPlay(song, target)}><Play /></div>
         <img className='song-image' src={song.thumbnail} alt="" />
         <h1 className='song-info' >{song.title}</h1>
-        <button className='add-button'>
+        <div className='add-button'>
             <AddIcon onClick={onAddToLikedSongs} />
 
-        </button>
+        </div>
 
-        <button className='song-options-button' >
+        <div className='options-button' >
             <svg onClick={onAddTo} data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" ><path d="M3 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm6.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM16 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path></svg>
-        </button>
+        </div>
         <MoreModal song={songToAdd} />
     </article>
 }
