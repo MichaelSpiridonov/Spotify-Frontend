@@ -8,10 +8,10 @@
   .station-header {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    padding-bottom: 120px;
     color: white;
     gap: 20px;
-
+    border-bottom: 1px solid #282828;
     .station-image {
       width: 232px; // Fixed width for square box
       height: 232px; // Fixed height for square box
