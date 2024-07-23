@@ -13,6 +13,7 @@
 }
 
 .search-page {
+    position: relative;
     background-color: #121212;
     padding: 10px;
     border-bottom-left-radius: 10px;
@@ -89,9 +90,9 @@
 
     form {
         position: absolute;
-        top: 26px;
+        top: 20px;
         margin-left: 90px;
-        right: 30vw; 
+        left: 24px;
         /* left: minmax(100px,200px); */
         display: flex;
         height: 48px;
