@@ -41,17 +41,18 @@ export function StationPreview({ station }) {
     }
   }
   document.addEventListener('click', clickOutsideListener);
+  if(!station.tags) return
   return (
     <Link to={`/station/${station._id}`}>
       <div id={station.name} className='station-preview' role='button'>
         <img
-          src={station.imgUrl || playlistDefaultImage}
+          src={(station.songs[0])?station.songs[0].imgUrl: null || playlistDefaultImage}
           alt='Station'
           className='station-image'
         />
         <div className='station-details'>
           <p className='station-name'>{station.name}</p>
-          <p className='station-createdby'>Playlist {station.name}</p>
+          <p className='station-createdby'>Playlist · {station.name}</p>
         </div>
         <StationModal station={currStation} />
       </div>

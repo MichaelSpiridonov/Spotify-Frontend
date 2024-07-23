@@ -119,29 +119,29 @@ export function StationDetails() {
         </div>
         <ul className='station-details'>
           {station.songs.map((song) => (
-            <li key={song.id} className='song-item'>
-              <button className='play-button' onClick={() => onClickPlay(song)}>
+            <section key={song.id} className='item'>
+              <div  className='play-button' onClick={() => onClickPlay(song)}>
                 <PlayIcon />
-              </button>
-              <img className='song-image' src={song.imgUrl} alt={song.title} />
+              </div>
+              <img className='song-image' src={song[0].imgUrl} alt={song.title} />
               <span className='song-info'>{song.title}</span>
               <span className='song-album'>{song.album}</span>
               <span>{formatDate(song.addedAt)}</span>
-              <button className='add-button'>
+              <div className='add-button'>
                 <AddIcon />
-              </button>
+              </div>
               <span className='song-length'>
                 {formatDuration(song.duration)}
               </span>
-              <button
-                className='song-options-button'
+              <div
+                className='options-button'
                 onClick={(e) => handleOptionsClick(song, e.currentTarget)}
               >
                 <SongOptionsIcon />
-              </button>
-            </li>
+              </div>
+            </section>
           ))}
-        </ul>
+        </section>
         {selectedSong && (
           <SongOptionsModal
             song={selectedSong}

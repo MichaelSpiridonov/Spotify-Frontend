@@ -34,7 +34,7 @@
     height: max-content;
     text-align: left;
     .station-name {
-
+      color:white;
       font-size: 16px;
       font-weight: bold;
       margin: 0;
@@ -42,19 +42,12 @@
     .station-createdby {
       font-family: circular-bold, sans-serif;
       font-size: 14px;
-      color: gray;
+      color: #b3b3b3;
       margin: 0;
     }
   }
 }
 
-.station-list {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0px 8px 8px;
-  // justify-content: space-around;
-}
 .station-preview:hover{
-  background-color: #282828  ;
+  background-color:  #282828;;
 }

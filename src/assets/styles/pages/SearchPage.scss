@@ -24,6 +24,10 @@
     grid-row: 1;
     width: 100%;
     height: 100%;
+    /* article{
+        display: flex;
+        justify-content: space-between;
+    } */
     .song-item {
         display: flex;
         align-items: center;
@@ -37,7 +41,10 @@
             height: 40px;
             width: 40px;
         }
-
+        .play-button ,.add-button, .song-options-button{
+           background-color: inherit;
+           opacity: 0;
+        }
         svg {
             width: 16px;
             height: 16px;
@@ -64,7 +71,8 @@
             background-color: #282828;
             border-radius: 6px;
 
-            .play-button svg {
+            .play-button ,.add-button, .song-options-button {
+                opacity: 1;
                 color: white;
                 fill: currentColor;
             }

@@ -161,7 +161,8 @@ export function Player(props) {
     }
   }
 
-  function onPlayNext() {
+  function onPlayNext(event) {
+    console.log(event)
     const { station, currSong } = props;
     const songs = isShuffle ? shuffledSongs : station.songs;
     let nextSongIdx = songs.findIndex((song) => song.id === currSong.id) + 1;
@@ -213,7 +214,7 @@ export function Player(props) {
     <>
       <section className="player-seek-and-control">
         <section className="player-controls">
-          <span className={isShuffle ? 'clicked' : ''}>
+          <span className={`effects ${isShuffle ? 'clicked' : ''}`}>
             <Shuffle onClick={toggleShuffle} />
           </span>
           <Previous onClick={onPlayPrevious} />
@@ -232,7 +233,7 @@ export function Player(props) {
             )}
           </section>
           <Next onClick={onPlayNext} />
-          <span className={isRepeat || isRepeatSong ? 'clicked' : ''}>
+          <span className={`effects ${isRepeat || isRepeatSong ? 'clicked' : ''}`}>
             {!isRepeatSong && !isRepeat ? <Repeat onClick={toggleRepeat} /> : ''}
             {isRepeat ? <Repeat onClick={toggleRepeat} /> : ''}
             {isRepeatSong ? <RepeatSong onClick={toggleRepeat} /> : ''}
