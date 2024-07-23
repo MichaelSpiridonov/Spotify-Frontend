@@ -15,8 +15,8 @@ export function SideLibrary() {
             })
     }, [])
     function onOpenModal(event){
-            const x = event.clientX
-            const y = event.clientY + 20
+            const x = event.clientX 
+            const y = event.clientY +20 
             console.log(`Clicked at X=${x}, Y=${y}`)
             const element = document.querySelector('.create-modal')
             element.style.left = `${x}px`
