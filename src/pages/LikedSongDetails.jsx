@@ -18,14 +18,14 @@ import { FastAverageColor } from 'fast-average-color'
 
 export function LikeSongsDeatils() {
   const likedSongs = useSelector((storeState) => storeState.stationModule.likedSongs)
-  console.log(likedSongs)
+  
   const currSong = useSelector((storeState) => storeState.stationModule.currSong )
   const [color, setColor] = useState(null)
 
     useEffect(() => {
         const fac = new FastAverageColor();
 
-        fac.getColorAsync(likedSongs.createdBy.imgUrl)
+        fac.getColorAsync(likedSongs[0].createdBy.imgUrl)
             .then(color => {
                 setColor(color.rgb)
             })
@@ -69,13 +69,13 @@ export function LikeSongsDeatils() {
 
   return (
     <React.Fragment>
-      <div  style={gradientStyle} className='liked-details-container'>
+      <div  style={gradientStyle} className='station-details-container'>
       <AppHeader/>
         {/* <AppHeader /> */}
         {/* <Link to='/' className='back-link'>
         Back to list
       </Link> */}
-        <div className='liked-header'>
+        <div className='station-header'>
           {/* <div className='nav-button' onClick={() => history.goBack()}>
             <BackIcon className='nav-icon' />
           </div>
@@ -84,37 +84,38 @@ export function LikeSongsDeatils() {
           </div> */}
 
           <img
-            className='liked-image'
-            src={likedSongs.createdBy.imgUrl}
-            alt={likedSongs.createdBy.fullname}
+            className='station-image'
+            src={likedSongs[0].createdBy.imgUrl}
+            alt={likedSongs[0].createdBy.fullname}
           />
-          <div className='liked-info'>
-            <h1 className='liked-name'>{likedSongs.name}</h1>
-           <h2>Or Bracha · {likedSongs.songs.length}  songs</h2>
+          <div className='station-info'>
+            <h1 className='station-name'>{likedSongs[0].name}</h1>
+           <h2>Or Bracha · {likedSongs[0].songs.length}  songs</h2>
           </div>
         </div>
-        <ul className='station-details'>
-          {likedSongs.songs.map((song) => (
-            <li key={song.id} className='song-item'>
-              <button className='play-button' onClick={() => onClickPlay(song)}>
+        <ul className='station-details-gtid'>
+          {likedSongs[0].songs.map((idx,song) => (
+          
+            <li key={song.id} className='item'>
+              <div className='play-button' onClick={() => onClickPlay(song)}>
                 <PlayIcon />
-              </button>
+              </div>
               <img className='song-image' src={song.imgUrl} alt={song.title} />
               <span className='song-info'>{song.title}</span>
               <span></span> {/* Placeholder for song album */}
               <span>{formatDate(song.addedAt)}</span>
-              <button className='add-button'>
+              <div className='add-button'>
                 <AddIcon />
-              </button>
+              </div>
               <span className='song-length'>
                 {formatDuration(song.duration)}
               </span>
-              <button
-                className='song-options-button'
+              <div
+                className='options-button'
                 onClick={(e) => handleOptionsClick(song, e.currentTarget)}
               >
                 <SongOptionsIcon />
-              </button>
+              </div>
             </li>
           ))}
         </ul>

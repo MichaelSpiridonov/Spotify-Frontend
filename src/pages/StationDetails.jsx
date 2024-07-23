@@ -113,13 +113,13 @@ export function StationDetails() {
             </p>
           </div>
         </div>
-        <ul className='station-details-gtid'>
+        <section className='station-details-gtid'>
           {station.songs.map((song) => (
-            <li key={song.id} className='item'>
+            <section key={song.id} className='item'>
               <div  className='play-button' onClick={() => onClickPlay(song)}>
                 <PlayIcon />
               </div>
-              <img className='song-image' src={song.imgUrl} alt={song.title} />
+              <img className='song-image' src={song[0].imgUrl} alt={song.title} />
               <span className='song-info'>{song.title}</span>
               <span></span> {/* Placeholder for song album */}
               <span>{formatDate(song.addedAt)}</span>
@@ -135,9 +135,9 @@ export function StationDetails() {
               >
                 <SongOptionsIcon />
               </div>
-            </li>
+            </section>
           ))}
-        </ul>
+        </section>
         {selectedSong && (
           <SongOptionsModal
             song={selectedSong}
