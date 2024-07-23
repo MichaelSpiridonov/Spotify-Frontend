@@ -1,17 +1,21 @@
 .station-details-container {
-  padding-inline: 20px;
-  padding-block: 10px;
+  /* padding-inline: 20px;
+  padding-block: 10px; */
   color: #b3b3b3;
   grid-column: 2;
   border-radius: 10px;
   background: linear-gradient(to bottom, #1db954, #121212 50%);
   overflow-y: hidden;
+
   .station-header {
     display: flex;
     align-items: center;
-    padding-bottom: 30px;
+    padding-top: 4.5vh;
+    padding-left: 24px;
     color: white;
-    gap: 20px;
+    gap: 23px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
     // border-bottom: 1px solid #282828;
     .station-image {
       width: 232px; // Fixed width for square box
@@ -27,15 +31,31 @@
     .station-info {
       display: flex;
       flex-direction: column;
+      height: 13.5vh;
+
+      h3 {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .station-description {
+        margin-top: 4px;
+        font-size: 14px;
+        color: #ffffffb2;
+        font-weight: 400;
+        letter-spacing: 1%;
+      }
 
       .station-name {
-        font-family: 'circular-black', helvetica, arial, 'MS Gothic';
-        font-size: 72px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 4vw;
         line-height: normal;
         text-align: left;
         letter-spacing: normal;
         color: #ffffff;
         margin: 0;
+        padding: 0;
+        font-weight: bolder;
       }
 
       .station-creator {
@@ -43,8 +63,8 @@
         font-size: 14px;
         line-height: normal;
         text-align: start;
-        letter-spacing: normal;
-        color: rgba(255, 255, 255, 0.7);
+        color: white;
+        font-weight: 300;
         margin-top: 10px;
       }
     }
@@ -54,7 +74,14 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-
+    padding-left: 24px;
+    margin-top: 4vh;
+    gap: 32px;
+    .header-add-button, .header-options-button{
+      fill: #b3b3b3;
+      height: 30px;
+      width: 30px;
+    }
     .header-play-button {
       // More specific class for header play button
       background-color: #1db954;
@@ -67,10 +94,12 @@
       justify-content: center;
       cursor: pointer;
       transition: transform 0.2s ease, background-color 0.2s ease;
+      padding: 0;
+      margin: 0;
 
       svg {
-        width: 28px;
-        height: 28px;
+        width: 18px;
+        height: 18px;
         fill: black;
       }
 
@@ -82,36 +111,50 @@
   }
 
   .table-header {
-    display: grid;
-    grid-template-columns: 50px 3fr 1fr 1fr 1fr 50px;
+    display: flex;
+    align-items: center;
+    height: 35px;
     color: #b3b3b3;
     font-family: 'circular-book', helvetica, arial, 'MS Gothic';
     font-size: 14px;
     margin-bottom: 10px;
-    padding: 10px 0;
     border-bottom: 1px solid #282828;
+    padding-left: 22px;
+    padding-right: 22px;
+    gap: 12px;
 
     span {
       &:nth-child(1) {
         text-align: left;
-        margin-right: 50px;
+        width: max-content;
       }
 
       &:nth-child(2) {
         text-align: left;
+        width: 33vw;
       }
+
       &:nth-child(3) {
         text-align: left;
-        margin-left: 70px;
+        width: 21vw;
       }
 
       &:nth-child(4) {
         text-align: left;
-        margin-left: 40px;
+       width: 5vw;
       }
+
       &:nth-child(5) {
+        display: flex;
         text-align: left;
-        margin-left: 40px;
+        width: 17vw;
+        justify-content: end;
+        margin-right: 20px;
+
+        svg {
+          width: 16px;
+          fill: #b3b3b3;
+        }
       }
     }
   }
@@ -120,7 +163,47 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-top: 28px;
+    .item{
+      border-radius: 5px;
+      gap: 0;
+      font-size: 14px;
+      span{
+        &:nth-child(4){
+          width:33.5vw ;
 
+        }
+        &:nth-child(5){
+          width: 27vw;
+
+        }
+        &:nth-child(7){
+          width: max-content;
+          padding-left: 10px;
+        }
+      }
+      svg{
+        height: 16px;
+        padding: 0;
+      }
+      .options-button{
+        margin-top: 3px;
+        padding-left: 10px;
+      }
+      .add-button{
+        margin-top: 3px;
+      }
+      .play-button{
+        margin-right: 12px;
+      }
+      .song-info{
+        font-size: 16px;
+        color: white;
+        padding-left: 5px;
+      }
+    }
     .song-item {
       display: flex;
       justify-content: space-between;
@@ -290,6 +373,7 @@
   padding-bottom: 3px;
   margin-bottom: 3px;
   gap: 10px;
+
   span {
     width: 200px;
   }
@@ -308,6 +392,7 @@
     justify-content: end;
     align-items: start;
   }
+
   .add-button {
     margin-right: 5px;
   }

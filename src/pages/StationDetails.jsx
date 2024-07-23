@@ -97,27 +97,34 @@ export function StationDetails() {
             alt={station.createdBy.fullname}
           />
           <div className='station-info'>
+            <h3>Playlist</h3>
             <h1 className='station-name'>{station.name}</h1>
+            <h2 className='station-description'>{station.description}</h2>
             <p className='station-creator'>
-              Created by {station.createdBy.fullname}
+              {station.createdBy.fullname} · {station.songs.length} songs
             </p>
           </div>
         </div>
         <div className='station-controls'>
           <button className='header-play-button'>
-            {' '}
-            {/* Updated className */}
             <PlayIcon />
           </button>
+          <div className='header-add-button'>
+            <AddIcon />
+          </div>
+          <div className='header-options-button'>
+            <SongOptionsIcon />
+          </div>
         </div>
-        <div className='table-header'>
-          <span>#</span>
-          <span>Title</span>
-          <span>Album</span>
-          <span>Date added</span>
-          <span>Duration</span>
-        </div>
+
         <section className='station-details'>
+          <div className='table-header'>
+            <span>#</span>
+            <span>Title</span>
+            <span>Album</span>
+            <span>Date added</span>
+            <span><svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" class="Svg-sc-ytk21e-0 dYnaPI"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"></path><path d="M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z"></path></svg></span>
+          </div>
           {station.songs.map((song) => (
             <section key={song.id} className='item'>
               <div className='play-button' onClick={() => onClickPlay(song)}>
