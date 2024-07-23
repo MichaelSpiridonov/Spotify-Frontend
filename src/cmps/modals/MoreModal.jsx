@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
-import { updateStations } from "../store/actions/station.actions"
-import { makeId } from "../services/util.service"
-import { addNewStation } from "../store/actions/station.actions"
+import { updateStations } from "../../store/actions/station.actions"
+import { makeId } from "../../services/util.service"
+import { addNewStation } from "../../store/actions/station.actions"
 
 export function MoreModal({ song }) {
     const stations = useSelector((storeState) => storeState.stationModule.stations)

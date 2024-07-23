@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import playlistDefaultImage from '../assets/icons/myplaylist.svg'
-import { MoreModal } from './MoreModal'
-import { StationModal } from './stationModal'
+import { MoreModal } from './modals/MoreModal'
+import { StationModal } from './modals/StationModal'
 
 export function StationPreview({ station }) {
   const [currStation,setCurrStation] = useState(null)

@@ -10,7 +10,6 @@ import { AppHeader } from './cmps/AppHeader.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { SideLibrary } from './cmps/sideLibrary.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
-import { MoreModal } from './cmps/MoreModal.jsx'
 import { LikeSongsDeatils } from './pages/LikedSongDetails.jsx'
 import { SideLayout } from './cmps/sideLayout.jsx'
 export function RootCmp() {

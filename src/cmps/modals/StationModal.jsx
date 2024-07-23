@@ -1,7 +1,7 @@
 
-import { removeStation, updateStations } from "../store/actions/station.actions"
-import { makeId } from "../services/util.service"
-import { addNewStation } from "../store/actions/station.actions"
+import { removeStation, updateStations } from "../../store/actions/station.actions"
+import { makeId } from "../../services/util.service"
+import { addNewStation } from "../../store/actions/station.actions"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 

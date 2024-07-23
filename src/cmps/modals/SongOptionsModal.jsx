@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { addToLikedSongs } from '../store/actions/station.actions'
+import { addToLikedSongs } from '../../store/actions/station.actions'
 
-import AddIcon from '../assets/icons/addsong.svg?react'
+
 
 export function SongOptionsModal({ song, onClose, buttonRef }) {
   const dispatch = useDispatch()
@@ -38,7 +38,7 @@ export function SongOptionsModal({ song, onClose, buttonRef }) {
     <div ref={modalRef} className='song-options-modal'>
       <ul className='modal-content'>
         <li className='option-button' onClick={handleAddToLikedSongs}>
-          <AddIcon className='add-button' />
+          {/* <AddIcon className='add-button' /> */}
           Save to your Liked Songs
         </li>
         <li className='option-button' onClick={onClose}>

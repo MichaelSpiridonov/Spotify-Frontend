@@ -11,10 +11,11 @@ import LikedIcon from '../assets/icons/likedsong.svg?react'
 // import BackIcon from '../assets/icons/back.svg?react'
 // import ForwardIcon from '../assets/icons/forward.svg?react'
 
-import { SongOptionsModal } from '../cmps/SongOptionsModal.jsx'
-import { MoreModal } from '../cmps/MoreModal.jsx'
+/* import { SongOptionsModal } from '../cmps/SongOptionsModal.jsx' */
+
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { FastAverageColor } from 'fast-average-color'
+import { MoreModal } from '../cmps/modals/MoreModal.jsx'
 
 export function LikeSongsDeatils() {
     const likedSongs = useSelector((storeState) => storeState.stationModule.likedSongs)

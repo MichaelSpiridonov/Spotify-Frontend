@@ -3,8 +3,9 @@ import { useState } from 'react'
 import AddIcon from '../assets/icons/addsong.svg?react'
 import Play from '../assets/icons/play.svg?react'
 import { updateSong } from '../store/actions/station.actions'
-import { MoreModal } from './MoreModal'
+
 import { addToLikedSongs } from '../store/actions/station.actions'
+import { MoreModal } from './modals/MoreModal'
 export function SongPreview({ song }) {
     const [songToAdd, setSongToAdd] = useState(null)
     var count = 0
