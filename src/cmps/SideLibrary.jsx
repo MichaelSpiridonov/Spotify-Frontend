@@ -14,6 +14,7 @@ export function SideLibrary() {
                 throw err
             })
     }, [])
+    
     function onOpenModal(event){
             const x = event.clientX 
             const y = event.clientY +20 

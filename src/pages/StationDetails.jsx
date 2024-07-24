@@ -63,7 +63,6 @@ export function StationDetails() {
     return id[0].videoId
   }
   const onClickPlay = async (song) => {
-    console.log(song)
     if (!song.id) {
       song.id = await getVideoId(song.title)
     }

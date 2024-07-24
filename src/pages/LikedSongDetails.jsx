@@ -1,21 +1,15 @@
 import { loadStation, updateSong } from '../store/actions/station.actions.js'
-import { useParams } from 'react-router-dom'
 import React, { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import PlayIcon from '../assets/icons/play.svg?react'
 import AddIcon from '../assets/icons/addsong.svg?react'
 import SongOptionsIcon from '../assets/icons/song_options.svg?react'
-import LikedIcon from '../assets/icons/likedsong.svg?react'
-// import BackIcon from '../assets/icons/back.svg?react'
-// import ForwardIcon from '../assets/icons/forward.svg?react'
-
-/* import { SongOptionsModal } from '../cmps/SongOptionsModal.jsx' */
 
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { FastAverageColor } from 'fast-average-color'
 import { MoreModal } from '../cmps/modals/MoreModal.jsx'
+import { getVideos } from '../services/youtube.service.js'
 
 export function LikeSongsDeatils() {
   const likedSongs = useSelector(
@@ -65,8 +59,17 @@ export function LikeSongsDeatils() {
     setButtonRef(null)
   }
 
-  const onClickPlay = (song) => {
-    const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl }
+  async function getVideoId(name) {
+    const id = await getVideos(name)
+    return id[0].videoId
+  }
+
+  const onClickPlay = async (song) => {
+    console.log(song)
+    if (!song.id) {
+      song.id = await getVideoId(song.title)
+    }
+    const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl, artists: song.artists }
     updateSong(songData)
   }
 
@@ -79,17 +82,7 @@ export function LikeSongsDeatils() {
     <React.Fragment>
       <div style={gradientStyle} className='station-details-container'>
         <AppHeader />
-        {/* <AppHeader /> */}
-        {/* <Link to='/' className='back-link'>
-        Back to list
-      </Link> */}
         <div className='station-header'>
-          {/* <div className='nav-button' onClick={() => history.goBack()}>
-            <BackIcon className='nav-icon' />
-          </div>
-          <div className='nav-button' onClick={() => history.goForward()}>
-            <ForwardIcon className='nav-icon' />
-          </div> */}
 
           <img
             className='station-image'

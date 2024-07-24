@@ -10,7 +10,6 @@ export function StationModal({ station }) {
     const navigate = useNavigate()
     var count = 0
     async function onAddNewStation() {
-        console.log('Does this work?')
         const element = document.querySelector('.station-modal')
         element.style.display = 'none'
         const station = {
