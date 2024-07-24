@@ -1,15 +1,15 @@
 .app-footer {
-  background-color: #121212; /* Update to match other components' background color */
+  background-color: #121212;
   color: #b3b3b3;
-  padding: 20px 40px;
-  font-size: 14px;
+  padding: 40px 40px 20px;
+  font-size: 16px;
+  font-family: circular-medium;
 
   .footer-content {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #282828;
     padding-bottom: 20px;
-    padding-right: 10px; /* Slightly reduce padding on the right */
 
     .footer-section {
       display: flex;
@@ -17,13 +17,17 @@
 
       h3 {
         color: #fff;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
+        font-size: 18px;
+        font-family: circular-bold;
       }
 
       a {
         color: #b3b3b3;
         text-decoration: none;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
+        font-family: circular-book;
+        font-size: 16px;
 
         &:hover {
           text-decoration: underline;
@@ -34,28 +38,29 @@
     .social-media {
       display: flex;
       flex-direction: row;
-      gap: 10px;
-      align-items: flex-start; /* Align icons vertically centered */
+      align-items: flex-start;
+      justify-content: flex-end;
+      gap: 20px;
 
       a {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 36px;
-        height: 36px;
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
         background-color: #282828;
-        color: #fff; /* Set the icon color to white */
+        color: #fff;
         text-decoration: none;
 
         &:hover {
-          background-color: #383838; /* Change background color to lighter grey on hover */
+          background-color: #404040;
         }
 
         svg {
           width: 20px;
           height: 20px;
-          fill: #fff; /* Set the fill color to white */
+          fill: #fff;
         }
       }
     }
@@ -65,15 +70,19 @@
     display: flex;
     justify-content: space-between;
     padding-top: 20px;
-    padding-right: 10px; /* Slightly reduce padding on the right */
+    margin-block-start: 20px;
+    margin-block-end: 50px;
 
     .footer-links {
       display: flex;
-      gap: 10px; /* Reduce the gap between links */
+      gap: 20px;
+      flex-wrap: wrap;
 
       a {
         color: #b3b3b3;
         text-decoration: none;
+        font-family: circular-book;
+        font-size: 16px;
 
         &:hover {
           text-decoration: underline;
@@ -83,6 +92,8 @@
 
     .footer-copyright {
       color: #b3b3b3;
+      font-family: circular-book;
+      font-size: 16px;
     }
   }
 }
