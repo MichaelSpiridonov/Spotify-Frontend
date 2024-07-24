@@ -89,9 +89,6 @@ export function StationDetails() {
       setColor(color.rgb)
     })
   }
-  element.addEventListener("scroll", (event) => {
-    console.log("Scroll event fired, waiting for scrollend...") ;
-  });
   if (!station) return
   const gradientStyle = { backgroundImage: `linear-gradient(${color}, #121212 50%)` }
   return (

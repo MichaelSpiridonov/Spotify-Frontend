@@ -6,7 +6,7 @@
   border-radius: 10px;
   background: linear-gradient(to bottom, #1db954, #121212 50%);
   overflow-y: auto;
-
+  overflow-x: hidden;
   .station-header {
     display: flex;
     align-items: center;
@@ -425,21 +425,25 @@
 
 .station-details-container:hover {
   overflow-y: auto;
+  
   /* Show the vertical scrollbar on hover */
 }
 /* width */
-::-webkit-scrollbar {
+.station-details-container::-webkit-scrollbar {
   width: 10px;
+  
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  margin-top: 20px;
+  background: inherit;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #282828;
+  border-radius: 8px;
 }
 
 /* Handle on hover */

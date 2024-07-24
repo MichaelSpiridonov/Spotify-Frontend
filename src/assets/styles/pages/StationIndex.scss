@@ -79,6 +79,7 @@ button:first-child {
 .list-container {
     border-radius: 10px;
     overflow-y: auto;
+    overflow-x: hidden;
     background-image: linear-gradient(rgba(66, 64, 64, 0.6) 0, #121212 30%);
 }
 
