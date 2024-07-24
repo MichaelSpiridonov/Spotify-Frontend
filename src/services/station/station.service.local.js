@@ -26,7 +26,8 @@ export const stationService = {
   updateStations,
   addToLikedSongs,
   addNewStation,
-  queryAlbums
+  queryAlbums,
+  removeSong
 }
 window.cs = stationService
 
@@ -72,6 +73,10 @@ async function addToLikedSongs(likedSongs) {
   await storageService.post(LIKED_SONGS, likedSongs)
 }
 
+async function removeSong(songId) {
+  // throw new Error('Nope')
+  await storageService.remove(STATIONS_KEY, songId)
+}
 
 async function _createSpotifyStations() {
   let stations = loadFromStorage(STATIONS_KEY);

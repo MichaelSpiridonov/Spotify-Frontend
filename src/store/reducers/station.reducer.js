@@ -4,13 +4,16 @@ export const SET_STATION = 'SET_STATION'
 export const REMOVE_STATION = 'REMOVE_STATION'
 export const ADD_STATION = 'ADD_STATION'
 export const UPDATE_SONG = 'UPDATE_SONG'
+export const REMOVE_SONG = 'REMOVE_SONG'
 export const ADD_STATION_MSG = 'ADD_STATION_MSG'
 export const UPDATE_LIKED_SONGS = 'UPDATE_LIKED_SONGS'
 export const UPDATE_STATIONS = 'UPDATE_STATIONS'
+export const SET_CURR_CLICKED_STATION = 'SET_CURR_CLICKED_STATION'
 const initialState = {
     stations: [],
     station: null,
     currSong: null,
+    currClickedStation: null,
     likedSongs: JSON.parse(localStorage.getItem('likedsongs')) || null,
     currStation: null
 }
@@ -51,6 +54,19 @@ export function stationReducer(state = initialState, action) {
         case UPDATE_SONG:
             newState = { ...state, currSong: action.song }
             break
+        case REMOVE_SONG:
+            const lastRemovedSong = state.station.songs.find(
+                (song) => song._id === action.stationId
+            )
+            station = state.station.songs.filter(
+                (song) => song._id !== action.songId
+            )
+            newState = { ...state, station, lastRemovedSong }
+
+            case SET_CURR_CLICKED_STATION:
+            newState = { ...state, currClickedStation: action.station }
+            break
+
 
         case ADD_STATION_MSG:
             newState = {

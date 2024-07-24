@@ -5,8 +5,10 @@ import {
     SET_STATIONS,
     SET_STATION,
     UPDATE_SONG,
+    REMOVE_SONG,
     UPDATE_LIKED_SONGS,
-    UPDATE_STATIONS
+    UPDATE_STATIONS,
+    SET_CURR_CLICKED_STATION,
 } from '../reducers/station.reducer'
 import { stationService } from '../../services/station'
 
@@ -91,6 +93,26 @@ export async function updateSong(song) {
     }
 }
 
+export async function setCurrClickedStation(station) {
+    try {
+        console.log('action station:', station);
+        store.dispatch(getCmdSetClickedStation(station))
+    } catch (err) {
+        console.log('Cannot load Station', err)
+        throw err
+    }
+}
+
+export async function removeSong(songId) {
+    try {
+        await stationService.remove(songId)
+        store.dispatch(getCmdRemoveSong(songId))
+    } catch (err) {
+        console.log('Cannot remove Song', err)
+        throw err
+    }
+}
+
 export async function addToLikedSongs(likedsong) {
     let songs = []
     try {
@@ -168,7 +190,19 @@ function getCmdSetLikedSongs(likedSongs) {
         likedSongs,
     }
 }
+function getCmdRemoveSong(songId) {
+    return {
+    type: REMOVE_SONG,
+    songId,
+    }
+}
 
+function getCmdSetClickedStation(station) {
+    return {
+        type: SET_CURR_CLICKED_STATION,
+        station,
+    }
+}
 // function getCmdUpdateLikedSongs(likedSongs) {
 //   return {
 //     type: UPDATE_LIKED_SONGS,

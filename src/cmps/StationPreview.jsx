@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom'
 import playlistDefaultImage from '../assets/icons/myplaylist.svg'
 import { MoreModal } from './modals/MoreModal'
 import { StationModal } from './modals/StationModal'
+import { setCurrClickedStation } from '../store/actions/station.actions'
+import { useSelector } from 'react-redux'
 
 export function StationPreview({ station }) {
   if(!station.tags) return
-  const [currStation, setCurrStation] = useState(null)
+  const currStation = useSelector((storeState) => storeState.stationModule.currClickedStation)
   const element = document.querySelector('.station-list')
   var count = 0
   function handleContextMenu(event) {
@@ -16,8 +18,8 @@ export function StationPreview({ station }) {
     event.preventDefault();
     // Check if the right mouse button was clicked
     if (event.button === 2) {
-      setCurrStation(station._id)
       console.log(station._id)
+      setCurrClickedStation(station._id)
       // Right-click was detected
       const x = event.clientX
       const y = event.clientY -230
@@ -29,20 +31,6 @@ export function StationPreview({ station }) {
     }
     }
   };
-  
-  function clickOutsideListener(event) {
-    const elModal = document.querySelector('.station-modal')
-    count++
-    if (!elModal) return
-    if (!elModal.contains(event.target) && count == 1) {
-      setCurrStation(null)
-      count = 0
-      // Click outside the target element 
-      elModal.style.display = 'none'
-      // Do something here, such as closing a modal, hiding a dropdown, etc.
-    }
-  }
-  document.addEventListener('click', clickOutsideListener);
   return (
   <>
     <Link to={`/station/${station._id}`}>
@@ -58,7 +46,6 @@ export function StationPreview({ station }) {
         </div>
       </div>
     </Link>
-    {currStation && <StationModal station={currStation} />}
     </>
   )
 }

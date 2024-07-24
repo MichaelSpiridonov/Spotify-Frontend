@@ -1,22 +1,15 @@
 import { loadStation, updateSong } from '../store/actions/station.actions.js'
 import { useParams } from 'react-router-dom'
 import React, { useEffect, useState, useRef } from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import PlayIcon from '../assets/icons/play.svg?react'
 import AddIcon from '../assets/icons/addsong.svg?react'
 import SongOptionsIcon from '../assets/icons/song_options.svg?react'
-import LikedIcon from '../assets/icons/likedsong.svg?react'
-// import BackIcon from '../assets/icons/back.svg?react'
-// import ForwardIcon from '../assets/icons/forward.svg?react'
 
-import { SongOptionsModal } from '../cmps/modals/SongOptionsModal.jsx'
 import { MoreModal } from '../cmps/modals/MoreModal.jsx'
 import { stationService } from '../services/station/station.service.local.js'
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { FastAverageColor } from 'fast-average-color'
-import YouTube from 'react-youtube'
 import { getVideos } from '../services/youtube.service.js'
 
 export function StationDetails() {
@@ -47,16 +40,6 @@ export function StationDetails() {
     const seconds = Math.floor((duration % 60000) / 1000)
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
   }
-
-  const handleOptionsClick = (song, button) => {
-    setSelectedSong(song)
-    setButtonRef(button)
-  }
-
-  const handleCloseModal = () => {
-    setSelectedSong(null)
-    setButtonRef(null)
-  }
   var id
   async function getVideoId(name) {
     id = await getVideos(name)
@@ -71,6 +54,7 @@ export function StationDetails() {
     updateSong(songData)
     loadStation(stationId)
   }
+  
   function onAddTo(event) {
     /* setSongToAdd(song) */
     const x = event.clientX - 110
@@ -82,6 +66,7 @@ export function StationDetails() {
     elModal.style.top = `${y}px`
     elModal.style.display = 'block'
   }
+
   function clickOutsideListener(event) {
     const elModal = document.querySelector('.more-modal')
     count++

@@ -15,7 +15,6 @@ export  function MoreModal({ song }) {
         element.style.display = 'none'
     }
     function onAddToPlaylst(station, idx) {
-
         updateStations(song, station)
     }
     async function onAddNewStation() {

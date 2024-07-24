@@ -13,8 +13,8 @@ export function StationList({ stations }) {
         {stations.map((station) => (
           <StationPreview key={station._id} station={station}/>
         ))}
-        <StationModal />
       </section >
+      <StationModal station={stations}/>
     </section>
 
   )
