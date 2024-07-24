@@ -76,7 +76,7 @@ const spotifyService = {
     return response.data;
   },
 
-  /* getTracks: async (playlistId) => {
+  getTracks: async (playlistId) => {
     const token = await getToken();
     const response = await axios.get(`${BASE_URL}/playlists/${playlistId}/tracks`, {
       headers: {
@@ -84,7 +84,7 @@ const spotifyService = {
       }
     });
     return response.data.items.map(item => item.track);
-  }, */
+  }, 
 
   getAlbumTracks: async (albumId) => {
     const token = await getToken();
