@@ -15,7 +15,7 @@ export function StationIndex() {
   return (
     <section className='list-container'>
       <AppHeader />
-      <section className='wide-albums-container'>
+      <section className='wide-stations-container'>
         {stations.slice(8, 16).map((station) => (
           <WideStationPreview key={station._id} station={station} />
         ))}
