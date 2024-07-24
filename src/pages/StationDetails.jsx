@@ -29,7 +29,7 @@ export function StationDetails() {
   useEffect(() => {
     loadLocalStation(stationId)
   }, [stationId])
-
+  var count = 0
   async function loadLocalStation(stationId) {
     const station = await stationService.getById(stationId)
     setStation(station)
@@ -82,6 +82,18 @@ export function StationDetails() {
     elModal.style.top = `${y}px`
     elModal.style.display = 'block'
   }
+  function clickOutsideListener(event) {
+    const elModal = document.querySelector('.more-modal')
+    count++
+    if (!elModal) return
+    if (!elModal.contains(event.target) && count == 2) {
+      count = 0
+      // Click outside the target element 
+      elModal.style.display = 'none'
+      // Do something here, such as closing a modal, hiding a dropdown, etc.
+    }
+  }
+  document.addEventListener('click', clickOutsideListener);
   if (station) {
     const fac = new FastAverageColor()
 
