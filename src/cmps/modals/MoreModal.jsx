@@ -5,7 +5,7 @@ import { addNewStation } from "../../store/actions/station.actions"
 import { stationService } from "../../services/station/station.service.local"
 
 export  function MoreModal({ song }) {
-    /* const stations =stationService.query() */
+    const stations = useSelector(storeState => storeState.stationModule.stations)
     function onOpenStations() {
         const element = document.querySelector('.stations-modal')
         element.style.display = 'block'
@@ -20,7 +20,6 @@ export  function MoreModal({ song }) {
              imgUrl: song.thumbnail, 
              title: song.title, 
              likedBy: ['{minimal-user}'] ,
-
             }
 
         updateStations(newSong, station)
