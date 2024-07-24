@@ -63,11 +63,9 @@ console.log(stationId)
     return id[0].videoId
   }
   const onClickPlay = async (song) => {
-    console.log(song)
     if (!song.id) {
       song.id = await getVideoId(song.title)
     }
-    console.log(song)
     const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl, artists: song.artists, _id: song._id}
     updateSong(songData)
     loadStation(stationId)

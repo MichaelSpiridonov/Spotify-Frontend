@@ -27,7 +27,7 @@ export function SongOptionsModal({ song, onClose, buttonRef }) {
 
   const handleAddToLikedSongs = async () => {
     try {
-      await dispatch(addToLikedSongs(song))
+      dispatch(addToLikedSongs(song))
       onClose()
     } catch (err) {
       console.error('Failed to add song to liked songs', err)
