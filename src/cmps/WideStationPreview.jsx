@@ -4,7 +4,7 @@ import Play from '../assets/icons/play.svg?react'
 export function WideStationPreview({ station }) {
   return (
     <Link to={`/station/${station._id}`}>
-      <article className='wide-album-preview'>
+      <article className='wide-station-preview'>
         <img src={station.imgUrl} alt={station.name} />
         <h1>{station.name}</h1>
         <button>

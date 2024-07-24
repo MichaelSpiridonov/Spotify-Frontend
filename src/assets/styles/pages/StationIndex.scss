@@ -81,15 +81,15 @@ h1 {
   padding-left: 24px;
 }
 
-/* New styles for the wide album previews */
-.wide-albums-container {
+/* New styles for the wide station previews */
+.wide-stations-container {
   display: flex;
   padding: 0px 24px;
   gap: 15px;
   margin-top: 20px;
   flex-wrap: wrap; /* Ensure wrapping if there are more than fit in a row */
 
-  .wide-album-preview {
+  .wide-station-preview {
     position: relative;
     display: grid;
     padding: 10px;
@@ -135,7 +135,7 @@ h1 {
     }
   }
 
-  .wide-album-preview:hover {
+  .wide-station-preview:hover {
     background-color: #282828;
 
     button {
