@@ -15,6 +15,7 @@ import VolumeMedium from '../assets/icons/volumedown.svg?react';
 import VolumeMax from '../assets/icons/volumemax.svg?react';
 import RepeatSong from '../assets/icons/repeatsong.svg?react';
 import { updateSong } from '../store/actions/station.actions.js';
+import { getVideos } from '../services/youtube.service.js';
 
 export function Player(props) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -161,17 +162,25 @@ export function Player(props) {
     }
   }
 
-  function onPlayNext(event) {
-    console.log(event)
+  async function getVideoId(name) {
+    const id = await getVideos(name)
+    return id[0].videoId
+  }
+
+  async function onPlayNext(event) {
     const { station, currSong } = props;
     const songs = isShuffle ? shuffledSongs : station.songs;
-    let nextSongIdx = songs.findIndex((song) => song.id === currSong.id) + 1;
+    let nextSongIdx = songs.findIndex(song => song._id === currSong._id) + 1;
     if (songs[nextSongIdx] && !isRepeatSong) {
       const nextSong = songs[nextSongIdx];
+      const id = await getVideoId(nextSong.title)
+      nextSong.id = id
       updateSong(nextSong);
-    } else if (!songs[nextSongIdx] && (isRepeat || isShuffle || !isPlaying)) {
+    } else if (!songs[nextSongIdx] && (isRepeat || isShuffle || isPlaying && event.type === 'click')) {
       nextSongIdx = 0;
       const nextSong = songs[nextSongIdx];
+      const id = await getVideoId(nextSong.title)
+      nextSong.id = id
       updateSong(nextSong);
     } else if (isRepeatSong) {
       player.playVideo();
@@ -183,16 +192,18 @@ export function Player(props) {
     }, 1000);
   }
 
-  function onPlayPrevious() {
+  async function onPlayPrevious() {
     const { station, currSong } = props;
     const songs = isShuffle ? shuffledSongs : station.songs;
-    let previousSongIdx = songs.findIndex((song) => song.id === currSong.id) - 1;
+    let previousSongIdx = songs.findIndex(song => song._id === currSong._id) - 1;
     if (songs[previousSongIdx]) {
       const previousSong = songs[previousSongIdx];
       updateSong(previousSong);
     } else {
       previousSongIdx = songs.length - 1;
       const previousSong = songs[previousSongIdx];
+      const id = await getVideoId(previousSong.title)
+      previousSong.id = id
       updateSong(previousSong);
     }
     setTimeout(() => {

@@ -73,12 +73,12 @@ async function _createSpotifyStations() {
     stations = [];
     albums = [];
     const playlists = await spotifyService.getPlaylists();
-    console.log(playlists)
     const stationPromises = Object.entries(playlists).map(async ([category, categoryPlaylists]) => {
       const categoryStationPromises = categoryPlaylists.map(async playlist => {
         const tracks = await spotifyService.getTracks(playlist.id);
         const songs = await Promise.all(tracks.map(async track => {
           return {
+            _id: track.id,
             title: track.name,
             duration: track.duration_ms,
             isExplicit: track.explicit,
@@ -142,7 +142,7 @@ async function _createSpotifyStations() {
           addedBy: {},
           duration: 193000,
           artists: [{
-            id: "7lwdlhwSxbB36wqnOwo5Kd",
+            id: "uhughyfyvviiyviyviy",
             name: "21 Savage",
             type: "artist",
           }],

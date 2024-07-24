@@ -54,7 +54,7 @@ export function StationPreview({ station }) {
           <p className='station-name'>{station.name}</p>
           <p className='station-createdby'>Playlist · {station.name}</p>
         </div>
-        <StationModal station={currStation} />
+        <StationModal station={station} />
       </div>
     </Link>
   )

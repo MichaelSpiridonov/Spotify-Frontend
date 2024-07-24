@@ -62,28 +62,26 @@ export function StationDetails() {
   var id
   async function getVideoId(name) {
     id = await getVideos(name)
-    console.log(id[0].videoId)
     return id[0].videoId
   }
   const onClickPlay = async (song) => {
+    console.log(song)
     if (!song.id) {
       song.id = await getVideoId(song.title)
     }
-    console.log(song.id)
-    const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl }
+    console.log(song)
+    const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl, artists: song.artists, _id: song._id}
     updateSong(songData)
     loadStation(stationId)
   }
 
   if (station) {
-    console.log()
     const fac = new FastAverageColor()
 
     fac.getColorAsync(station.createdBy.imgUrl).then((color) => {
       setColor(color.rgb)
     })
   }
-  console.log(station)
   if (!station) return
   const gradientStyle = { backgroundImage: `linear-gradient(${color}, #121212 50%)` }
   return (
