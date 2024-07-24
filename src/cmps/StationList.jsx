@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { LikeSongsPreview } from './LikedSongsPreview'
 import { StationPreview } from './StationPreview'
+import { StationModal } from './modals/StationModal'
 
 export function StationList({ stations }) {
   const likedSongs = useSelector(storeState => storeState.stationModule.likedSongs)
@@ -10,8 +11,9 @@ export function StationList({ stations }) {
       {likedSongs && <LikeSongsPreview />}
       <section className='station-container'>
         {stations.map((station) => (
-          <StationPreview key={station._id} station={station} />
+          <StationPreview key={station._id} station={station}/>
         ))}
+        <StationModal />
       </section >
     </section>
 

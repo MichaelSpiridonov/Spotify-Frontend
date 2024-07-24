@@ -16,28 +16,23 @@ export  function MoreModal({ song }) {
     }
     function onAddToPlaylst(station, idx) {
 
-        const newSong = { id: song.videoId,
-             imgUrl: song.thumbnail, 
-             title: song.title, 
-             likedBy: ['{minimal-user}'] ,
-            }
-
-        updateStations(newSong, station)
+        updateStations(song, station)
     }
     async function onAddNewStation() {
         const element = document.querySelector('.create-modal')
         element.style.display = 'none'
+        console.log(song)
         const station = {
-            createdBy: { imgUrl: song.thumbnail },
+            createdBy: { _id: 'user132', fulname: 'User', imgUrl: song.imgUrl },
             likedByUsers: ["{minimal-user}", "{minimal-user}"],
             name: song.title,
-            songs: [{ id: song.videoId, imgUrl: song.thumbnail, title: song.title}],
+            songs: [(song)],
             tags: [],
             _id: makeId()
         }
         await addNewStation(station)
     }
-    console.log(stations)
+    
     if (!stations) return
 
     return <article className="more-modal">
@@ -50,7 +45,7 @@ export  function MoreModal({ song }) {
         <div className="stations-modal" key={'stations-modal'}>
             <ul>
                 <li onClick={onAddNewStation}><svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" ><path d="M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z" ></path></svg>New playlist</li>
-                {stations.map((station, idx) => <li key={idx} onClick={() => onAddToPlaylst(station, idx)}>{station.name}</li>)}
+                {stations.filter(station => station.tags).map((station, idx) => <li key={idx} onClick={() => onAddToPlaylst(station, idx)}>{station.name}</li>)}
             </ul>
         </div>
     </article>

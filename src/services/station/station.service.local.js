@@ -13,7 +13,7 @@ const CURR_SONG = 'currSong'
 const LIKED_SONGS = 'likedsongs'
 const STATION_KEY = 'station'
 //_createStations()
-_createSpotifyStations()
+//_createSpotifyStations()
 
 export const stationService = {
   query,
