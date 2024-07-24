@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import Play from '../assets/icons/play.svg?react';
-export function StationIndexPreview({ station }) {   
-    if (station.createdBy._id !== 'spotify') {
+export function StationIndexPreview({ station }) {
+    console.log(station)   
+    if (station.tags) {
         return
     }
     return (

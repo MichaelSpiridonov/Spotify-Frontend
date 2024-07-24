@@ -34,7 +34,7 @@ export function StationDetails() {
     const station = await stationService.getById(stationId)
     setStation(station)
   }
-console.log(stationId)
+  console.log(stationId)
   const formatDate = (timestamp) => {
     const date = new Date(timestamp)
     const options = { month: 'short', day: '2-digit', year: 'numeric' }
@@ -68,7 +68,7 @@ console.log(stationId)
       song.id = await getVideoId(song.title)
     }
     console.log(song)
-    const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl, artists: song.artists, _id: song._id}
+    const songData = { title: song.title, id: song.id, imgUrl: song.imgUrl, artists: song.artists, _id: song._id }
     updateSong(songData)
     loadStation(stationId)
   }
@@ -90,6 +90,9 @@ console.log(stationId)
       setColor(color.rgb)
     })
   }
+  element.addEventListener("scroll", (event) => {
+    console.log("Scroll event fired, waiting for scrollend...") ;
+  });
   if (!station) return
   const gradientStyle = { backgroundImage: `linear-gradient(${color}, #121212 50%)` }
   return (
@@ -118,7 +121,7 @@ console.log(stationId)
           <div className='header-add-button'>
             <AddIcon />
           </div>
-          <div  className='header-options-button'>
+          <div className='header-options-button'>
             <SongOptionsIcon />
           </div>
         </div>
@@ -152,8 +155,8 @@ console.log(stationId)
               >
                 <SongOptionsIcon />
               </div>
-              
-              <MoreModal song={song}/>
+
+              <MoreModal song={song} />
             </section>
           ))}
         </section>

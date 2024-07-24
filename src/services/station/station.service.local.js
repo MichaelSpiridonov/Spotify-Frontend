@@ -13,7 +13,10 @@ const CURR_SONG = 'currSong'
 const LIKED_SONGS = 'likedsongs'
 const STATION_KEY = 'station'
 //_createStations()
-_createSpotifyStations()
+if(!localStorage.getItem('albums')){
+  _createSpotifyStations()
+}
+
 
 export const stationService = {
   query,
@@ -23,7 +26,7 @@ export const stationService = {
   updateStations,
   addToLikedSongs,
   addNewStation,
-  getMyStations
+  queryAlbums
 }
 window.cs = stationService
 
@@ -31,9 +34,9 @@ async function query() {
   var stations = await storageService.query(STATIONS_KEY)
   return stations
 }
-async function getMyStations(){
-  var stations = await storageService.query(STATION_KEY)
-  return stations
+async function queryAlbums(){
+  var albums = await storageService.query('albums')
+  return albums
 }
 function getById(stationId) {
   return storageService.get(STATIONS_KEY, stationId)
