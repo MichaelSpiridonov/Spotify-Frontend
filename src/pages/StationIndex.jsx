@@ -30,7 +30,7 @@ export function StationIndex() {
 
     calculateNumberOfElements()
     function calculateNumberOfElements() {
-        if (pageWidth < 950) {
+        if (pageWidth < 1250) {
             numElements = 3
         }
         else if (pageWidth < 1420) {
@@ -45,7 +45,7 @@ export function StationIndex() {
         else if (pageWidth < 2250) {
             numElements = 7
         }
-        else if (pageWidth < 2350) {
+        else if (pageWidth >2250) {
             numElements = 8
         }
     }
