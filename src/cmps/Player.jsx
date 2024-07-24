@@ -170,13 +170,23 @@ export function Player(props) {
   async function onPlayNext(event) {
     const { station, currSong } = props;
     const songs = isShuffle ? shuffledSongs : station.songs;
-    let nextSongIdx = songs.findIndex(song => song._id === currSong._id) + 1;
+    console.log('songIDX:', songs.findIndex(song => song._id === currSong._id || song.id === currSong.id))
+    let nextSongIdx = songs.findIndex(song => song._id === currSong._id || song.id === currSong.id) + 1;
+    console.log('nextSongIdx:',nextSongIdx);
     if (songs[nextSongIdx] && !isRepeatSong) {
       const nextSong = songs[nextSongIdx];
       const id = await getVideoId(nextSong.title)
       nextSong.id = id
       updateSong(nextSong);
-    } else if (!songs[nextSongIdx] && (isRepeat || isShuffle || isPlaying && event.type === 'click')) {
+    }else if (isRepeatSong && event.type === 'click'){
+      console.log('This is the event you want')
+      const nextSong = songs[nextSongIdx];
+      const id = await getVideoId(nextSong.title)
+      nextSong.id = id
+      updateSong(nextSong);
+      setIsRepeatSong(false)
+      setIsRepeat(true)
+    } else if (!songs[nextSongIdx] && (isRepeat || isShuffle || isPlaying || event.type === 'click')) {
       nextSongIdx = 0;
       const nextSong = songs[nextSongIdx];
       const id = await getVideoId(nextSong.title)
@@ -195,7 +205,8 @@ export function Player(props) {
   async function onPlayPrevious() {
     const { station, currSong } = props;
     const songs = isShuffle ? shuffledSongs : station.songs;
-    let previousSongIdx = songs.findIndex(song => song._id === currSong._id) - 1;
+    let previousSongIdx = songs.findIndex(song => song._id === currSong._id || song.id === currSong.id) - 1;
+    console.log('previousSongIdx:',previousSongIdx);
     if (songs[previousSongIdx]) {
       const previousSong = songs[previousSongIdx];
       const id = await getVideoId(previousSong.title)

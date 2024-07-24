@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 import playlistDefaultImage from '../assets/icons/myplaylist.svg'
 import { MoreModal } from './modals/MoreModal'
 import { StationModal } from './modals/StationModal'
-import { setCurrClickedStation } from '../store/actions/station.actions'
+import { setCurrSelectedStation } from '../store/actions/station.actions'
 import { useSelector } from 'react-redux'
 
 export function StationPreview({ station }) {
   if(!station.tags) return
-  const currStation = useSelector((storeState) => storeState.stationModule.currClickedStation)
+  const currStation = useSelector((storeState) => storeState.stationModule.currSelectedStation)
   const element = document.querySelector('.station-list')
   var count = 0
   function handleContextMenu(event) {
@@ -19,7 +19,7 @@ export function StationPreview({ station }) {
     // Check if the right mouse button was clicked
     if (event.button === 2) {
       console.log(station._id)
-      setCurrClickedStation(station._id)
+      setCurrSelectedStation(station._id)
       // Right-click was detected
       const x = event.clientX
       const y = event.clientY -230

@@ -83,6 +83,7 @@
   font-family: circular-bold, sans-serif;
   color: #ffffff;
   font-size: rem(14px);
+  align-self: flex-start;
 }
 
 .song-info {
@@ -91,6 +92,7 @@
   justify-content: center;
   align-items: center;
   margin-inline-end: 8px;
+  padding-left: 6px;
 }
 
 .artist-name {
@@ -102,6 +104,7 @@
 .song-detail {
   display: flex;
   align-items: center;
+  padding-left: 8px;
 }
 
 .player-controls {

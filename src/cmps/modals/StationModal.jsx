@@ -7,14 +7,13 @@ import { addNewStation } from "../../store/actions/station.actions"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 
-export function StationModal({ station }) {
-  const currStation = useSelector((storeState) => storeState.stationModule.currClickedStation)
+export function StationModal() {
+  const currStation = useSelector((storeState) => storeState.stationModule.currSelectedStation)
   const stations = useSelector((storeState) => storeState.stationModule.stations)
-
+  const element = document.querySelector(".station-modal")
   const navigate = useNavigate()
   var count = 0
   async function onAddNewStation() {
-    const element = document.querySelector(".station-modal")
     element.style.display = "none"
     const station = {
       createdBy: { imgUrl: "" },
@@ -30,16 +29,16 @@ export function StationModal({ station }) {
 
   function onRemoveStation() {
     removeStation(currStation)
+    element.style.display = 'none'
   }
 
   function clickOutsideListener(event) {
-    const targetElement = document.querySelector(".station-modal")
     count++
-    if (!targetElement) return
-    if (!targetElement.contains(event.target) && count == 1) {
+    if (!element) return
+    if (!element.contains(event.target) && count == 1) {
       count = 0
       // Click outside the target element
-      targetElement.style.display = "none"
+      element.style.display = "none"
       // Do something here, such as closing a modal, hiding a dropdown, etc.
     }
   }

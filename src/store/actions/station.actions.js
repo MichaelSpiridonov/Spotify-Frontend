@@ -8,7 +8,8 @@ import {
     REMOVE_SONG,
     UPDATE_LIKED_SONGS,
     UPDATE_STATIONS,
-    SET_CURR_CLICKED_STATION,
+    SET_CURR_SELECTED_STATION,
+    SET_CURR_SELECTED_SONG,
 } from '../reducers/station.reducer'
 import { stationService } from '../../services/station'
 
@@ -36,9 +37,6 @@ export async function updateStations(song,station,idx) {
     try {
         const Station = await stationService.getById(station._id)
         console.log(Station)
-       /*  const Stations = await stationService.updateStations(song) */
-        /* Stations[idx].songs.push(song) */
-        /* console.log(Stations) */
         stationService.updateStations(station) 
         station.songs.push(song)
         store.dispatch(getCmdUpdateStations({station,idx}))
@@ -93,10 +91,20 @@ export async function updateSong(song) {
     }
 }
 
-export async function setCurrClickedStation(station) {
+export async function setCurrSelectedSong(song) {
+    try {
+        console.log('action song:', song);
+        store.dispatch(getCmdsetCurrSelectedSong(song))
+    } catch (err) {
+        console.log('Cannot load Song', err)
+        throw err
+    }
+}
+
+export async function setCurrSelectedStation(station) {
     try {
         console.log('action station:', station);
-        store.dispatch(getCmdSetClickedStation(station))
+        store.dispatch(getCmdSetSelectedStation(station))
     } catch (err) {
         console.log('Cannot load Station', err)
         throw err
@@ -197,10 +205,17 @@ function getCmdRemoveSong(songId) {
     }
 }
 
-function getCmdSetClickedStation(station) {
+function getCmdSetSelectedStation(station) {
     return {
-        type: SET_CURR_CLICKED_STATION,
+        type: SET_CURR_SELECTED_STATION,
         station,
+    }
+}
+
+function getCmdsetCurrSelectedSong(song) {
+    return {
+        type: SET_CURR_SELECTED_SONG,
+        song
     }
 }
 // function getCmdUpdateLikedSongs(likedSongs) {

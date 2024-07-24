@@ -1,4 +1,4 @@
-import { loadStation, updateSong } from '../store/actions/station.actions.js'
+import { loadStation, setCurrSelectedSong, setCurrSelectedStation, updateSong } from '../store/actions/station.actions.js'
 import { useParams } from 'react-router-dom'
 import React, { useEffect, useState, useRef } from 'react'
 
@@ -13,12 +13,10 @@ import { FastAverageColor } from 'fast-average-color'
 import { getVideos } from '../services/youtube.service.js'
 
 export function StationDetails() {
-  const [songToAdd, setSongToAdd] = useState(null)
   const { stationId } = useParams()
-  const [selectedSong, setSelectedSong] = useState(null)
-  const [buttonRef, setButtonRef] = useState(null) // State to store the button ref
   const [station, setStation] = useState(null)
   const [color, setColor] = useState(null)
+
   useEffect(() => {
     loadLocalStation(stationId)
   }, [stationId])
@@ -54,8 +52,10 @@ export function StationDetails() {
     updateSong(songData)
     loadStation(stationId)
   }
-  
-  function onAddTo(event) {
+
+  function onAddTo(event, song, station) {
+    setCurrSelectedStation(station)
+    setCurrSelectedSong(song)
     /* setSongToAdd(song) */
     const x = event.clientX - 110
     const y = event.clientY + 20
@@ -128,7 +128,7 @@ export function StationDetails() {
             <span><svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 16 16" className="Svg-sc-ytk21e-0 dYnaPI"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"></path><path d="M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z"></path></svg></span>
           </div>
           {station.songs.map((song) => (
-            <section key={song.id} className='item'>
+            <section key={song._id} className='item'>
               <div className='play-button' onClick={() => onClickPlay(song)}>
                 <PlayIcon />
               </div>
@@ -144,14 +144,14 @@ export function StationDetails() {
               </span>
               <div
                 className='options-button'
-                onClick={onAddTo}
+                onClick={(event) => onAddTo(event, song, station)}
               >
                 <SongOptionsIcon />
               </div>
 
-              <MoreModal song={song} />
             </section>
           ))}
+          <MoreModal />
         </section>
 
       </div>
