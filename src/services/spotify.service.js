@@ -76,6 +76,20 @@ const spotifyService = {
     return response.data;
   },
 
+  getArtists: async (artistIds) => {
+    const limitedArtistIds = artistIds.slice(0, 20).join(',');
+    const token = await getToken();
+    const response = await axios.get(`${BASE_URL}/artists`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      params: {
+        ids: limitedArtistIds
+      }
+    });
+    return response.data.artists;
+  },
+
   getTracks: async (playlistId) => {
     const token = await getToken();
     const response = await axios.get(`${BASE_URL}/playlists/${playlistId}/tracks`, {

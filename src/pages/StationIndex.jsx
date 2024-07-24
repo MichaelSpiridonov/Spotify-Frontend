@@ -51,7 +51,6 @@ export function StationIndex() {
     if (!stations && !albums) return <div>Loading....</div>
     stationService.queryAlbums().then(albums =>setAlbums(albums))
     if (!albums) return 
-    console.log(albums)
     const stationFeatured = stations.filter(station => station.category === 'featured')
     const stationRap = stations.filter(station => station.category === 'rap')
     return (

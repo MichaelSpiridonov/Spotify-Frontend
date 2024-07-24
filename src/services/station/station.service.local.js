@@ -81,10 +81,14 @@ async function _createSpotifyStations() {
     stations = [];
     albums = [];
     const playlists = await spotifyService.getPlaylists();
+    const artistSet = new Set();
+
     const stationPromises = Object.entries(playlists).map(async ([category, categoryPlaylists]) => {
       const categoryStationPromises = categoryPlaylists.map(async playlist => {
         const tracks = await spotifyService.getTracks(playlist.id);
         const songs = await Promise.all(tracks.map(async track => {
+          track.artists.forEach(artist => artistSet.add(artist.id));
+
           return {
             _id: track.id,
             title: track.name,
@@ -116,6 +120,10 @@ async function _createSpotifyStations() {
     });
 
     stations = (await Promise.all(stationPromises)).flat();
+
+    const uniqueArtistIds = Array.from(artistSet);
+    const artists = await spotifyService.getArtists(uniqueArtistIds);
+    console.log(artists);
     const station = {
       _id: '5cksxjas89xjsa8xjsa8jxs09',
       name: "Or's Playlist",

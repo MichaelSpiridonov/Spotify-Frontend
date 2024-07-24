@@ -198,6 +198,8 @@ export function Player(props) {
     let previousSongIdx = songs.findIndex(song => song._id === currSong._id) - 1;
     if (songs[previousSongIdx]) {
       const previousSong = songs[previousSongIdx];
+      const id = await getVideoId(previousSong.title)
+      previousSong.id = id
       updateSong(previousSong);
     } else {
       previousSongIdx = songs.length - 1;

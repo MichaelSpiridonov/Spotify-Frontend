@@ -6,34 +6,36 @@ import { MoreModal } from './modals/MoreModal'
 import { StationModal } from './modals/StationModal'
 
 export function StationPreview({ station }) {
-  const [currStation,setCurrStation] = useState(null)
+  if(!station.tags) return
+  const [currStation, setCurrStation] = useState(null)
   const element = document.querySelector('.station-list')
   var count = 0
-  if (element) {
-    element.addEventListener('contextmenu', function (event) {
+  function handleContextMenu(event) {
+    if(element) {
       // Prevent the default context menu from appearing
-      event.preventDefault();
-
-      // Check if the right mouse button was clicked
-      if (event.button === 2) {
-        // Right-click was detected
-        
-        const x = event.clientX
-        const y = event.clientY -230
-        const elModal = document.querySelector('.station-modal')
-        elModal.style.left = `${x}px`
-        elModal.style.top = `${y}px`
-        elModal.style.display = 'block'
-        // You can add your own custom logic here
-      }
-    });
-  }
+    event.preventDefault();
+    // Check if the right mouse button was clicked
+    if (event.button === 2) {
+      setCurrStation(station._id)
+      console.log(station._id)
+      // Right-click was detected
+      const x = event.clientX
+      const y = event.clientY -230
+      const elModal = document.querySelector('.station-modal')
+      elModal.style.left = `${x}px`
+      elModal.style.top = `${y}px`
+      elModal.style.display = 'block'
+      // You can add your own custom logic here
+    }
+    }
+  };
   
   function clickOutsideListener(event) {
     const elModal = document.querySelector('.station-modal')
     count++
     if (!elModal) return
     if (!elModal.contains(event.target) && count == 1) {
+      setCurrStation(null)
       count = 0
       // Click outside the target element 
       elModal.style.display = 'none'
@@ -41,12 +43,10 @@ export function StationPreview({ station }) {
     }
   }
   document.addEventListener('click', clickOutsideListener);
-  if(!station.tags) return
-  console.log(playlistDefaultImage)
   return (
   <>
     <Link to={`/station/${station._id}`}>
-      <div id={station.name} className='station-preview' role='button'>
+      <div id={station.name} className='station-preview' role='button' onContextMenu={handleContextMenu}>
         <img
           src={station.createdBy.imgUrl || playlistDefaultImage}
           alt='Station'
@@ -58,7 +58,7 @@ export function StationPreview({ station }) {
         </div>
       </div>
     </Link>
-    <StationModal station={station} />
+    {currStation && <StationModal station={currStation} />}
     </>
   )
 }
