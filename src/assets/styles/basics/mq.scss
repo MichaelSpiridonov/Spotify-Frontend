@@ -1,0 +1,53 @@
+@media (max-width: 1980px) {
+    .station-details-container {
+        .station-header {
+            .station-info {
+                .station-name {
+                    font-size: 72px;
+                    margin-bottom: 15px;
+                }
+            }
+
+        }
+    }
+}
+@media (max-width: 1625px) {
+    .station-details-container {
+        .station-header {
+            .station-info {
+                .station-name {
+                    font-size: 48px;
+                    
+                }
+            }
+
+        }
+    }
+}
+@media (max-width: 1280px) {
+    .station-details-container {
+        .station-header {
+            .station-info {
+                .station-name {
+                    font-size: 38px;
+                }
+            }
+
+        }
+    }
+}
+@media (max-width: 1130px) {
+    .station-details-container {
+        .station-header {
+            .station-info {
+                .station-name {
+                    font-size: 32px;
+                }
+                .station-description{
+                    font-size: 12px;
+                }
+            }
+
+        }
+    }
+}
