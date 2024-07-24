@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
-import { TopicPreview } from "../cmps/TopicPreview"
-import { getVideos } from "../services/youtube.service"
-import { SongPreview } from "../cmps/SongPreview"
-import { AppHeader } from "../cmps/AppHeader"
-import  SearchIcon  from "../assets/icons/search.svg?react";
+import { useEffect, useState } from 'react'
+import { TopicPreview } from '../cmps/TopicPreview'
+import { getVideos } from '../services/youtube.service'
+import { SearchPreview } from '../cmps/SearchPreview'
+import { AppHeader } from '../cmps/AppHeader'
+import  SearchIcon  from '../assets/icons/search.svg?react';
 
 
 const topics = [
@@ -58,7 +58,7 @@ const topics = [
 ]
 
 export function SearchPage() {
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState('')
     const [songs, setSongs] = useState([])
     useEffect(() => {
        getVideos(search).then(videos=> setSongs(videos))
@@ -66,21 +66,21 @@ export function SearchPage() {
     function handleChange({ target }) {
         setSearch(target.value)
     }
-    return <section className="search-page" >
+    return <section className='search-page' >
         <AppHeader/>
-        <form action="">
-            <label htmlFor=""><SearchIcon /></label>
-            <input onChange={handleChange} value={search? search: ""} placeholder="What do you want to play?" type="text" />
+        <form action=''>
+            <label htmlFor=''><SearchIcon /></label>
+            <input onChange={handleChange} value={search? search: ''} placeholder='What do you want to play?' type='text' />
         </form> 
-        {search !== "" && <h1>Songs</h1>}
-        {search === "" && <section>
+        {search !== '' && <h1>Songs</h1>}
+        {search === '' && <section>
             <h1>Browse All</h1>
-            <section className="topics-container">
+            <section className='topics-container'>
                 {topics.map(topic => <TopicPreview key={topic.name} topic={topic} />)}
             </section>
         </section>}
         <section className='station-details' >
-        {search && songs.map(song => <SongPreview key={song.videoId} song={song}/> ) }
+        {search && songs.map(song => <SearchPreview key={song.videoId} song={song}/> ) }
 
         </section>
 

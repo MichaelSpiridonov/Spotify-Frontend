@@ -1,5 +1,5 @@
 import { loadStation, setCurrSelectedSong, setCurrSelectedStation, updateSong } from '../store/actions/station.actions.js'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import React, { useEffect, useState, useRef } from 'react'
 
 import PlayIcon from '../assets/icons/play.svg?react'
@@ -7,11 +7,13 @@ import AddIcon from '../assets/icons/addsong.svg?react'
 import SongOptionsIcon from '../assets/icons/song_options.svg?react'
 
 import { MoreModal } from '../cmps/modals/MoreModal.jsx'
-import { stationService } from '../services/station/station.service.local.js'
+import { stationService } from '../services/station'
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { AppFooter } from '../cmps/AppFooter.jsx'
 import { FastAverageColor } from 'fast-average-color'
 import { getVideos } from '../services/youtube.service.js'
+import { formatDate, formatDuration } from '../services/util.service.js'
+import { SongList } from '../cmps/SongList.jsx'
 
 export function StationDetails() {
   const { stationId } = useParams()
@@ -27,18 +29,6 @@ export function StationDetails() {
     setStation(station)
   }
   console.log(stationId)
-  const formatDate = (timestamp) => {
-    const date = new Date(timestamp)
-    const options = { month: 'short', day: '2-digit', year: 'numeric' }
-    return date.toLocaleDateString('en-US', options)
-  }
-
-  const formatDuration = (duration) => {
-    if (!duration) return '00:00'
-    const minutes = Math.floor(duration / 60000)
-    const seconds = Math.floor((duration % 60000) / 1000)
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
-  }
   var id
   async function getVideoId(name) {
     id = await getVideos(name)
@@ -147,27 +137,7 @@ export function StationDetails() {
               </svg>
             </span>
           </div>
-          {station.songs.map((song) => (
-            <section key={song._id} className='item'>
-              <div className='play-button' onClick={() => onClickPlay(song)}>
-                <PlayIcon />
-              </div>
-              <img className='song-image' src={song.imgUrl} alt={song.title} />
-              <span className='song-info'>{song.title}</span>
-              <span className='song-album'>{song.album}</span>
-              <span>{formatDate(song.addedAt)}</span>
-              <div className='add-button'>
-                <AddIcon />
-              </div>
-              <span className='song-length'>
-                {formatDuration(song.duration)}
-              </span>
-              <div className='options-button' onClick={(event) => onAddTo(event, song, station)}>
-                <SongOptionsIcon />
-              </div>
-
-            </section>
-          ))}
+          <SongList songs={station.songs} onClickPlay={onClickPlay} onAddTo={onAddTo}/>
           <MoreModal />
         </section>
         <AppFooter />

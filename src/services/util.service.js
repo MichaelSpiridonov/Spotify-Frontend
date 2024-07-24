@@ -39,7 +39,9 @@ export function debounce(func, timeout = 300) {
     let timer
     return (...args) => {
         clearTimeout(timer)
-        timer = setTimeout(() => { func.apply(this, args) }, timeout)
+        timer = setTimeout(() => {
+            func.apply(this, args)
+        }, timeout)
     }
 }
 
@@ -51,7 +53,27 @@ export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
-    
-    
 
+export function formatDate(timestamp) {
+    const date = new Date(timestamp)
+    const options = {
+        month: 'short',
+        day: '2-digit',
+        year: 'numeric'
+    }
+    return date.toLocaleDateString('en-US', options)
+}
 
+export function formatDuration(duration) {
+    if (!duration) return '00:00'
+    const minutes = Math.floor(duration / 60000)
+    const seconds = Math.floor((duration % 60000) / 1000)
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+}
+
+export function formatTime(time){
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60)
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+  }
+  

@@ -10,6 +10,7 @@ import { AppHeader } from '../cmps/AppHeader.jsx'
 import { FastAverageColor } from 'fast-average-color'
 import { MoreModal } from '../cmps/modals/MoreModal.jsx'
 import { getVideos } from '../services/youtube.service.js'
+import { formatDate, formatDuration } from '../services/util.service.js'
 
 export function LikeSongsDeatils() {
   const likedSongs = useSelector(
@@ -35,19 +36,6 @@ export function LikeSongsDeatils() {
   }, [])
   const [selectedSong, setSelectedSong] = useState(null)
   const [buttonRef, setButtonRef] = useState(null) // State to store the button ref
-
-  const formatDate = (timestamp) => {
-    const date = new Date(timestamp)
-    const options = { month: 'short', day: '2-digit', year: 'numeric' }
-    return date.toLocaleDateString('en-US', options)
-  }
-
-  const formatDuration = (duration) => {
-    if (!duration) return '00:00'
-    const minutes = Math.floor(duration / 60000)
-    const seconds = Math.floor((duration % 60000) / 1000)
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
-  }
 
   const handleOptionsClick = (song, button) => {
     setSelectedSong(song)

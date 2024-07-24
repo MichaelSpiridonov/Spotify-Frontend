@@ -6,8 +6,8 @@ export function StationIndexPreview({ station }) {
     }
     return (
     <Link to={`/station/${station._id}`}>
-        <article className="home-station-preview">
-            <img src={station.imgUrl} alt="" />
+        <article className='home-station-preview'>
+            <img src={station.imgUrl} alt='' />
             <h1>{station.name}</h1>
             <button>
                 <Play className='play' />

@@ -12,8 +12,9 @@ const ALBUMS_KEY = 'albums'
 const CURR_SONG = 'currSong'
 const LIKED_SONGS = 'likedsongs'
 const STATION_KEY = 'station'
+const ARTISTS_KEY = 'artist'
 //_createStations()
-if(!localStorage.getItem(ALBUMS_KEY) ||!localStorage.getItem(STATIONS_KEY) ){
+if(!localStorage.getItem(ALBUMS_KEY) || !localStorage.getItem(STATIONS_KEY) || !localStorage.getItem(ARTISTS_KEY)  ){
   _createSpotifyStations()
 }
 
@@ -81,12 +82,14 @@ async function removeSong(songId) {
 async function _createSpotifyStations() {
   let stations = loadFromStorage(STATIONS_KEY);
   let albums = loadFromStorage(ALBUMS_KEY);
+  let artists = loadFromStorage(ARTISTS_KEY);
+  const artistSet = new Set();
 
-  if (!stations || !stations.length || albums || !albums.length) {
+  if (!stations || !stations.length ) {
     stations = [];
     albums = [];
+    artists = []
     const playlists = await spotifyService.getPlaylists();
-    const artistSet = new Set();
 
     const stationPromises = Object.entries(playlists).map(async ([category, categoryPlaylists]) => {
       const categoryStationPromises = categoryPlaylists.map(async playlist => {
@@ -125,10 +128,8 @@ async function _createSpotifyStations() {
     });
 
     stations = (await Promise.all(stationPromises)).flat();
+    
 
-    const uniqueArtistIds = Array.from(artistSet);
-    const artists = await spotifyService.getArtists(uniqueArtistIds);
-    console.log(artists);
     const station = {
       _id: '5cksxjas89xjsa8xjsa8jxs09',
       name: "Or's Playlist",
@@ -309,7 +310,9 @@ async function _createSpotifyStations() {
     stations.push(station)
     stations.push(station2)
     stations.push(station3)
+  }
 
+  if(!albums || !albums.length){
     const albumSongs = await spotifyService.getAlbums()
     const albumPromises = Object.entries(albumSongs).map(async ([category, categoryPlaylists]) => {
       const categoryAlbumPromises = categoryPlaylists.map(async album => {
@@ -337,8 +340,59 @@ async function _createSpotifyStations() {
 
     albums = await Promise.all(albumPromises);
   }
+
+  if(!artists || !artists.length) {
+    const uniqueArtistIds = Array.from(artistSet);
+    artists = await spotifyService.getArtists(uniqueArtistIds);
+
+    const artistAlbumPromises = uniqueArtistIds.map(async artistId => {
+      const artistAlbums = await spotifyService.getArtistAlbums(artistId);
+
+      const albumDetailsPromises = artistAlbums.map(async album => {
+        const tracks = await spotifyService.getAlbumTracks(album.id);
+        const songs = await Promise.all(tracks.map(track => {
+          return {
+            _id: track.id,
+            title: track.name,
+            duration: track.duration_ms,
+            isExplicit: track.explicit,
+            artists: track.artists,
+            imgUrl: track.album.images[0]?.url,
+            albumName: track.album.name,
+            addedAt: new Date(track.album.release_date).getTime()
+          };
+        }));
+
+        return {
+          _id: album.id,
+          name: album.name,
+          imgUrl: album.images[0]?.url,
+          songs: songs,
+          releaseDate: album.release_date
+        };
+      });
+
+      const artistAlbumsWithTracks = await Promise.all(albumDetailsPromises);
+
+      return {
+        _id: artistId,
+        albums: artistAlbumsWithTracks
+      };
+    });
+
+    const artistAlbums = await Promise.all(artistAlbumPromises);
+    artists = artists.map(artist => {
+      const artistAlbumData = artistAlbums.find(a => a._id === artist.id);
+      return {
+        ...artist,
+        albums: artistAlbumData ? artistAlbumData.albums : []
+      };
+    });
+  }
+
   if (!localStorage.getItem(STATIONS_KEY)) {
     saveToStorage(STATIONS_KEY, stations);
     saveToStorage(ALBUMS_KEY, albums);
+    saveToStorage(ARTISTS_KEY, artists);
   }
 }

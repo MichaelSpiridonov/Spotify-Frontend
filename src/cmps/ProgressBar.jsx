@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
-const formatTime = (time) => {
-  const minutes = Math.floor(time / 60)
-  const seconds = Math.floor(time % 60)
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
-}
+import { formatTime } from '../services/util.service'
 
 const ProgressBar = ({ currentTime, duration, onSeek }) => {
   const [isSeeking, setIsSeeking] = useState(false)
@@ -36,21 +31,21 @@ const ProgressBar = ({ currentTime, duration, onSeek }) => {
   }
 
   return (
-    <div className="progress-bar-container">
-      <span className="time">{formatTime(currentTime)}</span>
+    <div className='progress-bar-container'>
+      <span className='time'>{formatTime(currentTime)}</span>
       <input
-        type="range"
-        min="0"
-        max="100"
-        step="0.1"
+        type='range'
+        min='0'
+        max='100'
+        step='0.1'
         value={seekValue || 0}
         onChange={handleSeek}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
-        className="progress-bar"
+        className='progress-bar'
         style={{ '--progress': `${seekValue}%` }}
       />
-      <span className="time">{formatTime(duration)}</span>
+      <span className='time'>{formatTime(duration)}</span>
     </div>
   )
 }

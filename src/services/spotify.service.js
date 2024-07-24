@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-const CLIENT_ID = import.meta.env.VITE_SPOTIFY_API_CLIENTID;
-const CLIENT_SECRET = import.meta.env.VITE_SPOTIFY_API_SECRET;
+const CLIENT_ID =
+  import.meta.env.VITE_SPOTIFY_API_CLIENTID;
+const CLIENT_SECRET =
+  import.meta.env.VITE_SPOTIFY_API_SECRET;
 const AUTH_URL = 'https://accounts.spotify.com/api/token';
 const BASE_URL = 'https://api.spotify.com/v1';
 
@@ -19,7 +21,7 @@ const getToken = async () => {
 };
 
 const spotifyService = {
-  
+
   getPlaylists: async () => {
     const token = await getToken();
     const featuredPlaylistsPromise = axios.get(`${BASE_URL}/browse/featured-playlists`, {
@@ -98,7 +100,7 @@ const spotifyService = {
       }
     });
     return response.data.items.map(item => item.track);
-  }, 
+  },
 
   getAlbumTracks: async (albumId) => {
     const token = await getToken();
@@ -108,7 +110,16 @@ const spotifyService = {
       }
     });
     return response.data.items
+  },
+  getArtistAlbums: async (artistId) => {
+    const token = await getToken();
+    const response = await axios.get(`${BASE_URL}/artists/${artistId}/albums`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return response.data.items;
   }
-};
+}
 
 export default spotifyService;

@@ -212,10 +212,10 @@
       .play-button {
         margin-right: 12px;
       }
-      .song-info {
+      .station-song-detail {
         font-size: 16px;
         color: white;
-        padding-left: 5px;
+        
       }
     }
     .song-item {
@@ -326,12 +326,13 @@
         }
       }
 
-      .song-info {
+      .station-song-detail {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
         font-size: 16px;
         color: white;
+        justify-self: flex-start;
 
         .song-title {
           font-family: circular-bold;
@@ -373,7 +374,7 @@
   width: 25px;
 }
 
-.song-info {
+.station-song-detail {
   width: max-content;
 }
 
@@ -400,10 +401,9 @@
     border-radius: 4px;
   }
 
-  .song-info {
+  .station-song-detail {
     display: flex;
     width: 38vw;
-    justify-content: end;
     align-items: start;
   }
 
@@ -450,6 +450,6 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-.song-info {
+.station-song-detail {
   font-weight: 300;
 }

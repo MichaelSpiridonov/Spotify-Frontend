@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import AddIcon from "../assets/icons/addsong.svg?react"
 import Player from "./Player.jsx"
 import { Link } from "react-router-dom"
+import { ArtistCmp } from "./ArtistCmp.jsx"
 
 export function AppPlayer() {
   const station = useSelector((storeState) => storeState.stationModule.station)
@@ -19,14 +20,7 @@ export function AppPlayer() {
                 {currSong.title.replace(/^.*?-/, "")}
               </Link>
               <section className="artist">
-                {currSong.artists.map((artist, index) => (
-                  <span key={artist.id}>
-                    <Link to={`artist/${artist.id}`} className="artist-name">
-                      {artist.name}
-                    </Link>
-                    {index < currSong.artists.length - 1 && ", "}
-                  </span>
-                ))}
+                  <ArtistCmp artists={currSong.artists} />
               </section>
             </section>
             <AddIcon className="add-icn" />

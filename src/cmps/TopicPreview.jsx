@@ -1,5 +1,5 @@
-import { FastAverageColor } from "fast-average-color";
-import { useEffect, useState } from "react";
+import { FastAverageColor } from 'fast-average-color';
+import { useEffect, useState } from 'react';
 
 
 export function TopicPreview({ topic }) {
@@ -17,9 +17,9 @@ export function TopicPreview({ topic }) {
             });
     }, [])
     if(color === null) return
-    return <article style={{backgroundColor: color}} className="topic-box">
+    return <article style={{backgroundColor: color}} className='topic-box'>
         <h1>{topic.name}</h1>
-        <img src={topic.img} alt="" />
+        <img src={topic.img} alt='' />
     </article>
 
 }

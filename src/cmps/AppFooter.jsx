@@ -28,12 +28,12 @@ export function AppFooter() {
           <Link to='#'>Free Mobile App</Link>
         </div>
         <div className='footer-section'>
-          <h3>Spotify Plans</h3>
+          <h3>Beatify Plans</h3>
           <Link to='#'>Premium Individual</Link>
           <Link to='#'>Premium Duo</Link>
           <Link to='#'>Premium Family</Link>
           <Link to='#'>Premium Student</Link>
-          <Link to='#'>Spotify Free</Link>
+          <Link to='#'>Beatify Free</Link>
         </div>
         <div className='footer-section social-media'>
           <Link to='#'>

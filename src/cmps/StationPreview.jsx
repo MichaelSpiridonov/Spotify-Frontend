@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux'
 
 export function StationPreview({ station }) {
   if(!station.tags) return
-  const currStation = useSelector((storeState) => storeState.stationModule.currSelectedStation)
   const element = document.querySelector('.station-list')
   var count = 0
   function handleContextMenu(event) {

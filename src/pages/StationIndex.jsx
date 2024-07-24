@@ -78,11 +78,11 @@ export function StationIndex() {
         ))}
       </section>
       <h1 className='title-category'>New Releases</h1>
-      <section className='home-container'>
+      {/* <section className='home-container'>
         {albums[0].slice(0, numElements).map((station) => (
           <StationIndexPreview key={station._id} station={station} />
         ))}
-      </section>
+      </section> */}
       <AppFooter />
     </section>
   )
