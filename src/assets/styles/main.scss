@@ -3,7 +3,7 @@
 @import 'setup/functions';
 @import 'setup/mixins';
 @import 'setup/typography';
-//mq 
+//mq
 
 // Basics
 @import 'basics/helpers';
@@ -32,6 +32,7 @@
 @import 'cmps/CreateModal';
 @import 'cmps/ProgressBar.scss';
 @import 'cmps/VolumeSlider.scss';
+@import 'cmps/AppFooter.scss';
 
 @import 'basics/mq.scss';
 // @import "cmps/CarList";
