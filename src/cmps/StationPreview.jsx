@@ -44,6 +44,7 @@ export function StationPreview({ station }) {
   if(!station.tags) return
   console.log(playlistDefaultImage)
   return (
+  <>
     <Link to={`/station/${station._id}`}>
       <div id={station.name} className='station-preview' role='button'>
         <img
@@ -55,8 +56,9 @@ export function StationPreview({ station }) {
           <p className='station-name'>{station.name}</p>
           <p className='station-createdby'>Playlist · {station.name}</p>
         </div>
-        <StationModal station={station} />
       </div>
     </Link>
+    <StationModal station={station} />
+    </>
   )
 }
