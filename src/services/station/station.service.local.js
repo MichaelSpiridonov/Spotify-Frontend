@@ -13,7 +13,7 @@ const CURR_SONG = 'currSong'
 const LIKED_SONGS = 'likedsongs'
 const STATION_KEY = 'station'
 //_createStations()
-if(!localStorage.getItem('albums')){
+if(!localStorage.getItem(ALBUMS_KEY) ||!localStorage.getItem(STATIONS_KEY) ){
   _createSpotifyStations()
 }
 
