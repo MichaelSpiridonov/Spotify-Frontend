@@ -6,11 +6,12 @@
     padding: 4px;
     border-radius: 4px;
     display: none;
-
+    
     ul {
         display: flex;
         flex-direction: column;
         margin: 0;
+        overflow-y: auto;
     }
 
     svg {
@@ -46,4 +47,5 @@
     left: -250px;
     border-radius: 4px;
     box-shadow: (0, 0, 0, 0.3) 0px 16px 24px 0px, rgba(0, 0, 0, 0.2) 0px 6px 8px 0px;
+ /*   overflow-y: hidden; */
 }

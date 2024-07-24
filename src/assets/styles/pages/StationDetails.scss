@@ -83,6 +83,13 @@
       height: 30px;
       width: 30px;
     }
+    .header-add-button:hover , .header-options-button:hover{
+      fill: white;
+    }
+    .header-options-button{
+      position: relative;
+      right: 5px;
+    }
     .header-play-button {
       // More specific class for header play button
       background-color: #1db954;

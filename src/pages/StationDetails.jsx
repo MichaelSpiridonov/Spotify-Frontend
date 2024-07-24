@@ -20,10 +20,8 @@ import YouTube from 'react-youtube'
 import { getVideos } from '../services/youtube.service.js'
 
 export function StationDetails() {
+  const [songToAdd, setSongToAdd] = useState(null)
   const { stationId } = useParams()
-  const currSong = useSelector(
-    (storeState) => storeState.stationModule.currSong
-  )
   const [selectedSong, setSelectedSong] = useState(null)
   const [buttonRef, setButtonRef] = useState(null) // State to store the button ref
   const [station, setStation] = useState(null)
@@ -36,7 +34,7 @@ export function StationDetails() {
     const station = await stationService.getById(stationId)
     setStation(station)
   }
-
+console.log(stationId)
   const formatDate = (timestamp) => {
     const date = new Date(timestamp)
     const options = { month: 'short', day: '2-digit', year: 'numeric' }
@@ -74,7 +72,17 @@ export function StationDetails() {
     updateSong(songData)
     loadStation(stationId)
   }
-
+  function onAddTo(event) {
+    /* setSongToAdd(song) */
+    const x = event.clientX - 110
+    const y = event.clientY + 20
+    console.log(`Clicked at X=${x}, Y=${y}`)
+    const elModal = document.querySelector('.more-modal')
+    console.log(elModal)
+    elModal.style.left = `${x}px`
+    elModal.style.top = `${y}px`
+    elModal.style.display = 'block'
+  }
   if (station) {
     const fac = new FastAverageColor()
 
@@ -110,7 +118,7 @@ export function StationDetails() {
           <div className='header-add-button'>
             <AddIcon />
           </div>
-          <div className='header-options-button'>
+          <div  className='header-options-button'>
             <SongOptionsIcon />
           </div>
         </div>
@@ -140,20 +148,16 @@ export function StationDetails() {
               </span>
               <div
                 className='options-button'
-                onClick={(e) => handleOptionsClick(song, e.currentTarget)}
+                onClick={onAddTo}
               >
                 <SongOptionsIcon />
               </div>
+              
+              <MoreModal song={song}/>
             </section>
           ))}
         </section>
-        {selectedSong && (
-          <SongOptionsModal
-            song={selectedSong}
-            onClose={handleCloseModal}
-            buttonRef={buttonRef}
-          />
-        )}
+
       </div>
     </React.Fragment>
   )

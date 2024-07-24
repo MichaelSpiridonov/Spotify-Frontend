@@ -15,7 +15,7 @@ export function StationIndex() {
             <AppHeader />
             <h1>Try some thing else</h1>
             <section className="home-container">
-              {stations.slice(0, 6).map((station) => (
+              {stations.slice(0, 8).map((station) => (
                 <StationIndexPreview key={station._id} station={station} />
             ))}   
             </section>
