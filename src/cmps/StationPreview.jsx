@@ -42,6 +42,7 @@ export function StationPreview({ station }) {
   }
   document.addEventListener('click', clickOutsideListener);
   if(!station.tags) return
+  console.log(playlistDefaultImage)
   return (
     <Link to={`/station/${station._id}`}>
       <div id={station.name} className='station-preview' role='button'>

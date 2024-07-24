@@ -12,7 +12,7 @@
   height: 100%;
   .player-seek-and-control{
     position: absolute;
-    right: 31vw;
+    right: 33.5vw;
     
   }
   & .effects::before {
@@ -109,9 +109,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 11.5px;
+  padding-right: 25px;
 }
-
+.progras-bar{
+  width: 1000px;
+}
 .song-image {
   width: 56px;
   height: 56px;

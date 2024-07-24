@@ -239,7 +239,7 @@ export function Player(props) {
             {isRepeatSong ? <RepeatSong onClick={toggleRepeat} /> : ''}
           </span>
         </section>
-        <ProgressBar currentTime={currentTime} duration={duration} onSeek={handleSeek} />
+        <ProgressBar className='progras-bar' currentTime={currentTime} duration={duration} onSeek={handleSeek} />
       </section>
       <section className="player-controls">
         <NowPlaying />
