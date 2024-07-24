@@ -22,7 +22,7 @@ export function StationIndex() {
       </section>
       <h1>Your shows</h1>
       <section className='home-container'>
-        {stations.slice(0, 8).map((station) => (
+        {stations.slice(8, 16).map((station) => (
           <StationIndexPreview key={station._id} station={station} />
         ))}
       </section>
