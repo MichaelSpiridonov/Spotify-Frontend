@@ -10,10 +10,12 @@
   justify-content: space-between;
   font-family: circular-bold, sans-serif;
   height: 100%;
+  
   .player-seek-and-control{
     position: absolute;
     right: 33.5vw;
-    
+    padding-bottom: 10px;
+    padding-top: 5px;
   }
   & .effects::before {
     content: '';

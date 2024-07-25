@@ -90,21 +90,21 @@
 
     form {
         position: absolute;
-        top: 20px;
-        margin-left: 90px;
+        top: 10px;
+        margin-left: 80px;
         left: 24px;
         /* left: minmax(100px,200px); */
         display: flex;
         height: 48px;
-        width: 364px;
+        
         background-color: #242424;
-        border-radius: 20px;
+        border-radius: 50px;
         padding-left: 10px;
         opacity: 1;
     }
 
     form input {
-        width: 100%;
+        width: 364px;;
         background-color: #242424;
         color: white;
         border: #242424;
@@ -118,9 +118,12 @@
         fill: white;
     }
 
-    form input:focus-visible {
-        outline: #242424;
-    }
+   /*  form:focus {
+
+            border: white;
+        
+    } */
+
 
     .play-button {
         fill: white;
