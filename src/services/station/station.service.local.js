@@ -341,58 +341,58 @@ async function _createSpotifyStations() {
     albums = await Promise.all(albumPromises);
   }
 
-  if(!artists || !artists.length) {
-    const uniqueArtistIds = Array.from(artistSet);
-    artists = await spotifyService.getArtists(uniqueArtistIds);
+  // if(!artists || !artists.length) {
+  //   const uniqueArtistIds = Array.from(artistSet);
+  //   artists = await spotifyService.getArtists(uniqueArtistIds);
 
-    const artistAlbumPromises = uniqueArtistIds.map(async artistId => {
-      const artistAlbums = await spotifyService.getArtistAlbums(artistId);
+  //   const artistAlbumPromises = uniqueArtistIds.map(async artistId => {
+  //     const artistAlbums = await spotifyService.getArtistAlbums(artistId);
 
-      const albumDetailsPromises = artistAlbums.map(async album => {
-        const tracks = await spotifyService.getAlbumTracks(album.id);
-        const songs = await Promise.all(tracks.map(track => {
-          return {
-            _id: track.id,
-            title: track.name,
-            duration: track.duration_ms,
-            isExplicit: track.explicit,
-            artists: track.artists,
-            imgUrl: track.album.images[0]?.url,
-            albumName: track.album.name,
-            addedAt: new Date(track.album.release_date).getTime()
-          };
-        }));
+  //     const albumDetailsPromises = artistAlbums.map(async album => {
+  //       const tracks = await spotifyService.getAlbumTracks(album.id);
+  //       const songs = await Promise.all(tracks.map(track => {
+  //         return {
+  //           _id: track.id,
+  //           title: track.name,
+  //           duration: track.duration_ms,
+  //           isExplicit: track.explicit,
+  //           artists: track.artists,
+  //           imgUrl: track.album.images[0]?.url,
+  //           albumName: track.album.name,
+  //           addedAt: new Date(track.album.release_date).getTime()
+  //         };
+  //       }));
 
-        return {
-          _id: album.id,
-          name: album.name,
-          imgUrl: album.images[0]?.url,
-          songs: songs,
-          releaseDate: album.release_date
-        };
-      });
+  //       return {
+  //         _id: album.id,
+  //         name: album.name,
+  //         imgUrl: album.images[0]?.url,
+  //         songs: songs,
+  //         releaseDate: album.release_date
+  //       };
+  //     });
 
-      const artistAlbumsWithTracks = await Promise.all(albumDetailsPromises);
+  //     const artistAlbumsWithTracks = await Promise.all(albumDetailsPromises);
 
-      return {
-        _id: artistId,
-        albums: artistAlbumsWithTracks
-      };
-    });
+  //     return {
+  //       _id: artistId,
+  //       albums: artistAlbumsWithTracks
+  //     };
+  //   });
 
-    const artistAlbums = await Promise.all(artistAlbumPromises);
-    artists = artists.map(artist => {
-      const artistAlbumData = artistAlbums.find(a => a._id === artist.id);
-      return {
-        ...artist,
-        albums: artistAlbumData ? artistAlbumData.albums : []
-      };
-    });
-  }
+  //   const artistAlbums = await Promise.all(artistAlbumPromises);
+  //   artists = artists.map(artist => {
+  //     const artistAlbumData = artistAlbums.find(a => a._id === artist.id);
+  //     return {
+  //       ...artist,
+  //       albums: artistAlbumData ? artistAlbumData.albums : []
+  //     };
+  //   });
+  // }
 
   if (!localStorage.getItem(STATIONS_KEY)) {
     saveToStorage(STATIONS_KEY, stations);
     saveToStorage(ALBUMS_KEY, albums);
-    saveToStorage(ARTISTS_KEY, artists);
+    //saveToStorage(ARTISTS_KEY, artists);
   }
 }
