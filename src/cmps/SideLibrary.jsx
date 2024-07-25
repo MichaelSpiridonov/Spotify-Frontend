@@ -23,7 +23,23 @@ export function SideLibrary() {
             element.style.left = `${x}px`
             element.style.top = `${y}px`
             element.style.display = 'block'
+            event.stopPropagation();
     }
+    const targetElement = document.querySelector('.create-modal')
+    function clickOutsideListener(event) {
+        count++
+        if(!targetElement) return
+        if (!targetElement.contains(event.target) && count == 2) {
+            count = 0
+            // Click outside the target element 
+            targetElement.style.display = 'none'
+            
+            // Do something here, such as closing a modal, hiding a dropdown, etc.
+        }
+    }
+
+    // Adding click event listener to the document
+    document.addEventListener('click', clickOutsideListener);
     if(!stations) return
     return (
         <section className='side-library'>
