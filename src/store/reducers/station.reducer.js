@@ -26,7 +26,7 @@ export function stationReducer(state = initialState, action) {
     var stations
     var station
     var currSelectedStation
-    console.log(action)
+    console.log('Action:', action)
     switch (action.type) {
         case SET_STATIONS:
             newState = { ...state, stations: action.stations }
@@ -34,7 +34,6 @@ export function stationReducer(state = initialState, action) {
         case UPDATE_STATIONS:
             const stationIdx = state.stations.findIndex(
                 (station) => station._id === action.stations.station._id )
-                console.log(stationIdx)
                 station = action.stations.station
              stations = state.stations
              stations[stationIdx] = station

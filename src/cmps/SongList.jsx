@@ -7,7 +7,6 @@ export function SongList({ songs, onAddTo, onClickPlay }) {
   const currSelectedStation = useSelector((storeState) => storeState.stationModule.currSelectedStation)
   async function onDragEnd(result) {
     const { destination, source} = result
-    console.log(result)
     if (!destination) return
     if (destination.droppableId === source.droppableId && destination.index === source.index) return
       const [removed] = songs.splice(source.index, 1);

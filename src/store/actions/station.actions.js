@@ -95,7 +95,6 @@ export async function updateSong(song) {
 
 export async function setCurrSelectedSong(song) {
     try {
-        console.log('action song:', song);
         store.dispatch(getCmdsetCurrSelectedSong(song))
     } catch (err) {
         console.log('Cannot load Song', err)
@@ -105,7 +104,6 @@ export async function setCurrSelectedSong(song) {
 
 export async function setCurrSelectedStation(station) {
     try {
-        console.log('action station:', station);
         store.dispatch(getCmdSetSelectedStation(station))
     } catch (err) {
         console.log('Cannot load Station', err)
