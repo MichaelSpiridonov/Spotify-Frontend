@@ -25,26 +25,26 @@ export function StationDetails() {
   const [color, setColor] = useState(null)
   const [search, setSearch] = useState(null)
   const [songs, setSongs] = useState([])
-  const stations = useSelector(
-    (storeState) => storeState.stationModule.stations
-  )
-
 
   useEffect(() => {
-    loadLocalStation(stationId)  
-  }, [stationId])
-  var modalOpen = false
+    loadLocalStation(stationId)
+    if (search) {
+      getVideos(search).then(videos => setSongs(videos))
+    }
+  }, [stationId, search, currStation])
   async function loadLocalStation(stationId) {
     const station = await stationService.getById(stationId)
- 
+    console.log(station)
+    console.log(currStation)
+    if (currStation === null) {
+      console.log('hi')
       setCurrStation(station)
-   
-
+    }
+    else if (station.songs.length !== currStation.songs.length) {
+      console.log('hi')
+      setCurrStation(station)
+    }
   }
-
-  useEffect(() => {
-    getVideos(search).then(videos => setSongs(videos))
-  }, [search])
   function handleChange({ target }) {
     setSearch(target.value)
   }
@@ -79,7 +79,6 @@ export function StationDetails() {
     elModal.style.left = `${x}px`
     elModal.style.top = `${y}px`
     elModal.style.display = 'block'
-    modalOpen = true
     event.stopPropagation();
   }
 
@@ -95,22 +94,19 @@ export function StationDetails() {
   }
   document.addEventListener('click', clickOutsideListener) */
   window.onclick = function (event) {
-    const elModal = document.querySelector('.more-modal'))
-    if (event.target !== elModal&& elModal) {
+    const elModal = document.querySelector('.more-modal')
+    if (event.target !== elModal && elModal) {
       elModal.style.display = "none";
     }
   }
   if (currStation) {
-    if (!color) {
-
-      if (currStation.createdBy.imgUrl) {
-        const fac = new FastAverageColor()
-        fac.getColorAsync(currStation.createdBy.imgUrl).then((color) => {
-          setColor(color.rgb)
-        })
-      } else {
-        setColor("rgba(66, 64, 64, 0.6) 0")
-      }
+    if (currStation.createdBy.imgUrl) {
+      const fac = new FastAverageColor()
+      fac.getColorAsync(currStation.createdBy.imgUrl).then((color) => {
+        setColor(color.rgb)
+      })
+    } else {
+      setColor("rgba(66, 64, 64, 0.6) 0")
     }
 
   }

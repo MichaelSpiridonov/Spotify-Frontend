@@ -12,7 +12,7 @@ export function MoreModal({setCurrStation}) {
     const song = useSelector((storeState) => storeState.stationModule.currSelectedSong)
     useEffect(() => {
         loadLocalStation(stationId)
-    }, [])
+    }, [stationId])
     async function loadLocalStation(stationId) {
         const station = await stationService.getById(stationId)
         setStation(station)
@@ -46,15 +46,17 @@ export function MoreModal({setCurrStation}) {
     }
 
     async function onRemoveSong() {
+    
         var newStation = await removeSong(song._id, station)
         element.style.display = 'none'
-        setCurrStation(newStation)
+        console.log(newStation)
+        setCurrStation(station)
     }
 
     function clickOutsideListener(event) {
         if (!element) return
         if (!element.contains(event.target)) {
-            count = 0
+
             // Click outside the target element
             element.style.display = 'none'
             // Do something here, such as closing a modal, hiding a dropdown, etc.
@@ -62,6 +64,7 @@ export function MoreModal({setCurrStation}) {
     }
     document.addEventListener('click', clickOutsideListener)
     if (!stations || !station) return
+    console.log(station)
     return <article className='more-modal'>
         <ul key={'modal-container'}>
             <li key={'add'} onMouseOver={onOpenStations} className='add-to-playlist'><svg data-encore-id='icon' role='img' aria-hidden='true' viewBox='0 0 16 16' ><path d='M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z' ></path></svg>Add to playlist</li>
