@@ -64,6 +64,8 @@ async function addToLikedSongs(likedSongs) {
 async function removeSong(songId,station) {
   var updateSongs = station.songs.filter(song => song._id !== songId)
   station.songs = updateSongs
+  
+  // throw new Error('Nope')
   await storageService.put(STATIONS_KEY, station)
 }
 

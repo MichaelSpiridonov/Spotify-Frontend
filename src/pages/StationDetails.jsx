@@ -42,10 +42,6 @@ export function StationDetails() {
     const station = await stationService.getById(stationId)
     setCurrSelectedStation(station)
   }
-
-  useEffect(() => {
-    getVideos(search).then(videos => setSongs(videos))
-  }, [search])
   function handleChange({ target }) {
     setSearch(target.value)
   }
@@ -80,7 +76,6 @@ export function StationDetails() {
     elModal.style.left = `${x}px`
     elModal.style.top = `${y}px`
     elModal.style.display = 'block'
-    modalOpen = true
     event.stopPropagation();
   }
 
@@ -102,16 +97,13 @@ export function StationDetails() {
     }
   }
   if (currStation) {
-    if (!color) {
-
-      if (currStation.createdBy.imgUrl) {
-        const fac = new FastAverageColor()
-        fac.getColorAsync(currStation.createdBy.imgUrl).then((color) => {
-          setColor(color.rgb)
-        })
-      } else {
-        setColor("rgba(66, 64, 64, 0.6) 0")
-      }
+    if (currStation.createdBy.imgUrl) {
+      const fac = new FastAverageColor()
+      fac.getColorAsync(currStation.createdBy.imgUrl).then((color) => {
+        setColor(color.rgb)
+      })
+    } else {
+      setColor("rgba(66, 64, 64, 0.6) 0")
     }
 
   }
