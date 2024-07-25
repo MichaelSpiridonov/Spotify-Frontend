@@ -74,9 +74,13 @@ async function addToLikedSongs(likedSongs) {
   await storageService.post(LIKED_SONGS, likedSongs)
 }
 
-async function removeSong(songId) {
+async function removeSong(songId,station) {
+console.log(songId)
+  var updateSongs = station.songs.filter(song => song._id !== songId)
+  station.songs = updateSongs
+  console.log(station)
   // throw new Error('Nope')
-  await storageService.remove(STATIONS_KEY, songId)
+  await storageService.put(STATIONS_KEY, station)
 }
 
 async function _createSpotifyStations() {
@@ -141,7 +145,7 @@ async function _createSpotifyStations() {
       },
       likedByUsers: ['{minimal-user}', '{minimal-user}'],
       songs: [{
-          id: 'dQw4w9WgXcQ',
+          _id: 'dQw4w9WgXcQ',
           title: 'Rick Astley - Never Gonna Give You Up',
           url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
           imgUrl: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
@@ -157,7 +161,7 @@ async function _createSpotifyStations() {
           albumName: 'Album',
         },
         {
-          id: '_4gUVl5pjps',
+          _id: '_4gUVl5pjps',
           title: '21 Savage - ball w/o you',
           url: 'https://www.youtube.com/watch?v=_4gUVl5pjps',
           imgUrl: 'https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg',
@@ -183,7 +187,7 @@ async function _createSpotifyStations() {
       },
       likedByUsers: ['{minimal-user}', '{minimal-user}'],
       songs: [{
-          id: 'dQw4w9WgXcQ',
+          _id: 'dQw4w9WgXcQ',
           title: 'Rick Astley - Never Gonna Give You Up',
           url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
           imgUrl: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
@@ -199,7 +203,7 @@ async function _createSpotifyStations() {
           albumName: 'Album',
         },
         {
-          id: '_4gUVl5pjps',
+          _id: '_4gUVl5pjps',
           title: '21 Savage - ball w/o you',
           url: 'https://www.youtube.com/watch?v=_4gUVl5pjps',
           imgUrl: 'https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg',
@@ -213,7 +217,7 @@ async function _createSpotifyStations() {
           albumName: 'Album',
         },
         {
-          id: 'r8GXHS4s9K4',
+          _id: 'r8GXHS4s9K4',
           title: 'Lady Gaga & Beyoncé - Telephone',
           url: 'https://www.youtube.com/watch?v=r8GXHS4s9K4',
           imgUrl: 'https://i.ytimg.com/vi/r8GXHS4s9K4/mqdefault.jpg',
@@ -245,7 +249,7 @@ async function _createSpotifyStations() {
       },
       likedByUsers: ['{minimal-user}', '{minimal-user}'],
       songs: [{
-          id: 'Sis_JJZoAfQ',
+          _id: 'Sis_JJZoAfQ',
           title: 'Juice WRLD - Cigarettes',
           url: 'https://www.youtube.com/watch?v=Sis_JJZoAfQ',
           imgUrl: 'https://i.ytimg.com/vi/Sis_JJZoAfQ/mqdefault.jpg',
@@ -260,7 +264,7 @@ async function _createSpotifyStations() {
           albumName: 'Album',
         },
         {
-          id: 'A4pasf5ci8s',
+          _id: 'A4pasf5ci8s',
           title: 'Juice WRLD - Purple Potion',
           url: 'https://www.youtube.com/watch?v=A4pasf5ci8s',
           imgUrl: 'https://i.ytimg.com/vi/A4pasf5ci8s/mqdefault.jpg',
@@ -276,7 +280,7 @@ async function _createSpotifyStations() {
           albumName: 'Album',
         },
         {
-          id: 'Trv80iyv8qs',
+          _id: 'Trv80iyv8qs',
           title: 'Juice WRLD - High and Alone ',
           url: 'https://www.youtube.com/watch?v=Trv80iyv8qs',
           imgUrl: 'https://i.ytimg.com/vi/Trv80iyv8qs/mqdefault.jpg',
@@ -291,7 +295,7 @@ async function _createSpotifyStations() {
           albumName: 'Album',
         },
         {
-          id: 'iT6MEoRywDY',
+          _id: 'iT6MEoRywDY',
           title: 'Juice WRLD - Rockstar In His Prime',
           url: 'https://www.youtube.com/watch?v=iT6MEoRywDY',
           imgUrl: 'https://i.ytimg.com/vi/iT6MEoRywDY/mqdefault.jpg',

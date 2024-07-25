@@ -1,4 +1,4 @@
-import { loadStation, setCurrSelectedSong, setCurrSelectedStation, updateSong } from '../store/actions/station.actions.js'
+import { loadStation, loadStations, setCurrSelectedSong, setCurrSelectedStation, updateSong } from '../store/actions/station.actions.js'
 import { Link, useParams } from 'react-router-dom'
 import React, { useEffect, useState, useRef } from 'react'
 
@@ -17,20 +17,29 @@ import { getVideos } from '../services/youtube.service.js'
 import { formatDate, formatDuration } from '../services/util.service.js'
 import { SongList } from '../cmps/SongList.jsx'
 import { SearchPreview } from '../cmps/SearchPreview.jsx'
+import { useSelector } from 'react-redux'
 
 export function StationDetails() {
   const { stationId } = useParams()
-  const [station, setStation] = useState(null)
+  const [currStation, setCurrStation] = useState(null)
   const [color, setColor] = useState(null)
   const [search, setSearch] = useState(null)
   const [songs, setSongs] = useState([])
+  const stations = useSelector(
+    (storeState) => storeState.stationModule.stations
+  )
+
+
   useEffect(() => {
-    loadLocalStation(stationId)
+    loadLocalStation(stationId)  
   }, [stationId])
-  var count = 0
+  var modalOpen = false
   async function loadLocalStation(stationId) {
     const station = await stationService.getById(stationId)
-    setStation(station)
+ 
+      setCurrStation(station)
+   
+
   }
 
   useEffect(() => {
@@ -44,6 +53,7 @@ export function StationDetails() {
     id = await getVideos(name)
     return id[0].videoId
   }
+
   const onClickPlay = async (song) => {
     if (!song.id) {
       song.id = await getVideoId(song.title)
@@ -59,39 +69,43 @@ export function StationDetails() {
     updateSong(songData)
     loadStation(stationId)
   }
-
-  function onAddTo(event, song, station) {
-    setCurrSelectedStation(station)
+  function onAddTo(event, song) {
+    setCurrSelectedStation(currStation)
     setCurrSelectedSong(song)
     /* setSongToAdd(song) */
     const x = event.clientX - 110
     const y = event.clientY + 20
-    console.log(`Clicked at X=${x}, Y=${y}`)
     const elModal = document.querySelector('.more-modal')
-    console.log(elModal)
     elModal.style.left = `${x}px`
     elModal.style.top = `${y}px`
     elModal.style.display = 'block'
+    modalOpen = true
+    event.stopPropagation();
   }
 
-  function clickOutsideListener(event) {
+  /* function clickOutsideListener(event) {
     const elModal = document.querySelector('.more-modal')
-    count++
     if (!elModal) return
-    if (!elModal.contains(event.target) && count == 2) {
-      count = 0
+    if (!elModal.contains(event.target) && elModal) {   
       // Click outside the target element
       elModal.style.display = 'none'
+      modalOpen = true
       // Do something here, such as closing a modal, hiding a dropdown, etc.
     }
   }
-  document.addEventListener('click', clickOutsideListener)
-  if (station) {
+  document.addEventListener('click', clickOutsideListener) */
+  window.onclick = function (event) {
+    const elModal = document.querySelector('.more-modal'))
+    if (event.target !== elModal&& elModal) {
+      elModal.style.display = "none";
+    }
+  }
+  if (currStation) {
     if (!color) {
 
-      if (station.createdBy.imgUrl) {
+      if (currStation.createdBy.imgUrl) {
         const fac = new FastAverageColor()
-        fac.getColorAsync(station.createdBy.imgUrl).then((color) => {
+        fac.getColorAsync(currStation.createdBy.imgUrl).then((color) => {
           setColor(color.rgb)
         })
       } else {
@@ -100,7 +114,7 @@ export function StationDetails() {
     }
 
   }
-  if (!station) return
+  if (!currStation) return
   const gradientStyle = {
     backgroundImage: `linear-gradient(${color}, #121212 50%)`,
   }
@@ -109,28 +123,28 @@ export function StationDetails() {
       <div style={gradientStyle} className='station-details-container'>
         <AppHeader />
         <div className='station-header'>
-          {station.createdBy.imgUrl && <img
+          {currStation.createdBy.imgUrl && <img
             className='station-image'
-            src={station.createdBy.imgUrl}
-            alt={station.createdBy.fullname}
+            src={currStation.createdBy.imgUrl}
+            alt={currStation.createdBy.fullname}
           />}
-          {!station.createdBy.imgUrl &&
+          {!currStation.createdBy.imgUrl &&
             <div className='station-none-image'>
-             <svg data-encore-id="icon" role="img" aria-hidden="true" data-testid="playlist" class="Svg-sc-ytk21e-0 bneLcE" viewBox="0 0 24 24"><path d="M6 3h15v15.167a3.5 3.5 0 1 1-3.5-3.5H19V5H8v13.167a3.5 3.5 0 1 1-3.5-3.5H6V3zm0 13.667H4.5a1.5 1.5 0 1 0 1.5 1.5v-1.5zm13 0h-1.5a1.5 1.5 0 1 0 1.5 1.5v-1.5z"></path></svg>
+              <svg data-encore-id="icon" role="img" aria-hidden="true" data-testid="playlist" class="Svg-sc-ytk21e-0 bneLcE" viewBox="0 0 24 24"><path d="M6 3h15v15.167a3.5 3.5 0 1 1-3.5-3.5H19V5H8v13.167a3.5 3.5 0 1 1-3.5-3.5H6V3zm0 13.667H4.5a1.5 1.5 0 1 0 1.5 1.5v-1.5zm13 0h-1.5a1.5 1.5 0 1 0 1.5 1.5v-1.5z"></path></svg>
             </div>
 
           }
           <div className='station-info'>
             <h3>Playlist</h3>
-            <h1 className='station-name'>{station.name}</h1>
-            <h2 className='station-description'>{station.description}</h2>
+            <h1 className='station-name'>{currStation.name}</h1>
+            <h2 className='station-description'>{currStation.description}</h2>
             <p className='station-creator'>
-              {station.createdBy.fullname} · {station.songs.length} songs
+              {currStation.createdBy.fullname} · {currStation.songs.length} songs
             </p>
           </div>
         </div>
         <div className='station-controls'>
-          <button className='header-play-button'>
+          <button onClick={() => onClickPlay(currStation.songs[0])} className='header-play-button'>
             <PlayIcon />
           </button>
           <div className='header-add-button'>
@@ -142,7 +156,7 @@ export function StationDetails() {
         </div>
 
         <section className='station-details'>
-          {station.songs[0] && <div className='table-header'>
+          {currStation.songs[0] && <div className='table-header'>
             <span>#</span>
             <span>Title</span>
             <span>Album</span>
@@ -160,10 +174,10 @@ export function StationDetails() {
               </svg>
             </span>
           </div>}
-          {!station.songs[0] && <h1 className='header-input'>Let's find something for your playlist
-            </h1>}
-          <SongList songs={station.songs} onClickPlay={onClickPlay} onAddTo={onAddTo} />
-          {!station.songs[0] && <form className='search-details' action=''>
+          {!currStation.songs[0] && <h1 className='header-input'>Let's find something for your playlist
+          </h1>}
+          <SongList songs={currStation.songs} onClickPlay={onClickPlay} onAddTo={onAddTo} />
+          {!currStation.songs[0] && <form className='search-details' action=''>
             <label htmlFor=''><SearchIcon className /></label>
             <input onChange={handleChange} value={search ? search : ''} placeholder='Search for songs' type='text' />
           </form>}
@@ -171,7 +185,7 @@ export function StationDetails() {
             {search && songs.map(song => <SearchPreview key={song.videoId} song={song} />)}
 
           </section>
-          <MoreModal />
+          <MoreModal setCurrStation={setCurrStation} />
         </section>
         <AppFooter />
       </div>

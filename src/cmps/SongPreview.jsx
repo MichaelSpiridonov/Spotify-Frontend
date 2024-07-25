@@ -32,7 +32,7 @@ export function SongPreview({ song, onAddTo, onClickPlay }) {
       <span className='song-length'>{formatDuration(song.duration)}</span>
       <div
         className='options-button'
-        onClick={(event) => onAddTo(event, song, station)}
+        onClick={(event) => onAddTo(event, song)}
       >
         <SongOptionsIcon />
       </div>

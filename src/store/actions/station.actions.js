@@ -32,14 +32,14 @@ export async function loadStation(stationId) {
         throw err
     }
 }
-export async function updateStations(song,station,idx) {
+export async function updateStations(song, station, idx) {
     console.log(station)
     try {
         const Station = await stationService.getById(station._id)
         console.log(Station)
-        stationService.updateStations(station) 
+        stationService.updateStations(station)
         station.songs.push(song)
-        store.dispatch(getCmdUpdateStations({station,idx}))
+        store.dispatch(getCmdUpdateStations({ station, idx }))
     } catch (err) {
         console.log('Cannot save Station', err)
         throw err
@@ -111,10 +111,14 @@ export async function setCurrSelectedStation(station) {
     }
 }
 
-export async function removeSong(songId) {
+export async function removeSong(songId, station) {
     try {
-        await stationService.remove(songId)
-        store.dispatch(getCmdRemoveSong(songId))
+        var updateSongs = station.songs.filter(song => song._id !== songId)
+        station.songs = updateSongs
+        console.log(station, songId)
+        await stationService.removeSong(songId, station)
+        store.dispatch(getCmdRemoveSong(songId, station))
+        return station
     } catch (err) {
         console.log('Cannot remove Song', err)
         throw err
@@ -126,10 +130,10 @@ export async function addToLikedSongs(likedsong) {
     try {
         let prevLikedsongs = JSON.parse(localStorage.getItem('likedsongs')) || ''
         console.log(prevLikedsongs[0])
-        if(prevLikedsongs){
+        if (prevLikedsongs) {
             console.log(prevLikedsongs.songs)
-             songs =[prevLikedsongs[0].songs , likedsong]
-        } else{
+            songs = [prevLikedsongs[0].songs, likedsong]
+        } else {
             songs.push(likedsong)
         }
         console.log(songs)
@@ -142,7 +146,7 @@ export async function addToLikedSongs(likedsong) {
                 imgUrl:
                     'https://res.cloudinary.com/dvubhdy64/image/upload/v1721520195/spotify/kkjpfxtcj9xetuqaeg0q.png',
             },
-            songs:songs,
+            songs: songs,
         }
         console.log(likedSongsStation)
         localStorage.removeItem('likedsongs')
@@ -161,7 +165,7 @@ function getCmdSetStations(stations) {
         stations,
     }
 }
-function getCmdUpdateStations(stations,idx) {
+function getCmdUpdateStations(stations, idx) {
     return {
         type: UPDATE_STATIONS,
         stations,
@@ -198,10 +202,11 @@ function getCmdSetLikedSongs(likedSongs) {
         likedSongs,
     }
 }
-function getCmdRemoveSong(songId) {
+function getCmdRemoveSong(songId, station) {
     return {
-    type: REMOVE_SONG,
-    songId,
+        type: REMOVE_SONG,
+        songId,
+        station
     }
 }
 

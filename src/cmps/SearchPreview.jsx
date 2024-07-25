@@ -16,8 +16,8 @@ export function SearchPreview({ song }) {
     }
     function onAddTo(event) {
         setSongToAdd(song)
-        const x = event.clientX - 110
-        const y = event.clientY + 20
+        const x = event.clientX  
+        const y = event.clientY 
         console.log(`Clicked at X=${x}, Y=${y}`)
         const elModal = document.querySelector('.more-modal')
         elModal.style.left = `${x}px`
