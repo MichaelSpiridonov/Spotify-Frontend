@@ -24,6 +24,7 @@ export function stationReducer(state = initialState, action) {
     var newState = state
     var stations
     var station
+    var currSelectedStation
     console.log(action)
     switch (action.type) {
         case SET_STATIONS:
@@ -57,18 +58,21 @@ export function stationReducer(state = initialState, action) {
             newState = { ...state, currSong: action.song }
             break
         case REMOVE_SONG:
-            var idx = state.stations.findIndex((station) => station._id === action.station._id)
-            var newStations = state.stations
-            newStations[idx] = action.station 
-            console.log(newStations)
-            newState = { ...state,stations:newStations } 
-            /* const lastRemovedSong = state.currSelectedStation.songs.find(
-                (song) => song._id === action.song._id
-            )
-            station = state.currSelectedStation.songs.filter(
-                (song) => song._id !== action.song._id
-            )
-            newState = { ...state, station, lastRemovedSong } */
+            const lastRemovedSong = state.currSelectedStation.songs.find(
+                (song) => song._id === action.songId
+            );
+        
+            const updatedSongs = state.currSelectedStation.songs.filter(
+                (song) => song._id !== action.songId
+            );
+        
+            const updatedCurrSelectedStation = {
+                ...state.currSelectedStation,
+                songs: updatedSongs
+            }
+
+            newState = { ...state, currSelectedStation: updatedCurrSelectedStation, lastRemovedSong }
+            break
 
             case SET_CURR_SELECTED_STATION:
             newState = { ...state, currSelectedStation: action.station }

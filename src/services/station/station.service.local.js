@@ -45,41 +45,25 @@ function getById(stationId) {
 }
 
 async function remove(stationId) {
-  // throw new Error('Nope')
   await storageService.remove(STATIONS_KEY, stationId)
 }
 async function updateStations(station) {
-  // throw new Error('Nope')
-  console.log(station)
   await storageService.put(STATIONS_KEY, station)
-  /* localStorage.setItem(STATIONS_KEY, JSON.stringify(stations)) */
-  /* console.log(...stations)
-  await storageService.post(STATIONS_KEY, ...stations) */
 }
 async function addNewStation(station) {
-  // throw new Error('Nope')
-  console.log(station)
   await storageService.post(STATIONS_KEY, station)
-  /* localStorage.setItem(STATIONS_KEY, JSON.stringify(stations)) */
-  /* console.log(...stations)
-  await storageService.post(STATIONS_KEY, ...stations) */
 }
 async function save(currSongId) {
-  // throw new Error('Nope')
   await storageService.post(CURR_SONG, currSongId)
 }
 async function addToLikedSongs(likedSongs) {
-  console.log(likedSongs)
 
   await storageService.post(LIKED_SONGS, likedSongs)
 }
 
 async function removeSong(songId,station) {
-console.log(songId)
   var updateSongs = station.songs.filter(song => song._id !== songId)
   station.songs = updateSongs
-  console.log(station)
-  // throw new Error('Nope')
   await storageService.put(STATIONS_KEY, station)
 }
 

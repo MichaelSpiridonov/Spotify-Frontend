@@ -21,25 +21,26 @@ import { useSelector } from 'react-redux'
 
 export function StationDetails() {
   const { stationId } = useParams()
-  const [currStation, setCurrStation] = useState(null)
   const [color, setColor] = useState(null)
   const [search, setSearch] = useState(null)
   const [songs, setSongs] = useState([])
   const stations = useSelector(
     (storeState) => storeState.stationModule.stations
   )
+  const currStation = useSelector(
+    (storeState) => storeState.stationModule.currSelectedStation
+  )
 
 
   useEffect(() => {
-    loadLocalStation(stationId)  
+    setStation(stationId)  
   }, [stationId])
-  var modalOpen = false
-  async function loadLocalStation(stationId) {
-    const station = await stationService.getById(stationId)
- 
-      setCurrStation(station)
-   
 
+  var modalOpen = false
+
+  async function setStation(stationId) {
+    const station = await stationService.getById(stationId)
+    setCurrSelectedStation(station)
   }
 
   useEffect(() => {
@@ -95,7 +96,7 @@ export function StationDetails() {
   }
   document.addEventListener('click', clickOutsideListener) */
   window.onclick = function (event) {
-    const elModal = document.querySelector('.more-modal'))
+    const elModal = document.querySelector('.more-modal')
     if (event.target !== elModal&& elModal) {
       elModal.style.display = "none";
     }
@@ -185,7 +186,7 @@ export function StationDetails() {
             {search && songs.map(song => <SearchPreview key={song.videoId} song={song} />)}
 
           </section>
-          <MoreModal setCurrStation={setCurrStation} />
+          <MoreModal />
         </section>
         <AppFooter />
       </div>

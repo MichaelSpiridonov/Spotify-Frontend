@@ -6,17 +6,9 @@ import { stationService } from '../../services/station/station.service.local'
 import { useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 
-export function MoreModal({setCurrStation}) {
-    const { stationId } = useParams()
-    const [station, setStation] = useState(null)
+export function MoreModal() {
+    const station = useSelector((storeState) => storeState.stationModule.currSelectedStation)
     const song = useSelector((storeState) => storeState.stationModule.currSelectedSong)
-    useEffect(() => {
-        loadLocalStation(stationId)
-    }, [])
-    async function loadLocalStation(stationId) {
-        const station = await stationService.getById(stationId)
-        setStation(station)
-    }
 
     const stations = useSelector(storeState => storeState.stationModule.stations)
     const element = document.querySelector('.create-modal')
@@ -46,15 +38,13 @@ export function MoreModal({setCurrStation}) {
     }
 
     async function onRemoveSong() {
-        var newStation = await removeSong(song._id, station)
+        removeSong(song._id, station)
         element.style.display = 'none'
-        setCurrStation(newStation)
     }
 
     function clickOutsideListener(event) {
         if (!element) return
         if (!element.contains(event.target)) {
-            count = 0
             // Click outside the target element
             element.style.display = 'none'
             // Do something here, such as closing a modal, hiding a dropdown, etc.
