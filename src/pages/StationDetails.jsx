@@ -5,6 +5,8 @@ import React, { useEffect, useState, useRef } from 'react'
 import PlayIcon from '../assets/icons/play.svg?react'
 import AddIcon from '../assets/icons/addsong.svg?react'
 import SongOptionsIcon from '../assets/icons/song_options.svg?react'
+import SearchIcon from '../assets/icons/search.svg?react'
+import playlistDefaultImage from '../assets/icons/myplaylist.svg'
 
 import { MoreModal } from '../cmps/modals/MoreModal.jsx'
 import { stationService } from '../services/station'
@@ -14,12 +16,14 @@ import { FastAverageColor } from 'fast-average-color'
 import { getVideos } from '../services/youtube.service.js'
 import { formatDate, formatDuration } from '../services/util.service.js'
 import { SongList } from '../cmps/SongList.jsx'
+import { SearchPreview } from '../cmps/SearchPreview.jsx'
 
 export function StationDetails() {
   const { stationId } = useParams()
   const [station, setStation] = useState(null)
   const [color, setColor] = useState(null)
-
+  const [search, setSearch] = useState(null)
+  const [songs, setSongs] = useState([])
   useEffect(() => {
     loadLocalStation(stationId)
   }, [stationId])
@@ -28,7 +32,13 @@ export function StationDetails() {
     const station = await stationService.getById(stationId)
     setStation(station)
   }
-  console.log(stationId)
+
+  useEffect(() => {
+    getVideos(search).then(videos => setSongs(videos))
+  }, [search])
+  function handleChange({ target }) {
+    setSearch(target.value)
+  }
   var id
   async function getVideoId(name) {
     id = await getVideos(name)
@@ -77,11 +87,18 @@ export function StationDetails() {
   }
   document.addEventListener('click', clickOutsideListener)
   if (station) {
-    const fac = new FastAverageColor()
+    if (!color) {
 
-    fac.getColorAsync(station.createdBy.imgUrl).then((color) => {
-      setColor(color.rgb)
-    })
+      if (station.createdBy.imgUrl) {
+        const fac = new FastAverageColor()
+        fac.getColorAsync(station.createdBy.imgUrl).then((color) => {
+          setColor(color.rgb)
+        })
+      } else {
+        setColor("rgba(66, 64, 64, 0.6) 0")
+      }
+    }
+
   }
   if (!station) return
   const gradientStyle = {
@@ -92,11 +109,17 @@ export function StationDetails() {
       <div style={gradientStyle} className='station-details-container'>
         <AppHeader />
         <div className='station-header'>
-          <img
+          {station.createdBy.imgUrl && <img
             className='station-image'
             src={station.createdBy.imgUrl}
             alt={station.createdBy.fullname}
-          />
+          />}
+          {!station.createdBy.imgUrl &&
+            <div className='station-none-image'>
+             <svg data-encore-id="icon" role="img" aria-hidden="true" data-testid="playlist" class="Svg-sc-ytk21e-0 bneLcE" viewBox="0 0 24 24"><path d="M6 3h15v15.167a3.5 3.5 0 1 1-3.5-3.5H19V5H8v13.167a3.5 3.5 0 1 1-3.5-3.5H6V3zm0 13.667H4.5a1.5 1.5 0 1 0 1.5 1.5v-1.5zm13 0h-1.5a1.5 1.5 0 1 0 1.5 1.5v-1.5z"></path></svg>
+            </div>
+
+          }
           <div className='station-info'>
             <h3>Playlist</h3>
             <h1 className='station-name'>{station.name}</h1>
@@ -119,7 +142,7 @@ export function StationDetails() {
         </div>
 
         <section className='station-details'>
-          <div className='table-header'>
+          {station.songs[0] && <div className='table-header'>
             <span>#</span>
             <span>Title</span>
             <span>Album</span>
@@ -136,8 +159,18 @@ export function StationDetails() {
                 <path d='M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z'></path>
               </svg>
             </span>
-          </div>
-          <SongList songs={station.songs} onClickPlay={onClickPlay} onAddTo={onAddTo}/>
+          </div>}
+          {!station.songs[0] && <h1 className='header-input'>Let's find something for your playlist
+            </h1>}
+          <SongList songs={station.songs} onClickPlay={onClickPlay} onAddTo={onAddTo} />
+          {!station.songs[0] && <form className='search-details' action=''>
+            <label htmlFor=''><SearchIcon className /></label>
+            <input onChange={handleChange} value={search ? search : ''} placeholder='Search for songs' type='text' />
+          </form>}
+          <section className='station-details' >
+            {search && songs.map(song => <SearchPreview key={song.videoId} song={song} />)}
+
+          </section>
           <MoreModal />
         </section>
         <AppFooter />

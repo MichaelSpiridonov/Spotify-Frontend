@@ -104,26 +104,26 @@
     }
 
     form input {
+        
         width: 364px;;
         background-color: #242424;
         color: white;
-        border: #242424;
+        font-size: 14px;
+        /* border: #242424; */
         margin-left: 3px;
         margin-right: 3px;
     }
-
+    form:focus-within {
+        outline: 2px solid white;
+    }
     form svg {
         height: 16px;
         width: 16px;
         fill: white;
     }
-
-   /*  form:focus {
-
-            border: white;
-        
-    } */
-
+    form label{
+        margin-top: 11px;
+    }
 
     .play-button {
         fill: white;
@@ -139,4 +139,15 @@
         color: white;
         fill: white;
     }
+}
+input:focus-visible{
+    outline: none; /* Change color as per your design */
+    /* .search-details{
+        outline: white;
+    } */
+  /* Adjust thickness as needed */
+
+}
+input{
+    border: #242424;
 }

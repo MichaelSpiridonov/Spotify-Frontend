@@ -28,6 +28,24 @@
     border-radius: 6px;
     object-fit: cover;
   }
+  .library-none-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    background-color:rgb(37, 37, 37);
+    border-radius: 5px;
+    margin: 0;
+    margin-right: 10px;
+    margin-left: 10px;
+    svg{
+      height:25px;
+      width:25px;
+      fill: rgb(158, 157, 157);
+      
+    }  
+  }
   .station-details {
     display: flex;
     flex-direction: column;

@@ -6,7 +6,7 @@ export function SongList({ songs, onAddTo, onClickPlay }) {
     <>
       {songs.map((song) => (
             <section key={song._id} className='item'>
-                <SongPreview song={song} onAddTo={onAddTo} onClickPlay={onClickPlay} />
+                <SongPreview key={song._id} song={song} onAddTo={onAddTo} onClickPlay={onClickPlay} />
             </section>
           ))}
     </>
