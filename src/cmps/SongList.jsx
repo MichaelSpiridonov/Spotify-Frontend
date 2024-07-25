@@ -1,15 +1,18 @@
+import { useSelector } from 'react-redux';
+import { loadStation, setCurrSelectedStation, updateSongIdx } from '../store/actions/station.actions';
 import { SongPreview } from './SongPreview'
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { stationService } from '../services/station'
 export function SongList({ songs, onAddTo, onClickPlay }) {
-  function onDragEnd(result) {
+  const currSelectedStation = useSelector((storeState) => storeState.stationModule.currSelectedStation)
+  async function onDragEnd(result) {
     const { destination, source} = result
     console.log(result)
     if (!destination) return
     if (destination.droppableId === source.droppableId && destination.index === source.index) return
       const [removed] = songs.splice(source.index, 1);
       songs.splice(destination.index, 0, [removed][0]);
-      console.log(songs)
-      //setStations(songs)
+      updateSongIdx(songs, currSelectedStation)
   }
 
   if(!songs) return

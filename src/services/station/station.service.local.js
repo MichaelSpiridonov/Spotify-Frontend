@@ -24,11 +24,10 @@ export const stationService = {
   getById,
   remove,
   save,
-  updateStations,
+  updateStation,
   addToLikedSongs,
   addNewStation,
   queryAlbums,
-  removeSong
 }
 window.cs = stationService
 
@@ -47,7 +46,7 @@ function getById(stationId) {
 async function remove(stationId) {
   await storageService.remove(STATIONS_KEY, stationId)
 }
-async function updateStations(station) {
+async function updateStation(station) {
   await storageService.put(STATIONS_KEY, station)
 }
 async function addNewStation(station) {
@@ -59,14 +58,6 @@ async function save(currSongId) {
 async function addToLikedSongs(likedSongs) {
 
   await storageService.post(LIKED_SONGS, likedSongs)
-}
-
-async function removeSong(songId,station) {
-  var updateSongs = station.songs.filter(song => song._id !== songId)
-  station.songs = updateSongs
-  
-  // throw new Error('Nope')
-  await storageService.put(STATIONS_KEY, station)
 }
 
 async function _createSpotifyStations() {

@@ -18,6 +18,7 @@ export function StationList() {
       saveToStorage('stations', stations)
       loadStations()
   }
+  
   const likedSongs = useSelector(storeState => storeState.stationModule.likedSongs)
   if(!stations) return
   return (

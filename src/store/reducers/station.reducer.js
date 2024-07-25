@@ -10,6 +10,7 @@ export const UPDATE_LIKED_SONGS = 'UPDATE_LIKED_SONGS'
 export const UPDATE_STATIONS = 'UPDATE_STATIONS'
 export const SET_CURR_SELECTED_STATION = 'SET_CURR_CLICKED_STATION'
 export const SET_CURR_SELECTED_SONG = 'SET_CURR_CLICKED_SONG'
+export const UPDATE_SONG_IDX = 'UPDATE_SONG_IDX'
 const initialState = {
     stations: JSON.parse(localStorage.getItem('stations')) || null,
     station: null,
@@ -73,6 +74,20 @@ export function stationReducer(state = initialState, action) {
 
             newState = { ...state, currSelectedStation: updatedCurrSelectedStation, lastRemovedSong }
             break
+
+        case UPDATE_SONG_IDX:
+
+            const updateSongIdx = state.currSelectedStation.songs.map((song) =>
+                song._id === action.songId ? { ...song, ...updateSongIdx } : song
+            );
+        
+            const updatedStation = {
+                ...state.currSelectedStation,
+                songs: updateSongIdx
+            };
+        
+                newState = { ...state, currSelectedStation: updatedStation }
+             break
 
             case SET_CURR_SELECTED_STATION:
             newState = { ...state, currSelectedStation: action.station }

@@ -10,6 +10,7 @@ import {
     UPDATE_STATIONS,
     SET_CURR_SELECTED_STATION,
     SET_CURR_SELECTED_SONG,
+    UPDATE_SONG_IDX,
 } from '../reducers/station.reducer'
 import { stationService } from '../../services/station'
 
@@ -37,7 +38,7 @@ export async function updateStations(song, station, idx) {
     try {
         const Station = await stationService.getById(station._id)
         console.log(Station)
-        stationService.updateStations(station)
+        stationService.updateStation(station)
         station.songs.push(song)
         store.dispatch(getCmdUpdateStations({ station, idx }))
     } catch (err) {
@@ -91,6 +92,7 @@ export async function updateSong(song) {
     }
 }
 
+
 export async function setCurrSelectedSong(song) {
     try {
         console.log('action song:', song);
@@ -115,8 +117,7 @@ export async function removeSong(songId, station) {
     try {
         var updateSongs = station.songs.filter(song => song._id !== songId)
         station.songs = updateSongs
-        console.log(station, songId)
-        await stationService.removeSong(songId, station)
+        await stationService.updateStation(station)
         store.dispatch(getCmdRemoveSong(songId, station))
         return station
     } catch (err) {
@@ -124,6 +125,17 @@ export async function removeSong(songId, station) {
         throw err
     }
 }
+
+export async function updateSongIdx(songs, station) {
+    try {
+        station.songs = songs
+        await stationService.updateStation(station)
+        store.dispatch(getCmdUpdateSongIdx(songs))
+    }catch (err) {
+        throw err
+    }
+}
+
 
 export async function addToLikedSongs(likedsong) {
     let songs = []
@@ -207,6 +219,13 @@ function getCmdRemoveSong(songId, station) {
         type: REMOVE_SONG,
         songId,
         station
+    }
+}
+
+function getCmdUpdateSongIdx(songs) {
+    return {
+        type: UPDATE_SONG_IDX,
+        songs
     }
 }
 
