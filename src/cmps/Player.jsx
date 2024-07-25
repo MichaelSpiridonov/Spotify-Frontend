@@ -42,7 +42,7 @@ export function Player(props) {
   const onStateChange = useCallback(
     async (event) => {
       if (isRepeat && event.data === window.YT.PlayerState.ENDED) {
-        onPlayNext()
+        onPlay('next')
         setTimeout(() => {
           player.playVideo()
         }, 1000)
@@ -51,7 +51,7 @@ export function Player(props) {
           player.playVideo()
         }, 1000)
       } else if (event.data === window.YT.PlayerState.ENDED) {
-        onPlayNext()
+        onPlay('next')
         setIsPlaying(false)
         setCurrentTime(0)
         setDuration(player.getDuration())
