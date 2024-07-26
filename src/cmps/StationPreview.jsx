@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import playlistDefaultImage from '../assets/icons/myplaylist.svg'
-import { MoreModal } from './modals/MoreModal'
-import { StationModal } from './modals/StationModal'
 import { setCurrSelectedStation } from '../store/actions/station.actions'
-import { useSelector } from 'react-redux'
 
 export function StationPreview({ station }) {
   if (!station.tags) return

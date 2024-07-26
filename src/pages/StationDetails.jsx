@@ -21,30 +21,27 @@ import { useSelector } from 'react-redux'
 
 export function StationDetails() {
   const { stationId } = useParams()
-  const [currStation, setCurrStation] = useState(null)
   const [color, setColor] = useState(null)
   const [search, setSearch] = useState(null)
   const [songs, setSongs] = useState([])
+  const stations = useSelector(
+    (storeState) => storeState.stationModule.stations
+  )
+  const currStation = useSelector(
+    (storeState) => storeState.stationModule.currSelectedStation
+  )
+
 
   
   useEffect(() => {
-    loadLocalStation(stationId)
-    if (search) {
-      getVideos(search).then(videos => setSongs(videos))
-    }
-  }, [stationId, search, currStation])
-  async function loadLocalStation(stationId) {
+    setStation(stationId)  
+  }, [stationId])
+
+  var modalOpen = false
+
+  async function setStation(stationId) {
     const station = await stationService.getById(stationId)
-    console.log(station)
-    console.log(currStation)
-    if (currStation === null) {
-      console.log('hi')
-      setCurrStation(station)
-    }
-    else if (station.songs.length !== currStation.songs.length) {
-      console.log('hi')
-      setCurrStation(station)
-    }
+    setCurrSelectedStation(station)
   }
   function handleChange({ target }) {
     setSearch(target.value)
@@ -96,7 +93,7 @@ export function StationDetails() {
   document.addEventListener('click', clickOutsideListener) */
   window.onclick = function (event) {
     const elModal = document.querySelector('.more-modal')
-    if (event.target !== elModal && elModal) {
+    if (event.target !== elModal&& elModal) {
       elModal.style.display = "none";
     }
   }
@@ -182,7 +179,7 @@ export function StationDetails() {
             {search && songs.map(song => <SearchPreview key={song.videoId} song={song} />)}
 
           </section>
-          <MoreModal setCurrStation={setCurrStation} />
+          <MoreModal />
         </section>
         <AppFooter />
       </div>

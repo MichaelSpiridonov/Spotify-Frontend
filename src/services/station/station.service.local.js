@@ -28,7 +28,7 @@ export const stationService = {
   getById,
   remove,
   save,
-  updateStations,
+  updateStation,
   addToLikedSongs,
   addNewStation,
   queryAlbums,
@@ -50,64 +50,30 @@ function getById(stationId) {
 }
 
 async function remove(stationId) {
-  // throw new Error('Nope')
   await storageService.remove(STATIONS_KEY, stationId)
 }
-async function updateStations(station) {
-  // throw new Error('Nope')
-  console.log(station)
+async function updateStation(station) {
   await storageService.put(STATIONS_KEY, station)
-  /* localStorage.setItem(STATIONS_KEY, JSON.stringify(stations)) */
-  /* console.log(...stations)
-  await storageService.post(STATIONS_KEY, ...stations) */
 }
 async function addNewStation(station) {
-  // throw new Error('Nope')
-  console.log(station)
   await storageService.post(STATIONS_KEY, station)
-  /* localStorage.setItem(STATIONS_KEY, JSON.stringify(stations)) */
-  /* console.log(...stations)
-  await storageService.post(STATIONS_KEY, ...stations) */
 }
 async function save(currSongId) {
-  // throw new Error('Nope')
   await storageService.post(CURR_SONG, currSongId)
 }
 async function addToLikedSongs(likedSongs) {
-  console.log(likedSongs)
 
   await storageService.post(LIKED_SONGS, likedSongs)
 }
 
-async function removeSong(songId, station) {
+async function removeSong(songId,station) {
   var updateSongs = station.songs.filter(song => song._id !== songId)
   station.songs = updateSongs
-
+  
   // throw new Error('Nope')
   await storageService.put(STATIONS_KEY, station)
 }
-async function getTracks(searchVal) {
-  if (gSongsCache[searchVal]) {
-    return Promise.resolve(gSongsCache[searchVal])
-  }
-  const tracks = await spotifyService.searchTracks(searchVal);
-  console.log(tracks)
-  const songs = await Promise.all(tracks.map(track => {
-    return {
-      imgUrl: track.album.images[0].url,
-      artist: track.artists[0].name,
-      duration: track.duration_ms,
-      title: track.name,
-      _id: makeId(),
-      albumName: track.album.name,
-      releaseDate: track.album.release_date
-    }
-  }))
-  gSongsCache[searchVal] = songs
-  saveToStorage(SPOTIFY_CACHE, gSongsCache)
-  storageService.post(SPOTIFY_CACHE, songs);
-  return songs
-}
+
 async function _createSpotifyStations() {
   let stations = loadFromStorage(STATIONS_KEY);
   let albums = loadFromStorage(ALBUMS_KEY);

@@ -10,6 +10,7 @@ export const UPDATE_LIKED_SONGS = 'UPDATE_LIKED_SONGS'
 export const UPDATE_STATIONS = 'UPDATE_STATIONS'
 export const SET_CURR_SELECTED_STATION = 'SET_CURR_CLICKED_STATION'
 export const SET_CURR_SELECTED_SONG = 'SET_CURR_CLICKED_SONG'
+export const UPDATE_SONG_IDX = 'UPDATE_SONG_IDX'
 const initialState = {
     stations: JSON.parse(localStorage.getItem('stations')) || null,
     station: null,
@@ -24,6 +25,8 @@ export function stationReducer(state = initialState, action) {
     var newState = state
     var stations
     var station
+    var currSelectedStation
+    console.log('Action:', action)
     switch (action.type) {
         case SET_STATIONS:
             newState = { ...state, stations: action.stations }
@@ -31,7 +34,6 @@ export function stationReducer(state = initialState, action) {
         case UPDATE_STATIONS:
             const stationIdx = state.stations.findIndex(
                 (station) => station._id === action.stations.station._id )
-                console.log(stationIdx)
                 station = action.stations.station
              stations = state.stations
              stations[stationIdx] = station
@@ -56,17 +58,35 @@ export function stationReducer(state = initialState, action) {
             newState = { ...state, currSong: action.song }
             break
         case REMOVE_SONG:
-            var idx = state.stations.findIndex((station) => station._id === action.station._id)
-            var newStations = state.stations
-            newStations[idx] = action.station 
-            newState = { ...state,stations:newStations } 
-            /* const lastRemovedSong = state.currSelectedStation.songs.find(
-                (song) => song._id === action.song._id
-            )
-            station = state.currSelectedStation.songs.filter(
-                (song) => song._id !== action.song._id
-            )
-            newState = { ...state, station, lastRemovedSong } */
+            const lastRemovedSong = state.currSelectedStation.songs.find(
+                (song) => song._id === action.songId
+            );
+        
+            const updatedSongs = state.currSelectedStation.songs.filter(
+                (song) => song._id !== action.songId
+            );
+        
+            const updatedCurrSelectedStation = {
+                ...state.currSelectedStation,
+                songs: updatedSongs
+            }
+
+            newState = { ...state, currSelectedStation: updatedCurrSelectedStation, lastRemovedSong }
+            break
+
+        case UPDATE_SONG_IDX:
+
+            const updateSongIdx = state.currSelectedStation.songs.map((song) =>
+                song._id === action.songId ? { ...song, ...updateSongIdx } : song
+            );
+        
+            const updatedStation = {
+                ...state.currSelectedStation,
+                songs: updateSongIdx
+            };
+        
+                newState = { ...state, currSelectedStation: updatedStation }
+             break
 
             case SET_CURR_SELECTED_STATION:
             newState = { ...state, currSelectedStation: action.station }
