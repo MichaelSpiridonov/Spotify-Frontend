@@ -6,10 +6,17 @@ import { makeId } from '../../services/util.service'
 import { addNewStation } from '../../store/actions/station.actions'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import React, { useState } from 'react'
+import { StationEditModal } from './StationEditModal.jsx'
 
 export function StationModal() {
-  const currStation = useSelector((storeState) => storeState.stationModule.currSelectedStation)
-  const stations = useSelector((storeState) => storeState.stationModule.stations)
+  const currStation = useSelector(
+    (storeState) => storeState.stationModule.currSelectedStation
+  )
+  const stations = useSelector(
+    (storeState) => storeState.stationModule.stations
+  )
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const element = document.querySelector('.station-modal')
   const navigate = useNavigate()
   var count = 0
@@ -25,6 +32,12 @@ export function StationModal() {
     }
     await addNewStation(station)
     navigate(`/station/${station._id}`)
+  }
+
+  // Function to handle editing the station
+  async function onEditStation() {
+    element.style.display = 'none' // Hide the StationModal
+    setIsEditModalOpen(true) // Show the StationEditModal
   }
 
   function onRemoveStation() {
@@ -44,10 +57,10 @@ export function StationModal() {
   }
 
   document.addEventListener('click', clickOutsideListener)
-   return (
+  return (
     <article className='station-modal'>
       <ul key={'modal-container'}>
-        <li>
+        <li onClick={onEditStation}>
           <svg
             data-encore-id='icon'
             role='img'
@@ -83,6 +96,12 @@ export function StationModal() {
           Create playlist
         </li>
       </ul>
+      {isEditModalOpen && (
+        <StationEditModal
+          station={currStation}
+          onClose={() => setIsEditModalOpen(false)}
+        />
+      )}
     </article>
   )
 }
