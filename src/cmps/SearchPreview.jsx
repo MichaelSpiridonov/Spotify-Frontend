@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import AddIcon from '../assets/icons/addsong.svg?react'
 import Play from '../assets/icons/play.svg?react'
-import { updateSong } from '../store/actions/station.actions'
+import { setCurrSelectedSong, updateSong } from '../store/actions/station.actions'
 
 import { addToLikedSongs } from '../store/actions/station.actions'
 import { MoreModal } from './modals/MoreModal'
@@ -22,14 +22,17 @@ export function SearchPreview({ song }) {
         return id[0].videoId
     }
     function onAddTo(event) {
+        setCurrSelectedSong(song)
         setSongToAdd(song)
-        const x = event.clientX
+        const x = event.clientX -550
         const y = event.clientY
         console.log(`Clicked at X=${x}, Y=${y}`)
         const elModal = document.querySelector('.more-modal')
+        console.log(elModal)
         elModal.style.left = `${x}px`
         elModal.style.top = `${y}px`
         elModal.style.display = 'block'
+        event.stopPropagation();
     }
 
     const targetElement = document.querySelector('.more-modal');
@@ -44,9 +47,8 @@ export function SearchPreview({ song }) {
                 // Right-click was detected
                 console.log('Right-click detected!');
                 event.preventDefault();
-                const x = event.clientX
-                const y = event.clientY + 20
-
+                const x = event.clientX -510
+                const y = event.clientY -10
                 const elModal = document.querySelector('.more-modal')
                 elModal.style.left = `${x}px`
                 elModal.style.top = `${y}px`
@@ -74,21 +76,23 @@ export function SearchPreview({ song }) {
     // Adding click event listener to the document
     document.addEventListener('click', clickOutsideListener);
     return <article id={song.title} className='item'>
-        <div className='play-button' onClick={({ target }) => onClickPlay(song, target)}><Play /></div>
-        <img className='song-image' src={song.imgUrl} alt='' />
-        <section>
-            <span className='station-song-detail'>{song.title}</span>
-            <span className='song-artist' >{song.artist}</span>
+        <section className='left-side-preview'>
+            <div className='play-button' onClick={({ target }) => onClickPlay(song, target)}><Play /></div>
+            <img className='song-image' src={song.imgUrl} alt='' />
+            <section className='info-container'>
+                <span className='station-song-detail'>{song.title}</span>
+                <span className='song-artist' >{song.artist}</span>
+            </section>
         </section>
-        <span className='song-album'>{song.albumName}</span>
-        <span className='song-date'>{formatDate(song.realeasesDate)}</span>
-        <div className='add-button'>
-            <AddIcon onClick={onAddToLikedSongs} />
-        </div>
-        <span className='song-length'>{formatDuration(song.duration)}</span>
-        <div className='options-button' >
-            <svg onClick={onAddTo} data-encore-id='icon' role='img' aria-hidden='true' viewBox='0 0 16 16' ><path d='M3 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm6.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM16 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z'></path></svg>
-        </div>
-        <MoreModal song={songToAdd} />
+        <section className='right-side-preview'>
+
+            <div className='add-button'>
+                <AddIcon onClick={onAddToLikedSongs} />
+            </div>
+            <span className='song-length'>{formatDuration(song.duration)}</span>
+            <div className='options-button' >
+                <svg onClick={onAddTo} data-encore-id='icon' role='img' aria-hidden='true' viewBox='0 0 16 16' ><path d='M3 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm6.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM16 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z'></path></svg>
+            </div>
+        </section>
     </article>
 }

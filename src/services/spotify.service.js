@@ -32,10 +32,7 @@ const spotifyService = {
       }
     });
 
-    const data = await response.json();
-    data.tracks.items.forEach(track => {
-      console.log(`Track: ${JSON.stringify(track)} by ${track.artists[0].name}`);
-    });
+
 
     const rapPromise = axios.get(`${BASE_URL}/browse/categories/hiphop/playlists`, {
       headers: {

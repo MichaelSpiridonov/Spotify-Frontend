@@ -17,10 +17,10 @@ const STATION_KEY = 'station'
 const ARTISTS_KEY = 'artist'
 const SPOTIFY_CACHE = 'spDB'
 //_createStations()
-if (!localStorage.getItem(ALBUMS_KEY) && !localStorage.getItem(STATIONS_KEY) && !localStorage.getItem(ARTISTS_KEY)) {
+/* if (!localStorage.getItem(ALBUMS_KEY) && !localStorage.getItem(STATIONS_KEY) && !localStorage.getItem(ARTISTS_KEY)) {
   _createSpotifyStations()
-}
-
+} */
+_createSpotifyStations()
 let gSongsCache = loadFromStorage(SPOTIFY_CACHE) || {}
 
 export const stationService = {
@@ -82,7 +82,7 @@ async function getTracks(searchVal) {
   const songs = await Promise.all(tracks.map(track => {
     return {
       imgUrl: track.album.images[0].url,
-      artist: track.artists[0].name,
+      artists: [track.artists[0].name],
       duration: track.duration_ms,
       title: track.name,
       _id: makeId(),
@@ -111,18 +111,20 @@ async function _createSpotifyStations() {
       const categoryStationPromises = categoryPlaylists.map(async playlist => {
         const tracks = await spotifyService.getTracks(playlist.id);
         const songs = await Promise.all(tracks.map(async track => {
-          track.artists.forEach(artist => artistSet.add(artist.id));
+          if (track) {
+            track.artists.forEach(artist => artistSet.add(artist.id));
 
-          return {
-            _id: track.id,
-            title: track.name,
-            duration: track.duration_ms,
-            isExplicit: track.explicit,
-            artists: track.artists,
-            imgUrl: track.album.images[0].url,
-            albumName: track.album.name,
-            addedAt: new Date(track.album.release_date).getTime()
-          };
+            return {
+              _id: track.id,
+              title: track.name,
+              duration: track.duration_ms,
+              isExplicit: track.explicit,
+              artists: track.artists,
+              imgUrl: track.album.images[0].url,
+              albumName: track.album.name,
+              addedAt: new Date(track.album.release_date).getTime()
+            };
+          }
         }));
 
         return {

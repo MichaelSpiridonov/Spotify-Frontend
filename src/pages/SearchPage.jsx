@@ -3,8 +3,9 @@ import { TopicPreview } from '../cmps/TopicPreview'
 import { getVideos } from '../services/youtube.service'
 import { SearchPreview } from '../cmps/SearchPreview'
 import { AppHeader } from '../cmps/AppHeader'
-import  SearchIcon  from '../assets/icons/search.svg?react';
+import SearchIcon from '../assets/icons/search.svg?react';
 import { stationService } from '../services/station/station.service.local'
+import { MoreModal } from '../cmps/modals/MoreModal'
 
 
 const topics = [
@@ -62,8 +63,8 @@ export function SearchPage() {
     const [search, setSearch] = useState('')
     const [songs, setSongs] = useState([])
     useEffect(() => {
-        if(search){
-          stationService.getTracks(search).then(songs => setSongs(songs))
+        if (search) {
+            stationService.getTracks(search).then(songs => setSongs(songs))
         }
     }, [search])
     function handleChange({ target }) {
@@ -71,11 +72,11 @@ export function SearchPage() {
     }
     console.log(songs)
     return <section className='search-page' >
-        <AppHeader/>
+        <AppHeader />
         <form action=''>
             <label htmlFor=''><SearchIcon /></label>
-            <input onChange={handleChange} value={search? search: ''} placeholder='What do you want to play?' type='text' />
-        </form> 
+            <input onChange={handleChange} value={search ? search : ''} placeholder='What do you want to play?' type='text' />
+        </form>
         {search !== '' && <h1>Songs</h1>}
         {search === '' && <section>
             <h1>Browse All</h1>
@@ -84,8 +85,8 @@ export function SearchPage() {
             </section>
         </section>}
         <section className='station-details' >
-        {songs && songs.map(song => <SearchPreview key={song._id} song={song}/> ) }
-
+            {songs && songs.map(song => <SearchPreview key={song._id} song={song} />)}
+            <MoreModal />
         </section>
 
     </section>
