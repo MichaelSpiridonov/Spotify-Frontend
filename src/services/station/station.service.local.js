@@ -66,14 +66,35 @@ async function addToLikedSongs(likedSongs) {
   await storageService.post(LIKED_SONGS, likedSongs)
 }
 
-async function removeSong(songId,station) {
+async function removeSong(songId, station) {
   var updateSongs = station.songs.filter(song => song._id !== songId)
   station.songs = updateSongs
-  
+
   // throw new Error('Nope')
   await storageService.put(STATIONS_KEY, station)
 }
-
+async function getTracks(searchVal) {
+  if (gSongsCache[searchVal]) {
+    return Promise.resolve(gSongsCache[searchVal])
+  }
+  const tracks = await spotifyService.searchTracks(searchVal);
+  console.log(tracks)
+  const songs = await Promise.all(tracks.map(track => {
+    return {
+      imgUrl: track.album.images[0].url,
+      artist: track.artists[0].name,
+      duration: track.duration_ms,
+      title: track.name,
+      _id: makeId(),
+      albumName: track.album.name,
+      releaseDate: track.album.release_date
+    }
+  }))
+  gSongsCache[searchVal] = songs
+  saveToStorage(SPOTIFY_CACHE, gSongsCache)
+  storageService.post(SPOTIFY_CACHE, songs);
+  return songs
+}
 async function _createSpotifyStations() {
   let stations = loadFromStorage(STATIONS_KEY);
   let albums = loadFromStorage(ALBUMS_KEY);
