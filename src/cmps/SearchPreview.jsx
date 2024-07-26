@@ -6,18 +6,25 @@ import { updateSong } from '../store/actions/station.actions'
 
 import { addToLikedSongs } from '../store/actions/station.actions'
 import { MoreModal } from './modals/MoreModal'
+import { formatDate, formatDuration } from '../services/util.service'
+import { getVideos } from '../services/youtube.service'
 export function SearchPreview({ song }) {
     const [songToAdd, setSongToAdd] = useState(null)
     var count = 0
-    function onClickPlay(song, target) {
-        console.log(target)
-        let station = { title: song.title, id: song.videoId, imgUrl: song.thumbnail }
+    async function onClickPlay(song, target) {
+        var videoId = await getVideoId(song.title)
+        console.log(videoId)
+        let station = { title: song.title, id: videoId, imgUrl: song.imgUrl, artists: [song.artist] }
         updateSong(station)
+    }
+    async function getVideoId(name) {
+        var id = await getVideos(name)
+        return id[0].videoId
     }
     function onAddTo(event) {
         setSongToAdd(song)
-        const x = event.clientX  
-        const y = event.clientY 
+        const x = event.clientX
+        const y = event.clientY
         console.log(`Clicked at X=${x}, Y=${y}`)
         const elModal = document.querySelector('.more-modal')
         elModal.style.left = `${x}px`
@@ -68,13 +75,17 @@ export function SearchPreview({ song }) {
     document.addEventListener('click', clickOutsideListener);
     return <article id={song.title} className='item'>
         <div className='play-button' onClick={({ target }) => onClickPlay(song, target)}><Play /></div>
-        <img className='song-image' src={song.thumbnail} alt='' />
-        <h1 className='song-info' >{song.title}</h1>
+        <img className='song-image' src={song.imgUrl} alt='' />
+        <section>
+            <span className='station-song-detail'>{song.title}</span>
+            <span className='song-artist' >{song.artist}</span>
+        </section>
+        <span className='song-album'>{song.albumName}</span>
+        <span className='song-date'>{formatDate(song.realeasesDate)}</span>
         <div className='add-button'>
             <AddIcon onClick={onAddToLikedSongs} />
-
         </div>
-
+        <span className='song-length'>{formatDuration(song.duration)}</span>
         <div className='options-button' >
             <svg onClick={onAddTo} data-encore-id='icon' role='img' aria-hidden='true' viewBox='0 0 16 16' ><path d='M3 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm6.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM16 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z'></path></svg>
         </div>

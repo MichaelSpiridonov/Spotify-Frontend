@@ -4,6 +4,7 @@ import { getVideos } from '../services/youtube.service'
 import { SearchPreview } from '../cmps/SearchPreview'
 import { AppHeader } from '../cmps/AppHeader'
 import  SearchIcon  from '../assets/icons/search.svg?react';
+import { stationService } from '../services/station/station.service.local'
 
 
 const topics = [
@@ -61,11 +62,14 @@ export function SearchPage() {
     const [search, setSearch] = useState('')
     const [songs, setSongs] = useState([])
     useEffect(() => {
-       getVideos(search).then(videos=> setSongs(videos))
+        if(search){
+          stationService.getTracks(search).then(songs => setSongs(songs))
+        }
     }, [search])
     function handleChange({ target }) {
         setSearch(target.value)
     }
+    console.log(songs)
     return <section className='search-page' >
         <AppHeader/>
         <form action=''>
@@ -80,7 +84,7 @@ export function SearchPage() {
             </section>
         </section>}
         <section className='station-details' >
-        {search && songs.map(song => <SearchPreview key={song.videoId} song={song}/> ) }
+        {songs && songs.map(song => <SearchPreview key={song._id} song={song}/> ) }
 
         </section>
 

@@ -4,20 +4,24 @@ import {
 import spotifyService from '../spotify.service'
 import {
   loadFromStorage,
+  makeId,
   saveToStorage
 } from '../util.service'
 
 const STATIONS_KEY = 'stations'
 const ALBUMS_KEY = 'albums'
+const SONGS_KEY = 'songs '
 const CURR_SONG = 'currSong'
 const LIKED_SONGS = 'likedsongs'
 const STATION_KEY = 'station'
 const ARTISTS_KEY = 'artist'
+const SPOTIFY_CACHE = 'spDB'
 //_createStations()
-if(!localStorage.getItem(ALBUMS_KEY) && !localStorage.getItem(STATIONS_KEY) && !localStorage.getItem(ARTISTS_KEY)  ){
+if (!localStorage.getItem(ALBUMS_KEY) && !localStorage.getItem(STATIONS_KEY) && !localStorage.getItem(ARTISTS_KEY)) {
   _createSpotifyStations()
 }
 
+let gSongsCache = loadFromStorage(SPOTIFY_CACHE) || {}
 
 export const stationService = {
   query,
@@ -28,7 +32,8 @@ export const stationService = {
   addToLikedSongs,
   addNewStation,
   queryAlbums,
-  removeSong
+  removeSong,
+  getTracks
 }
 window.cs = stationService
 
@@ -36,7 +41,7 @@ async function query() {
   var stations = await storageService.query(STATIONS_KEY)
   return stations
 }
-async function queryAlbums(){
+async function queryAlbums() {
   var albums = await storageService.query('albums')
   return albums
 }
@@ -74,21 +79,42 @@ async function addToLikedSongs(likedSongs) {
   await storageService.post(LIKED_SONGS, likedSongs)
 }
 
-async function removeSong(songId,station) {
+async function removeSong(songId, station) {
   var updateSongs = station.songs.filter(song => song._id !== songId)
   station.songs = updateSongs
-  
+
   // throw new Error('Nope')
   await storageService.put(STATIONS_KEY, station)
 }
-
+async function getTracks(searchVal) {
+  if (gSongsCache[searchVal]) {
+    return Promise.resolve(gSongsCache[searchVal])
+  }
+  const tracks = await spotifyService.searchTracks(searchVal);
+  console.log(tracks)
+  const songs = await Promise.all(tracks.map(track => {
+    return {
+      imgUrl: track.album.images[0].url,
+      artist: track.artists[0].name,
+      duration: track.duration_ms,
+      title: track.name,
+      _id: makeId(),
+      albumName: track.album.name,
+      releaseDate: track.album.release_date
+    }
+  }))
+  gSongsCache[searchVal] = songs
+  saveToStorage(SPOTIFY_CACHE, gSongsCache)
+  storageService.post(SPOTIFY_CACHE, songs);
+  return songs
+}
 async function _createSpotifyStations() {
   let stations = loadFromStorage(STATIONS_KEY);
   let albums = loadFromStorage(ALBUMS_KEY);
   let artists = loadFromStorage(ARTISTS_KEY);
   const artistSet = new Set();
 
-  if (!stations || !stations.length ) {
+  if (!stations || !stations.length) {
     stations = [];
     albums = [];
     artists = []
@@ -131,7 +157,10 @@ async function _createSpotifyStations() {
     });
 
     stations = (await Promise.all(stationPromises)).flat();
-    
+
+
+    // Save tracks to local storage
+
 
     const station = {
       _id: '5cksxjas89xjsa8xjsa8jxs09',
@@ -144,35 +173,35 @@ async function _createSpotifyStations() {
       },
       likedByUsers: ['{minimal-user}', '{minimal-user}'],
       songs: [{
-          _id: 'dQw4w9WgXcQ',
-          title: 'Rick Astley - Never Gonna Give You Up',
-          url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-          imgUrl: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-          addedBy: '{minimal-user}',
-          likedBy: ['{minimal-user}'],
-          addedAt: 162521765262,
-          duration: 212000,
-          artists: [{
-            id: "7lwdlhwSxbB36wqnOwo5Kd",
-            name: "Rick Astley",
-            type: "artist",
-          }],
-          albumName: 'Album',
-        },
-        {
-          _id: '_4gUVl5pjps',
-          title: '21 Savage - ball w/o you',
-          url: 'https://www.youtube.com/watch?v=_4gUVl5pjps',
-          imgUrl: 'https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg',
-          addedBy: {},
-          duration: 193000,
-          artists: [{
-            id: "uhughyfyvviiyviyviy",
-            name: "21 Savage",
-            type: "artist",
-          }],
-          albumName: 'Album',
-        },
+        _id: 'dQw4w9WgXcQ',
+        title: 'Rick Astley - Never Gonna Give You Up',
+        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        imgUrl: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
+        addedBy: '{minimal-user}',
+        likedBy: ['{minimal-user}'],
+        addedAt: 162521765262,
+        duration: 212000,
+        artists: [{
+          id: "7lwdlhwSxbB36wqnOwo5Kd",
+          name: "Rick Astley",
+          type: "artist",
+        }],
+        albumName: 'Album',
+      },
+      {
+        _id: '_4gUVl5pjps',
+        title: '21 Savage - ball w/o you',
+        url: 'https://www.youtube.com/watch?v=_4gUVl5pjps',
+        imgUrl: 'https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg',
+        addedBy: {},
+        duration: 193000,
+        artists: [{
+          id: "uhughyfyvviiyviyviy",
+          name: "21 Savage",
+          type: "artist",
+        }],
+        albumName: 'Album',
+      },
       ],
     }
     const station2 = {
@@ -186,55 +215,55 @@ async function _createSpotifyStations() {
       },
       likedByUsers: ['{minimal-user}', '{minimal-user}'],
       songs: [{
-          _id: 'dQw4w9WgXcQ',
-          title: 'Rick Astley - Never Gonna Give You Up',
-          url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-          imgUrl: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-          addedBy: '{minimal-user}',
-          likedBy: ['{minimal-user}'],
-          addedAt: 162521765262,
-          duration: 212000,
-          artists: [{
-            id: "7lwdlhwSxbB36wqnOwo5Kd",
-            name: "Rick Astley",
-            type: "artist",
-          }],
-          albumName: 'Album',
+        _id: 'dQw4w9WgXcQ',
+        title: 'Rick Astley - Never Gonna Give You Up',
+        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        imgUrl: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
+        addedBy: '{minimal-user}',
+        likedBy: ['{minimal-user}'],
+        addedAt: 162521765262,
+        duration: 212000,
+        artists: [{
+          id: "7lwdlhwSxbB36wqnOwo5Kd",
+          name: "Rick Astley",
+          type: "artist",
+        }],
+        albumName: 'Album',
+      },
+      {
+        _id: '_4gUVl5pjps',
+        title: '21 Savage - ball w/o you',
+        url: 'https://www.youtube.com/watch?v=_4gUVl5pjps',
+        imgUrl: 'https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg',
+        addedBy: 162521765264,
+        duration: 193000,
+        artists: [{
+          id: "7lwdlhwSxbB36wqnOwo5Kd",
+          name: "21 Savage",
+          type: "artist",
+        }],
+        albumName: 'Album',
+      },
+      {
+        _id: 'r8GXHS4s9K4',
+        title: 'Lady Gaga & Beyoncé - Telephone',
+        url: 'https://www.youtube.com/watch?v=r8GXHS4s9K4',
+        imgUrl: 'https://i.ytimg.com/vi/r8GXHS4s9K4/mqdefault.jpg',
+        addedAt: 162521765266,
+        duration: 220000,
+        artists: [{
+          id: "7lwdlhwSxbB36wqnOwo5Kd",
+          name: "Lady Gaga",
+          type: "artist",
         },
         {
-          _id: '_4gUVl5pjps',
-          title: '21 Savage - ball w/o you',
-          url: 'https://www.youtube.com/watch?v=_4gUVl5pjps',
-          imgUrl: 'https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg',
-          addedBy: 162521765264,
-          duration: 193000,
-          artists: [{
-            id: "7lwdlhwSxbB36wqnOwo5Kd",
-            name: "21 Savage",
-            type: "artist",
-          }],
-          albumName: 'Album',
-        },
-        {
-          _id: 'r8GXHS4s9K4',
-          title: 'Lady Gaga & Beyoncé - Telephone',
-          url: 'https://www.youtube.com/watch?v=r8GXHS4s9K4',
-          imgUrl: 'https://i.ytimg.com/vi/r8GXHS4s9K4/mqdefault.jpg',
-          addedAt: 162521765266,
-          duration: 220000,
-          artists: [{
-              id: "7lwdlhwSxbB36wqnOwo5Kd",
-              name: "Lady Gaga",
-              type: "artist",
-            },
-            {
-              id: 'feq991jreo012313',
-              name: 'Beyoncé',
-              type: 'artist'
-            }
-          ],
-          albumName: 'Album',
-        },
+          id: 'feq991jreo012313',
+          name: 'Beyoncé',
+          type: 'artist'
+        }
+        ],
+        albumName: 'Album',
+      },
       ],
     }
     const station3 = {
@@ -248,66 +277,66 @@ async function _createSpotifyStations() {
       },
       likedByUsers: ['{minimal-user}', '{minimal-user}'],
       songs: [{
-          _id: 'Sis_JJZoAfQ',
-          title: 'Juice WRLD - Cigarettes',
-          url: 'https://www.youtube.com/watch?v=Sis_JJZoAfQ',
-          imgUrl: 'https://i.ytimg.com/vi/Sis_JJZoAfQ/mqdefault.jpg',
-          likedBy: ['{minimal-user}'],
-          addedAt: 162521765266,
-          duration: 220000,
-          artists: [{
-            id: "7lwdlhwSxbB36wqnOwo5Kd",
-            name: "Juice Wrld",
-            type: "artist",
-          }],
-          albumName: 'Album',
-        },
-        {
-          _id: 'A4pasf5ci8s',
-          title: 'Juice WRLD - Purple Potion',
-          url: 'https://www.youtube.com/watch?v=A4pasf5ci8s',
-          imgUrl: 'https://i.ytimg.com/vi/A4pasf5ci8s/mqdefault.jpg',
-          addedBy: '{minimal-user}',
-          likedBy: ['{minimal-user}'],
-          addedAt: 162521765262,
-          duration: 212000,
-          artists: [{
-            id: "7lwdlhwSxbB36wqnOwo5Kd",
-            name: "Juice Wrld",
-            type: "artist",
-          }],
-          albumName: 'Album',
-        },
-        {
-          _id: 'Trv80iyv8qs',
-          title: 'Juice WRLD - High and Alone ',
-          url: 'https://www.youtube.com/watch?v=Trv80iyv8qs',
-          imgUrl: 'https://i.ytimg.com/vi/Trv80iyv8qs/mqdefault.jpg',
-          likedBy: ['{minimal-user}'],
-          addedAt: 162521765264,
-          duration: 193000,
-          artists: [{
-            id: "7lwdlhwSxbB36wqnOwo5Kd",
-            name: "Juice Wrld",
-            type: "artist",
-          }],
-          albumName: 'Album',
-        },
-        {
-          _id: 'iT6MEoRywDY',
-          title: 'Juice WRLD - Rockstar In His Prime',
-          url: 'https://www.youtube.com/watch?v=iT6MEoRywDY',
-          imgUrl: 'https://i.ytimg.com/vi/iT6MEoRywDY/mqdefault.jpg',
-          likedBy: ['{minimal-user}'],
-          addedAt: 162521765266,
-          duration: 220000,
-          artists: [{
-            id: "7lwdlhwSxbB36wqnOwo5Kd",
-            name: "Juice Wrld",
-            type: "artist",
-          }],
-          albumName: 'Album',
-        },
+        _id: 'Sis_JJZoAfQ',
+        title: 'Juice WRLD - Cigarettes',
+        url: 'https://www.youtube.com/watch?v=Sis_JJZoAfQ',
+        imgUrl: 'https://i.ytimg.com/vi/Sis_JJZoAfQ/mqdefault.jpg',
+        likedBy: ['{minimal-user}'],
+        addedAt: 162521765266,
+        duration: 220000,
+        artists: [{
+          id: "7lwdlhwSxbB36wqnOwo5Kd",
+          name: "Juice Wrld",
+          type: "artist",
+        }],
+        albumName: 'Album',
+      },
+      {
+        _id: 'A4pasf5ci8s',
+        title: 'Juice WRLD - Purple Potion',
+        url: 'https://www.youtube.com/watch?v=A4pasf5ci8s',
+        imgUrl: 'https://i.ytimg.com/vi/A4pasf5ci8s/mqdefault.jpg',
+        addedBy: '{minimal-user}',
+        likedBy: ['{minimal-user}'],
+        addedAt: 162521765262,
+        duration: 212000,
+        artists: [{
+          id: "7lwdlhwSxbB36wqnOwo5Kd",
+          name: "Juice Wrld",
+          type: "artist",
+        }],
+        albumName: 'Album',
+      },
+      {
+        _id: 'Trv80iyv8qs',
+        title: 'Juice WRLD - High and Alone ',
+        url: 'https://www.youtube.com/watch?v=Trv80iyv8qs',
+        imgUrl: 'https://i.ytimg.com/vi/Trv80iyv8qs/mqdefault.jpg',
+        likedBy: ['{minimal-user}'],
+        addedAt: 162521765264,
+        duration: 193000,
+        artists: [{
+          id: "7lwdlhwSxbB36wqnOwo5Kd",
+          name: "Juice Wrld",
+          type: "artist",
+        }],
+        albumName: 'Album',
+      },
+      {
+        _id: 'iT6MEoRywDY',
+        title: 'Juice WRLD - Rockstar In His Prime',
+        url: 'https://www.youtube.com/watch?v=iT6MEoRywDY',
+        imgUrl: 'https://i.ytimg.com/vi/iT6MEoRywDY/mqdefault.jpg',
+        likedBy: ['{minimal-user}'],
+        addedAt: 162521765266,
+        duration: 220000,
+        artists: [{
+          id: "7lwdlhwSxbB36wqnOwo5Kd",
+          name: "Juice Wrld",
+          type: "artist",
+        }],
+        albumName: 'Album',
+      },
       ],
     }
     stations.push(station)
@@ -315,7 +344,7 @@ async function _createSpotifyStations() {
     stations.push(station3)
   }
 
-  if(!albums || !albums.length){
+  if (!albums || !albums.length) {
     const albumSongs = await spotifyService.getAlbums()
     const albumPromises = Object.entries(albumSongs).map(async ([category, categoryPlaylists]) => {
       const categoryAlbumPromises = categoryPlaylists.map(async album => {

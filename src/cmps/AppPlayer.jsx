@@ -9,6 +9,7 @@ export function AppPlayer() {
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
   )
+  console.log(currSong)
   return (
     <section className="app-player">
       <section>

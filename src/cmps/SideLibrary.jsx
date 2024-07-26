@@ -13,8 +13,8 @@ export function SideLibrary() {
                 showErrorMsg('Cannot load stations!')
                 throw err
             })
-    }, [])
-
+    }, []) 
+    var count = 0
     function onOpenModal(event){
             const x = event.clientX 
             const y = event.clientY +20 

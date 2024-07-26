@@ -20,6 +20,8 @@ const getToken = async () => {
   return response.data.access_token;
 };
 
+
+
 const spotifyService = {
 
   getPlaylists: async () => {
@@ -28,6 +30,11 @@ const spotifyService = {
       headers: {
         'Authorization': `Bearer ${token}`
       }
+    });
+
+    const data = await response.json();
+    data.tracks.items.forEach(track => {
+      console.log(`Track: ${JSON.stringify(track)} by ${track.artists[0].name}`);
     });
 
     const rapPromise = axios.get(`${BASE_URL}/browse/categories/hiphop/playlists`, {
@@ -48,6 +55,23 @@ const spotifyService = {
     };
     return playlists;
   },
+
+  searchTracks: async (query) => {
+    const token = await getToken();
+
+    const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track&limit=10`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+
+    })
+    const data = await response.json();
+    
+    return data.tracks.items;
+  },
+
+
+
 
   getAlbums: async () => {
     const token = await getToken();

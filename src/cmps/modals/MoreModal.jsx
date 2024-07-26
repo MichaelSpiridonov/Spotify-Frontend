@@ -11,7 +11,9 @@ export function MoreModal({setCurrStation}) {
     const [station, setStation] = useState(null)
     const song = useSelector((storeState) => storeState.stationModule.currSelectedSong)
     useEffect(() => {
-        loadLocalStation(stationId)
+        if(stationId){
+            loadLocalStation(stationId)
+        }
     }, [stationId])
     async function loadLocalStation(stationId) {
         const station = await stationService.getById(stationId)
