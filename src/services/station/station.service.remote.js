@@ -18,6 +18,7 @@ function getById(stationId) {
 async function remove(stationId) {
     return httpService.delete(`station/${stationId}`)
 }
+
 async function save(station) {
     var savedStation
     if (station._id) {

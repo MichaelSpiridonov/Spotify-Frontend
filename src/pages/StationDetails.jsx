@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import React, { useEffect, useState, useRef } from 'react'
 
 import PlayIcon from '../assets/icons/play.svg?react'
+import PauseIcon from '../assets/icons/pause.svg?react'
 import AddIcon from '../assets/icons/addsong.svg?react'
 import SongOptionsIcon from '../assets/icons/song_options.svg?react'
 import SearchIcon from '../assets/icons/search.svg?react'
@@ -30,14 +31,15 @@ export function StationDetails() {
   const currStation = useSelector(
     (storeState) => storeState.stationModule.currSelectedStation
   )
+  const currSong = useSelector(
+    (storeState) => storeState.stationModule.currSong
+  )
 
 
   
   useEffect(() => {
     setStation(stationId)  
   }, [stationId])
-
-  var modalOpen = false
 
   async function setStation(stationId) {
     const station = await stationService.getById(stationId)
@@ -52,7 +54,7 @@ export function StationDetails() {
     return id[0].videoId
   }
 
-  const onClickPlay = async (song) => {
+  async function onClickPlay(song) {
     if (!song.id) {
       song.id = await getVideoId(song.title)
     }
@@ -67,6 +69,7 @@ export function StationDetails() {
     updateSong(songData)
     loadStation(stationId)
   }
+  
   function onAddTo(event, song) {
     setCurrSelectedStation(currStation)
     setCurrSelectedSong(song)
@@ -133,13 +136,13 @@ export function StationDetails() {
             <h1 className='station-name'>{currStation.name}</h1>
             <h2 className='station-description'>{currStation.description}</h2>
             <p className='station-creator'>
-              {currStation.createdBy.fullname} · {currStation.songs.length} songs
+              {currStation.createdBy.fullname} · {currStation.songs.length} songs · 
             </p>
           </div>
         </div>
         <div className='station-controls'>
           <button onClick={() => onClickPlay(currStation.songs[0])} className='header-play-button'>
-            <PlayIcon />
+            {(!currSong) ? <PlayIcon /> : <PauseIcon />}
           </button>
           <div className='header-add-button'>
             <AddIcon />
