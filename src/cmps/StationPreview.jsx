@@ -5,7 +5,7 @@ import playlistDefaultImage from '../assets/icons/myplaylist.svg'
 import { setCurrSelectedStation } from '../store/actions/station.actions'
 
 export function StationPreview({ station }) {
- // if (!station.tags) return
+  if (!station.tags) return
   const element = document.querySelector('.station-list')
   var count = 0
   function handleContextMenu(event) {

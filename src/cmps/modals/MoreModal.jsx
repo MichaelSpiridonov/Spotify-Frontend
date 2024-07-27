@@ -5,6 +5,7 @@ import { addStation } from '../../store/actions/station.actions'
 import { stationService } from '../../services/station'
 import { useParams } from 'react-router'
 import { useEffect, useState } from 'react'
+import { showUserMsg } from '../../services/event-bus.service'
 
 export function MoreModal() {
     const { stationId } = useParams()
@@ -45,6 +46,7 @@ export function MoreModal() {
             tags: [],
         }
         await addStation(station)
+        showUserMsg(station.name, song.imgUrl)
     }
 
     async function onRemoveSong() {

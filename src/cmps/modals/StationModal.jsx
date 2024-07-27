@@ -41,6 +41,8 @@ export function StationModal() {
   }
 
   function onRemoveStation() {
+    console.log('currStation._id:',currStation._id)
+    console.log('currSelectedStation._id:',currSelectedStation._id);
     if(currStation._id === currSelectedStation._id) navigate('/')
     removeStation(currStation)
     element.style.display = 'none'
