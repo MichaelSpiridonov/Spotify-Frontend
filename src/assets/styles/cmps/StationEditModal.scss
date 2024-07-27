@@ -1,79 +1,166 @@
-.station-edit-modal {
+.edit-modal-backdrop {
+  /* Updated the class name for the backdrop */
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #282828;
-  padding: 2rem;
-  border-radius: 8px;
-  color: #fff;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
+}
+
+.station-edit-modal {
+  border: none;
+  width: 524px;
+  background-color: #333333;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px 0px;
+  padding: 2rem;
+  position: relative;
+
+  h2 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #ffffff;
+    cursor: pointer;
+  }
 
   .modal-content {
     display: flex;
-    gap: 1rem;
-  }
+    gap: 2rem;
 
-  .modal-image {
-    position: relative;
+    .image-container {
+      position: relative;
 
-    img {
-      width: 150px;
-      height: 150px;
-      border-radius: 8px;
-    }
-
-    .choose-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 150px;
-      height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      transition: opacity 0.3s;
-
-      &:hover {
-        opacity: 1;
+      .station-image {
+        width: 180px;
+        height: 180px;
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px 0px; /* Added shadow to image */
       }
 
-      svg {
-        width: 30px;
-        height: 30px;
-        fill: #fff;
+      .choose-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 180px;
+        height: 180px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        svg {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+    }
+
+    .details-container {
+      flex: 1;
+
+      .input-wrapper {
+        position: relative;
+        margin-bottom: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px 0px; /* Added shadow to input fields */
+        border: none; /* Remove default border */
+
+        label {
+          position: absolute;
+          top: -0.7rem; /* Adjusted position for label */
+          left: 0.5rem;
+          font-size: 0.75rem;
+          color: #b3b3b3;
+          background-color: #333333;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        &.focused label {
+          opacity: 1;
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 0.5rem;
+          border: none; /* Set initial border to none */
+          border-radius: 4px;
+          background-color: #333333;
+          color: #ffffff;
+          font-family: circular-book;
+          font-size: 1rem;
+          outline: none;
+
+          &::placeholder {
+            color: #b3b3b3;
+          }
+
+          &:focus {
+            border: 1px solid #b3b3b3; /* Border color on focus */
+          }
+        }
+
+        textarea {
+          resize: none;
+          height: 80px;
+        }
       }
     }
   }
 
-  .modal-info {
+  .modal-footer {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: flex-start;
 
-    input,
-    textarea {
-      width: 300px;
-      padding: 0.5rem;
+    .save-button {
+      width: 100px;
+      height: 50px;
+      background-color: white;
       border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-    }
-
-    button {
-      padding: 0.75rem;
-      background-color: #1db954;
-      border: none;
-      border-radius: 4px;
-      color: #fff;
-      font-size: 1rem;
+      border-radius: 25px; /* Made the button rounder */
+      color: black;
+      font-family: circular-bold;
       cursor: pointer;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      align-self: flex-end; /* Align button to the right */
+      transition: transform 0.1s ease, background-color 0.1s ease; /* Transition for hover effects */
 
       &:hover {
-        background-color: #1ed760;
+        background-color: #f0f0f0;
+        transform: scale(1.03); /* Expand by 3% on hover */
+        font-weight: bold;
       }
+    }
+
+    p {
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-family: circular-bold;
     }
   }
 }
