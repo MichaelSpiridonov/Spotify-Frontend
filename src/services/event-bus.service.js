@@ -22,7 +22,7 @@ export function showUserMsg(msg) {
     eventBus.emit(SHOW_MSG, msg)
 }
 
-export function showUserMsg(txt, img) {
+export function showNotificationMsg(txt, img) {
     showUserMsg({txt, img})
 }
 export function showErrorMsg(txt) {
