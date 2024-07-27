@@ -90,8 +90,9 @@
           top: -0.7rem;
           left: 0.5rem;
           font-size: 0.75rem;
+          font-weight: 700;
           color: #b3b3b3;
-          background-color: #333333;
+          background: linear-gradient(to bottom, #282828, #333333);
           opacity: 0;
           transition: opacity 0.3s ease;
         }
