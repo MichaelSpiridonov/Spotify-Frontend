@@ -1,4 +1,4 @@
-import { loadStation, loadStations, setCurrSelectedSong, setCurrSelectedStation, updateSong } from '../store/actions/station.actions.js'
+import { loadStation, loadStations, setCurrSelectedSong, setCurrSelectedStation, setCurrStation, updateSong } from '../store/actions/station.actions.js'
 import { Link, useParams } from 'react-router-dom'
 import React, { useEffect, useState, useRef } from 'react'
 
@@ -29,21 +29,19 @@ export function StationDetails() {
     (storeState) => storeState.stationModule.stations
   )
   const currStation = useSelector(
-    (storeState) => storeState.stationModule.currSelectedStation
+    (storeState) => storeState.stationModule.currStation
   )
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
   )
 
-
-  
   useEffect(() => {
     setStation(stationId)  
   }, [stationId])
 
   async function setStation(stationId) {
     const station = await stationService.getById(stationId)
-    setCurrSelectedStation(station)
+    setCurrStation(station)
   }
   function handleChange({ target }) {
     setSearch(target.value)
@@ -83,17 +81,6 @@ export function StationDetails() {
     event.stopPropagation();
   }
 
-  /* function clickOutsideListener(event) {
-    const elModal = document.querySelector('.more-modal')
-    if (!elModal) return
-    if (!elModal.contains(event.target) && elModal) {   
-      // Click outside the target element
-      elModal.style.display = 'none'
-      modalOpen = true
-      // Do something here, such as closing a modal, hiding a dropdown, etc.
-    }
-  }
-  document.addEventListener('click', clickOutsideListener) */
   window.onclick = function (event) {
     const elModal = document.querySelector('.more-modal')
     if (event.target !== elModal&& elModal) {

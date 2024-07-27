@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { addNewStation, addStation } from "../store/actions/station.actions"
+import { addStation } from "../store/actions/station.actions"
 import { makeId } from "../services/util.service"
 import { Navigate, useNavigate } from "react-router"
 import { Link } from "react-router-dom"
@@ -18,7 +18,7 @@ export function CreateStationModal() {
             tags: [],
             _id: makeId()
         }
-        await addNewStation(station)
+        await addStation(station)
         navigate(`/station/${station._id}`)
     }
   

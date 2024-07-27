@@ -4,7 +4,7 @@ import { StationPreview } from './StationPreview'
 import { StationModal } from './modals/StationModal'
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { loadStations } from '../store/actions/station.actions';
-import { saveToStorage } from '../services/util.service';
+import { stationService } from '../services/station';
 
 export function StationList() {
   const stations = useSelector((storeState) => storeState.stationModule.stations)
@@ -15,7 +15,7 @@ export function StationList() {
     if (destination.droppableId === source.droppableId && destination.index === source.index) return
       const [removed] = stations.splice(source.index, 1);
       stations.splice(destination.index, 0, [removed][0]);
-      saveToStorage('stations', stations)
+      stationService.save(stations)
       loadStations()
   }
   

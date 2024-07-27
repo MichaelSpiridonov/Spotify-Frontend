@@ -3,7 +3,7 @@ import {
   updateStations,
 } from '../../store/actions/station.actions'
 import { makeId } from '../../services/util.service'
-import { addNewStation } from '../../store/actions/station.actions'
+import { addStation } from '../../store/actions/station.actions'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import React, { useState } from 'react'
@@ -28,9 +28,8 @@ export function StationModal() {
       name: 'My playlist #' + stations.length,
       songs: [],
       tags: [],
-      _id: makeId(),
     }
-    await addNewStation(station)
+    await addStation(station)
     navigate(`/station/${station._id}`)
   }
 

@@ -11,6 +11,7 @@ import {
     SET_CURR_SELECTED_STATION,
     SET_CURR_SELECTED_SONG,
     UPDATE_SONG_IDX,
+    SET_CURR_STATION,
 } from '../reducers/station.reducer'
 import { stationService } from '../../services/station'
 
@@ -34,31 +35,15 @@ export async function loadStation(stationId) {
     }
 }
 export async function updateStations(song, station, idx) {
-    console.log(station)
     try {
-        const Station = await stationService.getById(station._id)
-        console.log(Station)
-        stationService.updateStation(station)
-        station.songs.push(song)
+        await station.songs.push(song)
+        await stationService.save(station)
         store.dispatch(getCmdUpdateStations({ station, idx }))
     } catch (err) {
         console.log('Cannot save Station', err)
         throw err
     }
 }
-export async function addNewStation(station) {
-    try {
-        const Stations = await stationService.query()
-        Stations.push(station)
-        console.log(Stations)
-        stationService.addNewStation(station)
-        store.dispatch(getCmdSetStations(Stations))
-    } catch (err) {
-        console.log('Cannot save Station', err)
-        throw err
-    }
-}
-
 
 export async function removeStation(stationId) {
     try {
@@ -83,9 +68,8 @@ export async function addStation(station) {
 
 export async function updateSong(song) {
     try {
-        const savedSong = await stationService.save(song)
         store.dispatch(getCmdUpdateStation(song))
-        return savedSong
+        return song
     } catch (err) {
         console.log('Cannot save Station', err)
         throw err
@@ -111,11 +95,20 @@ export async function setCurrSelectedStation(station) {
     }
 }
 
+export async function setCurrStation(station) {
+    try {
+        store.dispatch(getCmdSetCurrStation(station))
+    } catch (err) {
+        console.log('Cannot load Station', err)
+        throw err
+    }
+}
+
 export async function removeSong(songId, station) {
     try {
         var updateSongs = station.songs.filter(song => song._id !== songId)
         station.songs = updateSongs
-        await stationService.updateStation(station)
+        await stationService.save(station)
         store.dispatch(getCmdRemoveSong(songId, station))
         return station
     } catch (err) {
@@ -126,8 +119,10 @@ export async function removeSong(songId, station) {
 
 export async function updateSongIdx(songs, station) {
     try {
+        console.log('Songs', songs)
+        console.log('station:',station.songs);
         station.songs = songs
-        await stationService.updateStation(station)
+        await stationService.save(station)
         store.dispatch(getCmdUpdateSongIdx(songs))
     }catch (err) {
         throw err
@@ -238,6 +233,13 @@ function getCmdsetCurrSelectedSong(song) {
     return {
         type: SET_CURR_SELECTED_SONG,
         song
+    }
+}
+
+function getCmdSetCurrStation(station) {
+    return {
+        type: SET_CURR_STATION,
+        station,
     }
 }
 // function getCmdUpdateLikedSongs(likedSongs) {

@@ -10,10 +10,7 @@ import {
 
 const STATIONS_KEY = 'stations'
 const ALBUMS_KEY = 'albums'
-const SONGS_KEY = 'songs '
-const CURR_SONG = 'currSong'
 const LIKED_SONGS = 'likedsongs'
-const STATION_KEY = 'station'
 const ARTISTS_KEY = 'artist'
 const SPOTIFY_CACHE = 'spDB'
 //_createStations()
@@ -28,11 +25,8 @@ export const stationService = {
   getById,
   remove,
   save,
-  updateStation,
   addToLikedSongs,
-  addNewStation,
   queryAlbums,
-  removeSong,
   getTracks
 }
 window.cs = stationService
@@ -52,27 +46,20 @@ function getById(stationId) {
 async function remove(stationId) {
   await storageService.remove(STATIONS_KEY, stationId)
 }
-async function updateStation(station) {
-  await storageService.put(STATIONS_KEY, station)
+async function save(station) {
+  var savedStation
+  if(station._id) {
+    savedStation = await storageService.put(STATIONS_KEY, station)
+  }else {
+    savedStation = await storageService.post(STATIONS_KEY, station)
+  }
+  return savedStation
 }
-async function addNewStation(station) {
-  await storageService.post(STATIONS_KEY, station)
-}
-async function save(currSongId) {
-  await storageService.post(CURR_SONG, currSongId)
-}
-async function addToLikedSongs(likedSongs) {
 
+async function addToLikedSongs(likedSongs) {
   await storageService.post(LIKED_SONGS, likedSongs)
 }
 
-async function removeSong(songId, station) {
-  var updateSongs = station.songs.filter(song => song._id !== songId)
-  station.songs = updateSongs
-
-  // throw new Error('Nope')
-  await storageService.put(STATIONS_KEY, station)
-}
 async function getTracks(searchVal) {
   if (gSongsCache[searchVal]) {
     return Promise.resolve(gSongsCache[searchVal])

@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
-import { removeSong, updateStations } from '../../store/actions/station.actions'
+import { removeSong, setCurrStation, updateStations } from '../../store/actions/station.actions'
 import { makeId } from '../../services/util.service'
-import { addNewStation } from '../../store/actions/station.actions'
-import { stationService } from '../../services/station/station.service.local'
+import { addStation } from '../../store/actions/station.actions'
+import { stationService } from '../../services/station'
 import { useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 
@@ -43,13 +43,13 @@ export function MoreModal() {
             name: song.title,
             songs: [(song)],
             tags: [],
-            _id: makeId()
         }
-        await addNewStation(station)
+        await addStation(station)
     }
 
     async function onRemoveSong() {
-        removeSong(song._id, station)
+        await removeSong(song._id, station)
+        setCurrStation(station)
         element.style.display = 'none'
     }
 
@@ -62,7 +62,6 @@ export function MoreModal() {
         }
     }
     document.addEventListener('click', clickOutsideListener)
-    console.log(stations)
     if (!stations) return
     return <article className='more-modal'>
         <ul key={'modal-container'}>
