@@ -11,7 +11,7 @@ import { StationEditModal } from './StationEditModal.jsx'
 
 export function StationModal() {
   const currStation = useSelector(
-    (storeState) => storeState.stationModule.currSelectedStation
+    (storeState) => storeState.stationModule.currStation
   )
   const currSelectedStation = useSelector(
     (storeState) => storeState.stationModule.currSelectedStation
@@ -43,8 +43,10 @@ export function StationModal() {
   }
 
   function onRemoveStation() {
+    console.log('currStation._id:', currStation._id)
+    console.log('currSelectedStation._id:', currSelectedStation._id)
     if (currStation._id === currSelectedStation._id) navigate('/')
-    removeStation(currStation)
+    removeStation(currSelectedStation)
     element.style.display = 'none'
   }
 

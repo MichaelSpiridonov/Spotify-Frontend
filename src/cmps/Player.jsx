@@ -182,11 +182,10 @@ export function Player(props) {
     let songIdx = songs.findIndex(
       (song) => song._id === currSong._id || song.id === currSong.id
     );
-    
+
     if (direction === 'next') {
       songIdx++;
       if (isRepeatSong && event?.type === 'click') {
-        console.log('This is the event you want');
         setIsRepeatSong(false);
         setIsRepeat(true);
       }
@@ -213,7 +212,6 @@ export function Player(props) {
       updateSong(song);
     } else if (isRepeatSong) {
       player.playVideo();
-      return;
     } else {
       return;
     }
@@ -236,7 +234,7 @@ export function Player(props) {
           <span className={`effects ${isShuffle ? 'clicked' : ''}`}>
             <Shuffle onClick={toggleShuffle} />
           </span>
-          <Previous onClick={() => onPlay('previous')} />
+          <Previous onClick={(e) => onPlay('previous', e)} />
           <section className='player'>
             <YouTube
               className='video-player'
@@ -251,7 +249,7 @@ export function Player(props) {
               <Play onClick={togglePlayPause} />
             )}
           </section>
-          <Next onClick={() => onPlay('next')} />
+          <Next onClick={(e) => onPlay('next', e)} />
           <span
             className={`effects ${isRepeat || isRepeatSong ? 'clicked' : ''}`}
           >

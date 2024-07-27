@@ -28,9 +28,9 @@ export function UserMsg() {
         return msg ? 'visible' : ''
     }
 	return (
-		<section className={`user-msg ${msg?.type} ${msgClass()}`}>
-			<button onClick={closeMsg}>x</button>
-			{msg?.txt}
+		<section className={`user-msg visble ${msgClass()}`}>
+			{(msg?.img) ? <img src={msg?.img} alt="Playlist Image" className="user-msg-img" /> : ''}
+			<span>{msg?.txt}</span>
 		</section>
 	)
 }
