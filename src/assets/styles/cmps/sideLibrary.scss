@@ -91,3 +91,9 @@
 .side-library:hover {
     overflow-y: auto; /* Show the vertical scrollbar on hover */
 }
+@media (max-width:500px) {
+    .side-layout{
+        position: fixed;
+
+    }
+}

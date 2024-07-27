@@ -1,0 +1,28 @@
+.phone-library{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 10% 90%;
+   
+    
+}
+.phone-library-header{
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 12px;
+.phone-add-svg{
+    height: 25px;
+    width: 25px;
+    fill: #b3b3b3;
+}
+    div{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+       }
+    .phone-library-svg{
+        height: 25px;
+        width: 25px;
+        fill: #b3b3b3;
+    }
+}

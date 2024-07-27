@@ -232,7 +232,7 @@ export function Player(props) {
   return (
     <>
       <section className='player-seek-and-control'>
-        <section className='player-controls'>
+        <section className='player-controls center'>
           <span className={`effects ${isShuffle ? 'clicked' : ''}`}>
             <Shuffle onClick={toggleShuffle} />
           </span>
@@ -271,7 +271,7 @@ export function Player(props) {
           onSeek={handleSeek}
         />
       </section>
-      <section className='player-controls'>
+      <section className='player-controls side'>
         <NowPlaying />
         <Queue />
         {volume === 0 || isMuted ? (

@@ -1,3 +1,4 @@
+
 .station-details-container {
   /* padding-inline: 20px;
   padding-block: 10px; */
@@ -20,26 +21,12 @@
       'Helvetica Neue', sans-serif;
 
     // border-bottom: 1px solid #282828;
-    .station-image {
-      width: 13vw; // Fixed width for square box
-      height: 13vw; // Fixed height for square box
-      max-width: 232px;
-      max-height: 232px;
-      min-height: 160px;
-      /* max-width: 100%;
-      max-height: 100%; */
-      object-fit: cover;
-      object-position: center; // Center the image
-      border-radius: 4px; // Set border radius
-      box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 60px 0px; // Apply box shadow
-    }
-
+   
     .station-info {
       display: flex;
       flex-direction: column;
       height: 13.5vh;
       gap: 2px;
-
       h3 {
         font-size: 14px;
         font-weight: 500;
@@ -57,7 +44,7 @@
         font-family: 'circular-book', system-ui, -apple-system,
           BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
           'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: 96px;
+      
         line-height: normal;
         text-align: left;
         letter-spacing: normal;
@@ -229,7 +216,7 @@
       }
 
       .station-song-detail {
-        font-size: 16px;
+       /*  font-size: 16px; */
         color: white;
       }
     }
@@ -377,7 +364,7 @@
 .add-button svg {
   height: max-content;
   width: max-content;
-  opacity: 0;
+  /* opacity: 0; */
   fill: white;
   /*  margin: 10px; */
   margin-top: 5px;
@@ -391,7 +378,7 @@
 }
 
 .station-song-detail {
-  width: max-content;
+  /* width: max-content; */
 }
 
 .item {
@@ -537,4 +524,10 @@
 .header-input {
   color: white;
   font-size: 24px;
+}
+@media (max-width:500px) {
+  
+}
+@media (min-width:500px) {
+  
 }

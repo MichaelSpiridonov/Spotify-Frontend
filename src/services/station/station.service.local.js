@@ -74,6 +74,9 @@ async function removeSong(songId, station) {
   await storageService.put(STATIONS_KEY, station)
 }
 async function getTracks(searchVal) {
+  if(!searchVal){
+    return
+  }
   if (gSongsCache[searchVal]) {
     return Promise.resolve(gSongsCache[searchVal])
   }
