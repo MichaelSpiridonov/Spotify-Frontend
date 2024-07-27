@@ -141,17 +141,20 @@
 
       &:nth-child(2) {
         text-align: left;
-        width: 33vw;
+     
+        min-width: 400px;
+        max-width: 450px;
       }
 
       &:nth-child(3) {
         text-align: left;
-        width: 21vw;
+        width: 28.5vw;
+        max-width: 730px;
       }
 
       &:nth-child(4) {
         text-align: left;
-        width: 5vw;
+        width: 10vw;
       }
 
       &:nth-child(5) {
@@ -218,6 +221,9 @@
       .station-song-detail {
        /*  font-size: 16px; */
         color: white;
+      
+        min-width: 365px;
+        max-width: 420px;
       }
     }
 
@@ -397,9 +403,9 @@
     text-decoration: none;
   }
 
-  span {
+  /* span {
     width: 200px;
-  }
+  } */
 
   .song-image {
     width: 40px;
@@ -411,7 +417,6 @@
 
   .station-song-detail {
     display: flex;
-    width: 29vw;
     align-items: start;
   }
 
