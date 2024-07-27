@@ -1,19 +1,44 @@
 import React, { useState } from 'react'
 import ChooseImageIcon from '../../assets/icons/chooseimage.svg?react'
 import NewPlaylist from '../../assets/icons/newplaylist.svg?react'
-import { setCurrStation, updateStation } from '../../store/actions/station.actions'
+import { uploadService } from '../../services/upload.service.js'
+import {
+  setCurrStation,
+  updateStation,
+} from '../../store/actions/station.actions'
 
 export function StationEditModal({ station, onClose }) {
-  const [name, setName] = useState(station.name) // State for station name
-  const [description, setDescription] = useState(station.description) // State for station description
-  const [isNameFocused, setIsNameFocused] = useState(false) // State for name input focus
-  const [isDescriptionFocused, setIsDescriptionFocused] = useState(false) // State for description input focus
+  const [name, setName] = useState(station.name)
+  const [description, setDescription] = useState(station.description)
+  const [imgUrl, setImgUrl] = useState(station.createdBy.imgUrl || NewPlaylist)
+  const [isNameFocused, setIsNameFocused] = useState(false)
+  const [isDescriptionFocused, setIsDescriptionFocused] = useState(false)
+
+  // Event handler to open file browser
+  const handleChooseImage = () => {
+    document.getElementById('fileInput').click()
+  }
+
+  // Event handler for file selection and upload
+  const handleFileChange = async (ev) => {
+    try {
+      const imgData = await uploadService.uploadImg(ev)
+      setImgUrl(imgData.secure_url)
+    } catch (err) {
+      console.error('Failed to upload image', err)
+    }
+  }
 
   const handleSave = () => {
-    const updatedStation = { ...station, name, description } // Update station with new name and description
-    updateStation(updatedStation) // Call action to update station
+    const updatedStation = {
+      ...station,
+      name,
+      description,
+      createdBy: { ...station.createdBy, imgUrl },
+    }
+    updateStation(updatedStation)
     setCurrStation(updatedStation)
-    onClose() // Close modal after saving
+    onClose()
   }
 
   return (
@@ -22,17 +47,19 @@ export function StationEditModal({ station, onClose }) {
         <button className='close-button' onClick={onClose}>
           ⨉
         </button>{' '}
-        {/* Close button for modal */}
         <h2>Edit details</h2>
         <div className='modal-content'>
           <div className='image-container'>
-            <img
-              src={station.createdBy.imgUrl || NewPlaylist} // Display station image or default image
-              alt='Station Cover'
-              className='station-image'
-            />
-            <div className='choose-image'>
-              <ChooseImageIcon /> {/* Icon to choose a new image */}
+            <img src={imgUrl} alt='Station Cover' className='station-image' />
+            <div className='choose-image' onClick={handleChooseImage}>
+              <ChooseImageIcon />
+              {/* Hidden file input */}
+              <input
+                type='file'
+                id='fileInput'
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+              />
             </div>
           </div>
           <div className='details-container'>
@@ -40,7 +67,7 @@ export function StationEditModal({ station, onClose }) {
               <input
                 type='text'
                 value={name}
-                onChange={(e) => setName(e.target.value)} // Update name state on change
+                onChange={(e) => setName(e.target.value)}
                 onFocus={() => setIsNameFocused(true)}
                 onBlur={() => setIsNameFocused(false)}
                 placeholder='My Playlist #7'
@@ -54,7 +81,7 @@ export function StationEditModal({ station, onClose }) {
             >
               <textarea
                 value={description}
-                onChange={(e) => setDescription(e.target.value)} // Update description state on change
+                onChange={(e) => setDescription(e.target.value)}
                 onFocus={() => setIsDescriptionFocused(true)}
                 onBlur={() => setIsDescriptionFocused(false)}
                 placeholder='Add an optional description'
@@ -67,13 +94,11 @@ export function StationEditModal({ station, onClose }) {
           <button className='save-button' onClick={handleSave}>
             Save
           </button>{' '}
-          {/* Save button */}
           <p>
             By proceeding, you agree to give Spotify access to the image you
             choose to upload. Please make sure you have the right to upload the
             image.
           </p>{' '}
-          {/* Disclaimer text */}
         </div>
       </dialog>
     </div>
