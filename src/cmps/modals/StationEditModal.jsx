@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ChooseImageIcon from '../../assets/icons/chooseimage.svg?react'
 import NewPlaylist from '../../assets/icons/newplaylist.svg?react'
-import { addStation } from '../../store/actions/station.actions'
+import { setCurrStation, updateStation } from '../../store/actions/station.actions'
 
 export function StationEditModal({ station, onClose }) {
   const [name, setName] = useState(station.name) // State for station name
@@ -11,7 +11,8 @@ export function StationEditModal({ station, onClose }) {
 
   const handleSave = () => {
     const updatedStation = { ...station, name, description } // Update station with new name and description
-    addStation(updatedStation) // Call action to update station
+    updateStation(updatedStation) // Call action to update station
+    setCurrStation(updatedStation)
     onClose() // Close modal after saving
   }
 

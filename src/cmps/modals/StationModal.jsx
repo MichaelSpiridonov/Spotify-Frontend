@@ -13,6 +13,9 @@ export function StationModal() {
   const currStation = useSelector(
     (storeState) => storeState.stationModule.currSelectedStation
   )
+  const currSelectedStation = useSelector(
+    (storeState) => storeState.stationModule.currSelectedStation
+  )
   const stations = useSelector(
     (storeState) => storeState.stationModule.stations
   )
@@ -38,6 +41,7 @@ export function StationModal() {
   }
 
   function onRemoveStation() {
+    if(currStation._id === currSelectedStation._id) navigate('/')
     removeStation(currStation)
     element.style.display = 'none'
   }

@@ -8,6 +8,7 @@ export const REMOVE_SONG = 'REMOVE_SONG'
 export const ADD_STATION_MSG = 'ADD_STATION_MSG'
 export const UPDATE_LIKED_SONGS = 'UPDATE_LIKED_SONGS'
 export const UPDATE_STATIONS = 'UPDATE_STATIONS'
+export const UPDATE_STATION = 'UPDATE_STATION'
 export const SET_CURR_SELECTED_STATION = 'SET_CURR_CLICKED_STATION'
 export const SET_CURR_SELECTED_SONG = 'SET_CURR_CLICKED_SONG'
 export const UPDATE_SONG_IDX = 'UPDATE_SONG_IDX'
@@ -57,6 +58,11 @@ export function stationReducer(state = initialState, action) {
 
         case ADD_STATION:
             newState = { ...state, stations: [...state.stations, action.station] }
+            break
+
+        case UPDATE_STATION:
+            stations = state.stations.map(station => (station._id === action.station._id) ? action.station : station)
+            newState = { ...state, stations }
             break
 
         case UPDATE_SONG:

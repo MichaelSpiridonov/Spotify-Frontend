@@ -12,6 +12,7 @@ import {
     SET_CURR_SELECTED_SONG,
     UPDATE_SONG_IDX,
     SET_CURR_STATION,
+    UPDATE_STATION,
 } from '../reducers/station.reducer'
 import { stationService } from '../../services/station'
 
@@ -45,10 +46,10 @@ export async function updateStations(song, station, idx) {
     }
 }
 
-export async function removeStation(stationId) {
+export async function removeStation(station) {
     try {
-        await stationService.remove(stationId)
-        store.dispatch(getCmdRemoveStation(stationId))
+        await stationService.remove(station._id)
+        store.dispatch(getCmdRemoveStation(station._id))
     } catch (err) {
         console.log('Cannot remove Station', err)
         throw err
@@ -66,9 +67,20 @@ export async function addStation(station) {
     }
 }
 
+export async function updateStation(station) {
+    try {
+        const savedStation = await stationService.save(station)
+        store.dispatch(getCmdUpdateStation(savedStation))
+        return savedStation
+    } catch (err) {
+        console.log('Cannot add Station', err)
+        throw err
+    }
+}
+
 export async function updateSong(song) {
     try {
-        store.dispatch(getCmdUpdateStation(song))
+        store.dispatch(getCmdUpdateSongStation(song))
         return song
     } catch (err) {
         console.log('Cannot save Station', err)
@@ -195,7 +207,13 @@ function getCmdAddStation(station) {
         station,
     }
 }
-function getCmdUpdateStation(song) {
+function getCmdUpdateStation(station) {
+    return {
+        type: UPDATE_STATION,
+        station,
+    }
+}
+function getCmdUpdateSongStation(song) {
     return {
         type: UPDATE_SONG,
         song,

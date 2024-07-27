@@ -9,7 +9,6 @@ import { stationService } from '../services/station';
 export function StationList() {
   const stations = useSelector((storeState) => storeState.stationModule.stations)
   function onDragEnd(result) {
-    console.log(result)
     const { destination, source} = result
     if (!destination) return
     if (destination.droppableId === source.droppableId && destination.index === source.index) return
