@@ -14,8 +14,7 @@ export function StationPreview({ station }) {
       event.preventDefault();
       // Check if the right mouse button was clicked
       if (event.button === 2) {
-        console.log(station._id)
-        setCurrSelectedStation(station._id)
+        setCurrSelectedStation(station)
         // Right-click was detected
         const x = event.clientX
         const y = event.clientY - 230
