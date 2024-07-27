@@ -4,7 +4,7 @@
 @import 'setup/mixins';
 @import 'setup/typography';
 //mq
-
+@import 'basics/mq.scss';
 // Basics
 @import 'basics/helpers';
 @import 'basics/layout';
@@ -21,6 +21,8 @@
 @import 'pages/Login';
 // Components
 
+
+@import 'cmps/menuPhone';
 @import 'cmps/AppHeader';
 @import 'cmps/UserMsg';
 @import 'cmps/AppPlayer';
@@ -35,7 +37,7 @@
 @import 'cmps/VolumeSlider.scss';
 @import 'cmps/AppFooter.scss';
 @import 'cmps/StationEditModal.scss';
+@import 'cmps/libraryPhone';
 
-@import 'basics/mq.scss';
 // @import "cmps/CarList";
 // @import "cmps/CarPreview";

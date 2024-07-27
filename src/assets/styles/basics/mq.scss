@@ -11,19 +11,21 @@
         }
     }
 }
+
 @media (max-width: 1625px) {
     .station-details-container {
         .station-header {
             .station-info {
                 .station-name {
                     font-size: 48px;
-                    
+
                 }
             }
 
         }
     }
 }
+
 @media (max-width: 1280px) {
     .station-details-container {
         .station-header {
@@ -36,6 +38,7 @@
         }
     }
 }
+
 @media (max-width: 1130px) {
     .station-details-container {
         .station-header {
@@ -43,11 +46,178 @@
                 .station-name {
                     font-size: 32px;
                 }
-                .station-description{
+
+                .station-description {
                     font-size: 12px;
                 }
             }
 
+        }
+    }
+}
+
+@media (max-width:500px) {
+    .media-container {
+        display: flex;
+
+    }
+
+    .side-bar {
+        display: none;
+    }
+    .side-library{
+        display: none;
+    }
+
+    .station-image {
+        height: 120px;
+        width: 120px;
+    }
+
+    .station-name {
+        font-size: 13px;
+    }
+
+    .social-media {
+        a {
+            height: 25px;
+            width: 25px;
+        }
+
+        svg {
+            width: 15px;
+            height: 15px;
+        }
+    }
+    .table-header{
+        span{
+            &:nth-child(3){
+                display: none;
+               }
+           &:nth-child(4){
+            display: none;
+           } 
+        }
+    }
+    .song-album{
+        display: none;
+    }
+    .song-date{
+        display: none;
+    }
+    .station-info {
+        margin-top: 30px;
+    }
+
+    .item {
+        .station-song-detail {
+            width: 50vw;
+            font-size: 10px;
+        }
+
+        .song-album {
+            font-size: 10px;
+        }
+
+        .song-date {
+            font-size: 10px;
+        }
+
+        .song-artist {
+            font-size: 8px;
+        }
+
+        .station-song-detail {
+
+            width: 21vw;
+
+        }
+    }
+
+    .play-button svg,
+    .options-button svg,
+    .add-button svg {
+        opacity: 1;
+    }
+    .footer-bottom{
+        font-size: 8px;
+    }
+    .footer-section{
+        h3{
+            font-size: 10px;
+        }
+        a{
+            font-size: 8px;
+        }
+    }
+}
+
+@media (min-width:500px) {
+    .main-container {
+        display: grid;
+        grid-template-columns: minmax(295px, 420px) auto;
+        grid-template-rows: 93.5% auto;
+        padding: 8px;
+        gap: 8px;
+        height: 100vh;
+    }
+
+    .side-layout {
+        grid-column: 1;
+        display: grid;
+        grid-template-rows: 112px auto;
+        gap: 8px;
+        height: 100%;
+    }
+    .side-bar {
+        display: grid;
+    }
+    .side-library{
+        display: block;
+    }
+
+    .station-image {
+        width: 13vw; // Fixed width for square box
+        height: 13vw; // Fixed height for square box
+        max-width: 232px;
+        max-height: 232px;
+        min-height: 50px;
+        min-width: 50px;
+        /* max-width: 100%;
+        max-height: 100%; */
+        object-fit: cover;
+        object-position: center; // Center the image
+        border-radius: 4px; // Set border radius
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 60px 0px; // Apply box shadow
+    }
+
+    .social-media a {
+        height: 40px;
+        width: 40px;
+    }
+    .social-media svg {
+        height: 20px;
+        width: 40px;
+    }
+
+    .add-button {
+        display: none;
+    }
+
+    .play-button svg,
+    .options-button svg,
+    .add-button svg {
+        opacity: 0;
+    }
+    .footer-bottom{
+        font-size: 15px;
+    }
+    .footer-section{
+        h3{
+            font-size: 20px;
+        }
+        a{
+            font-size: 16px;
         }
     }
 }

@@ -88,7 +88,7 @@ export function StationDetails() {
     }
   }
   if (currStation) {
-    if (currStation.createdBy.imgUrl) {
+    if (currStation.createdBy) {
       const fac = new FastAverageColor()
       fac.getColorAsync(currStation.createdBy.imgUrl).then((color) => {
         setColor(color.rgb)

@@ -4,6 +4,8 @@
     margin-top: 20px;
     overflow: hidden;
     width: 100%;
+    z-index: 1;
+
     .home-station-preview {
         position: relative;
         display: grid;
@@ -15,7 +17,8 @@
         border-radius: 10px;
         font-size: 14px;
         width: 100%;
-        
+        z-index: 1;
+
         img {
             grid-column: 1/3;
             grid-row: 1;
@@ -25,6 +28,8 @@
             max-width: 160px; */
             width: 100%;
             border-radius: 10px;
+            z-index: 0;
+
         }
 
         button {
@@ -40,7 +45,7 @@
             opacity: 0;
             transition-property: opacity;
             transition: 0.8s;
-            
+
             .play {
                 opacity: 0;
                 height: 22px;
@@ -48,11 +53,12 @@
                 transition: opacity 0.8s;
             }
         }
-        
+
         h1 {
             grid-row: 2;
             color: white;
             padding-left: 5px;
+            z-index: 1;
         }
     }
 }
@@ -63,19 +69,20 @@ button:first-child {
 
 .home-station-preview:hover {
     background-color: #282828;
-    
+
     button {
         height: 48px;
         opacity: 1;
-        
+
         .play {
             opacity: 1;
-            
+
         }
     }
 }
 
 .list-container {
+    z-index: 1;
     border-radius: 10px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -98,8 +105,8 @@ button:first-child {
 
 .wide-stations-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 15px;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 10px;
     padding-left: 10px;
     margin-top: 20px;
     margin-bottom: 40px;
@@ -114,13 +121,12 @@ button:first-child {
         border-radius: 10px;
         background-color: #181818;
         transition: 0.8s;
+        gap: 5px;
 
         img {
             grid-column: 1;
-            height: 64px;
-            width: 64px;
+
             border-radius: 4px;
-            margin-right: 15px;
         }
 
         h1 {
@@ -128,7 +134,7 @@ button:first-child {
             color: white;
             align-self: center;
             /* Center vertically */
-            font-size: 16px;
+            padding: 5px;
             /* Adjust font size */
         }
     }
@@ -137,3 +143,53 @@ button:first-child {
         background-color: #282828;
     }
 }
+
+@media (max-width:500px) {
+    .wide-station-preview {
+        h1 {
+
+            font-size: 10px;
+
+        }
+
+        img {
+            height: 44px;
+            width: 44px;
+
+        }
+
+
+    }
+    .home-station-preview {
+        z-index: 1;
+    }
+    .home-container{
+        overflow-x: auto;
+    }
+    .home-container::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        /* width of the scrollbar */
+    
+        /* height of the scrollbar */
+    }
+}
+
+
+@media (min-width:500px) {
+    .wide-station-preview {
+        h1 {
+
+            font-size: 14px;
+
+        }
+
+        img {
+            height: 64px;
+            width: 64px;
+
+        }
+
+    }
+}
+    

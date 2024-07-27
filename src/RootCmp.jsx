@@ -9,6 +9,8 @@ import { SearchPage } from './pages/SearchPage.jsx'
 import { LikeSongsDeatils } from './pages/LikedSongDetails.jsx'
 import { SideLayout } from './cmps/sideLayout.jsx'
 import { Login } from './pages/Login.jsx'
+import { SideLibrary } from './cmps/SideLibrary.jsx'
+import { LibraryPhone } from './pages/LibraryPhone.jsx'
 export function RootCmp() {
   return (
     <div>
@@ -20,6 +22,7 @@ export function RootCmp() {
           <Route path='/search' element={<SearchPage />} />
           <Route path='/likedSongs' element={<LikeSongsDeatils />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/library' element={<LibraryPhone />} />
         </Routes>
         <AppPlayer />
       </main>

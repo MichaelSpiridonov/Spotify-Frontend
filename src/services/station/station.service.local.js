@@ -61,6 +61,9 @@ async function addToLikedSongs(likedSongs) {
 }
 
 async function getTracks(searchVal) {
+  if(!searchVal){
+    return
+  }
   if (gSongsCache[searchVal]) {
     return Promise.resolve(gSongsCache[searchVal])
   }
