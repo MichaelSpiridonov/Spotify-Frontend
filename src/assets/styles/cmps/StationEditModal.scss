@@ -1,5 +1,4 @@
 .edit-modal-backdrop {
-  /* Updated the class name for the backdrop */
   position: fixed;
   top: 0;
   left: 0;
@@ -15,7 +14,8 @@
 .station-edit-modal {
   border: none;
   width: 524px;
-  background-color: #333333;
+  background-color: #282828;
+
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px 0px;
   padding: 2rem;
@@ -48,7 +48,7 @@
         width: 180px;
         height: 180px;
         border-radius: 8px;
-        box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px 0px; /* Added shadow to image */
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px 0px;
       }
 
       .choose-image {
@@ -84,12 +84,10 @@
       .input-wrapper {
         position: relative;
         margin-bottom: 1rem;
-        box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px 0px; /* Added shadow to input fields */
-        border: none; /* Remove default border */
-
+        border: none;
         label {
           position: absolute;
-          top: -0.7rem; /* Adjusted position for label */
+          top: -0.7rem;
           left: 0.5rem;
           font-size: 0.75rem;
           color: #b3b3b3;
@@ -106,12 +104,12 @@
         textarea {
           width: 100%;
           padding: 0.5rem;
-          border: none; /* Set initial border to none */
+          border: 1px solid transparent;
           border-radius: 4px;
           background-color: #333333;
           color: #ffffff;
           font-family: circular-book;
-          font-size: 1rem;
+          font-size: 14px;
           outline: none;
 
           &::placeholder {
@@ -119,7 +117,7 @@
           }
 
           &:focus {
-            border: 1px solid #b3b3b3; /* Border color on focus */
+            border: 1px solid #b3b3b3;
           }
         }
 
@@ -141,18 +139,18 @@
       height: 50px;
       background-color: white;
       border: none;
-      border-radius: 25px; /* Made the button rounder */
+      border-radius: 25px;
       color: black;
       font-family: circular-bold;
       cursor: pointer;
       margin-bottom: 1rem;
       font-size: 1rem;
-      align-self: flex-end; /* Align button to the right */
-      transition: transform 0.1s ease, background-color 0.1s ease; /* Transition for hover effects */
+      align-self: flex-end;
+      transition: transform 0.1s ease, background-color 0.1s ease;
 
       &:hover {
         background-color: #f0f0f0;
-        transform: scale(1.03); /* Expand by 3% on hover */
+        transform: scale(1.03);
         font-weight: bold;
       }
     }
