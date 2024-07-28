@@ -56,7 +56,56 @@ const topics = [
     {
         name: 'K-pop',
         img: 'https://i.scdn.co/image/ab67fb8200005caf4b42030ee01cf793663dbb73'
-    }
+    },
+    {
+        name: 'Mood',
+        img: 'https://i.scdn.co/image/ab67fb8200005cafe542e9b59b1d2ae04b46b91c'
+    },
+    {
+        name: 'Elctronic',
+        img: 'https://i.scdn.co/image/ab67fb8200005caf26ada793217994216c79dad8'
+    },
+    {
+        name: 'Country',
+        img: 'https://i.scdn.co/image/ab67fb8200005cafd10a5fb6da973e53e9d17ab9'
+    },
+    {
+        name: 'Chill',
+        img: 'https://i.scdn.co/image/ab67fb8200005caf330ca3a3bfaf8b18407fb33e'
+    },
+    {
+        name: 'metal',
+        img: 'https://i.scdn.co/image/ab67fb8200005cafefa737b67ec51ec989f5a51d'
+    },
+    {
+        name: 'Anime',
+        img: 'https://i.scdn.co/image/ab67fb8200005cafca4acfcf1f94feff4d080cc9'
+    },
+    {
+        name: 'Classical',
+        img: 'https://i.scdn.co/image/ab67fb8200005caf4597370d1058e1ec3c1a56fa'
+    },
+    {
+        name: 'Travel',
+        img: 'https://i.scdn.co/image/ab67fb8200005caf879a886d22672d9b5b987746'
+    },
+    {
+        name: 'Afro',
+        img: 'https://i.scdn.co/image/ab67fb8200005caf73b2872e5a04da17bee68535'
+    },
+    {
+        name: 'Summer',
+        img: 'https://i.scdn.co/image/ab67fb8200005caf097a46192e6bb67e52cdff60'
+    },
+    {
+        name: 'Glow',
+        img: 'https://i.scdn.co/image/ab67fb8200005caf50cfe3fbd3a9fb8810da45ea'
+    },
+    {
+        name: 'Blues',
+        img: 'https://i.scdn.co/image/ab67fb8200005caf53eb5d52ae9152ce8461b387'
+    },
+   
 ]
 
 export function SearchPage() {
@@ -73,7 +122,7 @@ export function SearchPage() {
 
     const elPlayer = document.querySelector('.app-player')
     if (elPlayer) {
-      elPlayer.style.display = 'block'
+      elPlayer.style.display = 'flex'
     }
     return <section className='search-page' >
         <AppHeader />
@@ -81,9 +130,9 @@ export function SearchPage() {
             <label htmlFor=''><SearchIcon /></label>
             <input onChange={handleChange} value={search ? search : ''} placeholder='What do you want to play?' type='text' />
         </form>
-        {search !== '' && <h1>Songs</h1>}
+        {search !== '' && <h1 className='search-title'>Songs</h1>}
         {search === '' && <section>
-            <h1>Browse All</h1>
+            <h1 className='search-title'>Browse All</h1>
             <section className='topics-container'>
                 {topics.map(topic => <TopicPreview key={topic.name} topic={topic} />)}
             </section>

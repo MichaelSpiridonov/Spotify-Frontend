@@ -57,7 +57,11 @@
     border-radius: 50%;
     transition: background-color 0.3s;
   }
-
+  section.player-controls.side{
+    position: absolute;
+    right: 0;
+    top: 20px;
+  }
   & .clicked::after:hover {
     content: '';
     position: absolute;

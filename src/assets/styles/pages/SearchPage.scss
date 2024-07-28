@@ -1,8 +1,8 @@
 .topics-container {
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(13vw, 14vw));
-    grid-auto-rows: minmax(150px, 200px);
+    grid-template-columns: repeat(auto-fit, minmax(15vw, 15vw));
+    grid-auto-rows: minmax(9vw, 9vw);
     height: max-content;
     grid-auto-flow: dense;
     gap: 25px;
@@ -23,7 +23,8 @@
     grid-row: 1;
     width: 100%;
     height: 100%;
-
+    overflow-y: auto;
+    overflow-x: hidden;
     .station-details {
 
         .item {
@@ -137,9 +138,11 @@
 
     }
 
-    h1 {
+    .search-title {
         color: white;
-        margin: 0;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        font-size: 25px;
     }
 
     form {
@@ -240,3 +243,31 @@ input {
     }
 
 }
+.search-page:hover {
+    overflow-y: auto;
+  
+    /* Show the vertical scrollbar on hover */
+  }
+  
+  /* width */
+  .search-page::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    margin-top: 20px;
+    background: inherit;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #282828;
+    border-radius: 8px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
