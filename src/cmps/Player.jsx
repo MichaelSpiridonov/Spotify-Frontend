@@ -232,9 +232,9 @@ export function Player(props) {
       <section className='player-seek-and-control'>
         <section className='player-controls center'>
           <span className={`effects ${isShuffle ? 'clicked' : ''}`}>
-            <Shuffle onClick={toggleShuffle} />
+            <Shuffle  className='shuffel' onClick={toggleShuffle} />
           </span>
-          <Previous onClick={(e) => onPlay('previous', e)} />
+          <Previous className='previous-btn' onClick={(e) => onPlay('previous', e)} />
           <section className='player'>
             <YouTube
               className='video-player'
@@ -249,17 +249,17 @@ export function Player(props) {
               <Play onClick={togglePlayPause} />
             )}
           </section>
-          <Next onClick={(e) => onPlay('next', e)} />
+          <Next className='next-btn' onClick={(e) => onPlay('next', e)} />
           <span
             className={`effects ${isRepeat || isRepeatSong ? 'clicked' : ''}`}
           >
             {!isRepeatSong && !isRepeat ? (
-              <Repeat onClick={toggleRepeat} />
+              <Repeat className='reapet' onClick={toggleRepeat} />
             ) : (
               ''
             )}
-            {isRepeat ? <Repeat onClick={toggleRepeat} /> : ''}
-            {isRepeatSong ? <RepeatSong onClick={toggleRepeat} /> : ''}
+            {isRepeat ? <Repeat  className='reapet' onClick={toggleRepeat} /> : ''}
+            {isRepeatSong ? <RepeatSong  className='reapet' onClick={toggleRepeat} /> : ''}
           </span>
         </section>
         <ProgressBar

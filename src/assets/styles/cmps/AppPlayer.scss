@@ -9,10 +9,13 @@
   align-items: center;
   justify-content: space-between;
   font-family: circular-bold, sans-serif;
-  height: 100%;
+  padding-bottom: 5px;
 
   .player-seek-and-control {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     right: 33.5vw;
     padding-bottom: 10px;
     padding-top: 5px;
@@ -166,6 +169,14 @@
     z-index: 3;
   }
 
+  .next-btn {
+    display: none;
+  }
+
+  .previous-btn {
+    display: none;
+  }
+
   /* .song-info{
     display: nonbe;
   } */
@@ -175,16 +186,23 @@
       display: none;
     }
   } */
-  section.player-controls.center{
-    display: none;
-    svg{
-      display: block;
+  section.player-controls.center {
+
+    svg {
+      &:nth-child(1) {
+        display: none;
+      }
+
     }
-    
+
+
   }
-  section.player{
-    display: block;
+
+  section.player {
+    margin-bottom: 10px;
+    padding-right: 10px;
   }
+
   .player {
     position: absolute;
     top: 15px;
@@ -192,25 +210,29 @@
     background-color: inherit;
     height: 40px;
     width: 49px;
-    svg{
+
+    svg {
       height: 20px;
       width: 20px;
       display: block;
       fill: white;
     }
   }
-  .add-icn{
+
+  .add-icn {
     position: absolute;
     right: 50px;
-    color:  white;
+    color: white;
   }
-  .effects{
+
+  .effects {
     display: none;
   }
-  
-  .time{
+
+  .time {
     display: none;
   }
+
   .center {
     padding: 0;
     gap: 2px;
@@ -219,10 +241,7 @@
   .voluem-slider {
     width: 50px;
   }
-  
-  section.player{
-    display: block;
-  }
+
   .side {
     display: none;
     margin-top: 10px;
@@ -234,14 +253,5 @@
       height: 35px;
     }
 
-    svg {
-      &:nth-child(1) {
-        display: none;
-      }
-
-      &:nth-child(2) {
-        display: none;
-      }
-    }
   }
 }
