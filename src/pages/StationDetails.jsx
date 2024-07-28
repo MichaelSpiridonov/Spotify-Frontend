@@ -1,6 +1,6 @@
 import { loadStation, loadStations, setCurrSelectedSong, setCurrSelectedStation, setCurrStation, updateSong } from '../store/actions/station.actions.js'
 import { Link, useParams } from 'react-router-dom'
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useLayoutEffect } from 'react'
 
 import PlayIcon from '../assets/icons/play.svg?react'
 import PauseIcon from '../assets/icons/pause.svg?react'
@@ -25,6 +25,7 @@ export function StationDetails() {
   const [color, setColor] = useState(null)
   const [search, setSearch] = useState(null)
   const [songs, setSongs] = useState([])
+  
   const stations = useSelector(
     (storeState) => storeState.stationModule.stations
   )
@@ -34,7 +35,22 @@ export function StationDetails() {
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
   )
+  const [pageWidth, setPageWidth] = useState(window.innerWidth)
 
+  useLayoutEffect(() => {
+    // Function to handle resize event
+    const handleResize = () => {
+      setPageWidth(window.innerWidth)
+    }
+
+    // Attach resize event listener
+    window.addEventListener('resize', handleResize)
+
+    // Clean up function
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [pageWidth])
   useEffect(() => {
     setStation(stationId)
   }, [stationId])
@@ -67,9 +83,12 @@ export function StationDetails() {
     updateSong(songData)
     loadStation(stationId)
   }
+  console.log(currSong)
   const elPlayer = document.querySelector('.app-player')
-  if (elPlayer) {
+  if (elPlayer&& currSong) {
     elPlayer.style.display = 'flex'
+  }else if(pageWidth<500){
+     elPlayer.style.display = 'none'
   }
 
   function onAddTo(event, song) {

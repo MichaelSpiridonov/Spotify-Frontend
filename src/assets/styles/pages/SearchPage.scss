@@ -25,6 +25,7 @@
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+
     .station-details {
 
         .item {
@@ -218,9 +219,10 @@ input {
 
 @media (max-width:500px) {
     .search-page {
-        height: 80vh;
-        width: 80%;
+        height: 100vh;
+        width: 100vw;
         overflow: auto;
+
         form {
             position: absolute;
             left: 10vw;
@@ -235,39 +237,37 @@ input {
             grid-template-columns: repeat(auto-fit, 95vw);
 
             grid-auto-rows: minmax(15vw, 25vw);
-            .topics-box {
 
-              
-            }
+            .topics-box {}
         }
     }
 
 }
+
 .search-page:hover {
     overflow-y: auto;
-  
+
     /* Show the vertical scrollbar on hover */
-  }
-  
-  /* width */
-  .search-page::-webkit-scrollbar {
+}
+
+/* width */
+.search-page::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
+}
+
+/* Track */
+::-webkit-scrollbar-track {
     margin-top: 20px;
     background: inherit;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
     background: #282828;
     border-radius: 8px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background: #555;
-  }
-  
+}

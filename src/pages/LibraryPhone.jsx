@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { loadStations } from '../store/actions/station.actions'
 
 import { useSelector } from 'react-redux'
@@ -7,7 +7,24 @@ import { StationList } from '../cmps/StationList'
 import { CreateStationModal } from '../cmps/CreateStationModal'
 export function LibraryPhone() {
     const stations = useSelector(storeState => storeState.stationModule.stations)
-
+    const currSong = useSelector(
+        (storeState) => storeState.stationModule.currSong
+      )
+      const [pageWidth, setPageWidth] = useState(window.innerWidth)
+      useLayoutEffect(() => {
+        // Function to handle resize event
+        const handleResize = () => {
+          setPageWidth(window.innerWidth)
+        }
+    
+        // Attach resize event listener
+        window.addEventListener('resize', handleResize)
+    
+        // Clean up function
+        return () => {
+          window.removeEventListener('resize', handleResize)
+        }
+      }, [pageWidth])
     useEffect(() => {
         loadStations()
             .catch(err => {
@@ -37,8 +54,10 @@ export function LibraryPhone() {
         }
     }
     const elPlayer = document.querySelector('.app-player')
-    if (elPlayer) {
+    if (elPlayer&& currSong) {
       elPlayer.style.display = 'flex'
+    }else if(pageWidth < 500){
+       elPlayer.style.display = 'none'
     }
     // Adding click event listener to the document
     document.addEventListener('click', clickOutsideListener);

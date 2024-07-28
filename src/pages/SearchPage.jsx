@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { TopicPreview } from '../cmps/TopicPreview'
 import { getVideos } from '../services/youtube.service'
 import { SearchPreview } from '../cmps/SearchPreview'
@@ -6,6 +6,7 @@ import { AppHeader } from '../cmps/AppHeader'
 import SearchIcon from '../assets/icons/search.svg?react';
 import { stationService } from '../services/station/station.service.local'
 import { MoreModal } from '../cmps/modals/MoreModal'
+import { useSelector } from 'react-redux'
 
 
 const topics = [
@@ -111,6 +112,25 @@ const topics = [
 export function SearchPage() {
     const [search, setSearch] = useState('')
     const [songs, setSongs] = useState([])
+    const [pageWidth, setPageWidth] = useState(window.innerWidth)
+    const currSong = useSelector(
+        (storeState) => storeState.stationModule.currSong
+      )
+
+    useLayoutEffect(() => {
+      // Function to handle resize event
+      const handleResize = () => {
+        setPageWidth(window.innerWidth)
+      }
+  
+      // Attach resize event listener
+      window.addEventListener('resize', handleResize)
+  
+      // Clean up function
+      return () => {
+        window.removeEventListener('resize', handleResize)
+      }
+    }, [pageWidth])
     useEffect(() => {
         if (search) {
             stationService.getTracks(search).then(songs => setSongs(songs))
@@ -121,9 +141,11 @@ export function SearchPage() {
     }
 
     const elPlayer = document.querySelector('.app-player')
-    if (elPlayer) {
-      elPlayer.style.display = 'flex'
-    }
+  if (elPlayer&& currSong) {
+    elPlayer.style.display = 'flex'
+  }else if(pageWidth < 500){
+     elPlayer.style.display = 'none'
+  }
     return <section className='search-page' >
         <AppHeader />
         <form action=''>

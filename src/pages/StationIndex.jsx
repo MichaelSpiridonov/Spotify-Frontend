@@ -14,7 +14,9 @@ export function StationIndex() {
   const stations = useSelector(
     (storeState) => storeState.stationModule.stations
   )
-
+  const currSong = useSelector(
+    (storeState) => storeState.stationModule.currSong
+  )
   const [albums, setAlbums] = useState(null)
   var numElements = 0
   const [pageWidth, setPageWidth] = useState(window.innerWidth)
@@ -34,9 +36,12 @@ export function StationIndex() {
     }
   }, [pageWidth]) // Only run once on mount
   const elPlayer = document.querySelector('.app-player')
-  if (elPlayer) {
+  if (elPlayer&& currSong) {
     elPlayer.style.display = 'flex'
+  }else if(pageWidth<500){
+     elPlayer.style.display = 'none'
   }
+
   calculateNumberOfElements()
   function calculateNumberOfElements() {
     if (pageWidth > 500) {
