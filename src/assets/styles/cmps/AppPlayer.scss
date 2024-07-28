@@ -22,6 +22,10 @@
     height: 100%;
   }
 
+  & .like-icn {
+    fill: $green2;
+  }
+
   & .effects::before {
     content: '';
     display: flex;
@@ -212,10 +216,8 @@ a.artist-name{
     svg{
       fill: white;
     }
-  }
+  }  
 
- 
-  
 
   .add-icn {
     position: absolute;

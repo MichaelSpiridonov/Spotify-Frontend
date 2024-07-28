@@ -5,6 +5,7 @@ import React, { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import PlayIcon from '../assets/icons/play.svg?react'
 import PauseIcon from '../assets/icons/pause.svg?react'
 import AddIcon from '../assets/icons/addsong.svg?react'
+import LikeIcon from '../assets/icons/likedsong.svg?react'
 import SongOptionsIcon from '../assets/icons/song_options.svg?react'
 import SearchIcon from '../assets/icons/search.svg?react'
 import playlistDefaultImage from '../assets/icons/myplaylist.svg'
@@ -15,7 +16,7 @@ import { AppHeader } from '../cmps/AppHeader.jsx'
 import { AppFooter } from '../cmps/AppFooter.jsx'
 import { FastAverageColor } from 'fast-average-color'
 import { getVideos } from '../services/youtube.service.js'
-import { formatDate, formatDuration, formatPlaylistDuration } from '../services/util.service.js'
+import { formatPlaylistDuration } from '../services/util.service.js'
 import { SongList } from '../cmps/SongList.jsx'
 import { SearchPreview } from '../cmps/SearchPreview.jsx'
 import { useSelector } from 'react-redux'
@@ -26,8 +27,8 @@ export function StationDetails() {
   const [search, setSearch] = useState(null)
   const [songs, setSongs] = useState([])
 
-  const stations = useSelector(
-    (storeState) => storeState.stationModule.stations
+  const user = useSelector(
+    (storeState) => storeState.userModule.user
   )
   const currStation = useSelector(
     (storeState) => storeState.stationModule.currStation
@@ -84,6 +85,7 @@ export function StationDetails() {
       imgUrl: song.imgUrl,
       artists: song.artists,
       _id: song._id,
+      likedBy: song.likedBy
     }
     updateSong(songData)
     loadStation(stationId)
@@ -160,8 +162,8 @@ export function StationDetails() {
             <button onClick={() => onClickPlay(currStation.songs[0])} className='header-play-button'>
               {(!currSong) ? <PlayIcon /> : <PauseIcon />}
             </button>
-            <div className='header-add-button'>
-              <AddIcon />
+            <div className={`header-add-button ${(currStation.likedByUsers?.find(likeUser => likeUser._id === user._id)) ? 'like-icn' : ''}`}>
+              {(currStation.likedByUsers?.find(likeUser => likeUser._id === user._id)) ? <LikeIcon /> : <AddIcon />}
             </div>
             <div className='header-options-button'>
               <SongOptionsIcon />
