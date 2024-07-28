@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux"
 import AddIcon from "../assets/icons/addsong.svg?react"
+import LikeIcon from "../assets/icons/likedsong.svg?react"
 import Player from "./Player.jsx"
 import { Link, useNavigate } from "react-router-dom"
 import { ArtistCmp } from "./ArtistCmp.jsx"
 import { useLayoutEffect, useState } from "react"
 import { FastAverageColor } from "fast-average-color"
+import { getLyrics } from "../services/genius.service.js"
 
 export function AppPlayer() {
   const Navigate = useNavigate()
@@ -12,6 +14,9 @@ export function AppPlayer() {
   const station = useSelector((storeState) => storeState.stationModule.station)
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
+  )
+  const user = useSelector(
+    (storeState) => storeState.userModule.user
   )
   const [pageWidth, setPageWidth] = useState(window.innerWidth)
 
@@ -46,6 +51,7 @@ export function AppPlayer() {
     }
 
   }
+  getLyrics('Cigarettes', 'Juice Wrld').then(lyric => console.log(lyric))
 
   return (
     <section style={{backgroundColor:color}} className="app-player">
@@ -61,7 +67,7 @@ export function AppPlayer() {
                 <ArtistCmp artists={currSong.artists} />
               </section>
             </section>
-            <AddIcon className="add-icn" />
+            {(currSong.likedBy?.find(likeUser => likeUser._id === user._id)) ? <LikeIcon className="add-icn like-icn" /> : <AddIcon className="add-icn"/>}
           </section>
         )}
       </section>

@@ -270,8 +270,6 @@ export function Player(props) {
         />
       </section>
       <section className='player-controls side'>
-        <NowPlaying />
-        <Queue />
         {volume === 0 || isMuted ? (
           <VolumeMuted onClick={toggleMute} />
         ) : volume < 30 ? (

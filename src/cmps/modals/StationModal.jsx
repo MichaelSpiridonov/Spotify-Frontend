@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import React, { useState } from 'react'
 import { StationEditModal } from './StationEditModal.jsx'
+import { showNotificationMsg } from '../../services/event-bus.service.js'
 
 export function StationModal() {
   const currStation = useSelector(
@@ -46,6 +47,7 @@ export function StationModal() {
   function onRemoveStation() {
     if(currStation?._id === currSelectedStation._id) navigate('/')
     removeStation(currSelectedStation)
+    showNotificationMsg(`Removed From Your Library`)
     element.style.display = 'none'
   }
 

@@ -85,6 +85,10 @@
       fill: white;
     }
 
+    .header-add-button.like-icn {
+      fill:#1db954;
+    }
+
     .header-options-button {
       position: relative;
       right: 5px;
@@ -373,6 +377,10 @@
   /*  margin: 10px; */
   margin-top: 5px;
   margin-right: 5px;
+}
+
+.add-button.like-icn svg {
+  fill:#1ac757;
 }
 
 .play-button,
