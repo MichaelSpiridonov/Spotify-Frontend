@@ -1,6 +1,6 @@
 .menu-phone{
     display: flex;
-    width: 100%;
+    width: 100vw;
     position: fixed;
     bottom: 0;
     justify-content: space-between;
@@ -28,4 +28,5 @@
             font-size: 16px;
         }
     }
+   
 }

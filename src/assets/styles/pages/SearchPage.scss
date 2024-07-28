@@ -215,8 +215,9 @@ input {
 
 @media (max-width:500px) {
     .search-page {
-        height: 100vh;
-
+        height: 80vh;
+        width: 80%;
+        overflow: auto;
         form {
             position: absolute;
             left: 10vw;

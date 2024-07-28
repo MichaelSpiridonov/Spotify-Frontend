@@ -57,9 +57,12 @@
 }
 
 @media (max-width:500px) {
+    .main-container{
+        height: 100vh;
+        overflow-x: hidden;
+    }
     .media-container {
         display: flex;
-
     }
 
     .side-bar {

@@ -9,6 +9,7 @@ import { LikeSongsDeatils } from './pages/LikedSongDetails.jsx'
 import { SideLayout } from './cmps/sideLayout.jsx'
 import { Login } from './pages/Login.jsx'
 import { LibraryPhone } from './pages/LibraryPhone.jsx'
+import { PlayerPhoneDetails } from './pages/PlayerPhoneDetails.jsx'
 
 export function RootCmp() {
   return (
@@ -22,6 +23,7 @@ export function RootCmp() {
           <Route path='/likedSongs' element={<LikeSongsDeatils />} />
           <Route path='/library' element={<LibraryPhone />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/player' element={<PlayerPhoneDetails />} />
         </Routes>
         <AppPlayer />
       </main>

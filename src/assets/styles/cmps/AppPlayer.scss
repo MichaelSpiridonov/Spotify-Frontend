@@ -10,37 +10,38 @@
   justify-content: space-between;
   font-family: circular-bold, sans-serif;
   height: 100%;
-  
-  .player-seek-and-control{
+
+  .player-seek-and-control {
     position: absolute;
     right: 33.5vw;
     padding-bottom: 10px;
     padding-top: 5px;
     height: 100%;
   }
+
   & .effects::before {
     content: '';
     display: flex;
     align-items: center;
     justify-content: center;
     height: 7px;
-  } 
-  
+  }
+
   & .clicked {
     display: inline-block;
     position: relative;
   }
-  
+
   & .clicked svg {
     color: $green1;
     fill: currentColor;
   }
-  
+
   & .clicked svg:hover {
     color: $green2;
     fill: currentColor;
   }
-  
+
   & .clicked::after {
     content: '';
     position: absolute;
@@ -53,7 +54,7 @@
     border-radius: 50%;
     transition: background-color 0.3s;
   }
-  
+
   & .clicked::after:hover {
     content: '';
     position: absolute;
@@ -66,14 +67,14 @@
     border-radius: 50%;
     transition: background-color 0.3s;
   }
-  
+
   & svg {
     width: 16px;
     height: 16px;
     margin: 8px;
     color: #b3b3b3;
     fill: currentColor;
-  
+
     &:hover {
       color: white;
       fill: currentColor;
@@ -136,76 +137,99 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.1s ease, transform 0.1s ease;
-   &:hover {
-      transform: scale(1.07);
+
+  &:hover {
+    transform: scale(1.07);
   }
-  
+
   & svg {
     color: black;
     fill: currentColor;
     transition: color 0.1s ease;
-  
+
     &:hover {
       color: black;
       fill: currentColor;
     }
   }
 }
+
 @media (max-width:500px) {
-  .app-player{
+  .app-player {
     position: fixed;
     bottom: 100px;
     height: 70px;
     width: 90vw;
     left: 22px;
     border-radius: 10px;
-    background-color: rgba(89, 15, 15, 0.9) ;
+    background-color: rgba(89, 15, 15, 0.9);
     z-index: 3;
   }
-  .song-info{
+
+  /* .song-info{
+    display: nonbe;
+  } */
+  .player-seek-and-control {
+    display: none;
+    svg{
+      display: none;
+    }
+  }
+
+  .player {
+    position: absolute;
+    top: 15px;
+    right: -150px;
+    background-color: inherit;
+    height: 40px;
+    width: 49px;
+    svg{
+      height: 20px;
+      width: 20px;
+      display: block;
+      fill: white;
+    }
+  }
+  .add-icn{
+    position: absolute;
+    right: 50px;
+    color:  white;
+  }
+  .effects{
     display: none;
   }
-  .player-seek-and-control{
-    padding-top: 0px;
-    position: relative;
-    top: 50%;
-    right:  50%;
-    translate: 20% -50%;
-    & svg {
-      width: 13px;
-      height: 13px;
-    }
-    .player{
-      height: 25px;
-      width: 25px;
-    }
-
+  
+  .time{
+    display: none;
   }
-  .center{
+  .center {
     padding: 0;
     gap: 2px;
   }
-  .voluem-slider{
+
+  .voluem-slider {
     width: 50px;
   }
-   .side{
+
+  .side {
+    display: none;
     margin-top: 10px;
     gap: 0;
     width: 100px;
-    svg{
+
+    svg {
       width: 35px;
       height: 35px;
     }
-    svg{
-      &:nth-child(1){
+
+    svg {
+      &:nth-child(1) {
         display: none;
       }
-      &:nth-child(2){
+
+      &:nth-child(2) {
         display: none;
       }
     }
   }
 }
-
-
-

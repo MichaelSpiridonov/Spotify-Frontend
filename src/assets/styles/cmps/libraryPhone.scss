@@ -2,7 +2,7 @@
     display: grid;
     height: 100vh;
     grid-template-columns: 10% 90%;
-   
+   height: 100vh;
     
 }
 .phone-library-header{
@@ -25,4 +25,8 @@ padding: 12px;
         width: 25px;
         fill: #b3b3b3;
     }
+}
+
+.station-preview{
+    width: 100%;
 }

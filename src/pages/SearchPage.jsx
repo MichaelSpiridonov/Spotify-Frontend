@@ -85,7 +85,7 @@ export function SearchPage() {
             </section>
         </section>}
         <section className='station-details' >
-            {songs && songs.map(song => <SearchPreview key={song._id} song={song} />)}
+            {search && songs.map(song => <SearchPreview key={song._id} song={song} />)}
             <MoreModal />
         </section>
 
