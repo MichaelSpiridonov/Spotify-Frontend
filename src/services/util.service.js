@@ -71,9 +71,22 @@ export function formatDuration(duration) {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
 }
 
-export function formatTime(time){
+export function formatTime(time) {
     const minutes = Math.floor(time / 60)
     const seconds = Math.floor(time % 60)
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+}
+
+
+export function formatPlaylistDuration(totalMilliseconds) {
+    const totalSeconds = Math.floor(totalMilliseconds / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  if (hours > 0) {
+    return `${hours} hr ${minutes} min`;
+  } else {
+    return `${minutes} min ${seconds} sec`;
   }
-  
+}
