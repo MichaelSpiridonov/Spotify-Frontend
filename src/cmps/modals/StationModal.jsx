@@ -19,6 +19,7 @@ export function StationModal() {
   const stations = useSelector(
     (storeState) => storeState.stationModule.stations
   )
+  
   const [isEditing, setIsEditing] = useState(false)
   const element = document.querySelector('.station-modal')
   const navigate = useNavigate()
@@ -43,9 +44,7 @@ export function StationModal() {
   }
 
   function onRemoveStation() {
-    console.log('currStation._id:', currStation._id)
-    console.log('currSelectedStation._id:', currSelectedStation._id)
-    if (currStation._id === currSelectedStation._id) navigate('/')
+    if(currStation?._id === currSelectedStation._id) navigate('/')
     removeStation(currSelectedStation)
     element.style.display = 'none'
   }
