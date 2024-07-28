@@ -13,8 +13,8 @@
         position: absolute;
         bottom: 5px;
         right: 0;
-        height: 126px;
-        width: 126px;
+        height: 5vw;
+        width: 5vw;
         border-radius: 10px;
         border: dotted 1px black;
         
@@ -90,5 +90,16 @@
     &:nth-child(22){
         background-color: #e61e32 ;
     }
-
+    &:nth-child(23){
+        background-color: #27856a ;
+    }
+    &:nth-child(24){
+        background-color: #0d73ec ;
+    }
+    &:nth-child(25){
+        background-color: #e61e32 ;
+    }
+}
+@media (max-width:500px) {
+    
 }

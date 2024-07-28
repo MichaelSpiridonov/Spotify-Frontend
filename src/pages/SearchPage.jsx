@@ -106,6 +106,22 @@ const topics = [
         name: 'Blues',
         img: 'https://i.scdn.co/image/ab67fb8200005caf53eb5d52ae9152ce8461b387'
     },
+    {
+        name: 'Music',
+        img: 'https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb'
+    }
+    ,
+    {
+        name: 'Podcast',
+        img: 'https://i.scdn.co/image/ab6765630000ba8a81f07e1ead0317ee3c285bfa'
+    }
+    ,
+    {
+        name: 'New Releases',
+        img: 'https://i.scdn.co/image/ab67fb8200005caf194fec0fdc197fb9e4fe8e64'
+    }
+    ,
+    
    
 ]
 
