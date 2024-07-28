@@ -190,6 +190,7 @@
 }
 
 @media (min-width:500px) {
+    
     .main-container {
         display: grid;
         grid-template-columns: minmax(295px, 420px) auto;
@@ -198,7 +199,6 @@
         gap: 8px;
         height: 100vh;
     }
-
     .side-layout {
         grid-column: 1;
         display: grid;

@@ -14,6 +14,7 @@
         flex-wrap: wrap;
         padding: 0px 8px 8px;
     }
+
     .library-header {
         display: flex;
         align-items: center;
@@ -26,7 +27,7 @@
         width: 420px;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
-
+        cursor: pointer;
         .add-svg {
             fill: #a7a7a7;
             background-color: #121212;
@@ -58,6 +59,7 @@
             width: 162px;
             height: 40px;
             gap: 2px;
+
             svg {
                 margin-right: 10px;
             }
@@ -85,16 +87,94 @@
 .side-library::-webkit-scrollbar {
     width: 0;
     /* width of the scrollbar */
-   
-    
+
+
     /* height of the scrollbar */
 }
+
 .side-library:hover {
-    overflow-y: auto; /* Show the vertical scrollbar on hover */
+    overflow-y: auto;
+    /* Show the vertical scrollbar on hover */
 }
+
+@media (min-width: 500px) {
+    main.main-container.\.main-container-collapsed{
+        grid-template-columns: 72px auto;
+
+        .side-layout {
+            width: 72px;
+
+            .station-name {
+                display: none;
+            }
+
+            p.station-createdby {
+                display: none;
+            }
+
+            section.library-header {
+                width: 52px;
+            }
+
+            section.library-header {
+                display: block;
+                
+                h1 {
+                    display: none;
+                }
+
+                .add-svg {
+                    display: none;
+                }
+
+                div {
+                    width: 50px;
+                }
+
+            }
+
+            .side-bar {
+                padding-top: 8px 12px;
+            }
+
+            section.side-bar b {
+                display: none;
+            }
+
+            svg.library-svg {
+                display: block;
+            }
+
+            img.station-image {
+                margin-left: 3px;
+
+                height: 48px;
+                width: 48px;
+            }
+
+            section.station-list {
+                top: 55px;
+            }
+
+            .station-details-container {
+                width: 80vw;
+            }
+
+            main.main-container {
+                display: grid;
+                grid-template-columns: 72px auto;
+            }
+
+
+        }
+    }
+}
+
+
+
 @media (max-width:500px) {
-    .side-layout{
+    .side-layout {
         position: fixed;
     }
-   
+
 }
