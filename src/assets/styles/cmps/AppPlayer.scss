@@ -100,10 +100,7 @@
 }
 
 .song-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+ 
   margin-inline-end: 8px;
   padding-left: 6px;
 }
@@ -162,7 +159,10 @@
     }
   }
 }
-
+a.artist-name{
+ display: flex;
+ justify-content: start;
+}
 @media (max-width:500px) {
   .app-player {
     position: fixed;
