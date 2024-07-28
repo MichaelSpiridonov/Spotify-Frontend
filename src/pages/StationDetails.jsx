@@ -15,7 +15,7 @@ import { AppHeader } from '../cmps/AppHeader.jsx'
 import { AppFooter } from '../cmps/AppFooter.jsx'
 import { FastAverageColor } from 'fast-average-color'
 import { getVideos } from '../services/youtube.service.js'
-import { formatDate, formatDuration } from '../services/util.service.js'
+import { formatDate, formatDuration, formatPlaylistDuration } from '../services/util.service.js'
 import { SongList } from '../cmps/SongList.jsx'
 import { SearchPreview } from '../cmps/SearchPreview.jsx'
 import { useSelector } from 'react-redux'
@@ -68,6 +68,11 @@ export function StationDetails() {
     return id[0].videoId
   }
 
+  function calculateTotalDuration(songs) {
+    const totalDuration = songs.reduce((acc, song) => acc + song.duration, 0);
+    return formatPlaylistDuration(totalDuration);
+  }
+
   async function onClickPlay(song) {
     if (!song.id) {
       song.id = await getVideoId(song.title)
@@ -83,7 +88,6 @@ export function StationDetails() {
     updateSong(songData)
     loadStation(stationId)
   }
-  console.log(currSong)
   const elPlayer = document.querySelector('.app-player')
   if (elPlayer && currSong && pageWidth < 500) {
     elPlayer.style.display = 'flex'
@@ -111,9 +115,9 @@ export function StationDetails() {
     }
   }
   if (currStation) {
-    if (currStation.createdBy) {
+    if (currStation.imgUrl) {
       const fac = new FastAverageColor()
-      fac.getColorAsync(currStation.createdBy.imgUrl).then((color) => {
+      fac.getColorAsync(currStation.imgUrl).then((color) => {
         setColor(color.rgb)
       })
     } else {
@@ -131,12 +135,12 @@ export function StationDetails() {
         <section style={gradientStyle}>
           <AppHeader />
           <div className='station-header'>
-            {currStation.createdBy.imgUrl && <img
+            {currStation.imgUrl && <img
               className='station-image'
-              src={currStation.createdBy.imgUrl}
+              src={currStation.imgUrl}
               alt={currStation.createdBy.fullname}
             />}
-            {!currStation.createdBy.imgUrl &&
+            {!currStation.imgUrl &&
               <div className='station-none-image'>
                 <svg data-encore-id="icon" role="img" aria-hidden="true" data-testid="playlist" class="Svg-sc-ytk21e-0 bneLcE" viewBox="0 0 24 24"><path d="M6 3h15v15.167a3.5 3.5 0 1 1-3.5-3.5H19V5H8v13.167a3.5 3.5 0 1 1-3.5-3.5H6V3zm0 13.667H4.5a1.5 1.5 0 1 0 1.5 1.5v-1.5zm13 0h-1.5a1.5 1.5 0 1 0 1.5 1.5v-1.5z"></path></svg>
               </div>
@@ -147,7 +151,7 @@ export function StationDetails() {
               <h1 className='station-name'>{currStation.name}</h1>
               <h2 className='station-description'>{currStation.description}</h2>
               <p className='station-creator'>
-                {currStation.createdBy.fullname} · {currStation.songs.length} songs ·
+                {currStation.createdBy.fullname} · {currStation.songs.length} songs {(currStation.songs.length) ? `· ${calculateTotalDuration(currStation.songs)}` : ''}
               </p>
             </div>
           </div>
