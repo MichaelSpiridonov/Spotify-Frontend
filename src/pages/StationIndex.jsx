@@ -35,7 +35,7 @@ export function StationIndex() {
   }, [pageWidth]) // Only run once on mount
   const elPlayer = document.querySelector('.app-player')
   if (elPlayer) {
-    elPlayer.style.display = 'block'
+    elPlayer.style.display = 'flex'
   }
   calculateNumberOfElements()
   function calculateNumberOfElements() {

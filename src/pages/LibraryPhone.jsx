@@ -36,7 +36,10 @@ export function LibraryPhone() {
             // Do something here, such as closing a modal, hiding a dropdown, etc.
         }
     }
-
+    const elPlayer = document.querySelector('.app-player')
+    if (elPlayer) {
+      elPlayer.style.display = 'flex'
+    }
     // Adding click event listener to the document
     document.addEventListener('click', clickOutsideListener);
     if(!stations) return

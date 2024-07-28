@@ -69,7 +69,7 @@ export function StationDetails() {
   }
   const elPlayer = document.querySelector('.app-player')
   if (elPlayer) {
-    elPlayer.style.display = 'block'
+    elPlayer.style.display = 'flex'
   }
 
   function onAddTo(event, song) {
