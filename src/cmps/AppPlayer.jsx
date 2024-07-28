@@ -4,9 +4,11 @@ import Player from "./Player.jsx"
 import { Link, useNavigate } from "react-router-dom"
 import { ArtistCmp } from "./ArtistCmp.jsx"
 import { useLayoutEffect, useState } from "react"
+import { FastAverageColor } from "fast-average-color"
 
 export function AppPlayer() {
   const Navigate = useNavigate()
+  const [color, setColor] = useState(null)
   const station = useSelector((storeState) => storeState.stationModule.station)
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
@@ -28,13 +30,26 @@ export function AppPlayer() {
     }
   }, [pageWidth])
 
-  function onOpenPlayerPhone(){
-    if(pageWidth>500)return
+  function onOpenPlayerPhone() {
+    if (pageWidth > 500) return
     Navigate('/player')
   }
+  if (pageWidth < 500 && currSong) {
+    console.log(currSong)
+    if (currSong.imgUrl) {
+      const fac = new FastAverageColor()
+      fac.getColorAsync(currSong.imgUrl).then((color) => {
+        setColor(color.rgb)
+      })
+    } else {
+      setColor("rgba(66, 64, 64, 0.6) 0")
+    }
+
+  }
+
   return (
-    <section onClick={onOpenPlayerPhone} className="app-player">
-      <section>
+    <section style={{backgroundColor:color}} className="app-player">
+      <section onClick={onOpenPlayerPhone}>
         {currSong && (
           <section className="song-detail">
             <img className="song-image" src={currSong.imgUrl} />
@@ -43,7 +58,7 @@ export function AppPlayer() {
                 {currSong.title.replace(/^.*?-/, "")}
               </Link>
               <section className="artist">
-                  <ArtistCmp artists={currSong.artists} />
+                <ArtistCmp artists={currSong.artists} />
               </section>
             </section>
             <AddIcon className="add-icn" />

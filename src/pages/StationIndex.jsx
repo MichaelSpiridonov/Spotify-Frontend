@@ -36,9 +36,9 @@ export function StationIndex() {
     }
   }, [pageWidth]) // Only run once on mount
   const elPlayer = document.querySelector('.app-player')
-  if (elPlayer&& currSong) {
+  if (elPlayer && currSong&& pageWidth<500) {
     elPlayer.style.display = 'flex'
-  }else if(pageWidth<500){
+  }else if(elPlayer&& pageWidth<500){
      elPlayer.style.display = 'none'
   }
 
@@ -62,6 +62,10 @@ export function StationIndex() {
       numElements = 8
     }
   }
+  var numWides = 6
+  if(pageWidth<500){
+    numWides=4
+  }
   if (!stations && !albums) return <div>Loading....</div>
   stationService.queryAlbums().then((albums) => setAlbums(albums))
   if (!albums) return
@@ -73,7 +77,7 @@ export function StationIndex() {
     <section className='list-container'>
       <AppHeader />
       <section className='wide-stations-container'>
-        {stations.slice(8, 14).map((station) => (
+        {stations.slice(8, 8+numWides).map((station) => (
           <WideStationPreview key={station._id} station={station} />
         ))}
       </section>

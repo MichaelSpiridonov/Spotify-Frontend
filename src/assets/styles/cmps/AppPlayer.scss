@@ -57,11 +57,13 @@
     border-radius: 50%;
     transition: background-color 0.3s;
   }
-  section.player-controls.side{
+
+  section.player-controls.side {
     position: absolute;
     right: 0;
     top: 20px;
   }
+
   & .clicked::after:hover {
     content: '';
     position: absolute;
@@ -164,13 +166,13 @@
 @media (max-width:500px) {
   .app-player {
     position: fixed;
-    bottom: 100px;
+    bottom: 70px;
     height: 70px;
-    width: 90vw;
-    left: 22px;
+    width: 95vw;
+    left: 10px;
     border-radius: 10px;
     background-color: rgba(89, 15, 15, 0.9);
-    z-index: 3;
+    z-index: 10;
   }
 
   .next-btn {
@@ -203,25 +205,17 @@
   }
 
   section.player {
-    margin-bottom: 10px;
-    padding-right: 10px;
-  }
-
-  .player {
     position: absolute;
-    top: 15px;
-    right: -150px;
+    right: -30vw;
+    bottom: 19px;
     background-color: inherit;
-    height: 40px;
-    width: 49px;
-
-    svg {
-      height: 20px;
-      width: 20px;
-      display: block;
+    svg{
       fill: white;
     }
   }
+
+ 
+  
 
   .add-icn {
     position: absolute;

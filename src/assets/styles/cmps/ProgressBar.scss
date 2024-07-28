@@ -79,10 +79,11 @@
 }
 @media (max-width:500px){
     .progress-bar-container{
-        position: relative;
-        left: 150px;
-        top: 28px;
-        width: 95vw;
+        position: absolute;
+        right: -37vw;
+        bottom: -0.2vh;
+        width: 97vw;
+        height: 3px;
       }
       .progress-bar{
         color: white;

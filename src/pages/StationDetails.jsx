@@ -25,7 +25,7 @@ export function StationDetails() {
   const [color, setColor] = useState(null)
   const [search, setSearch] = useState(null)
   const [songs, setSongs] = useState([])
-  
+
   const stations = useSelector(
     (storeState) => storeState.stationModule.stations
   )
@@ -85,10 +85,10 @@ export function StationDetails() {
   }
   console.log(currSong)
   const elPlayer = document.querySelector('.app-player')
-  if (elPlayer&& currSong) {
+  if (elPlayer && currSong && pageWidth < 500) {
     elPlayer.style.display = 'flex'
-  }else if(pageWidth<500){
-     elPlayer.style.display = 'none'
+  } else if (elPlayer && pageWidth < 500) {
+    elPlayer.style.display = 'none'
   }
 
   function onAddTo(event, song) {
@@ -123,46 +123,48 @@ export function StationDetails() {
   }
   if (!currStation) return
   const gradientStyle = {
-    backgroundImage: `linear-gradient(${color}, #121212 50%)`,
+    backgroundImage: `linear-gradient(${color}, #121212 90%)`
   }
   return (
     <React.Fragment>
-      <div style={gradientStyle} className='station-details-container'>
-        <AppHeader />
-        <div className='station-header'>
-          {currStation.createdBy.imgUrl && <img
-            className='station-image'
-            src={currStation.createdBy.imgUrl}
-            alt={currStation.createdBy.fullname}
-          />}
-          {!currStation.createdBy.imgUrl &&
-            <div className='station-none-image'>
-              <svg data-encore-id="icon" role="img" aria-hidden="true" data-testid="playlist" class="Svg-sc-ytk21e-0 bneLcE" viewBox="0 0 24 24"><path d="M6 3h15v15.167a3.5 3.5 0 1 1-3.5-3.5H19V5H8v13.167a3.5 3.5 0 1 1-3.5-3.5H6V3zm0 13.667H4.5a1.5 1.5 0 1 0 1.5 1.5v-1.5zm13 0h-1.5a1.5 1.5 0 1 0 1.5 1.5v-1.5z"></path></svg>
+      <div  className='station-details-container'>
+        <section style={gradientStyle}>
+          <AppHeader />
+          <div className='station-header'>
+            {currStation.createdBy.imgUrl && <img
+              className='station-image'
+              src={currStation.createdBy.imgUrl}
+              alt={currStation.createdBy.fullname}
+            />}
+            {!currStation.createdBy.imgUrl &&
+              <div className='station-none-image'>
+                <svg data-encore-id="icon" role="img" aria-hidden="true" data-testid="playlist" class="Svg-sc-ytk21e-0 bneLcE" viewBox="0 0 24 24"><path d="M6 3h15v15.167a3.5 3.5 0 1 1-3.5-3.5H19V5H8v13.167a3.5 3.5 0 1 1-3.5-3.5H6V3zm0 13.667H4.5a1.5 1.5 0 1 0 1.5 1.5v-1.5zm13 0h-1.5a1.5 1.5 0 1 0 1.5 1.5v-1.5z"></path></svg>
+              </div>
+
+            }
+            <div className='station-info'>
+              <h3>Playlist</h3>
+              <h1 className='station-name'>{currStation.name}</h1>
+              <h2 className='station-description'>{currStation.description}</h2>
+              <p className='station-creator'>
+                {currStation.createdBy.fullname} · {currStation.songs.length} songs ·
+              </p>
             </div>
-
-          }
-          <div className='station-info'>
-            <h3>Playlist</h3>
-            <h1 className='station-name'>{currStation.name}</h1>
-            <h2 className='station-description'>{currStation.description}</h2>
-            <p className='station-creator'>
-              {currStation.createdBy.fullname} · {currStation.songs.length} songs ·
-            </p>
           </div>
-        </div>
-        <div className='station-controls'>
-          <button onClick={() => onClickPlay(currStation.songs[0])} className='header-play-button'>
-            {(!currSong) ? <PlayIcon /> : <PauseIcon />}
-          </button>
-          <div className='header-add-button'>
-            <AddIcon />
+          </section>
+          <div className='station-controls'>
+            <button onClick={() => onClickPlay(currStation.songs[0])} className='header-play-button'>
+              {(!currSong) ? <PlayIcon /> : <PauseIcon />}
+            </button>
+            <div className='header-add-button'>
+              <AddIcon />
+            </div>
+            <div className='header-options-button'>
+              <SongOptionsIcon />
+            </div>
           </div>
-          <div className='header-options-button'>
-            <SongOptionsIcon />
-          </div>
-        </div>
-
-        <section className='station-details'>
+        
+        <section  className='station-details'>
           {currStation.songs[0] && <div className='table-header'>
             <span>#</span>
             <span>Title</span>

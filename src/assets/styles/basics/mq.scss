@@ -55,12 +55,35 @@
         }
     }
 }
+@media (max-width: 500px) {
+    .station-details-container {
+        .station-header {
+            .station-info {
+                display: flex;
+                gap: 15px;
+                .station-name {
+                    font-size: 16px;
+                }
 
+                .station-description {
+                    display: none;
+                }
+                .station-creator{
+                    font-size: 10px;
+                }
+            }
+
+        }
+    }
+}
 @media (max-width:500px) {
-    .main-container{
+    .main-container {
         height: 100vh;
         overflow-x: hidden;
     }
+
+   
+
     .media-container {
         display: flex;
     }
@@ -68,7 +91,8 @@
     .side-bar {
         display: none;
     }
-    .side-library{
+
+    .side-library {
         display: none;
     }
 
@@ -92,24 +116,31 @@
             height: 15px;
         }
     }
-    .table-header{
-        span{
-            &:nth-child(3){
+
+    .table-header {
+        span {
+            &:nth-child(3) {
                 display: none;
-               }
-           &:nth-child(4){
-            display: none;
-           } 
+            }
+
+            &:nth-child(4) {
+                display: none;
+            }
         }
     }
-    .song-album{
+
+    .song-album {
         display: none;
     }
-    .song-date{
+
+    .song-date {
         display: none;
     }
-    .station-info {
-        margin-top: 30px;
+
+    div.station-info {
+        display: flex;
+
+        gap: 10px;
     }
 
     .item {
@@ -142,14 +173,17 @@
     .add-button svg {
         opacity: 1;
     }
-    .footer-bottom{
+
+    .footer-bottom {
         font-size: 8px;
     }
-    .footer-section{
-        h3{
+
+    .footer-section {
+        h3 {
             font-size: 10px;
         }
-        a{
+
+        a {
             font-size: 8px;
         }
     }
@@ -172,10 +206,12 @@
         gap: 8px;
         height: 100%;
     }
+
     .side-bar {
         display: grid;
     }
-    .side-library{
+
+    .side-library {
         display: block;
     }
 
@@ -198,13 +234,10 @@
         height: 40px;
         width: 40px;
     }
+
     .social-media svg {
         height: 20px;
         width: 40px;
-    }
-
-    .add-button {
-        display: none;
     }
 
     .play-button svg,
@@ -212,14 +245,17 @@
     .add-button svg {
         opacity: 0;
     }
-    .footer-bottom{
+
+    .footer-bottom {
         font-size: 15px;
     }
-    .footer-section{
-        h3{
+
+    .footer-section {
+        h3 {
             font-size: 20px;
         }
-        a{
+
+        a {
             font-size: 16px;
         }
     }
