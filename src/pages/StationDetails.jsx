@@ -36,7 +36,7 @@ export function StationDetails() {
   )
 
   useEffect(() => {
-    setStation(stationId)  
+    setStation(stationId)
   }, [stationId])
 
   async function setStation(stationId) {
@@ -67,7 +67,11 @@ export function StationDetails() {
     updateSong(songData)
     loadStation(stationId)
   }
-  
+  const elPlayer = document.querySelector('.app-player')
+  if (elPlayer) {
+    elPlayer.style.display = 'block'
+  }
+
   function onAddTo(event, song) {
     setCurrSelectedStation(currStation)
     setCurrSelectedSong(song)
@@ -83,7 +87,7 @@ export function StationDetails() {
 
   window.onclick = function (event) {
     const elModal = document.querySelector('.more-modal')
-    if (event.target !== elModal&& elModal) {
+    if (event.target !== elModal && elModal) {
       elModal.style.display = "none";
     }
   }
@@ -123,7 +127,7 @@ export function StationDetails() {
             <h1 className='station-name'>{currStation.name}</h1>
             <h2 className='station-description'>{currStation.description}</h2>
             <p className='station-creator'>
-              {currStation.createdBy.fullname} · {currStation.songs.length} songs · 
+              {currStation.createdBy.fullname} · {currStation.songs.length} songs ·
             </p>
           </div>
         </div>

@@ -33,7 +33,10 @@ export function StationIndex() {
       window.removeEventListener('resize', handleResize)
     }
   }, [pageWidth]) // Only run once on mount
-
+  const elPlayer = document.querySelector('.app-player')
+  if (elPlayer) {
+    elPlayer.style.display = 'block'
+  }
   calculateNumberOfElements()
   function calculateNumberOfElements() {
     if (pageWidth > 500) {

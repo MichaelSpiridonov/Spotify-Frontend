@@ -70,7 +70,11 @@ export function SearchPage() {
     function handleChange({ target }) {
         setSearch(target.value)
     }
-    console.log(songs)
+
+    const elPlayer = document.querySelector('.app-player')
+    if (elPlayer) {
+      elPlayer.style.display = 'block'
+    }
     return <section className='search-page' >
         <AppHeader />
         <form action=''>
