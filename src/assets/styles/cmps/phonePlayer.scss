@@ -9,7 +9,31 @@
         fill: white;
     }
 
+    .player-seek-and-control svg {
+        display: block;
+    }
     
+    section.player-seek-and-control {
+        display: flex;
+    }
+    
+    span.effects {
+    
+        display: block;
+    }
+    
+    .song-detail-page {
+        position: absolute;
+        top: 10vh;
+        right: 40px;
+    }
+    
+    .song-image-page {
+    
+        width: 80vw;
+        height: 80vw;
+        border-radius: 10px;
+    }
 
     .progress-bar-container {
         display: flex;
@@ -23,78 +47,53 @@
         display: block;
     }
 
-}
-
-.song-info-page {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 75vw;
-    margin-top: 60px;
-}
-
-a.song-title-page {
-    color: white;
-    font-size: 20px;
-
-}
-
-.player-seek-and-controls {
-    display: flex;
-    position: absolute;
-
+    .song-info-page {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 75vw;
+        margin-top: 60px;
+    }
     
-}
-
-/* .player-seek-and-control svg{
-    display: block;
-} */
-/* .player-controls {
-    display: block;
-} */
-section.player-controls.center{
-    position: absolute;
-    top: 80vh;
-    right:  13vw;
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    .player{
-        position: relative;
-        right:0;
-        top: 3px;
-        background-color: white;
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        svg{
-            fill: inherit;
+    a.song-title-page {
+        color: white;
+        font-size: 20px;
+    
+    }
+    
+    .player-seek-and-controls {
+        display: flex;
+        position: absolute;
+    
+        
+    }
+    
+    .player-seek-and-control svg{
+        display: block;
+    }
+    .player-controls {
+        display: block;
+    }
+    section.player-controls.center{
+        position: absolute;
+        top: 80vh;
+        right:  13vw;
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        .player{
+            position: relative;
+            right:0;
+            top: 3px;
+            background-color: white;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            svg{
+                fill: inherit;
+            }
         }
     }
-}
-.player-seek-and-control svg {
-    display: block;
-}
-
-section.player-seek-and-control {
-    display: flex;
-}
-
-span.effects {
-
-    display: block;
-}
-
-.song-detail-page {
-    position: absolute;
-    top: 10vh;
-    right: 40px;
-}
-
-.song-image-page {
-
-    width: 80vw;
-    height: 80vw;
-    border-radius: 10px;
+    
 }

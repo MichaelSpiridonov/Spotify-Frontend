@@ -32,7 +32,6 @@ export function AppPlayer() {
     if(pageWidth>500)return
     Navigate('/player')
   }
-    if(pageWidth<500 && currSong)
   return (
     <section onClick={onOpenPlayerPhone} className="app-player">
       <section>
