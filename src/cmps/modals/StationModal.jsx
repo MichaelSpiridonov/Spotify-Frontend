@@ -39,6 +39,8 @@ export function StationModal() {
 
   const handleEditDetails = () => {
     setIsEditing(true)
+    // Close the StationModal when opening StationEditModal
+    element.style.display = 'none'
   }
 
   function onRemoveStation() {
@@ -100,7 +102,7 @@ export function StationModal() {
           </li>
         </ul>
       </article>
-      {/* Step 4: Conditionally Render `StationEditModal` */}
+
       {isEditing && (
         <StationEditModal
           station={currStation}
