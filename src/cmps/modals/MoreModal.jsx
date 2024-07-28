@@ -12,6 +12,7 @@ export function MoreModal() {
     const stations = useSelector(storeState => storeState.stationModule.stations)
     const [station, setStation] = useState(null)
     const song = useSelector((storeState) => storeState.stationModule.currSelectedSong)
+    const user = useSelector((storeState) => storeState.userModule.user)
     useEffect(() => {
         if(stationId){
             loadLocalStation(stationId)
@@ -39,11 +40,12 @@ export function MoreModal() {
         const element = document.querySelector('.more-modal')
         element.style.display = 'none'
         const station = {
-            createdBy: { _id: 'user132', fulname: 'User', imgUrl: song.imgUrl },
+            createdBy: { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl },
             likedByUsers: ['{minimal-user}', '{minimal-user}'],
             name: song.title,
             songs: [(song)],
             tags: [],
+            imgUrl: song.imgUrl,
         }
         await addStation(station)
         showNotificationMsg(`Added to ${station.name}`, song.imgUrl)
