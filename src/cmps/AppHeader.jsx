@@ -27,6 +27,11 @@ export function AppHeader() {
             </svg>
           </section>
         </section>
+        <div class="container">
+          <button id="signupButton" class="btn sign-up">Sign Up</button>
+          <button id="loginButton" class="btn log-in">Log in</button>
+        </div>
+
       </section>
     </header>
   )

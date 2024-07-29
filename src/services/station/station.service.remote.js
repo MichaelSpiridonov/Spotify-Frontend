@@ -9,11 +9,10 @@ export const stationService = {
 }
 
 async function queryStations() {
-    console.log('hi')
     return await httpService.get(`station`)
 }
 async function queryAlbums() {
-    console.log('hi')
+
     return await httpService.get(`album`)
 }
 async function getById(stationId) {
