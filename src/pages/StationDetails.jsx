@@ -116,13 +116,13 @@ export function StationDetails() {
       elModal.style.display = "none";
     }
   }
-  if (currStation) {
+  if (currStation  ) {
     if (currStation.imgUrl) {
       const fac = new FastAverageColor()
       fac.getColorAsync(currStation.imgUrl).then((color) => {
         setColor(color.rgb)
       })
-    } else {
+    } else if(!color) {
       setColor("rgba(66, 64, 64, 0.6) 0")
     }
 

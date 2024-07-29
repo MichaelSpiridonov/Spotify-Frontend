@@ -1,7 +1,21 @@
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 export function AppHeader() {
+  const user = useSelector( (storeState) => storeState.userModule.user)
+  const userName = "or bracha"
   const navigate = useNavigate()
+  function onToggleModalLogout(){
+    const elModal = document.querySelector('.modal-logout')
+    if(elModal.style.height === '40px'){
+      elModal.style.height = '0'
+      elModal.style.fontSize  = '0'
+    } else{
+      elModal.style.height = '40px'
+      elModal.style.fontSize  = '14px'
+    }
+      
+   }
   return (
     <header className='app-header'>
       <section className='header-container'>
@@ -27,6 +41,11 @@ export function AppHeader() {
             </svg>
           </section>
         </section>
+        {!user? <div onClick={onToggleModalLogout} className='user-login'><b>{userName.charAt(0)}</b></div>:<div class="container">
+          <button id="signupButton" class="btn sign-up">Sign Up</button>
+          <button id="loginButton" class="btn log-in">Log in</button>
+        </div>}
+        <article className='modal-logout'><h1>Log out</h1></article>
       </section>
     </header>
   )

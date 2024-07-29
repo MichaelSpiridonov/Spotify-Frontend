@@ -68,7 +68,7 @@
   section.player-controls.side {
     position: absolute;
     right: 0;
-    top: 20px;
+    top: 30px;
   }
 
   & .clicked::after:hover {
@@ -166,7 +166,7 @@
     }
   }
 }
-a.artist-name{
+section.artist{
  display: flex;
  justify-content: start;
 }

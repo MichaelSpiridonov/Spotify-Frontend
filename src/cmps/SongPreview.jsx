@@ -6,10 +6,34 @@ import LikeIcon from '../assets/icons/likedsong.svg?react'
 import SongOptionsIcon from '../assets/icons/options_1.svg?react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { useLayoutEffect, useState } from 'react'
 
 export function SongPreview({ song, onAddTo, onClickPlay }) {
   const user = useSelector((storeState) => storeState.userModule.user)
   const currSong = useSelector((storeState) => storeState.stationModule.currSong)
+  const [pageWidth, setPageWidth] = useState(window.innerWidth)
+
+  useLayoutEffect(() => {
+    // Function to handle resize event
+    const handleResize = () => {
+      setPageWidth(window.innerWidth)
+    }
+
+    // Attach resize event listener
+    window.addEventListener('resize', handleResize)
+
+    // Clean up function
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [pageWidth])
+  function onClickPlayPhone(song) {
+    console.log(song)
+    if (pageWidth > 500) return
+    else {
+      onClickPlay(song)
+    }
+  }
   return (
     <>
       <div className='play-button' >
@@ -17,12 +41,12 @@ export function SongPreview({ song, onAddTo, onClickPlay }) {
       </div>
       {(song.imgUrl) ? <img className='song-image' src={song.imgUrl} alt={song.title} /> : ''}
       <section>
-        <span className='station-song-detail'>{song.title || song.name}</span>
+        <span onClick={() => onClickPlayPhone(song)} className='station-song-detail'>{song.title || song.name}</span>
         {song.artists.map((artist, index) => (
           <span key={artist.id}>
-            <Link to={`/artist/${artist.id}`} className='song-artist'>
+           {/*  <Link to={`/artist/${artist.id}`} className='song-artist'> */}
               {artist.name}
-            </Link>
+            {/* </Link> */}
             {index < song.artists.length - 1 && ', '}
           </span>
         ))}

@@ -1,12 +1,14 @@
-.more-modal,.station-modal {
+.more-modal,
+.station-modal {
     position: absolute;
+
     font-size: 13px;
     color: #b3b3b3;
     background-color: #282828;
     padding: 4px;
     border-radius: 4px;
     display: none;
-    
+
     ul {
         display: flex;
         flex-direction: column;
@@ -47,5 +49,13 @@
     left: -250px;
     border-radius: 4px;
     box-shadow: (0, 0, 0, 0.3) 0px 16px 24px 0px, rgba(0, 0, 0, 0.2) 0px 6px 8px 0px;
- /*   overflow-y: hidden; */
+    /*   overflow-y: hidden; */
+}
+
+@media (max-width:500px) {
+
+    .more-modal,
+    .station-modal {
+        position: absolute;
+    }
 }
