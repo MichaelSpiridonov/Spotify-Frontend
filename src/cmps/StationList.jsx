@@ -18,7 +18,6 @@ export function StationList() {
       stations.splice(destination.index, 0, [removed][0]);
       setStationList(stations)
       stationService.save(stations)
-      loadStations()
   }
   
   const likedSongs = useSelector(storeState => storeState.stationModule.likedSongs)

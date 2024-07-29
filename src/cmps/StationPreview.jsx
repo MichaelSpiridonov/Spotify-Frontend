@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import playlistDefaultImage from '../assets/icons/myplaylist.svg'
 import { setCurrSelectedStation } from '../store/actions/station.actions'
+import { useSelector } from 'react-redux'
 
 export function StationPreview({ station }) {
-  if (!station.tags) return
+  const user = useSelector((storeState) => storeState.userModule.user)
+  if (!station.likedByUsers?.some(likeUser => likeUser?._id === user?._id) && station.createdBy?._id !== user?._id) return;
   const element = document.querySelector('.station-list')
-  var count = 0
   function handleContextMenu(event) {
     if (element) {
       // Prevent the default context menu from appearing

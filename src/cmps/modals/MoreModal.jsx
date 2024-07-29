@@ -81,7 +81,7 @@ export function MoreModal() {
         <div className='stations-modal' key={'stations-modal'}>
             <ul>
                 <li onClick={onAddNewStation}><svg data-encore-id='icon' role='img' aria-hidden='true' viewBox='0 0 16 16' ><path d='M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z' ></path></svg>New playlist</li>
-                {stations.filter(station => station.tags).map((station, idx) => <li key={idx} onClick={() => onAddToPlaylst(station, idx)}>{station.name}</li>)}
+                {stations.filter(station => station.createdBy?._id === user?._id).map((station, idx) => <li key={idx} onClick={() => onAddToPlaylst(station, idx)}>{station.name}</li>)}
             </ul>
         </div>
     </article>

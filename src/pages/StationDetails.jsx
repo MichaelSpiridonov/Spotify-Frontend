@@ -153,7 +153,7 @@ export function StationDetails() {
               <h1 className='station-name'>{currStation.name}</h1>
               <h2 className='station-description'>{currStation.description}</h2>
               <p className='station-creator'>
-                {currStation.createdBy.fullname} · {currStation.songs.length} songs {(currStation.songs.length) ? `· ${calculateTotalDuration(currStation.songs)}` : ''}
+                {currStation.createdBy.fullname} · {currStation.songs.length} songs{(currStation.songs.length) ? `, ${calculateTotalDuration(currStation.songs)}` : ''}
               </p>
             </div>
           </div>
