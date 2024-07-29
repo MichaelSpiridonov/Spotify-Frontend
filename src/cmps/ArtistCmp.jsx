@@ -5,10 +5,9 @@ export function ArtistCmp({ artists }) {
     <>
       {artists.map((artist, index) => (
         <span key={artist.id}>
-          <Link to={`/artist/${artist.id}`} className="artist-name">
-            {artist.name}
-          </Link>
-          {index < artists.length - 1 && ", "}
+          <div /* Link to={`/artist/${artist.id}`}  */ className="artist-name">
+            {(index < artists.length- 1?artist.name + ',' : artist.name) }
+          </div> 
         </span>
       ))}
     </>

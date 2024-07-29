@@ -10,7 +10,10 @@
   justify-content: space-between;
   font-family: circular-bold, sans-serif;
   padding-bottom: 5px;
-
+  transition: height 0.5s;
+  .down-svg{
+    display: none;
+  }
   .player-seek-and-control {
     position: absolute;
     display: flex;
@@ -178,7 +181,9 @@ a.artist-name{
     background-color: rgba(89, 15, 15, 0.9);
     z-index: 10;
   }
-
+  .song-detail{
+    width: 200px;
+  }
   .next-btn {
     display: none;
   }

@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { ArtistCmp } from "./ArtistCmp.jsx"
 import { useLayoutEffect, useState } from "react"
 import { FastAverageColor } from "fast-average-color"
-import { getLyrics } from "../services/genius.service.js"
+/* import { getLyrics } from "../services/genius.service.js" */
 
 export function AppPlayer() {
   const Navigate = useNavigate()
@@ -37,7 +37,13 @@ export function AppPlayer() {
 
   function onOpenPlayerPhone() {
     if (pageWidth > 500) return
-    Navigate('/player')
+    const elDetails = document.querySelector('.app-player')
+    elDetails.classList.add('details-player')
+  }
+  function onClosePlayer() {
+    if (pageWidth > 500) return
+    const elDetails = document.querySelector('.app-player')
+    elDetails.classList.remove('details-player')
   }
   if (pageWidth < 500 && currSong) {
     console.log(currSong)
@@ -51,31 +57,34 @@ export function AppPlayer() {
     }
 
   }
-  getLyrics('Cigarettes', 'Juice Wrld').then(lyric => console.log(lyric))
+  /* getLyrics('Cigarettes', 'Juice Wrld').then(lyric => console.log(lyric)) */
 
   return (
     <section style={{backgroundColor:color}} className="app-player">
-      <section onClick={onOpenPlayerPhone}>
+      <svg onClick={onClosePlayer} className="down-svg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+      <section>
         {currSong && (
-          <section className="song-detail">
+          <section  onClick={onOpenPlayerPhone} className="song-detail">
             <img className="song-image" src={currSong.imgUrl} />
             <section className="song-info">
-              <Link to={`album/:albumId`} className="song-title">
+              <div className="song-title">
                 {currSong.title.replace(/^.*?-/, "")}
-              </Link>
+              </div>
               <section className="artist">
                 <ArtistCmp artists={currSong.artists} />
               </section>
             </section>
             {(currSong.likedBy?.find(likeUser => likeUser._id === user._id)) ? <LikeIcon className="add-icn like-icn" /> : <AddIcon className="add-icn"/>}
           </section>
-        )}
+        )}  
+       
       </section>
       <Player
         videoId={currSong !== null ? currSong.id : ""}
         currSong={currSong}
         station={station}
       />
+      
     </section>
   )
 }

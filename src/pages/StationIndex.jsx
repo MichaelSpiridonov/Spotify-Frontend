@@ -66,6 +66,11 @@ export function StationIndex() {
   if(pageWidth<500){
     numWides=4
   }
+  const elDetails = document.querySelector('.app-player')
+  if(elDetails){
+    elDetails.classList.remove('details-player')
+
+  }
   if (!stations && !albums) return <div>Loading....</div>
   stationService.queryAlbums().then((albums) => setAlbums(albums))
   if (!albums) return
