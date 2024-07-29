@@ -79,7 +79,7 @@ export function StationIndex() {
 
   }
   if (!stations || !albums) return <div>Loading....</div>
-
+console.log(albums)
   const stationFeatured = stations.filter(
     (station) => station.category === 'featured'
   )
