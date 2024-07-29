@@ -73,7 +73,7 @@ export function StationEditModal({ onClose }) {
                 onChange={(e) => setName(e.target.value)}
                 onFocus={() => setIsNameFocused(true)}
                 onBlur={() => setIsNameFocused(false)}
-                placeholder='My Playlist #7'
+                placeholder='My Playlist'
               />
               <label>Name</label>
             </div>

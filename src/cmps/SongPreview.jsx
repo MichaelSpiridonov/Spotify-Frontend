@@ -13,7 +13,7 @@ export function SongPreview({ song, onAddTo, onClickPlay }) {
   return (
     <>
       <div className='play-button' >
-        {(currSong?._id === song._id) ? <PauseIcon /> : <PlayIcon onClick={() => onClickPlay(song)} />}
+        {(currSong?._id === song?._id) ? <PauseIcon /> : <PlayIcon onClick={() => onClickPlay(song)} />}
       </div>
       <img className='song-image' src={song.imgUrl} alt={song.title} />
       <section>
@@ -31,8 +31,8 @@ export function SongPreview({ song, onAddTo, onClickPlay }) {
         <Link to={`/album/${song._id}`}>{song.albumName}</Link>
       </span>
       <span className='song-date'>{formatDate(song.addedAt)}</span>
-      <div className={`add-button ${(song.likedBy?.find(likeUser => likeUser._id === user._id)) ? 'like-icn' : ''}`}>
-        {(song.likedBy?.find(likeUser => likeUser._id === user._id)) ? <LikeIcon /> : <AddIcon />}
+      <div className={`add-button ${(song.likedBy?.find(likeUser => likeUser._id === user?._id)) ? 'like-icn' : ''}`}>
+        {(song.likedBy?.find(likeUser => likeUser._id === user?._id)) ? <LikeIcon /> : <AddIcon />}
       </div>
       <span className='song-length'>{formatDuration(song.duration)}</span>
       <div

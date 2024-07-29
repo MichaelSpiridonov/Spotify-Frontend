@@ -130,7 +130,7 @@
           background-color: #333333;
           color: #ffffff;
           font-family: circular-book;
-          font-size: 14px;
+          font-size: 16px;
           outline: none;
 
           &::placeholder {
@@ -145,6 +145,7 @@
         textarea {
           resize: none;
           height: 80px;
+          overflow-y: hidden;
         }
       }
     }
