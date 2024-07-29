@@ -1,8 +1,8 @@
 .topics-container {
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15vw, 15vw));
-    grid-auto-rows: minmax(9vw, 9vw);
+    grid-template-columns: repeat(auto-fill, minmax(14vw, 14vw));
+    grid-auto-rows: minmax(7vw, 7vw);
     height: max-content;
     grid-auto-flow: dense;
     gap: 25px;

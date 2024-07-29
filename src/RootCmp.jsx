@@ -13,8 +13,8 @@ import { PlayerPhoneDetails } from './pages/PlayerPhoneDetails.jsx'
 
 export function RootCmp() {
   return (
-    <div>
-      <main className='main-container'>
+    <div >
+      <main className='main-container '>
         <SideLayout/>
         <Routes>
           <Route path='/' element={<StationIndex />} />

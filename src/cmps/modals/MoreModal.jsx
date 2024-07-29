@@ -34,6 +34,7 @@ export function MoreModal() {
     }
     function onAddToPlaylst(station, idx) {
         console.log(song)
+        showNotificationMsg(`Added to ${station.name}`, station.imgUrl)
         updateStations(song, station)
     }
     async function onAddNewStation() {
@@ -54,6 +55,7 @@ export function MoreModal() {
     async function onRemoveSong() {
         await removeSong(song._id, station)
         setCurrStation(station)
+        showNotificationMsg(`Removed From Your Library`)
         element.style.display = 'none'
     }
 

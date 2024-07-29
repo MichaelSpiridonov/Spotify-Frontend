@@ -33,9 +33,9 @@ export function PlayerPhoneDetails() {
         }
     }, [pageWidth])
 
-    function onOpenPlayerPhone() {
-        if (pageWidth > 500) return
-        Navigate('/player')
+    
+    function onClosePlayer(){
+
     }
     if (currSong) {
         const elPlayer = document.querySelector('.app-player')
@@ -49,6 +49,7 @@ export function PlayerPhoneDetails() {
     return (
         <section style={{ backgroundColor: color }} onClick={onOpenPlayerPhone} className="details-player">
             <section>
+            
                 {currSong && (
                     <section className="song-detail-page">
                         <img className="song-image-page" src={currSong.imgUrl} />

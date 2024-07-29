@@ -21,7 +21,7 @@ export function SideLayout() {
         }
     }, [pageWidth])
 
-    return <section>
+    return <section className='side-layout-container'>
 
         <section className='side-layout'>
             {pageWidth > 500 && <Sidebar />}

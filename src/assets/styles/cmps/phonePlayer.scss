@@ -1,10 +1,14 @@
 .details-player {
     display: flex;
     flex-direction: column;
-    background-color: #121212;
-    width: 100vw;
-    height: 100vh;
+    background-color: gba(0, 0, 0.1);
+    left: 0;
+    width: 100%;
+    border: 11px solid rgb(0, 0, 0, 0.5);
+    padding: 10px;
+    height: 91.5%;
     align-items: center;
+
     svg {
         height: 25px;
         fill: white;
@@ -13,33 +17,39 @@
     /* .player-seek-and-control svg {
         display: block;
     } */
-    
+
     section.player-seek-and-control {
         display: flex;
         position: absolute;
     }
-    
-    .song-detail-page {
+
+    .song-detail {
         position: relative;
-       top: 10vh;
+        top: 10vh;
     }
-    
-    .song-image-page {
-        
+
+    .song-image {
+        position: absolute;
         width: 80vw;
         height: 80vw;
         border-radius: 10px;
     }
-    section.player-controls.side {
+
+    section.player-controls {
         display: none;
     }
+
     .progress-bar-container {
         display: flex;
         position: relative;
-        top: 70vh;;
-        left: 0;
+        top: 65vh;
+        right: -29vw;
         width: 90vw;
-       height: 20px;
+        height: 20px;
+    }
+
+    .song-detail {
+        flex-direction: column;
     }
 
     .time {
@@ -48,82 +58,136 @@
         color: white;
     }
 
-    .song-info-page {
+    .song-info {
         display: flex;
-        flex-direction: row;
-        align-items: center;
+        flex-direction: column;
+        align-items: start;
         justify-content: space-between;
         margin-top: 50px;
-     
+
+        position: absolute;
+        top: 300px;
+        left: -10px;
     }
-    
-    a.song-title-page {
+
+    a.artist-name {
+        display: contents;
+        flex-direction: row;
+        font-size: 16px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    a.song-title {
         color: white;
-        font-size: 20px;
-    
+        font-size: 24px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
-    
+
     .player-seek-and-control {
         display: flex;
-        position: relative;
+        position: absolute;
         height: max-content;
-        
+
+
     }
-  
-    .player-seek-and-control svg{
+
+    .player-seek-and-control svg {
         display: block;
     }
+
     .player-controls {
         display: flex;
     }
-    section.player-controls.center{
+
+    svg.add-icn {
+        position: absolute;
+        top: 360px;
+        right: 11px;
+        width: 30px;
+        height: 30px;
+
+    }
+
+    section.player-controls.center {
         position: absolute;
         top: 75vh;
-        left: 26vw;
+        right: 40vw;
         display: flex;
-        gap: 40px;
+        gap: 30px;
         justify-content: center;
         align-items: center;
-        .player{
-            position: relative;
-            right:0;
-            top: 5px;
+
+        .next-btn {
+            position: absolute;
+            top: 3px;
+            right: -46vw;
+            height: 20px;
+            width: 20px;
+        }
+
+        .previous-btn {
+            position: absolute;
+            top: 3px;
+            right: -12vw;
+            height: 20px;
+            width: 20px;
+        }
+
+        .player {
+            position: absolute;
+            top: -13px;
+            right: -33vw;
             background-color: inherit;
-            height: 40px;
-            width: 40px;
+            height: 70px;
+            width: 70px;
             border-radius: 50%;
-            svg{
-                height: 30px;
-                width: 30px;
+
+            svg {
+                height: 40px;
+                width: 40px;
                 fill: white;
             }
         }
-        span.effects{
+
+        span.effects {
             position: absolute;
-            top: 0;
+            left: 200px;
             display: flex;
-            svg{
+
+            svg {
                 height: 25px;
                 width: 25px;
-                fill: white; 
+                fill: white;
             }
         }
-        svg.shuffel{
+
+        svg.shuffel {
             display: block;
             position: absolute;
-            top: 1.1vh;
-            left: -34vw;
             height: 30px;
             width: 30px;
+            top: 5px;
+            left: 5.5vw;
         }
-        svg.reapet{
+
+        svg.reapet {
             display: block;
             position: absolute;
-            top: 1.2vh;
-            left: 30vw;
+            left: -270px;
+            top: 5px;
             height: 35px;
             width: 35px;
         }
     }
-    
+
+    .down-svg {
+        display: block;
+        position: absolute;
+        top: 0px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+        z-index: 10;
+    }
+
 }

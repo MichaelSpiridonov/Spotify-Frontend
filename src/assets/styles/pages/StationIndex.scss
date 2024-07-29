@@ -19,10 +19,11 @@
         width: 100%;
         z-index: 1;
         height: max-content;
+
         img {
             grid-column: 1/2;
             grid-row: 1;
-            
+
         }
 
         button {
@@ -54,6 +55,8 @@
             padding-top: 10px;
             padding-left: 5px;
             z-index: 1;
+            font-weight: 400;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
     }
 }
@@ -109,6 +112,7 @@ button:first-child {
     overflow: hidden;
 
     .wide-station-preview {
+        position: relative;
         display: grid;
         grid-template-columns: auto 1fr;
         grid-template-rows: auto;
@@ -117,6 +121,7 @@ button:first-child {
         background-color: #181818;
         transition: 0.8s;
         gap: 5px;
+        align-items: center;
 
         img {
             grid-column: 1;
@@ -128,14 +133,42 @@ button:first-child {
             grid-column: 2;
             color: white;
             align-self: center;
-            /* Center vertically */
+            
             padding: 5px;
-            /* Adjust font size */
+            font-weight: 400;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        button {
+            position: absolute;
+            right: 10px;
+            height: 48px;
+            width: 48px;
+            border-radius: 50%;
+            background-color: #1ed760;
+            opacity: 0;
+            transition-property: opacity;
+            transition: 0.8s;
+
+            .play {
+                opacity: 0;
+                height: 22px;
+                width: 22px;
+                transition: opacity 0.8s;
+            }
         }
     }
 
     .wide-station-preview:hover {
-        background-color: #282828;
+        background-color: #1b1b1b;
+        button {
+            height: 48px;
+            opacity: 1;
+    
+            .play {
+                opacity: 1;
+    
+            }
+        }
     }
 }
 
@@ -155,24 +188,33 @@ button:first-child {
 
 
     }
+
+    .wide-stations-container {
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+    }
+
     .home-station-preview {
         z-index: 1;
     }
-    .home-container{
+
+    .home-container {
         overflow-x: auto;
         gap: 0;
     }
+
     .home-container::-webkit-scrollbar {
         width: 0;
         height: 0;
         /* width of the scrollbar */
-    
+
         /* height of the scrollbar */
     }
-    .home-station-preview{
-        img{
 
-            border-radius: 0;   
+    .home-station-preview {
+        img {
+
+            border-radius: 0;
         }
     }
 }
@@ -193,11 +235,11 @@ button:first-child {
         }
 
     }
-    .home-station-preview{
-        img{
 
-            border-radius: 10px;   
+    .home-station-preview {
+        img {
+
+            border-radius: 10px;
         }
     }
 }
-    

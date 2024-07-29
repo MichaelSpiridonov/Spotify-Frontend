@@ -6,11 +6,13 @@ import {
   setCurrStation,
   updateStation,
 } from '../../store/actions/station.actions'
+import { useSelector } from 'react-redux'
 
-export function StationEditModal({ station, onClose }) {
+export function StationEditModal({ onClose }) {
+  const station = useSelector((storeState) => storeState.stationModule.currSelectedStation)
   const [name, setName] = useState(station.name)
   const [description, setDescription] = useState(station.description)
-  const [imgUrl, setImgUrl] = useState(station.createdBy.imgUrl || NewPlaylist)
+  const [imgUrl, setImgUrl] = useState(station.imgUrl || NewPlaylist)
   const [isNameFocused, setIsNameFocused] = useState(false)
   const [isDescriptionFocused, setIsDescriptionFocused] = useState(false)
 
@@ -34,6 +36,7 @@ export function StationEditModal({ station, onClose }) {
       ...station,
       name,
       description,
+      imgUrl,
       createdBy: { ...station.createdBy, imgUrl },
     }
     updateStation(updatedStation)
