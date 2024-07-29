@@ -162,8 +162,8 @@ export function StationDetails() {
             <button onClick={() => onClickPlay(currStation.songs[0])} className='header-play-button'>
               {(!currSong) ? <PlayIcon /> : <PauseIcon />}
             </button>
-            <div className={`header-add-button ${(currStation.likedByUsers?.find(likeUser => likeUser._id === user._id)) ? 'like-icn' : ''}`}>
-              {(currStation.likedByUsers?.find(likeUser => likeUser._id === user._id)) ? <LikeIcon /> : <AddIcon />}
+            <div className={`header-add-button ${(currStation.likedByUsers?.find(likeUser => likeUser._id === user?._id)) ? 'like-icn' : ''}`}>
+              {(currStation.likedByUsers?.find(likeUser => likeUser._id === user?._id)) ? <LikeIcon /> : <AddIcon />}
             </div>
             <div className='header-options-button'>
               <SongOptionsIcon />

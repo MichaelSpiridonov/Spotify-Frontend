@@ -57,7 +57,6 @@ export function AppPlayer() {
     }
 
   }
-  /* getLyrics('Cigarettes', 'Juice Wrld').then(lyric => console.log(lyric)) */
 
   return (
     <section style={{backgroundColor:color}} className="app-player">
