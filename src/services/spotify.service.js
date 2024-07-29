@@ -89,6 +89,18 @@ const spotifyService = {
     return albums;
   },
 
+  getAlbum: async (albumId) => {
+    const token = await getToken();
+    const url = `${BASE_URL}/albums/${albumId}`;
+    const response = await axios.get(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    return response.data;
+  },
+
   getArtist: async (artistId) => {
     const token = await getToken();
     const response = await axios.get(`${BASE_URL}/artists/${artistId}`, {

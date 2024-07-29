@@ -43,13 +43,11 @@ export function SideLibrary() {
 
         if(isCollapsed === true){
             const elMain =document.querySelector('.main-container')
-            console.log(elMain)
 
             /*  elMain.classList.remove('.main-container') */
             elMain.classList.add('.main-container-collapsed') 
         }else {
             const elMain =document.querySelector('.main-container')
-            console.log(elMain)
 
             /*  elMain.classList.remove('.main-container') */
             elMain.classList.remove('.main-container-collapsed') 

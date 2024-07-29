@@ -22,7 +22,6 @@ export function StationList() {
   
   const likedSongs = useSelector(storeState => storeState.stationModule.likedSongs)
   if(!stations) return
-  console.log(stations)
   return (
     <section className='station-list'>
       {likedSongs && <LikeSongsPreview />}

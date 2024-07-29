@@ -17,7 +17,7 @@ const SPOTIFY_CACHE = 'spDB'
 /* if (!localStorage.getItem(ALBUMS_KEY) && !localStorage.getItem(STATIONS_KEY) && !localStorage.getItem(ARTISTS_KEY)) {
   _createSpotifyStations()
 } */
-/* reateSpotifyStations()_c */
+_createSpotifyStations()
 let gSongsCache = loadFromStorage(SPOTIFY_CACHE) || {}
 
 export const stationService = {
@@ -86,7 +86,7 @@ async function getTracks(searchVal) {
   storageService.post(SPOTIFY_CACHE, songs);
   return songs
 }
-/* async function _createSpotifyStations() {
+async function _createSpotifyStations() {
   let stations = loadFromStorage(STATIONS_KEY);
   let albums = loadFromStorage(ALBUMS_KEY);
   let artists = loadFromStorage(ARTISTS_KEY);
@@ -104,7 +104,7 @@ async function getTracks(searchVal) {
         const songs = await Promise.all(tracks.map(async track => {
           if (track) {
             track.artists.forEach(artist => artistSet.add(artist.id));
-
+            console.log(track)
             return {
               _id: track.id,
               title: track.name,
@@ -113,13 +113,13 @@ async function getTracks(searchVal) {
               artists: track.artists,
               imgUrl: track.album.images[0].url,
               albumName: track.album.name,
+              albumId: track.album.id,
               addedAt: new Date(track.album.release_date).getTime()
             };
           }
         }));
 
         return {
-          _id: playlist.id,
           name: playlist.name,
           description: playlist.description,
           imgUrl: playlist.images[0].url,
@@ -138,186 +138,312 @@ async function getTracks(searchVal) {
 
     stations = (await Promise.all(stationPromises)).flat();
 
-
-    // Save tracks to local storage
-
-
     const station = {
-      _id: '5cksxjas89xjsa8xjsa8jxs09',
-      name: "Or's Playlist",
-      tags: ['Funk', 'Happy', 'Rap', 'Pop'],
-      createdBy: {
-        _id: 'u101',
-        fullname: 'Or Barcha',
-        imgUrl: 'https://i.scdn.co/image/ab67616d00001e0215ebbedaacef61af244262a8',
-      },
-      likedByUsers: ['{minimal-user}', '{minimal-user}'],
-      songs: [{
-        _id: 'dQw4w9WgXcQ',
-        title: 'Rick Astley - Never Gonna Give You Up',
-        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        imgUrl: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-        addedBy: '{minimal-user}',
-        likedBy: ['{minimal-user}'],
-        addedAt: 162521765262,
-        duration: 212000,
-        artists: [{
-          id: "7lwdlhwSxbB36wqnOwo5Kd",
-          name: "Rick Astley",
-          type: "artist",
-        }],
-        albumName: 'Album',
-      },
-      {
-        _id: '_4gUVl5pjps',
-        title: '21 Savage - ball w/o you',
-        url: 'https://www.youtube.com/watch?v=_4gUVl5pjps',
-        imgUrl: 'https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg',
-        addedBy: {},
-        duration: 193000,
-        artists: [{
-          id: "uhughyfyvviiyviyviy",
-          name: "21 Savage",
-          type: "artist",
-        }],
-        albumName: 'Album',
-      },
+      "name": "Or's Playlist",
+      "tags": [
+        "Funk",
+        "Happy",
+        "Rap",
+        "Pop"
       ],
-    }
-    const station2 = {
-      _id: '134431feqfq3141rfe1e1fe1fe1',
-      name: "Amit's Playlist",
-      tags: ['Funk', 'Happy'],
-      createdBy: {
-        _id: 'u101',
-        fullname: 'Amit Gal',
-        imgUrl: 'https://i.scdn.co/image/ab67616d00001e02280689ecc5e4b2038bb5e4bd',
+      "createdBy": {
+        "_id": "66a576defc89266ca748b323",
+        "fullname": "Mustafa Adminsky",
+        "imgUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
       },
-      likedByUsers: ['{minimal-user}', '{minimal-user}'],
-      songs: [{
-        _id: 'dQw4w9WgXcQ',
-        title: 'Rick Astley - Never Gonna Give You Up',
-        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        imgUrl: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-        addedBy: '{minimal-user}',
-        likedBy: ['{minimal-user}'],
-        addedAt: 162521765262,
-        duration: 212000,
-        artists: [{
-          id: "7lwdlhwSxbB36wqnOwo5Kd",
-          name: "Rick Astley",
-          type: "artist",
-        }],
-        albumName: 'Album',
-      },
-      {
-        _id: '_4gUVl5pjps',
-        title: '21 Savage - ball w/o you',
-        url: 'https://www.youtube.com/watch?v=_4gUVl5pjps',
-        imgUrl: 'https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg',
-        addedBy: 162521765264,
-        duration: 193000,
-        artists: [{
-          id: "7lwdlhwSxbB36wqnOwo5Kd",
-          name: "21 Savage",
-          type: "artist",
-        }],
-        albumName: 'Album',
-      },
-      {
-        _id: 'r8GXHS4s9K4',
-        title: 'Lady Gaga & Beyoncé - Telephone',
-        url: 'https://www.youtube.com/watch?v=r8GXHS4s9K4',
-        imgUrl: 'https://i.ytimg.com/vi/r8GXHS4s9K4/mqdefault.jpg',
-        addedAt: 162521765266,
-        duration: 220000,
-        artists: [{
-          id: "7lwdlhwSxbB36wqnOwo5Kd",
-          name: "Lady Gaga",
-          type: "artist",
+      "likedByUsers": [
+        "{minimal-user}",
+        "{minimal-user}"
+      ],
+      "imgUrl": "https://i.scdn.co/image/ab67616d00001e0215ebbedaacef61af244262a8",
+      "songs": [
+        {
+          "_id": "dQw4w9WgXcQ",
+          "title": "Rick Astley - Never Gonna Give You Up",
+          "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "imgUrl": "https://i.scdn.co/image/ab67616d00001e0215ebbedaacef61af244262a8",
+          "addedBy": "{minimal-user}",
+          "likedBy": [
+            "{minimal-user}"
+          ],
+          "addedAt": 162521765262,
+          "duration": 212000,
+          "artists": [
+            {
+              "id": "7lwdlhwSxbB36wqnOwo5Kd",
+              "name": "Rick Astley",
+              "type": "artist"
+            }
+          ],
+          "albumName": "Album"
         },
         {
-          id: 'feq991jreo012313',
-          name: 'Beyoncé',
-          type: 'artist'
+          "_id": "_4gUVl5pjps",
+          "title": "21 Savage - ball w/o you",
+          "url": "https://www.youtube.com/watch?v=_4gUVl5pjps",
+          "imgUrl": "https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg",
+          "addedBy": {},
+          "duration": 193000,
+          "artists": [
+            {
+              "id": "uhughyfyvviiyviyviy",
+              "name": "21 Savage",
+              "type": "artist"
+            }
+          ],
+          "albumName": "Album"
+        },
+        {
+          "_id": "6xBpb9zNWlRHTslOAe6kXF",
+          "title": "Slide da Treme Melódica v2",
+          "duration": 165107,
+          "isExplicit": false,
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/7nM7RtPXQ6jwNlFTfPyZnA"
+              },
+              "href": "https://api.spotify.com/v1/artists/7nM7RtPXQ6jwNlFTfPyZnA",
+              "id": "7nM7RtPXQ6jwNlFTfPyZnA",
+              "name": "DJ FNK",
+              "type": "artist",
+              "uri": "spotify:artist:7nM7RtPXQ6jwNlFTfPyZnA"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/4DWPOsGWbW7sBHb1UuBvWs"
+              },
+              "href": "https://api.spotify.com/v1/artists/4DWPOsGWbW7sBHb1UuBvWs",
+              "id": "4DWPOsGWbW7sBHb1UuBvWs",
+              "name": "Polaris",
+              "type": "artist",
+              "uri": "spotify:artist:4DWPOsGWbW7sBHb1UuBvWs"
+            }
+          ],
+          "imgUrl": "https://i.scdn.co/image/ab67616d0000b2735561f19683ceb890174747fb",
+          "albumName": "Slide da Treme Melódica v2",
+          "addedAt": 1715904000000
+        },
+        {
+          "_id": "_4gUVl5pjps",
+          "title": "21 Savage - ball w/o you",
+          "url": "https://www.youtube.com/watch?v=_4gUVl5pjps",
+          "imgUrl": "https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg",
+          "addedAt": 162521765264,
+          "duration": 193000,
+          "artists": [
+            {
+              "id": "7lwdlhwSxbB36wqnOwo5Kd",
+              "name": "21 Savage",
+              "type": "artist"
+            }
+          ],
+          "albumName": "Album"
         }
-        ],
-        albumName: 'Album',
-      },
       ],
+      "description": null,
+      "title": null
+    }
+    const station2 = {
+      "name": "Ami's Playlist",
+      "tags": [
+        "Funk",
+        "Happy"
+      ],
+      "createdBy": {
+        "_id": "66a576defc89266ca748b323",
+        "fullname": "Mustafa Adminsky",
+        "imgUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+      },
+      "likedByUsers": [
+        {
+          "_id": "66a576defc89266ca748b323",
+          "fullname": "Mustafa Adminsky"
+        },
+        {
+          "_id": "66a68cceabbba75ff02d0c33",
+          "fullname": "Michael Spiridonov"
+        }
+      ],
+      "imgUrl": "https://i.scdn.co/image/ab67616d00001e0215ebbedaacef61af244262a8",
+      "songs": [
+        {
+          "_id": "dQw4w9WgXcQ",
+          "title": "Rick Astley - Never Gonna Give You Up",
+          "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "imgUrl": "https://i.scdn.co/image/ab67616d00001e0215ebbedaacef61af244262a8",
+          "likedBy": [
+            "{minimal-user}"
+          ],
+          "addedAt": 162521765262,
+          "duration": 212000,
+          "artists": [
+            {
+              "id": "7lwdlhwSxbB36wqnOwo5Kd",
+              "name": "Rick Astley",
+              "type": "artist"
+            }
+          ],
+          "albumName": "Album"
+        },
+        {
+          "_id": "_4gUVl5pjps",
+          "title": "21 Savage - ball w/o you",
+          "url": "https://www.youtube.com/watch?v=_4gUVl5pjps",
+          "imgUrl": "https://i.ytimg.com/vi/_4gUVl5pjps/mqdefault.jpg",
+          "addedAt": 162521765264,
+          "duration": 193000,
+          "artists": [
+            {
+              "id": "7lwdlhwSxbB36wqnOwo5Kd",
+              "name": "21 Savage",
+              "type": "artist"
+            }
+          ],
+          "albumName": "Album"
+        },
+        {
+          "_id": "6xBpb9zNWlRHTslOAe6kXF",
+          "title": "Slide da Treme Melódica v2",
+          "duration": 165107,
+          "isExplicit": false,
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/7nM7RtPXQ6jwNlFTfPyZnA"
+              },
+              "href": "https://api.spotify.com/v1/artists/7nM7RtPXQ6jwNlFTfPyZnA",
+              "id": "7nM7RtPXQ6jwNlFTfPyZnA",
+              "name": "DJ FNK",
+              "type": "artist",
+              "uri": "spotify:artist:7nM7RtPXQ6jwNlFTfPyZnA"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/4DWPOsGWbW7sBHb1UuBvWs"
+              },
+              "href": "https://api.spotify.com/v1/artists/4DWPOsGWbW7sBHb1UuBvWs",
+              "id": "4DWPOsGWbW7sBHb1UuBvWs",
+              "name": "Polaris",
+              "type": "artist",
+              "uri": "spotify:artist:4DWPOsGWbW7sBHb1UuBvWs"
+            }
+          ],
+          "imgUrl": "https://i.scdn.co/image/ab67616d0000b2735561f19683ceb890174747fb",
+          "albumName": "Slide da Treme Melódica v2",
+          "addedAt": 1715904000000
+        }
+      ],
+      "description": null,
+      "title": null
     }
     const station3 = {
-      _id: 'dseq31kigrq9419sjdsa',
-      name: "Michael's Playlist",
-      tags: ['Funk', 'Happy'],
-      createdBy: {
-        _id: 'u101',
-        fullname: 'Michael Spiridonov',
-        imgUrl: 'https://i.scdn.co/image/ab67616d00001e027459992b444de38842b9bee7',
-      },
-      likedByUsers: ['{minimal-user}', '{minimal-user}'],
-      songs: [{
-        _id: 'Sis_JJZoAfQ',
-        title: 'Juice WRLD - Cigarettes',
-        url: 'https://www.youtube.com/watch?v=Sis_JJZoAfQ',
-        imgUrl: 'https://i.ytimg.com/vi/Sis_JJZoAfQ/mqdefault.jpg',
-        likedBy: ['{minimal-user}'],
-        addedAt: 162521765266,
-        duration: 220000,
-        artists: [{
-          id: "7lwdlhwSxbB36wqnOwo5Kd",
-          name: "Juice Wrld",
-          type: "artist",
-        }],
-        albumName: 'Album',
-      },
-      {
-        _id: 'A4pasf5ci8s',
-        title: 'Juice WRLD - Purple Potion',
-        url: 'https://www.youtube.com/watch?v=A4pasf5ci8s',
-        imgUrl: 'https://i.ytimg.com/vi/A4pasf5ci8s/mqdefault.jpg',
-        addedBy: '{minimal-user}',
-        likedBy: ['{minimal-user}'],
-        addedAt: 162521765262,
-        duration: 212000,
-        artists: [{
-          id: "7lwdlhwSxbB36wqnOwo5Kd",
-          name: "Juice Wrld",
-          type: "artist",
-        }],
-        albumName: 'Album',
-      },
-      {
-        _id: 'Trv80iyv8qs',
-        title: 'Juice WRLD - High and Alone ',
-        url: 'https://www.youtube.com/watch?v=Trv80iyv8qs',
-        imgUrl: 'https://i.ytimg.com/vi/Trv80iyv8qs/mqdefault.jpg',
-        likedBy: ['{minimal-user}'],
-        addedAt: 162521765264,
-        duration: 193000,
-        artists: [{
-          id: "7lwdlhwSxbB36wqnOwo5Kd",
-          name: "Juice Wrld",
-          type: "artist",
-        }],
-        albumName: 'Album',
-      },
-      {
-        _id: 'iT6MEoRywDY',
-        title: 'Juice WRLD - Rockstar In His Prime',
-        url: 'https://www.youtube.com/watch?v=iT6MEoRywDY',
-        imgUrl: 'https://i.ytimg.com/vi/iT6MEoRywDY/mqdefault.jpg',
-        likedBy: ['{minimal-user}'],
-        addedAt: 162521765266,
-        duration: 220000,
-        artists: [{
-          id: "7lwdlhwSxbB36wqnOwo5Kd",
-          name: "Juice Wrld",
-          type: "artist",
-        }],
-        albumName: 'Album',
-      },
+      "name": "Michael's Playlist",
+      "tags": [
+        "Funk",
+        "Happy"
       ],
+      "createdBy": {
+        "_id": "66a68cceabbba75ff02d0c33",
+        "fullname": "Michael Spiridonov",
+        "imgUrl": "https://i.scdn.co/image/ab67616d00001e027459992b444de38842b9bee7"
+      },
+      "imgUrl": "https://i.scdn.co/image/ab67616d00001e027459992b444de38842b9bee7",
+      "likedByUsers": [
+        {
+          "_id": "66a68cceabbba75ff02d0c33",
+          "fullname": "Michael Spiridonov"
+        }
+      ],
+      "songs": [
+        {
+          "_id": "Trv80iyv8qs",
+          "title": "Juice WRLD - High and Alone ",
+          "url": "https://www.youtube.com/watch?v=Trv80iyv8qs",
+          "imgUrl": "https://i.ytimg.com/vi/Trv80iyv8qs/mqdefault.jpg",
+          "likedBy": [
+            "{minimal-user}"
+          ],
+          "addedAt": 162521765264,
+          "duration": 193000,
+          "artists": [
+            {
+              "id": "7lwdlhwSxbB36wqnOwo5Kd",
+              "name": "Juice Wrld",
+              "type": "artist"
+            }
+          ],
+          "albumName": "Album"
+        },
+        {
+          "_id": "iT6MEoRywDY",
+          "title": "Juice WRLD - Rockstar In His Prime",
+          "url": "https://www.youtube.com/watch?v=iT6MEoRywDY",
+          "imgUrl": "https://i.ytimg.com/vi/iT6MEoRywDY/mqdefault.jpg",
+          "likedBy": [
+            {
+              "_id": "66a68cceabbba75ff02d0c33",
+              "fullname": "Michael Spiridonov"
+            }
+          ],
+          "addedAt": 162521765266,
+          "duration": 220000,
+          "artists": [
+            {
+              "id": "7lwdlhwSxbB36wqnOwo5Kd",
+              "name": "Juice Wrld",
+              "type": "artist"
+            }
+          ],
+          "albumName": "Album"
+        },
+        {
+          "_id": "Sis_JJZoAfQ",
+          "title": "Juice WRLD - Cigarettes",
+          "url": "https://www.youtube.com/watch?v=Sis_JJZoAfQ",
+          "imgUrl": "https://i.ytimg.com/vi/Sis_JJZoAfQ/mqdefault.jpg",
+          "likedBy": [
+            {
+              "_id": "66a68cceabbba75ff02d0c33",
+              "fullname": "Michael Spiridonov"
+            }
+          ],
+          "addedAt": 162521765266,
+          "duration": 220000,
+          "artists": [
+            {
+              "id": "7lwdlhwSxbB36wqnOwo5Kd",
+              "name": "Juice Wrld",
+              "type": "artist"
+            }
+          ],
+          "albumName": "Album"
+        },
+        {
+          "_id": "A4pasf5ci8s",
+          "title": "Juice WRLD - Purple Potion",
+          "url": "https://www.youtube.com/watch?v=A4pasf5ci8s",
+          "imgUrl": "https://i.ytimg.com/vi/A4pasf5ci8s/mqdefault.jpg",
+          "likedBy": [
+            {
+              "_id": "66a68cceabbba75ff02d0c33",
+              "fullname": "Michael Spiridonov"
+            }
+          ],
+          "addedAt": 162521765262,
+          "duration": 212000,
+          "artists": [
+            {
+              "id": "7lwdlhwSxbB36wqnOwo5Kd",
+              "name": "Juice Wrld",
+              "type": "artist"
+            }
+          ],
+          "albumName": "Album"
+        }
+      ],
+      "description": null,
+      "title": null
     }
     stations.push(station)
     stations.push(station2)
@@ -407,4 +533,4 @@ async function getTracks(searchVal) {
     saveToStorage(ALBUMS_KEY, albums);
     //saveToStorage(ARTISTS_KEY, artists);
   }
-} */
+} 

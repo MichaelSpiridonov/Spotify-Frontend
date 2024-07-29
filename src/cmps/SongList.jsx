@@ -16,17 +16,18 @@ export function SongList({ songs, onAddTo, onClickPlay }) {
       updateSongIdx(songs, currStation)
   }
   if(!songs) return
+  console.log('songs:',songs);
   return (
     <>
     <DragDropContext onDragEnd={onDragEnd}>
       {songs.map((song, index) => (
-      <Droppable droppableId={song._id} className='item'>
+      <Droppable droppableId={song._id || song.id} className='item'>
       {(provided, snapshot) => (
         <div
         {...provided.droppableProps}
         ref={provided.innerRef}
       >
-          <Draggable key={song._id} draggableId={song._id} index={index} className='item'>
+          <Draggable key={song._id || song.id} draggableId={song._id || song.id} index={index} className='item'>
             {(provided, snapshot) => (
                     <div
                       ref={provided.innerRef}
@@ -34,7 +35,7 @@ export function SongList({ songs, onAddTo, onClickPlay }) {
                       {...provided.dragHandleProps}
                     >
                       <section className='item'>
-                      <SongPreview key={song._id} song={song} onAddTo={onAddTo} onClickPlay={onClickPlay} className='item' />
+                      <SongPreview key={song._id || song.id} song={song} onAddTo={onAddTo} onClickPlay={onClickPlay} className='item' />
                       </section>
                     </div>
                   )}

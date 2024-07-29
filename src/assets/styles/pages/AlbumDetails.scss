@@ -1,0 +1,556 @@
+
+.album-details-container {
+    /* padding-inline: 20px;
+    padding-block: 10px; */
+    color: #b3b3b3;
+    grid-column: 2;
+    border-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    .album-header {
+      display: flex;
+      align-items: center;
+      padding-top: 4.5vh;
+      padding-left: 24px;
+      color: white;
+      gap: 23px;
+      font-family: 'circular-book', system-ui, -apple-system, BlinkMacSystemFont,
+        'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+        'Helvetica Neue', sans-serif;
+  
+      // border-bottom: 1px solid #282828;
+     
+      .album-info {
+        display: flex;
+        flex-direction: column;
+        height: 13.5vh;
+        
+        h3 {
+          font-size: 14px;
+          font-weight: 500;
+        }
+  
+        .album-description {
+          margin-top: 4px;
+          font-size: 14px;
+          color: #ffffffb2;
+          font-weight: 400;
+          letter-spacing: 1%;
+        }
+  
+        .album-name {
+          font-family: 'circular-book', system-ui, -apple-system,
+            BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+            'Open Sans', 'Helvetica Neue', sans-serif;
+        
+          line-height: normal;
+          text-align: left;
+          letter-spacing: normal;
+          color: #ffffff;
+          margin: 0;
+          padding: 0;
+          font-weight: bolder;
+          word-spacing: 0.1px;
+        }
+  
+        .album-creator {
+          font-family: 'circular-black', helvetica, arial, 'MS Gothic';
+          line-height: normal;
+          text-align: start;
+          color: white;
+          font-weight: 300;
+          /* margin-top: 10px; */
+        }
+      }
+    }
+  
+    .album-controls {
+      display: flex;
+      align-items: center;
+      padding-bottom: 20px;
+      padding-left: 24px;
+      padding-top: 4vh;
+      gap: 32px;
+      background-image: linear-gradient(#121212, #121212 10%);
+      .header-add-button,
+      .header-options-button {
+        fill: #b3b3b3;
+        height: 30px;
+        width: 30px;
+      }
+  
+      .header-add-button:hover,
+      .header-options-button:hover {
+        fill: white;
+      }
+  
+      .header-add-button.like-icn {
+        fill:#1db954;
+      }
+  
+      .header-options-button {
+        position: relative;
+        right: 5px;
+      }
+  
+      .header-play-button {
+        // More specific class for header play button
+        background-color: #1db954;
+        border: none;
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+        padding: 0;
+        margin: 0;
+  
+        svg {
+          width: 18px;
+          height: 18px;
+          fill: black;
+        }
+  
+        &:hover {
+          background-color: #1ed760;
+          transform: scale(1.1);
+        }
+      }
+    }
+  
+    .table-header {
+      display: flex;
+      align-items: center;
+      height: 35px;
+      color: #b3b3b3;
+      font-family: 'circular-book', helvetica, arial, 'MS Gothic';
+      font-size: 14px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #282828;
+      padding-left: 22px;
+      padding-right: 22px;
+      gap: 12px;
+  
+      span {
+        &:nth-child(1) {
+          text-align: left;
+          width: max-content;
+        }
+  
+        &:nth-child(2) {
+          text-align: left;
+       
+          min-width: 400px;
+          max-width: 450px;
+        }
+  
+        &:nth-child(3) {
+          text-align: left;
+          width: 28.5vw;
+          max-width: 730px;
+        }
+  
+        &:nth-child(4) {
+          text-align: left;
+          width: 10vw;
+        }
+  
+        &:nth-child(5) {
+          display: flex;
+          text-align: left;
+          width: 17vw;
+          justify-content: end;
+          margin-right: 20px;
+  
+          svg {
+            width: 16px;
+            fill: #b3b3b3;
+          }
+        }
+      }
+    }
+  
+    .album-details {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-top: 28px;
+      background-color: #121212;
+      .item {
+        border-radius: 5px;
+        gap: 0;
+        font-size: 14px;
+  
+        span {
+          &:nth-child(4) {
+            width: 32vw;
+          }
+  
+          &:nth-child(5) {
+            width: 27vw;
+          }
+  
+          &:nth-child(7) {
+            width: max-content;
+            padding-left: 10px;
+          }
+        }
+  
+        svg {
+          height: 16px;
+          padding: 0;
+        }
+  
+        .options-button {
+          margin-top: 3px;
+          padding-left: 10px;
+        }
+  
+        .add-button {
+          margin-top: 3px;
+        }
+  
+        .play-button {
+          margin-right: 12px;
+        }
+  
+        .album-song-detail {
+         /*  font-size: 16px; */
+          color: white;
+        
+          min-width: 365px;
+          max-width: 420px;
+        }
+      }
+  
+      .song-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 10px 0;
+        gap: 1vw;
+        height: 56px;
+        border-radius: 6px;
+  
+        &:hover {
+          background-color: rgba(179, 179, 179, 0.1);
+  
+          .play-button,
+          .song-options-button {
+            opacity: 1;
+            fill: currentColor;
+          }
+        }
+  
+        span {
+          color: white;
+        }
+  
+        .play-button,
+        .song-options-button {
+          background: none;
+          border: none;
+          opacity: 0;
+          cursor: pointer;
+          fill: white;
+          transition: opacity 0.2s ease;
+  
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+  
+          &:hover {
+            opacity: 1;
+            fill: currentColor;
+          }
+  
+          &.clicked {
+            color: #1db954;
+            fill: currentColor;
+  
+            &:hover {
+              color: #1ac757;
+              fill: currentColor;
+            }
+          }
+        }
+  
+        .play-button svg {
+          color: white;
+          fill: currentColor;
+        }
+  
+        .add-button {
+          background: none;
+          border: none;
+          cursor: pointer;
+  
+          svg {
+            width: 16px;
+            height: 16px;
+            color: #b3b3b3;
+            fill: currentColor;
+            transition: color 0.2s ease, fill 0.2s ease;
+          }
+  
+          &:hover svg {
+            color: white;
+            fill: currentColor;
+          }
+  
+          &.clicked svg {
+            color: #1db954;
+            fill: currentColor;
+  
+            &:hover {
+              color: #1ac757;
+              fill: currentColor;
+            }
+          }
+        }
+  
+        .song-options-button svg {
+          color: #b3b3b3;
+          fill: currentColor;
+  
+          &:hover {
+            color: white;
+            fill: currentColor;
+          }
+  
+          &.clicked {
+            color: #1db954;
+            fill: currentColor;
+  
+            &:hover {
+              color: #1ac757;
+              fill: currentColor;
+            }
+          }
+        }
+  
+        .album-song-detail {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          font-size: 16px;
+          color: white;
+          justify-self: flex-start;
+  
+          .song-title {
+            font-family: circular-bold;
+            color: #fff;
+          }
+  
+          .song-artist,
+          .song-album,
+          .song-date,
+          .song-length {
+            font-family: circular-black;
+            color: #b3b3b3;
+          }
+  
+          .song-date,
+          .song-length {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+  
+  .play-button svg,
+  .options-button svg,
+  .add-button svg {
+    height: max-content;
+    width: max-content;
+    /* opacity: 0; */
+    fill: white;
+    /*  margin: 10px; */
+    margin-top: 5px;
+    margin-right: 5px;
+  }
+  
+  .add-button.like-icn svg {
+    fill:#1ac757;
+  }
+  
+  .play-button,
+  .add-button,
+  .options-button {
+    width: 25px;
+  }
+  
+  .album-song-detail {
+    /* width: max-content; */
+  }
+  
+  .item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-bottom: 3px;
+    gap: 10px;
+  
+    a {
+      color: #b3b3b3;
+      text-decoration: none;
+    }
+  
+    /* span {
+      width: 200px;
+    } */
+  
+    .song-image {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+    }
+  
+    .album-song-detail {
+      display: flex;
+      align-items: start;
+    }
+  
+    .add-button {
+      margin-right: 5px;
+    }
+  }
+  
+  .item:hover {
+    background-color: #262626;
+    border-radius: 10px;
+  
+    .play-button svg,
+    .add-button svg,
+    .options-button svg {
+      opacity: 1;
+    }
+  }
+  
+  .album-details-container:hover {
+    overflow-y: auto;
+  
+    /* Show the vertical scrollbar on hover */
+  }
+  
+  /* width */
+  .album-details-container::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    margin-top: 20px;
+    background: inherit;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #282828;
+    border-radius: 8px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  .album-song-detail {
+    font-weight: 300;
+  }
+  
+  .search-details {
+  
+    /* left: minmax(100px,200px); */
+    display: flex;
+    height: 40px;
+    width: 400px;
+    background-color: #2a2929;
+    border-radius: 5px;
+    padding-left: 10px;
+    opacity: 1;
+    align-items: center;
+  
+    
+    input {
+      width: 400;
+      font-size: 15px;
+      background-color: inherit;
+      color: white;
+      border: #242424;
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+  
+    label {
+      margin-top: 13px;
+  
+      svg {
+  
+        height: 16px;
+        width: 16px;
+        fill: white;
+      }
+  
+    }
+  
+  }
+  
+  
+  .album-none-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 13vw; // Fixed width for square box
+    height: 13vw; // Fixed height for square box
+    max-width: 232px;
+    max-height: 232px;
+    min-height: 160px;
+    background-color: #282828;
+    border-radius: 5px;
+  
+    svg {
+      height: 4.5vw;
+      width: 4.5vw;
+      fill: gray;
+  
+    }
+  
+  }
+  .header-input {
+    color: white;
+    font-size: 24px;
+  }
+  
+  @media (max-width:500px) {
+    .album-info{
+      margin-top: 20px;
+      gap: 10px;
+    }
+    .album-creator{
+      font-size: 10px;
+  }
+  }
+  @media (min-width:500px) {
+    .album-info{
+      gap: 2px;
+    }
+    .album-creator{
+      font-size: 14px;
+  }
+  }
