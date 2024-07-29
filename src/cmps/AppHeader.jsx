@@ -1,21 +1,28 @@
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { logout } from '../store/actions/user.actions'
 
 export function AppHeader() {
-  const user = useSelector( (storeState) => storeState.userModule.user)
+  const user = useSelector((storeState) => storeState.userModule.user)
   const userName = "or bracha"
   const navigate = useNavigate()
-  function onToggleModalLogout(){
+  function onToggleModalLogout() {
     const elModal = document.querySelector('.modal-logout')
-    if(elModal.style.height === '40px'){
+    if (elModal.style.height === '40px') {
       elModal.style.height = '0'
-      elModal.style.fontSize  = '0'
-    } else{
+      elModal.style.fontSize = '0'
+    } else {
       elModal.style.height = '40px'
-      elModal.style.fontSize  = '14px'
+      elModal.style.fontSize = '14px'
     }
-      
-   }
+
+  }
+  function onLogout() {
+    const elModal = document.querySelector('.modal-logout')
+    elModal.style.height = '0'
+    elModal.style.fontSize = '0'
+    logout()
+  }
   return (
     <header className='app-header'>
       <section className='header-container'>
@@ -41,11 +48,11 @@ export function AppHeader() {
             </svg>
           </section>
         </section>
-        {!user? <div onClick={onToggleModalLogout} className='user-login'><b>{userName.charAt(0)}</b></div>:<div class="container">
-          <button id="signupButton" class="btn sign-up">Sign Up</button>
-          <button id="loginButton" class="btn log-in">Log in</button>
+        {user ? <div onClick={onToggleModalLogout} className='user-login'><b>{userName.charAt(0)}</b></div> : <div class="container">
+          <Link to='/login'><button id="signupButton" class="btn sign-up">Sign Up</button></Link>
+          <Link to='/login'> <button id="loginButton" class="btn log-in">Log in</button></Link>
         </div>}
-        <article className='modal-logout'><h1>Log out</h1></article>
+        < article onClick={onLogout} className='modal-logout'><h1>Log out</h1></article>
       </section>
     </header>
   )
