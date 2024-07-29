@@ -1,22 +1,27 @@
 import { httpService } from '../http.service'
 
 export const stationService = {
-    query,
+    queryStations,
     getById,
     save,
     remove,
+    queryAlbums
 }
 
-async function query() {
-    return httpService.get(`station`)
+async function queryStations() {
+    console.log('hi')
+    return await httpService.get(`station`)
 }
-
-function getById(stationId) {
-    return httpService.get(`station/${stationId}`)
+async function queryAlbums() {
+    console.log('hi')
+    return await httpService.get(`album`)
+}
+async function getById(stationId) {
+    return await httpService.get(`station/${stationId}`)
 }
 
 async function remove(stationId) {
-    return httpService.delete(`station/${stationId}`)
+    return await httpService.delete(`station/${stationId}`)
 }
 
 async function save(station) {
