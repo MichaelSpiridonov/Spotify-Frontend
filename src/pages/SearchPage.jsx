@@ -4,7 +4,7 @@ import { getVideos } from '../services/youtube.service'
 import { SearchPreview } from '../cmps/SearchPreview'
 import { AppHeader } from '../cmps/AppHeader'
 import SearchIcon from '../assets/icons/search.svg?react';
-import { stationService } from '../services/station/station.service.local'
+import { stationService } from '../services/station/station.service.remote'
 import { MoreModal } from '../cmps/modals/MoreModal'
 import { useSelector } from 'react-redux'
 

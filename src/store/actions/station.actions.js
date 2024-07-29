@@ -13,13 +13,23 @@ import {
     UPDATE_SONG_IDX,
     SET_CURR_STATION,
     UPDATE_STATION,
+    SET_ALBUMS
 } from '../reducers/station.reducer'
 import { stationService } from '../../services/station'
 
 export async function loadStations() {
     try {
-        const Stations = await stationService.query()
+        const Stations = await stationService.queryStations()
         store.dispatch(getCmdSetStations(Stations))
+    } catch (err) {
+        console.log('Cannot load Stations', err)
+        throw err
+    }
+}
+export async function loadAlbums() {
+    try {
+        const Albums = await stationService.queryAlbums()
+        store.dispatch(getCmdSetAlbums(Albums))
     } catch (err) {
         console.log('Cannot load Stations', err)
         throw err
@@ -180,6 +190,12 @@ function getCmdSetStations(stations) {
     return {
         type: SET_STATIONS,
         stations,
+    }
+}
+function getCmdSetAlbums(albums) {
+    return {
+        type: SET_ALBUMS,
+        albums,
     }
 }
 function getCmdUpdateStations(stations, idx) {

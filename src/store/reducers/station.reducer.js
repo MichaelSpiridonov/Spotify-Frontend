@@ -1,3 +1,5 @@
+import { stationService } from "../../services/station/station.service.remote"
+
 /* eslint-disable no-case-declarations */
 export const SET_STATIONS = 'SET_STATIONS'
 export const SET_STATION = 'SET_STATION'
@@ -13,14 +15,16 @@ export const SET_CURR_SELECTED_STATION = 'SET_CURR_CLICKED_STATION'
 export const SET_CURR_SELECTED_SONG = 'SET_CURR_CLICKED_SONG'
 export const UPDATE_SONG_IDX = 'UPDATE_SONG_IDX'
 export const SET_CURR_STATION = 'SET_CURR_STATION'
+export const SET_ALBUMS = 'SET_ALBUMS'
 const initialState = {
-    stations: JSON.parse(localStorage.getItem('stations')) || null,
+    stations: null,
     station: null,
     currSong: null,
     currSelectedStation: null,
     currSelectedSong: null,
     likedSongs: JSON.parse(localStorage.getItem('likedsongs')) || null,
-    currStation: null
+    currStation: null,
+    albums: null
 }
 
 export function stationReducer(state = initialState, action) {
@@ -32,14 +36,16 @@ export function stationReducer(state = initialState, action) {
         case SET_STATIONS:
             newState = { ...state, stations: action.stations }
             break
-
+            case SET_ALBUMS:
+                newState = { ...state, albums: action.albums }
+                break
         case UPDATE_STATIONS:
             const stationIdx = state.stations.findIndex(
-                (station) => station._id === action.stations.station._id )
-                station = action.stations.station
-             stations = state.stations
-             stations[stationIdx] = station
-            newState = { ...state , stations: stations }
+                (station) => station._id === action.stations.station._id)
+            station = action.stations.station
+            stations = state.stations
+            stations[stationIdx] = station
+            newState = { ...state, stations: stations }
             break
 
         case SET_STATION:
@@ -72,11 +78,11 @@ export function stationReducer(state = initialState, action) {
             const lastRemovedSong = state.currSelectedStation.songs.find(
                 (song) => song._id === action.songId
             );
-        
+
             const updatedSongs = state.currSelectedStation.songs.filter(
                 (song) => song._id !== action.songId
             );
-        
+
             const updatedCurrSelectedStation = {
                 ...state.currSelectedStation,
                 songs: updatedSongs
@@ -90,22 +96,22 @@ export function stationReducer(state = initialState, action) {
             const updateSongIdx = state.currStation.songs.map((song) =>
                 song._id === action.songId ? { ...song, ...updateSongIdx } : song
             );
-        
+
             const updatedStation = {
                 ...state.currStation,
                 songs: updateSongIdx
             };
-        
-                newState = { ...state, currStation: updatedStation }
-             break
 
-            case SET_CURR_SELECTED_STATION:
+            newState = { ...state, currStation: updatedStation }
+            break
+
+        case SET_CURR_SELECTED_STATION:
             newState = { ...state, currSelectedStation: action.station }
             break
-            case SET_CURR_SELECTED_SONG:
+        case SET_CURR_SELECTED_SONG:
             newState = { ...state, currSelectedSong: action.song }
             break
-            case SET_CURR_STATION:
+        case SET_CURR_STATION:
             newState = { ...state, currStation: action.station }
             break
 

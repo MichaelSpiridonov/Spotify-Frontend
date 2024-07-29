@@ -1,26 +1,33 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { StationList } from '../cmps/StationList'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { loadStations } from '../store/actions/station.actions'
+import { loadAlbums } from '../store/actions/station.actions'
 
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { StationIndexPreview } from '../cmps/StationIndexPreview.jsx'
 import { WideStationPreview } from '../cmps/WideStationPreview.jsx'
 import ResizeObserver from 'resize-observer-polyfill'
-import { stationService } from '../services/station/station.service.local.js'
+import { stationService } from '../services/station/station.service.remote.js'
 import { AppFooter } from '../cmps/AppFooter.jsx'
 
 export function StationIndex() {
   const stations = useSelector(
     (storeState) => storeState.stationModule.stations
   )
+  const albums = useSelector(
+    (storeState) => storeState.stationModule.albums
+  )
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
   )
-  const [albums, setAlbums] = useState(null)
   var numElements = 0
   const [pageWidth, setPageWidth] = useState(window.innerWidth)
-
+  useEffect(() => {
+    loadAlbums()
+        .catch(err => {
+            showErrorMsg('Cannot load stations!')
+            throw err
+        })
+}, []) 
   useLayoutEffect(() => {
     // Function to handle resize event
     const handleResize = () => {
@@ -71,9 +78,8 @@ export function StationIndex() {
     elDetails.classList.remove('details-player')
 
   }
-  if (!stations && !albums) return <div>Loading....</div>
-  stationService.queryAlbums().then((albums) => setAlbums(albums))
-  if (!albums) return
+  if (!stations || !albums) return <div>Loading....</div>
+
   const stationFeatured = stations.filter(
     (station) => station.category === 'featured'
   )
@@ -100,7 +106,7 @@ export function StationIndex() {
       </section>
       <h1 className='title-category'>New Releases</h1>
       <section className='home-container'>
-        {albums[0].slice(0, numElements).map((station) => (
+        {albums.slice(0, numElements).map((station) => (
           <StationIndexPreview key={station._id} station={station} />
         ))}
       </section>
