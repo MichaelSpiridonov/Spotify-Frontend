@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 
 export function AppHeader({color = '#2c2a2a'}) {
   const user = useSelector((storeState) => storeState.userModule.user)
-  const userName = "or bracha"
   const navigate = useNavigate()
   function onToggleModalLogout() {
     const elModal = document.querySelector('.modal-logout')
@@ -61,7 +60,7 @@ export function AppHeader({color = '#2c2a2a'}) {
               </svg>
             </section>
           </section>
-          {user ? <div onClick={onToggleModalLogout} className='user-login'><b>{userName.charAt(0)}</b></div> : <div class="container">
+          {user ? <div onClick={onToggleModalLogout} className='user-login'><b>{user.fullname.charAt(0)}</b></div> : <div class="container">
             <Link to='/login'><button id="signupButton" class="btn sign-up">Sign Up</button></Link>
             <Link to='/login'> <button id="loginButton" class="btn log-in">Log in</button></Link>
           </div>}
@@ -72,7 +71,7 @@ export function AppHeader({color = '#2c2a2a'}) {
   } else {
 
     return <section className='phone-header'>
-      <div onClick={onToggleModalLogout} className='user-login'><b>{userName.charAt(0)}</b></div>
+      <div onClick={onToggleModalLogout} className='user-login'><b>{user.fullname.charAt(0)}</b></div>
     </section>
   }
 
