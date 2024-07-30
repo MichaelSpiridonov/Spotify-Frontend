@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../store/actions/user.actions'
 import { useEffect, useState } from 'react'
 
-export function AppHeader() {
+export function AppHeader({color = '#2c2a2a'}) {
   const user = useSelector((storeState) => storeState.userModule.user)
   const userName = "or bracha"
   const navigate = useNavigate()
@@ -38,7 +38,7 @@ export function AppHeader() {
   if (pageWidth > 500) {
     return (
       <header className='app-header'>
-        <section className='header-container'>
+        <section style={{backgroundColor:color}}  className='header-container'>
           <section className='pageing'>
             <section className='page-backward' onClick={() => navigate(-1)}>
               <svg

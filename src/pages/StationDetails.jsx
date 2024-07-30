@@ -135,7 +135,7 @@ export function StationDetails() {
     <React.Fragment>
       <div  className='station-details-container'>
         <section style={gradientStyle}>
-          <AppHeader />
+          <AppHeader color={color} />
           <div className='station-header'>
             {currStation.imgUrl && <img
               className='station-image'

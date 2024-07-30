@@ -82,7 +82,7 @@ export function StationIndex() {
   const stationRap = stations.filter((station) => station.category === 'rap')
   return (
     <section className='list-container'>
-      <AppHeader />
+      <AppHeader  />
       <section className='wide-stations-container'>
         {stations.slice(8, 8 + numWides).map((station) => (
           <WideStationPreview key={station._id} station={station} />

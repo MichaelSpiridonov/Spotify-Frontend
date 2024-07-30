@@ -163,7 +163,7 @@ export function SearchPage() {
         elPlayer.style.display = 'none'
     }
     return <section className='search-page' >
-        <AppHeader />
+        <AppHeader color='#121212' />
         {pageWidth < 500 && <h1 className='search'>Search</h1>}
         <form action=''>
 

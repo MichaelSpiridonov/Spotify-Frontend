@@ -17,7 +17,7 @@ const SPOTIFY_CACHE = 'spDB'
 /* if (!localStorage.getItem(ALBUMS_KEY) && !localStorage.getItem(STATIONS_KEY) && !localStorage.getItem(ARTISTS_KEY)) {
   _createSpotifyStations()
 } */
-_createSpotifyStations()
+/* _createSpotifyStations() */
 let gSongsCache = loadFromStorage(SPOTIFY_CACHE) || {}
 
 export const stationService = {
@@ -49,9 +49,9 @@ async function remove(stationId) {
 }
 async function save(station) {
   var savedStation
-  if(station._id) {
+  if (station._id) {
     savedStation = await storageService.put(STATIONS_KEY, station)
-  }else {
+  } else {
     savedStation = await storageService.post(STATIONS_KEY, station)
   }
   return savedStation
@@ -62,7 +62,7 @@ async function addToLikedSongs(likedSongs) {
 }
 
 async function getTracks(searchVal) {
-  if(!searchVal){
+  if (!searchVal) {
     return
   }
   if (gSongsCache[searchVal]) {
