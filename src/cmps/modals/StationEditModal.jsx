@@ -9,7 +9,9 @@ import {
 import { useSelector } from 'react-redux'
 
 export function StationEditModal({ onClose }) {
-  const station = useSelector((storeState) => storeState.stationModule.currSelectedStation)
+  const station = useSelector(
+    (storeState) => storeState.stationModule.currSelectedStation
+  )
   const [name, setName] = useState(station.name)
   const [description, setDescription] = useState(station.description)
   const [imgUrl, setImgUrl] = useState(station.imgUrl || NewPlaylist)
@@ -23,6 +25,10 @@ export function StationEditModal({ onClose }) {
 
   // Event handler for file selection and upload
   const handleFileChange = async (ev) => {
+    if (!ev.target.files || ev.target.files.length === 0) {
+      // No file selected, do nothing
+      return
+    }
     try {
       const imgData = await uploadService.uploadImg(ev)
       setImgUrl(imgData.secure_url)
