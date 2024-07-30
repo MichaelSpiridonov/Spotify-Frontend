@@ -40,6 +40,7 @@ export function MoreModal() {
     async function onAddNewStation() {
         const element = document.querySelector('.more-modal')
         element.style.display = 'none'
+        console.log(song)
         const station = {
             createdBy: { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl },
             likedByUsers: ['{minimal-user}', '{minimal-user}'],
@@ -47,6 +48,8 @@ export function MoreModal() {
             songs: [(song)],
             tags: [],
             imgUrl: song.imgUrl,
+            addedAt: Date.now(),
+            artists:[{name:song.artists[0]}]
         }
         await addStation(station)
         showNotificationMsg(`Added to ${station.name}`, song.imgUrl)

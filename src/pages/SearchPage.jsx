@@ -179,6 +179,7 @@ export function SearchPage() {
         {search && <div className='table-header'>
             <span>#</span>
             <span>Title</span>
+            <span>Album</span>
             <span>
                 <svg
                     data-encore-id='icon'
