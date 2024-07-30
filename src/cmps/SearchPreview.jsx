@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import AddIcon from '../assets/icons/addsong.svg?react'
 import Play from '../assets/icons/play.svg?react'
 import { setCurrSelectedSong, updateSong } from '../store/actions/station.actions'
@@ -12,13 +12,43 @@ export function SearchPreview({ song }) {
     const [songToAdd, setSongToAdd] = useState(null)
     var count = 0
     async function onClickPlay(song, target) {
-        console.log(song)
-        var videoId = await getVideoId(song.title)
-        console.log(videoId)
-        let station = { title: song.title, id: videoId, imgUrl: song.imgUrl, artists:[ {name: song.artists[0]}] }
-        console.log(station) 
-        updateSong(station)
+        console.log(target)
+        {
+            console.log('hi')
+            var videoId = await getVideoId(song.title)
+            console.log(videoId)
+            let station = { title: song.title, id: videoId, imgUrl: song.imgUrl, artists: [{ name: song.artists[0] }] }
+            console.log(station)
+            updateSong(station)
+        }
     }
+    async function onClickPlayPhone(song, target) {
+        if (pageWidth < 500) {
+            console.log('hi')
+            var videoId = await getVideoId(song.title)
+            console.log(videoId)
+            let station = { title: song.title, id: videoId, imgUrl: song.imgUrl, artists: [{ name: song.artists[0] }] }
+            console.log(station)
+            updateSong(station)
+        }
+    }
+    const [pageWidth, setPageWidth] = useState(window.innerWidth)
+
+    useLayoutEffect(() => {
+        // Function to handle resize event
+        const handleResize = () => {
+            setPageWidth(window.innerWidth)
+        }
+
+        // Attach resize event listener
+        window.addEventListener('resize', handleResize)
+
+        // Clean up function
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [pageWidth])
+
     async function getVideoId(name) {
         var id = await getVideos(name)
         return id[0].videoId
@@ -26,7 +56,7 @@ export function SearchPreview({ song }) {
     function onAddTo(event) {
         setCurrSelectedSong(song)
         setSongToAdd(song)
-        const x = event.clientX -550
+        const x = event.clientX - 550
         const y = event.clientY
         console.log(`Clicked at X=${x}, Y=${y}`)
         const elModal = document.querySelector('.more-modal')
@@ -49,8 +79,8 @@ export function SearchPreview({ song }) {
                 // Right-click was detected
                 console.log('Right-click detected!');
                 event.preventDefault();
-                const x = event.clientX -510
-                const y = event.clientY -10
+                const x = event.clientX - 510
+                const y = event.clientY - 10
                 const elModal = document.querySelector('.more-modal')
                 elModal.style.left = `${x}px`
                 elModal.style.top = `${y}px`
@@ -77,7 +107,7 @@ export function SearchPreview({ song }) {
     }
     // Adding click event listener to the document
     document.addEventListener('click', clickOutsideListener);
-    return <article id={song.title} className='item'>
+    return <article id={song.title} onClick={({ target }) => onClickPlayPhone(song, target)} className='item'>
         <section className='left-side-preview'>
             <div className='play-button' onClick={({ target }) => onClickPlay(song, target)}><Play /></div>
             <img className='song-image' src={song.imgUrl} alt='' />

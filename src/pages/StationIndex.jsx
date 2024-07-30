@@ -22,22 +22,20 @@ export function StationIndex() {
   var numElements = 0
   useEffect(() => {
     loadAlbums()
-    .catch(err => {
-      showErrorMsg('Cannot load stations!')
-      throw err
-    })
+      .catch(err => {
+        showErrorMsg('Cannot load stations!')
+        throw err
+      })
   }, [])
   const [pageWidth, setPageWidth] = useState(window.innerWidth)
   useEffect(() => {
-    
     const handleResize = () => {
       setPageWidth(window.innerWidth)
     }
-
-    
     window.addEventListener('resize', handleResize)
 
-  }, [pageWidth]) 
+
+  }, [pageWidth])
   const elPlayer = document.querySelector('.app-player')
   if (elPlayer && currSong && pageWidth < 500) {
     elPlayer.style.display = 'flex'
@@ -82,7 +80,7 @@ export function StationIndex() {
   const stationRap = stations.filter((station) => station.category === 'rap')
   return (
     <section className='list-container'>
-      <AppHeader  />
+      <AppHeader />
       <section className='wide-stations-container'>
         {stations.slice(8, 8 + numWides).map((station) => (
           <WideStationPreview key={station._id} station={station} />

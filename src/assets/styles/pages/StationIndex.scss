@@ -198,7 +198,8 @@ button:first-child {
     .wide-stations-container {
         display: grid;
         grid-template-columns: repeat(2, 50%);
-        margin-top: 60px;
+        margin-top: 70px;
+        margin-right: 6px;
     }
 
     .home-station-preview {
