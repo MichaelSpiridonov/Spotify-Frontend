@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../store/actions/user.actions'
+import { useEffect, useState } from 'react'
 
 export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user)
@@ -17,13 +18,25 @@ export function AppHeader() {
     }
 
   }
+  const [pageWidth, setPageWidth] = useState(window.innerWidth)
+  useEffect(() => {
+    
+    const handleResize = () => {
+      setPageWidth(window.innerWidth)
+    }
+
+    
+    window.addEventListener('resize', handleResize)
+
+  }, [pageWidth])
   function onLogout() {
     const elModal = document.querySelector('.modal-logout')
     elModal.style.height = '0'
     elModal.style.fontSize = '0'
     logout()
   }
-  return (
+  if(pageWidth>500){
+    return (
     <header className='app-header'>
       <section className='header-container'>
         <section className='pageing'>
@@ -56,4 +69,9 @@ export function AppHeader() {
       </section>
     </header>
   )
+  }else{
+    
+    return <div onClick={onToggleModalLogout} className='user-login'><b>{userName.charAt(0)}</b></div>
+  }
+  
 }

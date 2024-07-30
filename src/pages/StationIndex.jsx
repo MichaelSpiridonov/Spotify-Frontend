@@ -28,7 +28,7 @@ export function StationIndex() {
     })
   }, [])
   const [pageWidth, setPageWidth] = useState(window.innerWidth)
-  useLayoutEffect(() => {
+  useEffect(() => {
     
     const handleResize = () => {
       setPageWidth(window.innerWidth)

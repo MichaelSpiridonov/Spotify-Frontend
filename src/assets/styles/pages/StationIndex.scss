@@ -173,6 +173,9 @@ button:first-child {
 }
 
 @media (max-width:500px) {
+    .list-container{
+        padding: 0;
+    }
     .wide-station-preview {
         h1 {
 
@@ -192,6 +195,7 @@ button:first-child {
     .wide-stations-container {
         display: grid;
         grid-template-columns: repeat(2, 50%);
+        margin-top: 60px;
     }
 
     .home-station-preview {

@@ -121,8 +121,8 @@ const topics = [
         img: 'https://i.scdn.co/image/ab67fb8200005caf194fec0fdc197fb9e4fe8e64'
     }
     ,
-    
-   
+
+
 ]
 
 export function SearchPage() {
@@ -131,21 +131,21 @@ export function SearchPage() {
     const [pageWidth, setPageWidth] = useState(window.innerWidth)
     const currSong = useSelector(
         (storeState) => storeState.stationModule.currSong
-      )
+    )
 
     useLayoutEffect(() => {
-      // Function to handle resize event
-      const handleResize = () => {
-        setPageWidth(window.innerWidth)
-      }
-  
-      // Attach resize event listener
-      window.addEventListener('resize', handleResize)
-  
-      // Clean up function
-      return () => {
-        window.removeEventListener('resize', handleResize)
-      }
+        // Function to handle resize event
+        const handleResize = () => {
+            setPageWidth(window.innerWidth)
+        }
+
+        // Attach resize event listener
+        window.addEventListener('resize', handleResize)
+
+        // Clean up function
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
     }, [pageWidth])
     useEffect(() => {
         if (search) {
@@ -157,24 +157,41 @@ export function SearchPage() {
     }
 
     const elPlayer = document.querySelector('.app-player')
-  if (elPlayer&& currSong) {
-    elPlayer.style.display = 'flex'
-  }else if(pageWidth < 500){
-     elPlayer.style.display = 'none'
-  }
+    if (elPlayer && currSong) {
+        elPlayer.style.display = 'flex'
+    } else if (pageWidth < 500) {
+        elPlayer.style.display = 'none'
+    }
     return <section className='search-page' >
         <AppHeader />
+        {pageWidth < 500 && <h1 className='search'>Search</h1>}
         <form action=''>
+
             <label htmlFor=''><SearchIcon /></label>
             <input onChange={handleChange} value={search ? search : ''} placeholder='What do you want to play?' type='text' />
         </form>
-        {search !== '' && <h1 className='search-title'>Songs</h1>}
         {search === '' && <section>
             <h1 className='search-title'>Browse All</h1>
             <section className='topics-container'>
                 {topics.map(topic => <TopicPreview key={topic.name} topic={topic} />)}
             </section>
         </section>}
+        {search && <div className='table-header'>
+            <span>#</span>
+            <span>Title</span> 
+            <span>
+              <svg
+                data-encore-id='icon'
+                role='img'
+                aria-hidden='true'
+                viewBox='0 0 16 16'
+                className='Svg-sc-ytk21e-0 dYnaPI'
+              >
+                <path d='M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z'></path>
+                <path d='M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z'></path>
+              </svg>
+            </span>
+          </div>}
         <section className='station-details' >
             {search && songs.map(song => <SearchPreview key={song._id} song={song} />)}
             <MoreModal />
