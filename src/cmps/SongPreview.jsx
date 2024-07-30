@@ -43,7 +43,7 @@ export function SongPreview({ song, onAddTo, onClickPlay }) {
       <section>
         <span onClick={() => onClickPlayPhone(song)} className='station-song-detail'>{song.title || song.name}</span>
         {song.artists.map((artist, index) => (
-          <span key={artist.id}>
+          <span className='artist-name' key={artist.id}>
            {/*  <Link to={`/artist/${artist.id}`} className='song-artist'> */}
               {artist.name}
             {/* </Link> */}

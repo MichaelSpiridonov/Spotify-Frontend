@@ -12,9 +12,11 @@ export function SearchPreview({ song }) {
     const [songToAdd, setSongToAdd] = useState(null)
     var count = 0
     async function onClickPlay(song, target) {
+        console.log(song)
         var videoId = await getVideoId(song.title)
         console.log(videoId)
-        let station = { title: song.title, id: videoId, imgUrl: song.imgUrl, artists: [song.artist] }
+        let station = { title: song.title, id: videoId, imgUrl: song.imgUrl, artists:[ {name: song.artists[0]}] }
+        console.log(station) 
         updateSong(station)
     }
     async function getVideoId(name) {
@@ -81,7 +83,7 @@ export function SearchPreview({ song }) {
             <img className='song-image' src={song.imgUrl} alt='' />
             <section className='info-container'>
                 <span className='station-song-detail'>{song.title}</span>
-                <span className='song-artist' >{song.artist}</span>
+                <span className='song-artist' >{song.artists[0]}</span>
             </section>
         </section>
         <section className='right-side-preview'>
