@@ -31,6 +31,9 @@ export function StationDetails() {
   const user = useSelector(
     (storeState) => storeState.userModule.user
   )
+  const currStation = useSelector(
+    (storeState) => storeState.stationModule.currStation
+  )
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
   )
@@ -126,7 +129,7 @@ export function StationDetails() {
     }
 
   }
-  if (!station) return
+  if (!station || !currStation) return
   const gradientStyle = {
     backgroundImage: `linear-gradient(${color}, #121212 90%)`
   }
@@ -136,12 +139,12 @@ export function StationDetails() {
         <section style={gradientStyle}>
           <AppHeader color={color} />
           <div className='station-header'>
-            {station.imgUrl && <img
+            {currStation.imgUrl && <img
               className='station-image'
-              src={station.imgUrl}
-              alt = {station.createdBy.fullname}
+              src={currStation.imgUrl}
+              alt = {currStation.createdBy.fullname}
             />}
-            {!station.imgUrl &&
+            {!currStation.imgUrl &&
               <div className='station-none-image'>
                 <svg data-encore-id="icon" role="img" aria-hidden="true" data-testid="playlist" class="Svg-sc-ytk21e-0 bneLcE" viewBox="0 0 24 24"><path d="M6 3h15v15.167a3.5 3.5 0 1 1-3.5-3.5H19V5H8v13.167a3.5 3.5 0 1 1-3.5-3.5H6V3zm0 13.667H4.5a1.5 1.5 0 1 0 1.5 1.5v-1.5zm13 0h-1.5a1.5 1.5 0 1 0 1.5 1.5v-1.5z"></path></svg>
               </div>
