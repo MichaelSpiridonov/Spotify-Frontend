@@ -100,14 +100,12 @@ export function AlbumDetails() {
     }
     updateSong(songData)
     const newStation = {
-
+      imgUrl: albumDetails.images[0].url,
       songs: albumDetails.tracks.items,
-      name: albumDetails.name
+      name: albumDetails.name,
+      stationType: 'Album',
     }
-    console.log(newStation)
-    const updated = await updateStation(newStation)
-    console.log(updated)
-    loadStation(updated._id)
+    await loadStation(newStation)
   }
   const elPlayer = document.querySelector('.app-player')
   if (elPlayer && currSong && pageWidth < 500) {
@@ -155,7 +153,6 @@ export function AlbumDetails() {
 
   }
   if (!albumDetails) return <Loading/>
-  console.log('albumDetails:',albumDetails);
   const gradientStyle = {
     backgroundImage: `linear-gradient(${color}, #121212 90%)`
   }

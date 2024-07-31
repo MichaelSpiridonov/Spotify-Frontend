@@ -38,8 +38,12 @@ export async function loadAlbums() {
 
 export async function loadStation(stationId) {
     try {
-        const Station = await stationService.getById(stationId)
-        store.dispatch(getCmdSetStation(Station))
+        if(stationId.stationType) {
+            store.dispatch(getCmdSetStation(stationId))
+        }else {
+            const Station = await stationService.getById(stationId)
+            store.dispatch(getCmdSetStation(Station))
+        }
     } catch (err) {
         console.log('Cannot load Station', err)
         throw err

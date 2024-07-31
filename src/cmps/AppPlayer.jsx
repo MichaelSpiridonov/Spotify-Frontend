@@ -58,15 +58,13 @@ export function AppPlayer() {
     }
 
   }
-
-  
   return (
     <section style={{backgroundColor:color}} className="app-player">
       <svg onClick={onClosePlayer} className="down-svg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
       <section>
         {currSong && (
           <section  onClick={onOpenPlayerPhone} className="song-detail">
-            <img className="song-image" src={currSong.imgUrl} />
+            <img className="song-image" src={currSong.imgUrl || station.imgUrl} />
             <section className="song-info">
               <div className="song-title">
                 {currSong.title || currSong.name}
