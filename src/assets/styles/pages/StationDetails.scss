@@ -170,10 +170,15 @@
         justify-content: end;
         margin-right: 35px;
 
-        svg {
-          width: 16px;
-          fill: #b3b3b3;
-        }
+
+
+      }
+
+      svg {
+        position: relative;
+        right: 5px;
+        width: 16px;
+        fill: #b3b3b3;
       }
     }
   }
@@ -381,9 +386,16 @@
         .song-length {
           text-align: right;
         }
+
       }
     }
   }
+}
+
+span.song-length {
+  /* width: max-content;
+  position: absolute;
+  right: 40px; */
 }
 
 .play-button svg,
@@ -450,7 +462,7 @@
   }
 }
 
-.item:hover {
+.album-item:hover {
   background-color: #262626;
   border-radius: 10px;
 
@@ -530,6 +542,64 @@
 
 }
 
+.album-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  align-items: center;
+
+  .play-button,
+  .song-options-button {
+    background: none;
+    border: none;
+    opacity: 0;
+    cursor: pointer;
+    fill: white;
+    transition: opacity 0.2s ease;
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+
+  /* svg {
+    position: absolute;
+    left: 50px;
+  } */
+
+  section {
+    display: flex;
+    flex-direction: column;
+    width: 68vw;
+  }
+
+  .song-image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
+  }
+
+
+  .add-button {
+    margin-right: 5px;
+  }
+}
+
+.item:hover {
+  background-color: #262626;
+  border-radius: 10px;
+
+  .play-button svg,
+  .add-button svg,
+  .options-button svg {
+    opacity: 1;
+  }
+}
 
 .station-none-image {
   display: flex;

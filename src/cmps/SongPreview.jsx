@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useLayoutEffect, useState } from 'react'
 
-export function SongPreview({ song, onAddTo, onClickPlay }) {
+export function SongPreview({ song, onAddTo, onClickPlay, albumImg }) {
   const user = useSelector((storeState) => storeState.userModule.user)
   const currSong = useSelector((storeState) => storeState.stationModule.currSong)
   const [pageWidth, setPageWidth] = useState(window.innerWidth)
@@ -40,26 +40,26 @@ export function SongPreview({ song, onAddTo, onClickPlay }) {
       <div className='play-button' >
         {(currSong?._id === song?._id && currSong) ? <PauseIcon /> : <PlayIcon onClick={() => onClickPlay(song)} />}
       </div>
-      <img className='song-image' src={song.imgUrl?song.imgUrl: song.artists[0].href} alt={song.title} /> 
+      <img className='song-image' src={song.imgUrl ? song.imgUrl : albumImg} alt={song.title} />
       <section>
         <span onClick={() => onClickPlayPhone(song)} className='station-song-detail'>{song.title || song.name}</span>
         {song.artists.map((artist, index) => (
           <span className='artist-name' key={artist.id}>
-           {/*  <Link to={`/artist/${artist.id}`} className='song-artist'> */}
-              {artist.name}
+            {/*  <Link to={`/artist/${artist.id}`} className='song-artist'> */}
+            {artist.name}
             {/* </Link> */}
             {index < song.artists.length - 1 && ', '}
           </span>
         ))}
       </section>
-      <span className='song-album'>
+      {song.imgUrl && <span className='song-album'>
         <Link to={`/album/${song.albumId}`}>{song.albumName}</Link>
-      </span>
+      </span>}
       {(song.addedAt) ? <span className='song-date'>{formatDate(song.addedAt)}</span> : ''}
       <div className={`add-button ${(song.likedBy?.find(likeUser => likeUser._id === user?._id)) ? 'like-icn' : ''}`}>
         {(song.likedBy?.find(likeUser => likeUser._id === user?._id)) ? <LikeIcon /> : <AddIcon />}
       </div>
-      <span className='song-length'>{formatDuration(song.duration || song.duration_ms)}</span>
+      <span className={song.imgUrl?'song-length': 'album-song-length'}>{formatDuration(song.duration || song.duration_ms)}</span>
       <div
         className='options-button'
         onClick={(event) => onAddTo(event, song)}

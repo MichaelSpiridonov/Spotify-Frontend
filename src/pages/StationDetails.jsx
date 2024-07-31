@@ -157,7 +157,7 @@ export function StationDetails() {
               <h1 className='station-name'>{station.name}</h1>
               <h2 className='station-description'>{station.description}</h2>
               <p className='station-creator'>
-              {station.createdBy? station.createdBy.fullname + ' ·': '' }  {station.songs.length} songs{(station.songs.length) ? `, ${calculateTotalDuration(station.songs)}` : ''}
+             {user? <img src={user.imgUrl} className='user-login'></img>:''} {station.createdBy? station.createdBy.fullname + ' ·': '' }  {station.songs.length} songs{(station.songs.length) ? `, ${calculateTotalDuration(station.songs)}` : ''}
               </p>
             </div>
           </div>
@@ -178,8 +178,8 @@ export function StationDetails() {
           {station.songs[0] && <div className='table-header'>
             <span>#</span>
             <span>Title</span>
-            <span>Album</span>
-            <span>Date added</span>
+            {station.createdBy&&<span>Album</span>}
+            {station.createdBy&&<span>Date added</span>}
             <span>
               <svg
                 data-encore-id='icon'
