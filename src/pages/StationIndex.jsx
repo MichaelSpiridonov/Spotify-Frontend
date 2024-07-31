@@ -9,6 +9,7 @@ import ResizeObserver from 'resize-observer-polyfill'
 import { stationService } from '../services/station/station.service.remote.js'
 import { AppFooter } from '../cmps/AppFooter.jsx'
 import { Loading } from '../cmps/Loading.jsx'
+import axios from 'axios'
 
 export function StationIndex() {
   const stations = useSelector(
@@ -68,12 +69,13 @@ export function StationIndex() {
   if (pageWidth < 500) {
     numWides = 4
   }
+
   const elDetails = document.querySelector('.app-player')
   if (elDetails) {
     elDetails.classList.remove('details-player')
 
   }
-  if (!stations || !albums) return <Loading/>
+  if (!stations || !albums) return <Loading />
   console.log(albums)
   const stationFeatured = stations.filter(
     (station) => station.category === 'featured'

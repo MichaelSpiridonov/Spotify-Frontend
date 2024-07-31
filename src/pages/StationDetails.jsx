@@ -59,7 +59,10 @@ export function StationDetails() {
   }, [stationId])
 
   async function setStationPrm(stationId) {
-    const station = await stationService.getById(stationId)
+    let station = await stationService.getById(stationId)
+    if(!station){
+      station = await stationService.getAlbumById(stationId)
+    }
     setStation(station)
     setCurrStation(station)
   }
@@ -119,7 +122,7 @@ export function StationDetails() {
       elModal.style.display = "none";
     }
   }
-  if (station  ) {
+  if (station ) {
     if (station.imgUrl) {
       const fac = new FastAverageColor()
       fac.getColorAsync(station.imgUrl).then((color) => {
@@ -142,8 +145,8 @@ export function StationDetails() {
           <div className='station-header'>
             {currStation.imgUrl && <img
               className='station-image'
-              src={currStation.imgUrl}
-              alt = {currStation.createdBy.fullname}
+              src={station.imgUrl}
+              alt = {station.createdBy? station.createdBy.fullname: '' }
             />}
             {!currStation.imgUrl &&
               <div className='station-none-image'>
@@ -156,7 +159,7 @@ export function StationDetails() {
               <h1 className='station-name'>{station.name}</h1>
               <h2 className='station-description'>{station.description}</h2>
               <p className='station-creator'>
-               {station.createdBy.fullname} · {station.songs.length} songs{(station.songs.length) ? `, ${calculateTotalDuration(station.songs)}` : ''}
+             {user? <img src={user.imgUrl} className='user-login'></img>:''} {station.createdBy? station.createdBy.fullname + ' ·': '' }  {station.songs.length} songs{(station.songs.length) ? `, ${calculateTotalDuration(station.songs)}` : ''}
               </p>
             </div>
           </div>
@@ -177,8 +180,8 @@ export function StationDetails() {
           {station.songs[0] && <div className='table-header'>
             <span>#</span>
             <span>Title</span>
-            <span>Album</span>
-            <span>Date added</span>
+            {station.createdBy&&<span>Album</span>}
+            {station.createdBy&&<span>Date added</span>}
             <span>
               <svg
                 data-encore-id='icon'

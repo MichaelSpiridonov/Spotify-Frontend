@@ -60,9 +60,9 @@ export function AppHeader({color = '#2c2a2a'}) {
               </svg>
             </section>
           </section>
-          {user ? <img src={user.imgUrl} onClick={onToggleModalLogout} className='user-login'></img> : <div class="container">
-            <Link to='/login'><button id="signupButton" class="btn sign-up">Sign Up</button></Link>
-            <Link to='/login'> <button id="loginButton" class="btn log-in">Log in</button></Link>
+          {user ? <img src={user.imgUrl} onClick={onToggleModalLogout} className='user-login'></img> : <div className="container">
+            <Link to='/login'><button id="signupButton" className="btn sign-up">Sign Up</button></Link>
+            <Link to='/login'> <button id="loginButton" className="btn log-in">Log in</button></Link>
           </div>}
           < article onClick={onLogout} className='modal-logout'><h1>Log out</h1></article>
         </section>
