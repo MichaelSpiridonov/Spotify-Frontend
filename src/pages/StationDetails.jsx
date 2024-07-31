@@ -26,6 +26,7 @@ export function StationDetails() {
   const [color, setColor] = useState(null)
   const [search, setSearch] = useState(null)
   const [songs, setSongs] = useState([])
+  const [station, setStation] = useState([])
 
   const user = useSelector(
     (storeState) => storeState.userModule.user
@@ -53,11 +54,12 @@ export function StationDetails() {
     }
   }, [pageWidth])
   useEffect(() => {
-    setStation(stationId)
+    setStationPrm(stationId)
   }, [stationId])
 
-  async function setStation(stationId) {
+  async function setStationPrm(stationId) {
     const station = await stationService.getById(stationId)
+    setStation(station)
     setCurrStation(station)
   }
   function handleChange({ target }) {
@@ -131,6 +133,7 @@ export function StationDetails() {
   const gradientStyle = {
     backgroundImage: `linear-gradient(${color}, #121212 90%)`
   }
+  if (!station) return
   return (
     <React.Fragment>
       <div  className='station-details-container'>
