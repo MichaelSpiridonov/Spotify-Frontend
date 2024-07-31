@@ -8,6 +8,7 @@ import { WideStationPreview } from '../cmps/WideStationPreview.jsx'
 import ResizeObserver from 'resize-observer-polyfill'
 import { stationService } from '../services/station/station.service.remote.js'
 import { AppFooter } from '../cmps/AppFooter.jsx'
+import { Loading } from '../cmps/Loading.jsx'
 
 export function StationIndex() {
   const stations = useSelector(
@@ -63,7 +64,7 @@ export function StationIndex() {
     numElements = 8
   }
 
-  var numWides = 6
+  var numWides = 8
   if (pageWidth < 500) {
     numWides = 4
   }
@@ -72,7 +73,7 @@ export function StationIndex() {
     elDetails.classList.remove('details-player')
 
   }
-  if (!stations || !albums) return <div>Loading....</div>
+  if (!stations || !albums) return <Loading/>
   console.log(albums)
   const stationFeatured = stations.filter(
     (station) => station.category === 'featured'

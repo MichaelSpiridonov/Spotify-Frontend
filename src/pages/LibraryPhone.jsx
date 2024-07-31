@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { StationList } from '../cmps/StationList'
 import { CreateStationModal } from '../cmps/CreateStationModal'
 import { AppHeader } from '../cmps/AppHeader'
+import { Loading } from '../cmps/Loading'
 export function LibraryPhone() {
     const stations = useSelector(storeState => storeState.stationModule.stations)
     const currSong = useSelector(
@@ -62,7 +63,7 @@ export function LibraryPhone() {
     }
     // Adding click event listener to the document
     document.addEventListener('click', clickOutsideListener);
-    if(!stations) return
+    if(!stations) return <Loading/>
     return (
         <section className='Phone-library'>
                    

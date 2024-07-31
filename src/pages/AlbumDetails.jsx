@@ -20,6 +20,7 @@ import { SongList } from '../cmps/SongList.jsx'
 import { SearchPreview } from '../cmps/SearchPreview.jsx'
 import { useSelector } from 'react-redux'
 import spotifyService from '../services/spotify.service.js'
+import { Loading } from '../cmps/Loading.jsx'
 
 export function AlbumDetails() {
   const { albumId } = useParams()
@@ -153,7 +154,8 @@ export function AlbumDetails() {
     }
 
   }
-  if (!albumDetails) return
+  if (!albumDetails) return <Loading/>
+  console.log('albumDetails:',albumDetails);
   const gradientStyle = {
     backgroundImage: `linear-gradient(${color}, #121212 90%)`
   }

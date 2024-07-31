@@ -20,6 +20,7 @@ import { formatPlaylistDuration } from '../services/util.service.js'
 import { SongList } from '../cmps/SongList.jsx'
 import { SearchPreview } from '../cmps/SearchPreview.jsx'
 import { useSelector } from 'react-redux'
+import { Loading } from '../cmps/Loading.jsx'
 
 export function StationDetails() {
   const { stationId } = useParams()
@@ -129,7 +130,7 @@ export function StationDetails() {
     }
 
   }
-  if (!station || !currStation) return
+  if (!station || !currStation) return <Loading/>
   const gradientStyle = {
     backgroundImage: `linear-gradient(${color}, #121212 90%)`
   }

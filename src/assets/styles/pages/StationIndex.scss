@@ -106,7 +106,7 @@ button:first-child {
 
 .wide-stations-container {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(4, 25%);
     grid-gap: 10px;
     padding-left: 10px;
     margin-top: 70px;
