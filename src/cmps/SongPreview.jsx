@@ -34,12 +34,13 @@ export function SongPreview({ song, onAddTo, onClickPlay }) {
       onClickPlay(song)
     }
   }
+  console.log(song)
   return (
     <>
       <div className='play-button' >
         {(currSong?._id === song?._id && currSong) ? <PauseIcon /> : <PlayIcon onClick={() => onClickPlay(song)} />}
       </div>
-      {(song.imgUrl) ? <img className='song-image' src={song.imgUrl} alt={song.title} /> : ''}
+      <img className='song-image' src={song.imgUrl?song.imgUrl: song.artists[0].href} alt={song.title} /> 
       <section>
         <span onClick={() => onClickPlayPhone(song)} className='station-song-detail'>{song.title || song.name}</span>
         {song.artists.map((artist, index) => (

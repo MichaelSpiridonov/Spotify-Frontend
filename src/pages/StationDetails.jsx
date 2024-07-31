@@ -56,7 +56,10 @@ export function StationDetails() {
   }, [stationId])
 
   async function setStationPrm(stationId) {
-    const station = await stationService.getById(stationId)
+    let station = await stationService.getById(stationId)
+    if(!station){
+      station = await stationService.getAlbumById(stationId)
+    }
     setStation(station)
     setCurrStation(station)
   }
@@ -116,7 +119,7 @@ export function StationDetails() {
       elModal.style.display = "none";
     }
   }
-  if (station  ) {
+  if (station ) {
     if (station.imgUrl) {
       const fac = new FastAverageColor()
       fac.getColorAsync(station.imgUrl).then((color) => {
@@ -127,6 +130,7 @@ export function StationDetails() {
     }
 
   }
+  console.log(station)
   if (!station) return <Loading/>
   const gradientStyle = {
     backgroundImage: `linear-gradient(${color}, #121212 90%)`
@@ -140,7 +144,7 @@ export function StationDetails() {
             {station.imgUrl && <img
               className='station-image'
               src={station.imgUrl}
-              alt = {station.createdBy.fullname}
+              alt = {station.createdBy? station.createdBy.fullname: '' }
             />}
             {!station.imgUrl &&
               <div className='station-none-image'>
@@ -153,7 +157,7 @@ export function StationDetails() {
               <h1 className='station-name'>{station.name}</h1>
               <h2 className='station-description'>{station.description}</h2>
               <p className='station-creator'>
-               {station.createdBy.fullname} · {station.songs.length} songs{(station.songs.length) ? `, ${calculateTotalDuration(station.songs)}` : ''}
+              {station.createdBy? station.createdBy.fullname + ' ·': '' }  {station.songs.length} songs{(station.songs.length) ? `, ${calculateTotalDuration(station.songs)}` : ''}
               </p>
             </div>
           </div>

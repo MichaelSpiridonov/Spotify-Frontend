@@ -9,7 +9,8 @@ export const stationService = {
     save,
     remove,
     queryAlbums,
-    getTracks
+    getTracks,
+    getAlbumById
 }
 let gSongsCache = loadFromStorage(SPOTIFY_CACHE) || {}
 async function queryStations() {
@@ -21,6 +22,10 @@ async function queryAlbums() {
 }
 async function getById(stationId) {
     return await httpService.get(`station/${stationId}`)
+}
+
+async function getAlbumById(stationId) {
+    return await httpService.get(`album/${stationId}`)
 }
 
 async function remove(stationId) {
