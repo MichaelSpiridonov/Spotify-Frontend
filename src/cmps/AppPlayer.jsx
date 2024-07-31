@@ -69,7 +69,7 @@ export function AppPlayer() {
             <img className="song-image" src={currSong.imgUrl} />
             <section className="song-info">
               <div className="song-title">
-                {currSong.title.replace(/^.*?-/, "")}
+                {currSong.title || currSong.name}
               </div>
               <section className="artist">
                 <ArtistCmp artists={currSong.artists} />
