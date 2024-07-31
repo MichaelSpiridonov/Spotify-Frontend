@@ -23,10 +23,9 @@ export function StationEditModal({ onClose }) {
     document.getElementById('fileInput').click()
   }
 
-  // Event handler for file selection and upload
   const handleFileChange = async (ev) => {
     if (!ev.target.files || ev.target.files.length === 0) {
-      // No file selected, do nothing
+      // No file selected, keep the current image
       return
     }
     try {

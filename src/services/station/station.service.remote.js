@@ -38,12 +38,13 @@ async function getTracks(searchVal) {
     const songs = await Promise.all(tracks.map(track => {
         return {
             imgUrl: track.album.images[0].url,
-            artists: [track.artists[0].name],
+            artists: track.artists,
             duration: track.duration_ms,
             title: track.name,
             _id: makeId(),
             albumName: track.album.name,
-            releaseDate: track.album.release_date
+            releaseDate: track.album.release_date,
+            albumId: track.album.id
         }
     }))
     gSongsCache[searchVal] = songs

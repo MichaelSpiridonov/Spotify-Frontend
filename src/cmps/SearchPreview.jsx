@@ -17,7 +17,7 @@ export function SearchPreview({ song }) {
             console.log('hi')
             var videoId = await getVideoId(song.title)
             console.log(videoId)
-            let station = { title: song.title, id: videoId, imgUrl: song.imgUrl, artists: [{ name: song.artists[0] }] }
+            let station = { title: song.title, id: videoId, imgUrl: song.imgUrl, artists: [{ name: song.artists[0].name }] }
             console.log(station)
             updateSong(station)
         }
@@ -27,7 +27,7 @@ export function SearchPreview({ song }) {
             console.log('hi')
             var videoId = await getVideoId(song.title)
             console.log(videoId)
-            let station = { title: song.title, id: videoId, imgUrl: song.imgUrl, artists: [{ name: song.artists[0] }] }
+            let station = { title: song.title, id: videoId, imgUrl: song.imgUrl, artists: [{ name: song.artists[0].name }] }
             console.log(station)
             updateSong(station)
         }
@@ -58,7 +58,7 @@ export function SearchPreview({ song }) {
         let newSong = {
             ...song,
             addedAt: Date.now(),
-            artists: [{ name: song.artists[0] }]
+            artists: [{ name: song.artists[0].name }]
 
         }
         setCurrSelectedSong(newSong)
@@ -121,7 +121,7 @@ export function SearchPreview({ song }) {
             <img className='song-image' src={song.imgUrl} alt='' />
             <section className='info-container'>
                 <span className='station-song-detail'>{song.title}</span>
-                <span className='song-artist' >{song.artists[0]}</span>
+                <span className='song-artist' >{song.artists[0].name}</span>
             </section>
         </section>
         <span className='song-album'>
