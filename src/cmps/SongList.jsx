@@ -16,7 +16,6 @@ export function SongList({ songs, onAddTo, onClickPlay }) {
     updateSongIdx(songs, currStation)
   }
   if(!songs) return
-  console.log('songs:',songs);
   return (
     <>
     <DragDropContext onDragEnd={onDragEnd}>

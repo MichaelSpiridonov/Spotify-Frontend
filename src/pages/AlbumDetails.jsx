@@ -1,4 +1,4 @@
-import { loadStation, loadStations, setCurrSelectedSong, setCurrSelectedStation, setCurrStation, updateSong } from '../store/actions/station.actions.js'
+import { loadStation, loadStations, setCurrSelectedSong, setCurrSelectedStation, setCurrStation, updateSong, updateStation } from '../store/actions/station.actions.js'
 import { Link, useParams } from 'react-router-dom'
 import React, { useEffect, useState, useRef, useLayoutEffect } from 'react'
 
@@ -37,6 +37,8 @@ export function AlbumDetails() {
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
   )
+
+
   const [pageWidth, setPageWidth] = useState(window.innerWidth)
 
   function calculateTotalDuration(songs) {
@@ -82,11 +84,11 @@ export function AlbumDetails() {
   }
 
   async function onClickPlay(song) {
-    console.log(song)
+    song._id = song.id
+    song.id = null
     if (!song.id) {
-      song.id = await getVideoId(song.title)
+      song.id = await getVideoId(song.name)
     }
-    console.log(song)
     const songData = {
       title: song.name,
       id: song.id,
@@ -96,6 +98,15 @@ export function AlbumDetails() {
       likedBy: song.likedBy || []
     }
     updateSong(songData)
+    const newStation = {
+
+      songs: albumDetails.tracks.items,
+      name: albumDetails.name
+    }
+    console.log(newStation)
+    const updated = await updateStation(newStation)
+    console.log(updated)
+    loadStation(updated._id)
   }
   const elPlayer = document.querySelector('.app-player')
   if (elPlayer && currSong && pageWidth < 500) {
@@ -109,10 +120,11 @@ export function AlbumDetails() {
     song.title = song.name
     song.imgUrl = albumDetails.images[0].url
     song.addedAt = Date.now()
+    song.duration = song.duration_ms
     song.albumName = albumDetails.name
+    song.albumId = albumDetails.id
     song._id = song.id
     song.id = null
-    console.log(song)
     setCurrSelectedSong(song)
     /* setSongToAdd(song) */
     const x = event.clientX - 110
@@ -142,7 +154,6 @@ export function AlbumDetails() {
 
   }
   if (!albumDetails) return
-  console.log('albumDetails:',albumDetails);
   const gradientStyle = {
     backgroundImage: `linear-gradient(${color}, #121212 90%)`
   }
@@ -153,7 +164,7 @@ export function AlbumDetails() {
           <AppHeader />
           <div className='album-header'>
             {albumDetails.images[0].url && <img
-              className='album-image'
+              className='station-image'
               src={albumDetails.images[0].url}
               alt={albumDetails.artists[0].name}
             />}
@@ -205,9 +216,6 @@ export function AlbumDetails() {
             </span>
           </div>}
           <SongList songs={albumDetails.tracks.items} onClickPlay={onClickPlay} onAddTo={onAddTo} />
-          <section className='album-details' >
-            {search && songs.map(song => <SearchPreview key={song.videoId} song={song} />)}
-          </section>
           <MoreModal />
         </section>
         <AppFooter />
