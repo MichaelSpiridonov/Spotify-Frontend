@@ -57,7 +57,7 @@
         width: 180px;
         height: 180px;
         border-radius: 8px;
-        box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px 0px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 4px 0px;
       }
 
       .choose-image {
@@ -86,7 +86,6 @@
           fill: #ffffff;
         }
 
-        /* Adding the pseudo-element for "Choose photo" text */
         &::after {
           content: 'Choose photo';
           position: absolute;
@@ -144,7 +143,7 @@
 
         textarea {
           resize: none;
-          height: 80px;
+          height: 125px;
           overflow-y: hidden;
         }
       }
