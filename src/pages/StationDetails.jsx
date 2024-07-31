@@ -26,13 +26,10 @@ export function StationDetails() {
   const [color, setColor] = useState(null)
   const [search, setSearch] = useState(null)
   const [songs, setSongs] = useState([])
-  const [station, setStation] = useState([])
+  const [station, setStation] = useState(null)
 
   const user = useSelector(
     (storeState) => storeState.userModule.user
-  )
-  const currStation = useSelector(
-    (storeState) => storeState.stationModule.currStation
   )
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
@@ -100,7 +97,7 @@ export function StationDetails() {
   }
 
   function onAddTo(event, song) {
-    setCurrSelectedStation(currStation)
+    setCurrSelectedStation(station)
     setCurrSelectedSong(song)
     /* setSongToAdd(song) */
     const x = event.clientX - 110
@@ -118,10 +115,10 @@ export function StationDetails() {
       elModal.style.display = "none";
     }
   }
-  if (currStation  ) {
-    if (currStation.imgUrl) {
+  if (station  ) {
+    if (station.imgUrl) {
       const fac = new FastAverageColor()
-      fac.getColorAsync(currStation.imgUrl).then((color) => {
+      fac.getColorAsync(station.imgUrl).then((color) => {
         setColor(color.rgb)
       })
     } else if(!color) {
@@ -129,23 +126,22 @@ export function StationDetails() {
     }
 
   }
-  if (!currStation) return
+  if (!station) return
   const gradientStyle = {
     backgroundImage: `linear-gradient(${color}, #121212 90%)`
   }
-  if (!station) return
   return (
     <React.Fragment>
       <div  className='station-details-container'>
         <section style={gradientStyle}>
           <AppHeader color={color} />
           <div className='station-header'>
-            {currStation.imgUrl && <img
+            {station.imgUrl && <img
               className='station-image'
-              src={currStation.imgUrl}
-              alt={currStation.createdBy.fullname}
+              src={station.imgUrl}
+              alt = {station.createdBy.fullname}
             />}
-            {!currStation.imgUrl &&
+            {!station.imgUrl &&
               <div className='station-none-image'>
                 <svg data-encore-id="icon" role="img" aria-hidden="true" data-testid="playlist" class="Svg-sc-ytk21e-0 bneLcE" viewBox="0 0 24 24"><path d="M6 3h15v15.167a3.5 3.5 0 1 1-3.5-3.5H19V5H8v13.167a3.5 3.5 0 1 1-3.5-3.5H6V3zm0 13.667H4.5a1.5 1.5 0 1 0 1.5 1.5v-1.5zm13 0h-1.5a1.5 1.5 0 1 0 1.5 1.5v-1.5z"></path></svg>
               </div>
@@ -153,20 +149,20 @@ export function StationDetails() {
             }
             <div className='station-info'>
               <h3>Playlist</h3>
-              <h1 className='station-name'>{currStation.name}</h1>
-              <h2 className='station-description'>{currStation.description}</h2>
+              <h1 className='station-name'>{station.name}</h1>
+              <h2 className='station-description'>{station.description}</h2>
               <p className='station-creator'>
-               {} {currStation.createdBy.fullname} · {currStation.songs.length} songs{(currStation.songs.length) ? `, ${calculateTotalDuration(currStation.songs)}` : ''}
+               {station.createdBy.fullname} · {station.songs.length} songs{(station.songs.length) ? `, ${calculateTotalDuration(station.songs)}` : ''}
               </p>
             </div>
           </div>
           </section>
           <div className='station-controls'>
-            <button onClick={() => onClickPlay(currStation.songs[0])} className='header-play-button'>
+            <button onClick={() => onClickPlay(station.songs[0])} className='header-play-button'>
               {(!currSong) ? <PlayIcon /> : <PauseIcon />}
             </button>
-            <div className={`header-add-button ${(currStation.likedByUsers?.find(likeUser => likeUser._id === user?._id)) ? 'like-icn' : ''}`}>
-              {(currStation.likedByUsers?.find(likeUser => likeUser._id === user?._id)) ? <LikeIcon /> : <AddIcon />}
+            <div className={`header-add-button ${(station.likedByUsers?.find(likeUser => likeUser._id === user?._id)) ? 'like-icn' : ''}`}>
+              {(station.likedByUsers?.find(likeUser => likeUser._id === user?._id)) ? <LikeIcon /> : <AddIcon />}
             </div>
             <div className='header-options-button'>
               <SongOptionsIcon />
@@ -174,7 +170,7 @@ export function StationDetails() {
           </div>
         
         <section  className='station-details'>
-          {currStation.songs[0] && <div className='table-header'>
+          {station.songs[0] && <div className='table-header'>
             <span>#</span>
             <span>Title</span>
             <span>Album</span>
@@ -192,15 +188,15 @@ export function StationDetails() {
               </svg>
             </span>
           </div>}
-          {!currStation.songs[0] && <h1 className='header-input'>Let's find something for your playlist
+          {!station.songs[0] && <h1 className='header-input'>Let's find something for your playlist
           </h1>}
-          <SongList songs={currStation.songs} onClickPlay={onClickPlay} onAddTo={onAddTo} />
-          {!currStation.songs[0] && <form className='search-details' action=''>
+          <SongList songs={station.songs} onClickPlay={onClickPlay} onAddTo={onAddTo} />
+          {!station.songs[0] && <form className='search-details' action=''>
             <label htmlFor=''><SearchIcon className /></label>
             <input onChange={handleChange} value={search ? search : ''} placeholder='Search for songs' type='text' />
           </form>}
           <section className='station-details' >
-            {search && songs.map(song => <SearchPreview key={song.videoId} song={song} />)}
+            {search && station.songs.map(song => <SearchPreview key={song.videoId} song={song} />)}
 
           </section>
           <MoreModal />
