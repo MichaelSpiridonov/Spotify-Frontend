@@ -127,7 +127,7 @@ export function StationDetails() {
     }
 
   }
-  if (!currStation) return <Loading/>
+  if (!station) return <Loading/>
   const gradientStyle = {
     backgroundImage: `linear-gradient(${color}, #121212 90%)`
   }
