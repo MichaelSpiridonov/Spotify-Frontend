@@ -3,6 +3,7 @@ import { loadStations } from '../store/actions/station.actions'
 import { StationList } from './StationList'
 import { useSelector } from 'react-redux'
 import { CreateStationModal } from './CreateStationModal'
+import { Loading } from './Loading'
 
 export function SideLibrary() {
     const stations = useSelector(storeState => storeState.stationModule.stations)
@@ -55,7 +56,7 @@ export function SideLibrary() {
         // Adding click event listener to the document
     }
     document.addEventListener('click', clickOutsideListener);
-    if(!stations) return
+    if(!stations) return <Loading/>
     return (
         <section className='side-library'>
             <section onClick={onToogleCollapsed} className='library-header'>

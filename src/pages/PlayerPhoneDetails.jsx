@@ -8,6 +8,7 @@ import { useLayoutEffect, useState } from "react"
 import Player from "../cmps/Player.jsx"
 import { ArtistCmp } from "../cmps/ArtistCmp.jsx"
 import { FastAverageColor } from "fast-average-color"
+import { Loading } from "../cmps/Loading.jsx"
 
 export function PlayerPhoneDetails() {
     const Navigate = useNavigate()
@@ -45,7 +46,7 @@ export function PlayerPhoneDetails() {
             setColor(color.rgb)
         })
     }
-    if (pageWidth < 500 && !currSong) return
+    if (pageWidth < 500 && !currSong) return <Loading/>
     return (
         <section style={{ backgroundColor: color }} onClick={onOpenPlayerPhone} className="details-player">
             <section>

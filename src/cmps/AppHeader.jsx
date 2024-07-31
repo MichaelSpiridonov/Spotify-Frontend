@@ -60,7 +60,7 @@ export function AppHeader({color = '#2c2a2a'}) {
               </svg>
             </section>
           </section>
-          {user ? <div onClick={onToggleModalLogout} className='user-login'><b>{user.fullname.charAt(0)}</b></div> : <div class="container">
+          {user ? <img src={user.imgUrl} onClick={onToggleModalLogout} className='user-login'></img> : <div class="container">
             <Link to='/login'><button id="signupButton" class="btn sign-up">Sign Up</button></Link>
             <Link to='/login'> <button id="loginButton" class="btn log-in">Log in</button></Link>
           </div>}
@@ -71,7 +71,7 @@ export function AppHeader({color = '#2c2a2a'}) {
   } else {
 
     return <section className='phone-header'>
-      <div onClick={onToggleModalLogout} className='user-login'><b>{user.fullname.charAt(0)}</b></div>
+      <img src={user.imgUrl} onClick={onToggleModalLogout} className='user-login'></img>
     </section>
   }
 
