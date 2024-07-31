@@ -7,8 +7,9 @@ import { useSelector } from 'react-redux'
 export function StationPreview({ station }) {
   const user = useSelector((storeState) => storeState.userModule.user)
   if (!station.likedByUsers?.some(likeUser => likeUser?._id === user?._id) && station.createdBy?._id !== user?._id) return;
-  const element = document.querySelector('.station-list')
+  
   function handleContextMenu(event) {
+    const element = document.querySelector('.station-list')
     if (element) {
       // Prevent the default context menu from appearing
       event.preventDefault();

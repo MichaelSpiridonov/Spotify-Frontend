@@ -54,8 +54,15 @@ export function SearchPreview({ song }) {
         return id[0].videoId
     }
     function onAddTo(event) {
-        setCurrSelectedSong(song)
-        setSongToAdd(song)
+        console.log(song)
+        let newSong = {
+            ...song,
+            addedAt: Date.now(),
+            artists: [{ name: song.artists[0] }]
+
+        }
+        setCurrSelectedSong(newSong)
+        setSongToAdd(newSong)
         const x = event.clientX - 550
         const y = event.clientY
         console.log(`Clicked at X=${x}, Y=${y}`)
@@ -105,6 +112,7 @@ export function SearchPreview({ song }) {
         const newSong = { title: song.title, id: song.videoId, imgUrl: song.thumbnail }
         addToLikedSongs(newSong)
     }
+    console.log(song)
     // Adding click event listener to the document
     document.addEventListener('click', clickOutsideListener);
     return <article id={song.title} onClick={({ target }) => onClickPlayPhone(song, target)} className='item'>
@@ -116,6 +124,9 @@ export function SearchPreview({ song }) {
                 <span className='song-artist' >{song.artists[0]}</span>
             </section>
         </section>
+        <span className='song-album'>
+           {song.albumName}
+        </span>
         <section className='right-side-preview'>
 
             <div className='add-button'>
