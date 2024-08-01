@@ -145,7 +145,7 @@ export function StationDetails() {
           <div className='station-header'>
             {currStation.imgUrl && <img
               className='station-image'
-              src={station.imgUrl}
+              src={currStation.imgUrl}
               alt = {station.createdBy? station.createdBy.fullname: '' }
             />}
             {!currStation.imgUrl &&
