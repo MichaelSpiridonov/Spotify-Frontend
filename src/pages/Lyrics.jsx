@@ -3,6 +3,7 @@ import { getLyrics } from "../services/util.service"
 import { useSelector } from "react-redux"
 import { FastAverageColor } from "fast-average-color"
 import { AppHeader } from "../cmps/AppHeader"
+import { Loading } from "../cmps/Loading"
 
 
 export function Lyrics() {
@@ -26,13 +27,15 @@ export function Lyrics() {
     fac.getColorAsync(currSong.imgUrl).then((color) => {
         setColor(color.rgb)
     })
-    if (!lyrics) return
+    console.log(lyrics)
+    if (!lyrics) return <Loading />
     return <React.Fragment>
-        <section  >
+        <section className="lyrics-box"  style={{ backgroundColor: color }}  >
             <AppHeader color={color} />
-            <section style={{ backgroundColor: color }} className="lyrics-container">
+            {lyrics && <section style={{ backgroundColor: color }} className="lyrics-container">
                 {lyrics}
-            </section>
+            </section>}
+        {!lyrics && <div className="none-lyrics">Hmm. We don't know the lyrics for this one.</div>}
         </section>
     </React.Fragment>
 }
