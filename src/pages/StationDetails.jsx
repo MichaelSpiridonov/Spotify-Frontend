@@ -139,13 +139,17 @@ export function StationDetails() {
   }
   if (!station || !currStation) return <Loading />
   const gradientStyle = {
-    backgroundImage: `linear-gradient(${color}, #121212 90%)`,
+    backgroundImage: `linear-gradient(${color}, #121212 90%)`
+  }
+  if(pageWidth<500){
+    if( document.querySelector('.user-login')) document.querySelector('.user-login').style.display='none'
+   
   }
   return (
     <React.Fragment>
       <div className="station-details-container">
         <section style={gradientStyle}>
-          {pageWidth > 500 && <AppHeader color={color} />}
+         { pageWidth> 500 && {pageWidth > 500 && <AppHeader  color={color} />}}
           <div className="station-header">
             {currStation.imgUrl && (
               <img

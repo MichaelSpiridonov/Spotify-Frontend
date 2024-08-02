@@ -1,12 +1,13 @@
 
 .phone-library-header{
 display: grid;
-margin-left: 50px;
+margin-left: 60px;
 grid-template-columns: 75vw 20vw 0vw;
 grid-template-rows: auto;
 align-items: center;
-position: relative;
+position: fixed;
 top: 19px;
+
 z-index: 17;
 
 height:max-content;

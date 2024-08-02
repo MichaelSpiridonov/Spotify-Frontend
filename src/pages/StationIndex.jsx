@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { loadAlbums } from '../store/actions/station.actions'
+import { loadAlbums, loadStations } from '../store/actions/station.actions'
 
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { StationIndexPreview } from '../cmps/StationIndexPreview.jsx'
@@ -10,8 +10,10 @@ import { stationService } from '../services/station/station.service.remote.js'
 import { AppFooter } from '../cmps/AppFooter.jsx'
 import { Loading } from '../cmps/Loading.jsx'
 import axios from 'axios'
+import { Login } from './Login.jsx'
 
 export function StationIndex() {
+  const user = useSelector((storeState) => storeState.userModule.user)
   const stations = useSelector(
     (storeState) => storeState.stationModule.stations
   )
@@ -21,6 +23,7 @@ export function StationIndex() {
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
   )
+  const [pageWidth, setPageWidth] = useState(window.innerWidth)
   var numElements = 0
   useEffect(() => {
     loadAlbums()
@@ -28,16 +31,16 @@ export function StationIndex() {
         showErrorMsg('Cannot load stations!')
         throw err
       })
-  }, [])
-  const [pageWidth, setPageWidth] = useState(window.innerWidth)
-  useEffect(() => {
+    loadStations()
+      .catch(err => {
+        showErrorMsg('Cannot load stations!')
+        throw err
+      })
     const handleResize = () => {
       setPageWidth(window.innerWidth)
     }
     window.addEventListener('resize', handleResize)
-
-
-  }, [pageWidth])
+  }, [ pageWidth,user])
   const elPlayer = document.querySelector('.app-player')
   if (elPlayer && currSong && pageWidth < 500) {
     elPlayer.style.display = 'flex'
@@ -75,12 +78,16 @@ export function StationIndex() {
     elDetails.classList.remove('details-player')
 
   }
+  if (pageWidth < 500 && !user) {
+    return <Login />
+  }
+  
   if (!stations || !albums) return <Loading />
-  console.log(albums)
   const stationFeatured = stations.filter(
     (station) => station.category === 'featured'
   )
   const stationRap = stations.filter((station) => station.category === 'rap')
+
   return (
     <section className='list-container'>
       <AppHeader />
