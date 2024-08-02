@@ -11,6 +11,8 @@ import { AppFooter } from '../cmps/AppFooter.jsx'
 import { Loading } from '../cmps/Loading.jsx'
 import axios from 'axios'
 import { Login } from './Login.jsx'
+import { getLyrics } from '../services/util.service.js'
+import { showErrorMsg } from '../services/event-bus.service.js'
 
 export function StationIndex() {
   const user = useSelector((storeState) => storeState.userModule.user)
@@ -40,7 +42,7 @@ export function StationIndex() {
       setPageWidth(window.innerWidth)
     }
     window.addEventListener('resize', handleResize)
-  }, [ pageWidth,user])
+  }, [pageWidth, user])
   const elPlayer = document.querySelector('.app-player')
   if (elPlayer && currSong && pageWidth < 500) {
     elPlayer.style.display = 'flex'
@@ -81,7 +83,7 @@ export function StationIndex() {
   if (pageWidth < 500 && !user) {
     return <Login />
   }
-  
+
   if (!stations || !albums) return <Loading />
   const stationFeatured = stations.filter(
     (station) => station.category === 'featured'

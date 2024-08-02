@@ -11,6 +11,7 @@ import { Login } from './pages/Login.jsx'
 import { LibraryPhone } from './pages/LibraryPhone.jsx'
 import { PlayerPhoneDetails } from './pages/PlayerPhoneDetails.jsx'
 import { AlbumDetails } from './pages/AlbumDetails.jsx'
+import { Lyrics } from './pages/Lyrics.jsx'
 
 export function RootCmp() {
   return (
@@ -26,6 +27,7 @@ export function RootCmp() {
           <Route path='/login' element={<Login />} />
           <Route path='/player' element={<PlayerPhoneDetails />} />
           <Route path='/album/:albumId' element={<AlbumDetails />} />
+          <Route path='/lyrics' element={<Lyrics />} />
         </Routes>
         <AppPlayer />
       </main>

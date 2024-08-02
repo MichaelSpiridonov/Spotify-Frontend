@@ -16,7 +16,7 @@ export function StationIndex() {
         else if (pageWidth < 1970) numElements = 6
         else if (pageWidth < 2250) numElements = 7
         else if (pageWidth > 2250) numElements = 8
-
+        
     } else {
         numElements = 8
     }
