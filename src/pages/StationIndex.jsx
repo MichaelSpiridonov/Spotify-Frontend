@@ -11,6 +11,8 @@ import { AppFooter } from '../cmps/AppFooter.jsx'
 import { Loading } from '../cmps/Loading.jsx'
 import axios from 'axios'
 import { Login } from './Login.jsx'
+import { getLyrics } from '../services/util.service.js'
+import { showErrorMsg } from '../services/event-bus.service.js'
 
 export function StationIndex() {
   const user = useSelector((storeState) => storeState.userModule.user)
@@ -40,37 +42,37 @@ export function StationIndex() {
       setPageWidth(window.innerWidth)
     }
     window.addEventListener('resize', handleResize)
-  }, [ pageWidth,user])
+  }, [pageWidth, user])
   const elPlayer = document.querySelector('.app-player')
   if (elPlayer && currSong && pageWidth < 500) {
     elPlayer.style.display = 'flex'
   } else if (elPlayer && pageWidth < 500) {
     elPlayer.style.display = 'none'
   }
-
-
-
-  if (pageWidth > 500) {
-    if (pageWidth < 1250) {
+  switch (pageWidth > 500) {
+    case (pageWidth < 1250):
       numElements = 3
-    } else if (pageWidth < 1420) {
+      break
+    case (pageWidth < 1420):
       numElements = 4
-    } else if (pageWidth < 1750) {
+      break
+    case (pageWidth < 1750):
       numElements = 5
-    } else if (pageWidth < 1970) {
+      break
+    case (pageWidth < 1970):
       numElements = 6
-    } else if (pageWidth < 2250) {
+      break
+    case (pageWidth < 2250):
       numElements = 7
-    } else if (pageWidth > 2250) {
+      break
+    case (pageWidth > 2250):
       numElements = 8
-    }
-  } else {
-    numElements = 8
+      break
   }
-
-  var numWides = 8
+  var numWides = 6
   if (pageWidth < 500) {
     numWides = 4
+    numElements = 8
   }
 
   const elDetails = document.querySelector('.app-player')
@@ -81,7 +83,7 @@ export function StationIndex() {
   if (pageWidth < 500 && !user) {
     return <Login />
   }
-  
+
   if (!stations || !albums) return <Loading />
   const stationFeatured = stations.filter(
     (station) => station.category === 'featured'

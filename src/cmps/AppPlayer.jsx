@@ -56,7 +56,7 @@ export function AppPlayer() {
     } else {
       setColor("rgba(66, 64, 64, 0.6) 0")
     }
-
+    
   }
   return (
     <section style={{backgroundColor:color}} className="app-player">

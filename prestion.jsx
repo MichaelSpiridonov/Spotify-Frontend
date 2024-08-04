@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 
 export function StationIndex() {
     const [pageWidth, setPageWidth] = useState(window.innerWidth)
@@ -8,20 +7,33 @@ export function StationIndex() {
         }
         window.addEventListener('resize', handleResize)
     }, [pageWidth])
-    if (pageWidth > 500) {
+    
+    switch (pageWidth > 500) {
+        case (pageWidth < 1250):
+            numElements = 3
+            break
+        case (pageWidth < 1420):
+            numElements = 4
+            break
+        case (pageWidth < 1750):
+            numElements = 5
+            break
+        case (pageWidth < 1970):
+            numElements = 6
+            break
+        case (pageWidth < 2250):
+            numElements = 7
+            break
+        case (pageWidth > 2250):
+            numElements = 8
+            break
+    }
 
-        if (pageWidth < 1250) numElements = 3
-        else if (pageWidth < 1420) numElements = 4
-        else if (pageWidth < 1750) numElements = 5
-        else if (pageWidth < 1970) numElements = 6
-        else if (pageWidth < 2250) numElements = 7
-        else if (pageWidth > 2250) numElements = 8
-
-    } else {
+    var numWides = 6
+    if (pageWidth < 500) {
+        numWides = 4
         numElements = 8
     }
-    var numWides = 6
-    if (pageWidth < 500) numWides =   4  
 
     return <section className='list-container'>
         <AppHeader />

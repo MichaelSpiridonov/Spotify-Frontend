@@ -11,7 +11,7 @@
   font-family: circular-bold, sans-serif;
   padding-bottom: 5px;
   transition: height 0.5s;
-  .down-svg{
+  .down-svg {
     display: none;
   }
   .player-seek-and-control {
@@ -68,7 +68,12 @@
   section.player-controls.side {
     position: absolute;
     right: 0;
-    top: 30px;
+    // top: 15px;
+    top: 20%;
+
+    .lyrics-btn {
+      margin-top: 2%;
+    }
   }
 
   & .clicked::after:hover {
@@ -107,7 +112,6 @@
 }
 
 .song-info {
- 
   margin-inline-end: 8px;
   padding-left: 6px;
 }
@@ -166,11 +170,11 @@
     }
   }
 }
-section.artist{
- display: flex;
- justify-content: start;
+section.artist {
+  display: flex;
+  justify-content: start;
 }
-@media (max-width:500px) {
+@media (max-width: 500px) {
   .app-player {
     position: fixed;
     bottom: 70px;
@@ -181,7 +185,7 @@ section.artist{
     background-color: rgba(89, 15, 15, 0.9);
     z-index: 10;
   }
-  .song-detail{
+  .song-detail {
     width: 200px;
   }
   .next-btn {
@@ -202,15 +206,11 @@ section.artist{
     }
   } */
   section.player-controls.center {
-
     svg {
       &:nth-child(1) {
         display: none;
       }
-
     }
-
-
   }
 
   section.player {
@@ -218,11 +218,10 @@ section.artist{
     right: -30vw;
     bottom: 19px;
     background-color: inherit;
-    svg{
+    svg {
       fill: white;
     }
-  }  
-
+  }
 
   .add-icn {
     position: absolute;
@@ -257,9 +256,8 @@ section.artist{
       width: 35px;
       height: 35px;
     }
-
   }
-  .song-image{
+  .song-image {
     margin-top: 4px;
   }
 }

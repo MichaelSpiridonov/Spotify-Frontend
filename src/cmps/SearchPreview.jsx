@@ -6,7 +6,7 @@ import { setCurrSelectedSong, updateSong } from '../store/actions/station.action
 
 import { addToLikedSongs } from '../store/actions/station.actions'
 import { MoreModal } from './modals/MoreModal'
-import { formatDate, formatDuration } from '../services/util.service'
+import { formatDate, formatDuration, getLyrics } from '../services/util.service'
 import { getVideos } from '../services/youtube.service'
 export function SearchPreview({ song }) {
     const [songToAdd, setSongToAdd] = useState(null)
@@ -14,6 +14,7 @@ export function SearchPreview({ song }) {
     async function onClickPlay(song, target) {
         console.log(target)
         {
+            getLyrics(song)
             console.log('hi')
             var videoId = await getVideoId(song.title)
             console.log(videoId)
@@ -61,6 +62,7 @@ export function SearchPreview({ song }) {
             artists: [{ name: song.artists[0].name }]
 
         }
+        
         setCurrSelectedSong(newSong)
         setSongToAdd(newSong)
         const x = event.clientX - 550
