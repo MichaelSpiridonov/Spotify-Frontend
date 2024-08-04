@@ -149,7 +149,7 @@ export function StationDetails() {
     <React.Fragment>
       <div className="station-details-container">
         <section style={gradientStyle}>
-         { pageWidth> 500 && {pageWidth > 500 && <AppHeader  color={color} />}}
+         {pageWidth > 500 && <AppHeader  color={color} />}
           <div className="station-header">
             {currStation.imgUrl && (
               <img
