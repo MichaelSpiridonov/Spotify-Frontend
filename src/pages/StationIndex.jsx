@@ -69,7 +69,7 @@ export function StationIndex() {
       numElements = 8
       break
   }
-  var numWides = 6
+  var numWides = 8
   if (pageWidth < 500) {
     numWides = 4
     numElements = 8
