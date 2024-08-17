@@ -1,25 +1,22 @@
-import { loadStation, loadStations, setCurrSelectedSong, setCurrSelectedStation, setCurrStation, updateSong, updateStation } from '../store/actions/station.actions.js'
-import { Link, useParams } from 'react-router-dom'
-import React, { useEffect, useState, useRef, useLayoutEffect } from 'react'
+import { loadStation, setCurrSelectedSong, setCurrSelectedStation, updateSong } from '../store/actions/station.actions.js'
+import { useParams } from 'react-router-dom'
+import React, { useEffect, useState, useLayoutEffect } from 'react'
 
 import PlayIcon from '../assets/icons/play.svg?react'
 import PauseIcon from '../assets/icons/pause.svg?react'
 import AddIcon from '../assets/icons/addsong.svg?react'
 import LikeIcon from '../assets/icons/likedsong.svg?react'
 import SongOptionsIcon from '../assets/icons/song_options.svg?react'
-import SearchIcon from '../assets/icons/search.svg?react'
-import playlistDefaultImage from '../assets/icons/myplaylist.svg'
 
 import { MoreModal } from '../cmps/modals/MoreModal.jsx'
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { AppFooter } from '../cmps/AppFooter.jsx'
 import { FastAverageColor } from 'fast-average-color'
 import { getVideos } from '../services/youtube.service.js'
-import { formatPlaylistDuration, makeId } from '../services/util.service.js'
+import { formatPlaylistDuration} from '../services/util.service.js'
 import { SongList } from '../cmps/SongList.jsx'
-import { SearchPreview } from '../cmps/SearchPreview.jsx'
 import { useSelector } from 'react-redux'
-import spotifyService from '../services/spotify.service.js'
+import { spotifyService } from '../services/spotify'
 import { Loading } from '../cmps/Loading.jsx'
 
 export function AlbumDetails() {
@@ -27,7 +24,6 @@ export function AlbumDetails() {
   const [albumDetails, setAlbumDetails] = useState(null)
   const [color, setColor] = useState(null)
   const [search, setSearch] = useState(null)
-  const [songs, setSongs] = useState([])
 
   const user = useSelector(
     (storeState) => storeState.userModule.user
@@ -169,7 +165,7 @@ export function AlbumDetails() {
             />}
             {!albumDetails &&
               <div className='album-none-image'>
-                <svg data-encore-id="icon" role="img" aria-hidden="true" data-testid="playlist" class="Svg-sc-ytk21e-0 bneLcE" viewBox="0 0 24 24"><path d="M6 3h15v15.167a3.5 3.5 0 1 1-3.5-3.5H19V5H8v13.167a3.5 3.5 0 1 1-3.5-3.5H6V3zm0 13.667H4.5a1.5 1.5 0 1 0 1.5 1.5v-1.5zm13 0h-1.5a1.5 1.5 0 1 0 1.5 1.5v-1.5z"></path></svg>
+                <svg data-encore-id="icon" role="img" aria-hidden="true" data-testid="playlist" className="Svg-sc-ytk21e-0 bneLcE" viewBox="0 0 24 24"><path d="M6 3h15v15.167a3.5 3.5 0 1 1-3.5-3.5H19V5H8v13.167a3.5 3.5 0 1 1-3.5-3.5H6V3zm0 13.667H4.5a1.5 1.5 0 1 0 1.5 1.5v-1.5zm13 0h-1.5a1.5 1.5 0 1 0 1.5 1.5v-1.5z"></path></svg>
               </div>
 
             }

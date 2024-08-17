@@ -1,12 +1,8 @@
 import {
   storageService
 } from '../async-storage.service'
-import spotifyService from '../spotify.service'
-import {
-  loadFromStorage,
-  makeId,
-  saveToStorage
-} from '../util.service'
+import { spotifyService } from '../spotify'
+import { loadFromStorage, makeId, saveToStorage} from '../util.service'
 
 const STATIONS_KEY = 'stations'
 const ALBUMS_KEY = 'albums'

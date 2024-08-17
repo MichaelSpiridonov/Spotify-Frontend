@@ -1,6 +1,6 @@
 import { storageService } from '../async-storage.service'
 import { httpService } from '../http.service'
-import spotifyService from '../spotify.service'
+import { spotifyService } from '../spotify'
 import { loadFromStorage, makeId, saveToStorage } from '../util.service'
 const SPOTIFY_CACHE = 'spDB'
 export const stationService = {
@@ -12,6 +12,7 @@ export const stationService = {
     getTracks,
     getAlbumById
 }
+
 let gSongsCache = loadFromStorage(SPOTIFY_CACHE) || {}
 async function queryStations() {
     return await httpService.get(`station`)

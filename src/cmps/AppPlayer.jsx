@@ -2,14 +2,12 @@ import { useSelector } from "react-redux"
 import AddIcon from "../assets/icons/addsong.svg?react"
 import LikeIcon from "../assets/icons/likedsong.svg?react"
 import Player from "./Player.jsx"
-import { Link, useNavigate } from "react-router-dom"
 import { ArtistCmp } from "./ArtistCmp.jsx"
 import { useLayoutEffect, useState } from "react"
 import { FastAverageColor } from "fast-average-color"
 /* import { getLyrics } from "../services/genius.service.js" */
 
 export function AppPlayer() {
-  const Navigate = useNavigate()
   const [color, setColor] = useState(null)
   const station = useSelector((storeState) => storeState.stationModule.station)
   const currSong = useSelector(
@@ -73,7 +71,7 @@ export function AppPlayer() {
                 <ArtistCmp artists={currSong.artists} />
               </section>
             </section>
-            {(currSong.likedBy?.find(likeUser => likeUser._id === user._id)) ? <LikeIcon className="add-icn like-icn" /> : <AddIcon className="add-icn"/>}
+            {(currSong.likedBy?.find(likeUser => likeUser?._id === user?._id)) ? <LikeIcon className="add-icn like-icn" /> : <AddIcon className="add-icn"/>}
           </section>
         )}  
        
