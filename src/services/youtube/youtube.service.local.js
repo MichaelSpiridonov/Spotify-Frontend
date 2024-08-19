@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { loadFromStorage, saveToStorage } from './util.service'
+import { loadFromStorage, saveToStorage } from '../util.service'
 
 const YT_API_KEY = import.meta.env.VITE_YT_API_KEY
 
