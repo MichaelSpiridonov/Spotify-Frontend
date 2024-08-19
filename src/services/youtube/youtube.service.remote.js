@@ -1,5 +1,5 @@
 import { httpService } from '../http.service'
-export const spotifyService = {
+export const youtubeService = {
     getVideos,
 }
 
