@@ -9,14 +9,20 @@ This is the backend infurstrcutre of Beatify an app inspired by Spotify.
 This app has some features of spotify and visuals as if it's the same app.
 
 
-## Screenshots
+# Screenshots
 
-![App Screenshot](https://res.cloudinary.com/de8ns2u3x/image/upload/v1724074838/e813vmkwdrfyao5wnn36.png)
+## Desktop
+
+![App Screenshot](https://res.cloudinary.com/de8ns2u3x/image/upload/v1724082343/vfwqdogb5vnrhkdleeat.png)
 
 ![](https://res.cloudinary.com/de8ns2u3x/image/upload/v1724074909/hko3u2wgsg6xdus69hmz.png)
 
-![](https://res.cloudinary.com/de8ns2u3x/image/upload/v1724075160/xtsjxhjtixtm7jrcsrti.png)
-## Features
+## Mobile
+
+![](https://res.cloudinary.com/de8ns2u3x/image/upload/v1724082275/qsjvcvpupubkzwqoxzvr.png)
+
+![](https://res.cloudinary.com/de8ns2u3x/image/upload/v1724082275/zyrnkumicpjpdimnvgyl.png)
+# Features
 
 - Playing music
 - Adding to your own new playlist
@@ -24,7 +30,7 @@ This app has some features of spotify and visuals as if it's the same app.
 - Repeat, shuffle, skip, pervious, play! (Player Features)
 
 
-## Run Locally
+# Run Locally
 
 Clone the project
 
@@ -51,7 +57,7 @@ Start the server
 ```
 
 
-## Deployment
+# Deployment
 
 To run with MongoDB & Backend:
 ```bash
@@ -61,7 +67,7 @@ To run with MongoDB & Backend:
 This replaces the local Variables and will require you to also install the backend
 
 
-## Environment Variables
+# Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
