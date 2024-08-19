@@ -3,6 +3,6 @@ export const youtubeService = {
     getVideos,
 }
 
-async function getVideos() {
-    return await httpService.get(`youtube`)
+async function getVideos(query) {
+    return await httpService.get(`youtube/${query}`)
 }
