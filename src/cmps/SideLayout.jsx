@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { SideLibrary } from './SideLibrary';
-import { MenuPhone } from './menuPhone';
+import { MenuPhone } from './MenuPhone';
 
 export function SideLayout() {
     const [pageWidth, setPageWidth] = useState(window.innerWidth)
