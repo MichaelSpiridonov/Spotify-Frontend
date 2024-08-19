@@ -4,10 +4,13 @@
 
 # Project Title
 
-This is the backend infurstrcutre of Beatify an app inspired by Spotify.
+This is the frontend infrastructure of Beatify an app inspired by **Spotify**.
 
-This app has some features of spotify and visuals as if it's the same app.
+This app has some features of **Spotify** and visuals as if it's the same app.
 
+This app uses the **Spotify**  API to pull data from and youtube to play the songs.
+
+[**Here's a link to the app**](https://spotify-backend-ygvk.onrender.com/)
 
 # Screenshots
 
