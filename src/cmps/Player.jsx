@@ -34,6 +34,7 @@ export function Player(props) {
     setPlayer(event.target)
     setDuration(event.target.getDuration())
     event.target.setVolume(volume)
+    event.target.unMute();
   }
 
   async function onStateChange(event) {
@@ -221,6 +222,7 @@ export function Player(props) {
     playerVars: {
       autoplay: 0,
       controls: 0,
+      playsinline: 1,
     },
   }
   const { videoId } = props
