@@ -9,6 +9,13 @@ This is the backend infurstrcutre of Beatify an app inspired by Spotify.
 This app has some features of spotify and visuals as if it's the same app.
 
 
+## Screenshots
+
+![App Screenshot](https://res.cloudinary.com/de8ns2u3x/image/upload/v1724074838/e813vmkwdrfyao5wnn36.png)
+
+![](https://res.cloudinary.com/de8ns2u3x/image/upload/v1724074909/hko3u2wgsg6xdus69hmz.png)
+
+![](https://res.cloudinary.com/de8ns2u3x/image/upload/v1724075160/xtsjxhjtixtm7jrcsrti.png)
 ## Features
 
 - Playing music
