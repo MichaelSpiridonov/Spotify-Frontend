@@ -63,6 +63,9 @@ export function AlbumDetails() {
 
   async function getAlbum(albumId) {
     const albumDet = await spotifyService.getAlbum(albumId)
+    albumDet.tracks.items.forEach(track => 
+      track.imgUrl = albumDet.images[0].url
+    )
     setAlbumDetails(albumDet)
   }
 

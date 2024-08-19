@@ -33,7 +33,7 @@ export function SongList({ songs, onAddTo, onClickPlay }) {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <section className={song.imgUrl? 'item': 'album-item'}>
+                      <section className={song.track_number ? 'album-item': 'item'}>
                       <SongPreview albumImg={currStation?.imgUrl} key={song._id || song.id} song={song} onAddTo={onAddTo} onClickPlay={onClickPlay}  />
                       </section>
                     </div>
