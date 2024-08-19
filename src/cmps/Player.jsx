@@ -33,12 +33,12 @@ export function Player(props) {
   function onReady(event) {
     setPlayer(event.target)
     setDuration(event.target.getDuration())
+    event.target.playVideo()
     event.target.setVolume(volume)
-    event.target.unMute();
+    event.target.unMute()
   }
 
   async function onStateChange(event) {
-    console.log('Player Props:', props)
     if (isRepeat && event.data === window.YT.PlayerState.ENDED) {
       onPlay('next')
       setTimeout(() => {
@@ -220,7 +220,7 @@ export function Player(props) {
     height: '0',
     width: '0',
     playerVars: {
-      autoplay: 0,
+      autoplay: 1,
       controls: 0,
       playsinline: 1,
     },
