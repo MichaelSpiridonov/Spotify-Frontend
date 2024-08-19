@@ -22,7 +22,7 @@ import { stationService } from "../services/station"
 import { AppHeader } from "../cmps/AppHeader.jsx"
 import { AppFooter } from "../cmps/AppFooter.jsx"
 import { FastAverageColor } from "fast-average-color"
-import { getVideos } from "../services/youtube.service.js"
+import { youtubeService } from "../services/youtube"
 import { formatPlaylistDuration } from "../services/util.service.js"
 import { SongList } from "../cmps/SongList.jsx"
 import { SearchPreview } from "../cmps/SearchPreview.jsx"
@@ -76,7 +76,7 @@ export function StationDetails() {
   }
   var id
   async function getVideoId(name) {
-    id = await getVideos(name)
+    id = await youtubeService.getVideos(name)
     return id[0].videoId
   }
 

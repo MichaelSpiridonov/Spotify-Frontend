@@ -8,5 +8,4 @@ export const stationService = { ...service }
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local
-console.log(stationService)
 if (DEV) window.stationService = stationService

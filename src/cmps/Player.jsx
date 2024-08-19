@@ -15,7 +15,7 @@ import VolumeMedium from '../assets/icons/volumedown.svg?react'
 import VolumeMax from '../assets/icons/volumemax.svg?react'
 import RepeatSong from '../assets/icons/repeatsong.svg?react'
 import { updateSong } from '../store/actions/station.actions.js'
-import { getVideos } from '../services/youtube.service.js'
+import { youtubeService } from '../services/youtube.service.js'
 import { getLyrics } from '../services/util.service.js'
 import { Link } from 'react-router-dom'
 
@@ -173,7 +173,7 @@ export function Player(props) {
   }
 
   async function getVideoId(name) {
-    const id = await getVideos(name)
+    const id = await youtubeService.getVideos(name)
 
     return id[0].videoId
   }

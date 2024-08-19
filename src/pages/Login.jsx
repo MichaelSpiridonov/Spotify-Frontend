@@ -1,23 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import { useNavigate } from 'react-router'
 
-import { userService } from '../services/user'
 import { login } from '../store/actions/user.actions'
 
 export function Login() {
-  const [users, setUsers] = useState([])
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
 
     const navigate = useNavigate()
-
-    useEffect(() => {
-        loadUsers()
-    }, [])
-
-    async function loadUsers() {
-        const users = await userService.getUsers()
-        setUsers(users)
-    }
 
     async function onLogin(ev = null) {
         if (ev) ev.preventDefault()
@@ -34,6 +23,7 @@ export function Login() {
     }
   return (
     <section className='login-overlay'>
+      <section className='login-page'>
     <form className="login-container-wrapper" onSubmit={onLogin}>
     <div className="login-container">
       <img src="./src/assets/icons/beatify_favicon_32.png" alt="Beatify Logo"/> 
@@ -49,10 +39,11 @@ export function Login() {
         Forgot your password?
       </a>
       <a href="#" className="signup-link">
-        Don't have an account? Sign up for Beatify
+        Don&apos;t have an account? Sign up for Beatify
       </a>
     </div>
     </form>
+    </section>
     </section>
   )
 }

@@ -9,7 +9,7 @@ import SongOptionsIcon from '../assets/icons/song_options.svg?react'
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { FastAverageColor } from 'fast-average-color'
 import { MoreModal } from '../cmps/modals/MoreModal.jsx'
-import { getVideos } from '../services/youtube.service.js'
+import { youtubeService } from '../services/youtube'
 import { formatDate, formatDuration } from '../services/util.service.js'
 
 export function LikeSongsDeatils() {
@@ -48,7 +48,7 @@ export function LikeSongsDeatils() {
   }
 
   async function getVideoId(name) {
-    const id = await getVideos(name)
+    const id = await youtubeService.getVideos(name)
     return id[0].videoId
   }
 

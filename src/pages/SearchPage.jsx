@@ -1,6 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 import { TopicPreview } from '../cmps/TopicPreview'
-import { getVideos } from '../services/youtube.service'
 import { SearchPreview } from '../cmps/SearchPreview'
 import { AppHeader } from '../cmps/AppHeader'
 import SearchIcon from '../assets/icons/search.svg?react';

@@ -7,6 +7,14 @@ const YOUTUBE_CACHE = 'ytDB'
 
 const gVideosAmount = 5
 
+export const youtubeService = {
+  getVideos,
+  getValidFormatWord,
+  clearHistory,
+  getKeywords,
+}
+window.cs = youtubeService
+
 let gYoutubeCache = loadFromStorage(YOUTUBE_CACHE) || {}
 
 export async function getVideos(searchVal) {
@@ -33,7 +41,7 @@ export async function getVideos(searchVal) {
   }
 }
 
-export function getVideoDetails(video) {
+function getVideoDetails(video) {
   const { id, snippet } = video
   const { title, thumbnails } = snippet
   const videoId = id.videoId
@@ -41,7 +49,7 @@ export function getVideoDetails(video) {
   return { videoId, title, thumbnail }
 }
 
-export function getValidFormatWord(str) {
+function getValidFormatWord(str) {
   let strArr = str.split('')
   let formatedArr = strArr.map((letter) => {
     return letter === ' ' ? '_' : letter
@@ -49,11 +57,11 @@ export function getValidFormatWord(str) {
   return formatedArr.join('')
 }
 
-export function clearHistory() {
+function clearHistory() {
   gYoutubeCache = {}
   saveToStorage(YOUTUBE_CACHE, gYoutubeCache)
 }
 
-export function getKeywords() {
+function getKeywords() {
   return Object.keys(gYoutubeCache)
 }

@@ -33,7 +33,7 @@ export function randomPastTime() {
     const DAY = 1000 * 60 * 60 * 24
     const WEEK = 1000 * 60 * 60 * 24 * 7
 
-    const pastTime = getRandomIntInclusive(HOUR, WEEK)
+    const pastTime = getRandomIntInclusive(HOUR, DAY, WEEK)
     return Date.now() - pastTime
 }
 
@@ -92,6 +92,7 @@ export function formatPlaylistDuration(totalMilliseconds) {
         return `${minutes} min ${seconds} sec`;
     }
 }
+
 export async function getLyrics(song) {
     try {
         const songName = song.title
@@ -118,4 +119,4 @@ export async function getLyrics(song) {
     } catch (err) {
         console.log(err)
     }
-};
+}

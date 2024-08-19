@@ -7,7 +7,7 @@ import { setCurrSelectedSong, updateSong } from '../store/actions/station.action
 import { addToLikedSongs } from '../store/actions/station.actions'
 import { MoreModal } from './modals/MoreModal'
 import { formatDate, formatDuration, getLyrics } from '../services/util.service'
-import { getVideos } from '../services/youtube.service'
+import { youtubeService } from '../services/youtube'
 export function SearchPreview({ song }) {
     const [songToAdd, setSongToAdd] = useState(null)
     var count = 0
@@ -51,7 +51,7 @@ export function SearchPreview({ song }) {
     }, [pageWidth])
 
     async function getVideoId(name) {
-        var id = await getVideos(name)
+        var id = await youtubeService.getVideos(name)
         return id[0].videoId
     }
     function onAddTo(event) {

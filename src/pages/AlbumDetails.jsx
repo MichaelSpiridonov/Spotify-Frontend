@@ -12,7 +12,7 @@ import { MoreModal } from '../cmps/modals/MoreModal.jsx'
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { AppFooter } from '../cmps/AppFooter.jsx'
 import { FastAverageColor } from 'fast-average-color'
-import { getVideos } from '../services/youtube.service.js'
+import { youtubeService } from '../services/youtube'
 import { formatPlaylistDuration} from '../services/util.service.js'
 import { SongList } from '../cmps/SongList.jsx'
 import { useSelector } from 'react-redux'
@@ -74,7 +74,7 @@ export function AlbumDetails() {
   }
   var id
   async function getVideoId(name) {
-    id = await getVideos(name)
+    id = await youtubeService.getVideos(name)
     return id[0].videoId
   }
 
