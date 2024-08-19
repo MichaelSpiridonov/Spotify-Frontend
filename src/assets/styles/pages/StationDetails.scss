@@ -197,7 +197,7 @@
       font-size: 14px;
 
       section {
-        width: 32.5vw;
+        width: 26.5vw;
       }
 
       span {
@@ -460,6 +460,14 @@ span.song-length {
   .add-button {
     margin-right: 5px;
   }
+  
+  .artists {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 3px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
 }
 
 .album-item:hover {
@@ -561,6 +569,7 @@ span.song-length {
     svg {
       width: 16px;
       height: 16px;
+      fill: white;
     }
   }
 
@@ -573,7 +582,7 @@ span.song-length {
   section {
     display: flex;
     flex-direction: column;
-    width: 68vw;
+    width: 64.5vw;
   }
 
   .song-image {
@@ -587,6 +596,12 @@ span.song-length {
 
   .add-button {
     margin-right: 5px;
+  }
+
+  .artists {
+    display: flex;
+    flex-direction: row;
+    gap: 3px
   }
 }
 

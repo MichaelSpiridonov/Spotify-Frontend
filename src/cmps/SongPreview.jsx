@@ -7,6 +7,7 @@ import SongOptionsIcon from '../assets/icons/options_1.svg?react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useLayoutEffect, useState } from 'react'
+import { ArtistCmp } from './ArtistCmp'
 
 export function SongPreview({ song, onAddTo, onClickPlay, albumImg }) {
   const user = useSelector((storeState) => storeState.userModule.user)
@@ -28,13 +29,11 @@ export function SongPreview({ song, onAddTo, onClickPlay, albumImg }) {
     }
   }, [pageWidth])
   function onClickPlayPhone(song) {
-    console.log(song)
     if (pageWidth > 500) return
     else {
       onClickPlay(song)
     }
   }
-  console.log(song)
   return (
     <>
       <div className='play-button' >
@@ -43,14 +42,9 @@ export function SongPreview({ song, onAddTo, onClickPlay, albumImg }) {
       <img className='song-image' src={song.imgUrl ? song.imgUrl : albumImg} alt={song.title} />
       <section>
         <span onClick={() => onClickPlayPhone(song)} className='station-song-detail'>{song.title || song.name}</span>
-        {song.artists.map((artist, index) => (
-          <span className='artist-name' key={artist.id}>
-            {/*  <Link to={`/artist/${artist.id}`} className='song-artist'> */}
-            {artist.name}
-            {/* </Link> */}
-            {index < song.artists.length - 1 && ', '}
-          </span>
-        ))}
+        <section className='artists'>
+        <ArtistCmp artists={song.artists}/>
+        </section>
       </section>
       {song.imgUrl && <span className='song-album'>
         <Link to={`/album/${song.albumId}`}>{song.albumName}</Link>

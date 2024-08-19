@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import YouTube from 'react-youtube'
 import ProgressBar from './ProgressBar'
 import Play from '../assets/icons/play.svg?react'
@@ -7,8 +7,6 @@ import Shuffle from '../assets/icons/shuffle.svg?react'
 import Previous from '../assets/icons/previous.svg?react'
 import Next from '../assets/icons/next.svg?react'
 import Repeat from '../assets/icons/repeatlist.svg?react'
-import NowPlaying from '../assets/icons/nowplaying.svg?react'
-import Queue from '../assets/icons/queue.svg?react'
 import VolumeMin from '../assets/icons/volume.svg?react'
 import VolumeMuted from '../assets/icons/volumemute.svg?react'
 import VolumeMedium from '../assets/icons/volumedown.svg?react'
@@ -16,7 +14,6 @@ import VolumeMax from '../assets/icons/volumemax.svg?react'
 import RepeatSong from '../assets/icons/repeatsong.svg?react'
 import { updateSong } from '../store/actions/station.actions.js'
 import { youtubeService } from '../services/youtube'
-import { getLyrics } from '../services/util.service.js'
 import { Link } from 'react-router-dom'
 
 export function Player(props) {
@@ -31,44 +28,40 @@ export function Player(props) {
   const [isMuted, setIsMuted] = useState(false)
   const [previousVolume, setPreviousVolume] = useState(25)
   const [shuffledSongs, setShuffledSongs] = useState([])
-  const [currentIndex, setCurrentIndex] = useState(0)
 
   const intervalRef = useRef(null)
-
   function onReady(event) {
     setPlayer(event.target)
     setDuration(event.target.getDuration())
     event.target.setVolume(volume)
   }
 
-  const onStateChange = useCallback(
-    async (event) => {
-      if (isRepeat && event.data === window.YT.PlayerState.ENDED) {
-        onPlay('next')
-        setTimeout(() => {
-          player.playVideo()
-        }, 1000)
-      } else if (isRepeatSong && event.data === window.YT.PlayerState.ENDED) {
-        setTimeout(() => {
-          player.playVideo()
-        }, 1000)
-      } else if (event.data === window.YT.PlayerState.ENDED) {
-        onPlay('next')
-        setIsPlaying(false)
-        setCurrentTime(0)
-        setDuration(player.getDuration())
-      } else if (event.data !== window.YT.PlayerState.PAUSED) {
+  async function onStateChange(event) {
+    console.log('Player Props:', props)
+    if (isRepeat && event.data === window.YT.PlayerState.ENDED) {
+      onPlay('next')
+      setTimeout(() => {
         player.playVideo()
-        setIsPlaying(true)
-      }
-      if (event.data === window.YT.PlayerState.PLAYING) {
-        startProgressUpdate()
-      } else {
-        stopProgressUpdate()
-      }
-    },
-    [isRepeat, isRepeatSong, player]
-  )
+      }, 1000)
+    } else if (isRepeatSong && event.data === window.YT.PlayerState.ENDED) {
+      setTimeout(() => {
+        player.playVideo()
+      }, 1000)
+    } else if (event.data === window.YT.PlayerState.ENDED) {
+      onPlay('next')
+      setIsPlaying(false)
+      setCurrentTime(0)
+      setDuration(player.getDuration())
+    } else if (event.data !== window.YT.PlayerState.PAUSED) {
+      player.playVideo()
+      setIsPlaying(true)
+    }
+    if (event.data === window.YT.PlayerState.PLAYING) {
+      startProgressUpdate()
+    } else {
+      stopProgressUpdate()
+    }
+  }
 
   function startProgressUpdate() {
     const update = () => {
@@ -88,7 +81,7 @@ export function Player(props) {
   useEffect(() => {
     startProgressUpdate()
     return () => stopProgressUpdate()
-  }, [])
+  })
 
   function togglePlayPause() {
     if (isPlaying) {
@@ -237,7 +230,10 @@ export function Player(props) {
       <section className='player-seek-and-control'>
         <section className='player-controls center'>
           <span className={`effects ${isShuffle ? 'clicked' : ''}`}>
-            <Shuffle className='shuffel' onClick={toggleShuffle} />
+            <Shuffle
+              className='shuffel'
+              onClick={toggleShuffle}
+            />
           </span>
           <Previous
             className='previous-btn'
@@ -257,22 +253,34 @@ export function Player(props) {
               <Play onClick={togglePlayPause} />
             )}
           </section>
-          <Next className='next-btn' onClick={(e) => onPlay('next', e)} />
+          <Next
+            className='next-btn'
+            onClick={(e) => onPlay('next', e)}
+          />
           <span
             className={`effects ${isRepeat || isRepeatSong ? 'clicked' : ''}`}
           >
             {!isRepeatSong && !isRepeat ? (
-              <Repeat className='reapet' onClick={toggleRepeat} />
+              <Repeat
+                className='reapet'
+                onClick={toggleRepeat}
+              />
             ) : (
               ''
             )}
             {isRepeat ? (
-              <Repeat className='reapet' onClick={toggleRepeat} />
+              <Repeat
+                className='reapet'
+                onClick={toggleRepeat}
+              />
             ) : (
               ''
             )}
             {isRepeatSong ? (
-              <RepeatSong className='reapet' onClick={toggleRepeat} />
+              <RepeatSong
+                className='reapet'
+                onClick={toggleRepeat}
+              />
             ) : (
               ''
             )}
@@ -293,7 +301,7 @@ export function Player(props) {
               role='img'
               aria-hidden='true'
               viewBox='0 0 16 16'
-              class='Svg-sc-ytk21e-0 dYnaPI'
+              className='Svg-sc-ytk21e-0 dYnaPI'
             >
               <path d='M13.426 2.574a2.831 2.831 0 0 0-4.797 1.55l3.247 3.247a2.831 2.831 0 0 0 1.55-4.797zM10.5 8.118l-2.619-2.62A63303.13 63303.13 0 0 0 4.74 9.075L2.065 12.12a1.287 1.287 0 0 0 1.816 1.816l3.06-2.688 3.56-3.129zM7.12 4.094a4.331 4.331 0 1 1 4.786 4.786l-3.974 3.493-3.06 2.689a2.787 2.787 0 0 1-3.933-3.933l2.676-3.045 3.505-3.99z'></path>
             </svg>

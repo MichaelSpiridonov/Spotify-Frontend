@@ -3,12 +3,16 @@ import AddIcon from "../assets/icons/addsong.svg?react"
 import LikeIcon from "../assets/icons/likedsong.svg?react"
 import Player from "./Player.jsx"
 import { ArtistCmp } from "./ArtistCmp.jsx"
-import { useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { FastAverageColor } from "fast-average-color"
 /* import { getLyrics } from "../services/genius.service.js" */
 
 export function AppPlayer() {
   const [color, setColor] = useState(null)
+  const [scrollDuration, setScrollDuration] = useState(10); // Default duration
+  const containerRef = useRef(null)
+  const textRef = useRef(null)
+
   const station = useSelector((storeState) => storeState.stationModule.station)
   const currSong = useSelector(
     (storeState) => storeState.stationModule.currSong
@@ -32,6 +36,18 @@ export function AppPlayer() {
       window.removeEventListener('resize', handleResize)
     }
   }, [pageWidth])
+
+  useEffect(() => {
+    if (textRef.current && containerRef.current) {
+      const textWidth = textRef.current.scrollWidth;
+      const containerWidth = containerRef.current.offsetWidth;
+
+      if (textWidth > containerWidth) {
+        const duration = (textWidth + containerWidth) / containerWidth * 10; 
+        setScrollDuration(duration);
+      }
+    }
+  }, [currSong?.title || currSong?.name]);
 
   function onOpenPlayerPhone() {
     if (pageWidth > 500) return
@@ -64,9 +80,11 @@ export function AppPlayer() {
           <section  onClick={onOpenPlayerPhone} className="song-detail">
             <img className="song-image" src={currSong.imgUrl || station.imgUrl} />
             <section className="song-info">
-              <div className="song-title">
-                {currSong.title || currSong.name}
-              </div>
+            <div className="scroll-container" ref={containerRef}>
+          <div className={`song-title scroll-text`} ref={textRef} style={{animationDuration: `${scrollDuration}s`, }}>
+          {currSong.title || currSong.name}
+          </div>
+          </div>
               <section className="artist">
                 <ArtistCmp artists={currSong.artists} />
               </section>
