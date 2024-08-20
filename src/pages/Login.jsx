@@ -26,7 +26,7 @@ export function Login() {
       <section className='login-page'>
     <form className="login-container-wrapper" onSubmit={onLogin}>
     <div className="login-container">
-      <img src="./src/assets/icons/beatify_favicon_32.png" alt="Beatify Logo"/> 
+      <img src="src/assets/icons/beatify_favicon_32.png" alt="Beatify Logo"/> 
       <h1>Log in to Beatify</h1>
       <div className="login-form">
         <input name="username" type="text" placeholder="Email or username" onChange={handleChange} value={credentials.username} />
