@@ -47,7 +47,7 @@ export function AppPlayer() {
         setScrollDuration(duration);
       }
     }
-  }, [currSong?.title || currSong?.name]);
+  }, [currSong?.title, currSong?.name]);
 
   function onOpenPlayerPhone() {
     if (pageWidth > 500) return

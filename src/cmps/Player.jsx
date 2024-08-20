@@ -31,14 +31,21 @@ export function Player(props) {
 
   const intervalRef = useRef(null)
   function onReady(event) {
-    setPlayer(event.target)
-    setDuration(event.target.getDuration())
-    event.target.playVideo()
-    event.target.setVolume(volume)
-    event.target.unMute()
+    const player = event.target;
+    setPlayer(player);
+    setDuration(player.getDuration());
+  
+    // Play video and unmute
+    player.playVideo();
+    player.setVolume(volume); // Set the volume from state
+    player.unMute();
   }
 
   async function onStateChange(event) {
+    if (event.data === window.YT.PlayerState.UNSTARTED) {
+      player.playVideo();
+      player.unMute();
+    }
     if (isRepeat && event.data === window.YT.PlayerState.ENDED) {
       onPlay('next')
       setTimeout(() => {
