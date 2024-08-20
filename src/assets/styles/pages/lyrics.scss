@@ -26,11 +26,9 @@ pre {
   white-space: pre-wrap;
 }
 
-section {
-  border-radius: 10px;
-}
 .lyrics-box {
   overflow-y: auto;
+  border-radius: 10px;
 }
 .lyrics-container::-webkit-scrollbar {
   width: 0;
