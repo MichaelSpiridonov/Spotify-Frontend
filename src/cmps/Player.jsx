@@ -37,8 +37,12 @@ export function Player(props) {
   
     // Play video and unmute
     player.playVideo();
-    player.setVolume(volume); // Set the volume from state
-    player.unMute();
+    player.mute();
+    player.setVolume(volume)
+    setTimeout(() => {
+      player.unMute()
+      player.playVideo()
+    }, 1000); 
   }
 
   async function onStateChange(event) {
