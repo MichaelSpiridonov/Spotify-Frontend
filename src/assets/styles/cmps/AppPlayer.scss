@@ -120,7 +120,7 @@
 
 .artist-name {
   font-size: rem(12px);
-  color: #b3b3b3;
+  color: #ffffff83;
   align-self: flex-start;
 }
 
@@ -274,22 +274,28 @@ section.artist {
     position: relative;
     overflow: hidden;
     white-space: nowrap;
-    width: 230px;
+    width: 250px;
   }
-  
+
   .scroll-text {
+    font-size: 1.2em;
     display: inline-block;
-    animation: scroll 10s linear infinite;
+    will-change: transform;
   }
-  
+
+  .scroll-text.scrolling {
+    animation: scroll linear infinite;
+  }
+
   @keyframes scroll {
     0% {
       transform: translateX(0%);
     }
+
     100% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
   }
-  
+
 
 }

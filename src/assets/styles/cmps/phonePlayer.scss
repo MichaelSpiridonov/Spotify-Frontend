@@ -67,14 +67,14 @@
 
         position: absolute;
         top: 40vh;
-        right:32vw;
+        right: 32vw;
     }
 
     div.artist-name {
- 
+
         flex-direction: row;
-        
-        width:max-content;
+
+        width: max-content;
         font-size: 12px;
     }
 
@@ -103,7 +103,7 @@
     svg.add-icn {
         position: absolute;
         top: 47vh;
-        right:-14vw;
+        right: -14vw;
         width: 30px;
         height: 30px;
 
@@ -136,17 +136,20 @@
 
         .player {
             position: absolute;
-            top: -13px;
-            right: -33vw;
+            top: -6px;
+            right: -32vw;
             background-color: inherit;
-            height: 70px;
-            width: 70px;
+            height: 55px;
+            width: 55px;
+            border-radius: 50%;
+            background-color: white;
             border-radius: 50%;
 
             svg {
-                height: 40px;
-                width: 40px;
-                fill: white;
+                height: 32px;
+                width: 32px;
+                color: black;
+                fill: black;
             }
         }
 
@@ -174,7 +177,7 @@
         svg.reapet {
             display: block;
             position: absolute;
-            left: -270px;
+            left: -260px;
             top: 5px;
             height: 35px;
             width: 35px;

@@ -10,6 +10,7 @@ import { FastAverageColor } from "fast-average-color"
 export function AppPlayer() {
   const [color, setColor] = useState(null)
   const [scrollDuration, setScrollDuration] = useState(10); // Default duration
+  const [isScrolling, setIsScrolling] = useState(false);
   const containerRef = useRef(null)
   const textRef = useRef(null)
 
@@ -38,24 +39,33 @@ export function AppPlayer() {
   }, [pageWidth])
 
   useEffect(() => {
+    checkScrolling()
+  }, [currSong?.title, currSong?.name])
+
+  function checkScrolling() {
     if (textRef.current && containerRef.current) {
       const textWidth = textRef.current.scrollWidth;
       const containerWidth = containerRef.current.offsetWidth;
-
+      // Check if the text exceeds the defined character limit or container width
       if (textWidth > containerWidth) {
-        const duration = (textWidth + containerWidth) / containerWidth * 10; 
+        setIsScrolling(false);
+        const duration = (textWidth + containerWidth) / containerWidth * 10;
         setScrollDuration(duration);
+      } else {
+        setIsScrolling(true);
       }
     }
-  }, [currSong?.title, currSong?.name]);
+  }
 
   function onOpenPlayerPhone() {
     if (pageWidth > 500) return
+    checkScrolling()
     const elDetails = document.querySelector('.app-player')
     elDetails.classList.add('details-player')
   }
   function onClosePlayer() {
     if (pageWidth > 500) return
+    checkScrolling()
     const elDetails = document.querySelector('.app-player')
     elDetails.classList.remove('details-player')
   }
@@ -81,7 +91,11 @@ export function AppPlayer() {
             <img className="song-image" src={currSong.imgUrl || station.imgUrl} />
             <section className="song-info">
             <div className="scroll-container" ref={containerRef}>
-          <div className={`song-title scroll-text`} ref={textRef} style={{animationDuration: `${scrollDuration}s`, }}>
+          <div  className={`song-title scroll-text ${isScrolling ? "scrolling" : ""}`}
+        ref={textRef}
+        style={{
+          animationDuration: `${scrollDuration}s`,
+        }}>
           {currSong.title || currSong.name}
           </div>
           </div>
