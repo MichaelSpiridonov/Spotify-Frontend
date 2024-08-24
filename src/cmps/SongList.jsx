@@ -2,12 +2,17 @@ import { useSelector } from 'react-redux'
 import { updateSongIdx } from '../store/actions/station.actions'
 import { SongPreview } from './SongPreview'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 export function SongList({ songs, onAddTo, onClickPlay }) {
   const currStation = useSelector(
     (storeState) => storeState.stationModule.currStation
   )
   const [songList, setSongList] = useState(songs)
+  
+  useEffect (() => {
+    setSongList(songs)
+  }, [songs])
+
   async function onDragEnd(result) {
     const { destination, source } = result
     if (!destination) return
@@ -22,6 +27,7 @@ export function SongList({ songs, onAddTo, onClickPlay }) {
     updateSongIdx(songs, currStation)
   }
   if (!songList) return
+  console.log(songList)
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>

@@ -3,13 +3,15 @@ import { LikeSongsPreview } from './LikedSongsPreview'
 import { StationPreview } from './StationPreview'
 import { StationModal } from './modals/StationModal'
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { loadStations } from '../store/actions/station.actions';
 import { stationService } from '../services/station';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function StationList() {
   const stations = useSelector((storeState) => storeState.stationModule.stations)
   const [stationList, setStationList] = useState(stations)
+  useEffect (() => {
+    setStationList(stations)
+  }, [stations])
   function onDragEnd(result) {
     const { destination, source } = result
     if (!destination) return
@@ -21,20 +23,20 @@ export function StationList() {
   }
 
   const likedSongs = useSelector(storeState => storeState.stationModule.likedSongs)
-  if(!stations) return
+  if(!stationList) return
   return (
     <section className='station-list'>
       {likedSongs && <LikeSongsPreview />}
       <DragDropContext onDragEnd={onDragEnd}>
-        {stations.map((station, index) => (
-          <Droppable droppableId={station._id} className='station-container'>
-            {(provided, snapshot) => (
+        {stationList.map((station, index) => (
+          <Droppable droppableId={station._id} key={station._id} className='station-container'>
+            {(provided) => (
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
                 <Draggable key={station._id} draggableId={station._id} index={index}>
-                  {(provided, snapshot) => (
+                  {(provided) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.draggableProps}

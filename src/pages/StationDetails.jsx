@@ -16,7 +16,6 @@ import SongOptionsIcon from '../assets/icons/song_options.svg?react'
 import SearchIcon from '../assets/icons/search.svg?react'
 
 import { MoreModal } from '../cmps/modals/MoreModal.jsx'
-import { stationService } from '../services/station'
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { AppFooter } from '../cmps/AppFooter.jsx'
 import { FastAverageColor } from 'fast-average-color'
@@ -26,6 +25,7 @@ import { SongList } from '../cmps/SongList.jsx'
 import { SearchPreview } from '../cmps/SearchPreview.jsx'
 import { useSelector } from 'react-redux'
 import { Loading } from '../cmps/Loading.jsx'
+import { stationService } from '../services/station/station.service.remote.js'
 
 export function StationDetails() {
   const { stationId } = useParams()
@@ -59,6 +59,7 @@ export function StationDetails() {
       window.removeEventListener('resize', handleResize)
     }
   }, [pageWidth])
+
   useEffect(() => {
     setStationPrm(stationId)
   }, [stationId])
@@ -111,7 +112,7 @@ export function StationDetails() {
   }
 
   function onAddTo(event, song) {
-    setCurrSelectedStation(station)
+    setCurrSelectedStation(currStation)
     setCurrSelectedSong(song)
     /* setSongToAdd(song) */
     const x = event.clientX - 110
@@ -129,10 +130,10 @@ export function StationDetails() {
       elModal.style.display = 'none'
     }
   }
-  if (station) {
-    if (station.imgUrl) {
+  if (currStation) {
+    if (currStation.imgUrl) {
       const fac = new FastAverageColor()
-      fac.getColorAsync(station.imgUrl).then((color) => {
+      fac.getColorAsync(currStation.imgUrl).then((color) => {
         setColor(color.rgb)
       })
     } else if (!color) {
@@ -190,7 +191,7 @@ export function StationDetails() {
                 {station.createdBy ? station.createdBy.fullname + ' ·' : ''}{' '}
                 {station.songs.length} songs
                 {station.songs.length
-                  ? `, ${calculateTotalDuration(station.songs)}`
+                  ? `, ${calculateTotalDuration(currStation.songs)}`
                   : ''}
               </p>
             </div>
@@ -227,35 +228,30 @@ export function StationDetails() {
 
         <section className='station-details'>
           {station.songs[0] && (
-            <div className='table-header'>
-              <span>#</span>
-              <span>Title</span>
-              {station.createdBy && <span>Album</span>}
-              {station.createdBy && <span>Date added</span>}
-              <span>
-                <svg
-                  data-encore-id='icon'
-                  role='img'
-                  aria-hidden='true'
-                  viewBox='0 0 16 16'
-                  className='Svg-sc-ytk21e-0 dYnaPI'
-                >
-                  <path d='M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z'></path>
-                  <path d='M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z'></path>
-                </svg>
-              </span>
-            </div>
+              <div className='table-header'>
+                <span>#</span>
+                <span>Title</span>
+                {station.createdBy && <span>Album</span>}
+                {station.createdBy && <span>Date added</span>}
+                <span>
+                  <svg
+                    data-encore-id='icon'
+                    role='img'
+                    aria-hidden='true'
+                    viewBox='0 0 16 16'
+                    className='Svg-sc-ytk21e-0 dYnaPI'
+                  >
+                    <path d='M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z'></path>
+                    <path d='M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z'></path>
+                  </svg>
+                </span>
+              </div>
           )}
           {!station.songs[0] && (
             <h1 className='header-input'>
               Let&apos;s find something for your playlist
             </h1>
           )}
-          <SongList
-            songs={station.songs}
-            onClickPlay={onClickPlay}
-            onAddTo={onAddTo}
-          />
           {!station.songs[0] && (
             <form
               className='search-details'
@@ -272,6 +268,11 @@ export function StationDetails() {
               />
             </form>
           )}
+          <SongList
+                songs={station.songs}
+                onClickPlay={onClickPlay}
+                onAddTo={onAddTo}
+              />
           <section className='station-details'>
             {search &&
               station.songs.map((song) => (

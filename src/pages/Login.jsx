@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import { login } from '../store/actions/user.actions'
 
 export function Login() {
-    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
+    const [credentials, setCredentials] = useState({ username: 'mike', password: 'mike', fullname: '' })
 
     const navigate = useNavigate()
 

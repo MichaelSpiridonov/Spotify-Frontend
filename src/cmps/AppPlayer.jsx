@@ -46,13 +46,15 @@ export function AppPlayer() {
     if (textRef.current && containerRef.current) {
       const textWidth = textRef.current.scrollWidth;
       const containerWidth = containerRef.current.offsetWidth;
+      const maxCharacters = 30; // Set your desired character threshold
+
       // Check if the text exceeds the defined character limit or container width
-      if (textWidth > containerWidth) {
-        setIsScrolling(false);
+      if (currSong.title.length > maxCharacters || textWidth > containerWidth) {
+        setIsScrolling(true);
         const duration = (textWidth + containerWidth) / containerWidth * 10;
         setScrollDuration(duration);
       } else {
-        setIsScrolling(true);
+        setIsScrolling(false);
       }
     }
   }
