@@ -69,6 +69,10 @@ To run with MongoDB & Backend:
 
 This replaces the local Variables and will require you to also install the backend
 
+To build the project 
+```bash
+  npm run build
+```
 
 # Environment Variables
 
