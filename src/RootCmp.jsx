@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router'
+import { useEffect } from 'react'
 
 import { StationIndex } from './pages/StationIndex.jsx'
 import { StationDetails } from './pages/StationDetails.jsx'
@@ -12,8 +13,12 @@ import { LibraryPhone } from './pages/LibraryPhone.jsx'
 import { PlayerPhoneDetails } from './pages/PlayerPhoneDetails.jsx'
 import { AlbumDetails } from './pages/AlbumDetails.jsx'
 import { Lyrics } from './pages/Lyrics.jsx'
+import { login } from './store/actions/user.actions.js'
 
 export function RootCmp() {
+  useEffect(() => {
+    login({ username: 'mike', password: 'mike'})
+  })
   return (
     <div >
       <main className='main-container '>

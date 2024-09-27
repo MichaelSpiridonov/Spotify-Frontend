@@ -10,6 +10,7 @@ import { useLayoutEffect, useState } from 'react'
 import { ArtistCmp } from './ArtistCmp'
 
 export function SongPreview({ song, onAddTo, onClickPlay, albumImg }) {
+  const isPlaying = useSelector((storeState) => storeState.stationModule.isPlaying)
   const user = useSelector((storeState) => storeState.userModule.user)
   const currSong = useSelector((storeState) => storeState.stationModule.currSong)
   const [pageWidth, setPageWidth] = useState(window.innerWidth)
@@ -37,7 +38,7 @@ export function SongPreview({ song, onAddTo, onClickPlay, albumImg }) {
   return (
     <>
       <div className='play-button' >
-        {(currSong?._id === song?._id && currSong) ? <PauseIcon /> : <PlayIcon onClick={() => onClickPlay(song)} />}
+        {(currSong?._id === song?._id && currSong && isPlaying) ? <PauseIcon /> : <PlayIcon onClick={() => onClickPlay(song)} />}
       </div>
       <img className='song-image' src={song.imgUrl ? song.imgUrl : albumImg} alt={song.title} />
       <section>

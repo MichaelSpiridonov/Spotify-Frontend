@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { formatTime } from '../services/util.service'
 
-const ProgressBar = ({ currentTime, duration, onSeek }) => {
+export function ProgressBar({ currentTime, duration, onSeek }) {
   const [isSeeking, setIsSeeking] = useState(false)
   const [seekValue, setSeekValue] = useState(0)
 
@@ -49,5 +49,3 @@ const ProgressBar = ({ currentTime, duration, onSeek }) => {
     </div>
   )
 }
-
-export default ProgressBar

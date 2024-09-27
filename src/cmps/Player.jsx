@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
+import {ProgressBar} from './ProgressBar.jsx'
 import YouTube from 'react-youtube'
-import ProgressBar from './ProgressBar'
 import Play from '../assets/icons/play.svg?react'
 import Pause from '../assets/icons/pause.svg?react'
 import Shuffle from '../assets/icons/shuffle.svg?react'
@@ -12,13 +12,14 @@ import VolumeMuted from '../assets/icons/volumemute.svg?react'
 import VolumeMedium from '../assets/icons/volumedown.svg?react'
 import VolumeMax from '../assets/icons/volumemax.svg?react'
 import RepeatSong from '../assets/icons/repeatsong.svg?react'
-import { updateSong } from '../store/actions/station.actions.js'
+import { setIsPlaying, updateSong, setPlayer } from '../store/actions/station.actions.js'
 import { youtubeService } from '../services/youtube'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 export function Player(props) {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [player, setPlayer] = useState(null)
+  const isPlaying = useSelector((storeState) => storeState.stationModule.isPlaying)
+  const player = useSelector((storeState) => storeState.stationModule.player)
   const [isRepeat, setIsRepeat] = useState(false)
   const [isRepeatSong, setIsRepeatSong] = useState(false)
   const [isShuffle, setIsShuffle] = useState(false)
@@ -31,24 +32,20 @@ export function Player(props) {
 
   const intervalRef = useRef(null)
   function onReady(event) {
-    const player = event.target;
-    setPlayer(player);
-    setDuration(player.getDuration());
-  
-    // Play video and unmute
-    player.playVideo();
-    player.mute();
+    const player = event.target
+    setPlayer(player)
+    setDuration(player.getDuration())
+    player.playVideo()
+    player.mute()
     player.setVolume(volume)
-    setTimeout(() => {
-      player.unMute()
-      player.playVideo()
-    }, 1000); 
+    player.unMute()
+    player.playVideo()
   }
 
   async function onStateChange(event) {
     if (event.data === window.YT.PlayerState.UNSTARTED) {
-      player.playVideo();
-      player.unMute();
+      player.playVideo()
+      player.unMute()
     }
     if (isRepeat && event.data === window.YT.PlayerState.ENDED) {
       onPlay('next')
@@ -64,7 +61,7 @@ export function Player(props) {
       setIsPlaying(false)
       setCurrentTime(0)
       setDuration(player.getDuration())
-    } else if (event.data !== window.YT.PlayerState.PAUSED) {
+    } else if (event.data !== window.YT.PlayerState.PAUSED && event.data !== -1) {
       player.playVideo()
       setIsPlaying(true)
     }
@@ -232,8 +229,8 @@ export function Player(props) {
     width: '0',
     playerVars: {
       autoplay: 1,
-      controls: 0,
-      playsinline: 1,
+      controls: 1,
+      playsInline: 1,
     },
   }
   const { videoId } = props
@@ -346,4 +343,3 @@ export function Player(props) {
   )
 }
 
-export default Player

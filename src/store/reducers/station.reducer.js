@@ -1,5 +1,3 @@
-import { stationService } from "../../services/station/station.service.remote"
-
 /* eslint-disable no-case-declarations */
 export const SET_STATIONS = 'SET_STATIONS'
 export const SET_STATION = 'SET_STATION'
@@ -16,6 +14,8 @@ export const SET_CURR_SELECTED_SONG = 'SET_CURR_CLICKED_SONG'
 export const UPDATE_SONG_IDX = 'UPDATE_SONG_IDX'
 export const SET_CURR_STATION = 'SET_CURR_STATION'
 export const SET_ALBUMS = 'SET_ALBUMS'
+export const SET_IS_PLAYING = 'SET_IS_PLAYING'
+export const SET_PLAYER = 'SET_PLAYER'
 const initialState = {
     stations: null,
     station: null,
@@ -24,7 +24,9 @@ const initialState = {
     currSelectedSong: null,
     likedSongs: JSON.parse(localStorage.getItem('likedsongs')) || null,
     currStation: null,
-    albums: null
+    albums: null,
+    isPlaying: false,
+    player: null,
 }
 
 export function stationReducer(state = initialState, action) {
@@ -129,7 +131,12 @@ export function stationReducer(state = initialState, action) {
         case UPDATE_LIKED_SONGS: // Handle updating liked songs
             newState = { ...state, likedSongs: action.likedSongs }
             break
-
+        case SET_IS_PLAYING:
+            newState = { ...state, isPlaying: action.isPlaying}
+            break
+        case SET_PLAYER:
+            newState = { ...state, player: action.player}
+            break
         default:
     }
     return newState

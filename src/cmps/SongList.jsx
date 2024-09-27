@@ -3,6 +3,7 @@ import { updateSongIdx } from '../store/actions/station.actions'
 import { SongPreview } from './SongPreview'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { useEffect, useState } from 'react'
+import { Loading } from './Loading'
 export function SongList({ songs, onAddTo, onClickPlay }) {
   const currStation = useSelector(
     (storeState) => storeState.stationModule.currStation
@@ -26,8 +27,7 @@ export function SongList({ songs, onAddTo, onClickPlay }) {
     setSongList(songs)
     updateSongIdx(songs, currStation)
   }
-  if (!songList) return
-  console.log(songList)
+  if (!songList) return <Loading />
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>

@@ -2,16 +2,15 @@
 import { useSelector } from "react-redux"
 import AddIcon from "../assets/icons/addsong.svg?react"
 
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { useLayoutEffect, useState } from "react"
-import Player from "../cmps/Player.jsx"
+import { Player } from "../cmps/Player.jsx"
 import { ArtistCmp } from "../cmps/ArtistCmp.jsx"
 import { FastAverageColor } from "fast-average-color"
 import { Loading } from "../cmps/Loading.jsx"
 
 export function PlayerPhoneDetails() {
-    const Navigate = useNavigate()
     const [color, setColor] = useState(null)
     const station = useSelector((storeState) => storeState.stationModule.station)
     const currSong = useSelector(
@@ -34,10 +33,6 @@ export function PlayerPhoneDetails() {
         }
     }, [pageWidth])
 
-
-    function onClosePlayer() {
-
-    }
     if (currSong) {
         const elPlayer = document.querySelector('.app-player')
         elPlayer.style.display = 'none'
@@ -48,7 +43,7 @@ export function PlayerPhoneDetails() {
     }
     if (pageWidth < 500 && !currSong) return <Loading />
     return (
-        <section style={{ backgroundColor: color }} onClick={onOpenPlayerPhone} className="details-player">
+        <section style={{ backgroundColor: color }} className="details-player">
             <section>
 
                 {currSong && (

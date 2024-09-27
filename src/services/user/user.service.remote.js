@@ -14,8 +14,6 @@ export const userService = {
     saveLoggedinUser,
 }
 
-login({ username: 'mike', password: 'mike'})
-
 function getUsers() {
 	return httpService.get(`user`)
 }

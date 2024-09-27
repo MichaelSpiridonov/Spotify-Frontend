@@ -3,6 +3,7 @@ import {
   setCurrSelectedSong,
   setCurrSelectedStation,
   setCurrStation,
+  setIsPlaying,
   updateSong,
 } from '../store/actions/station.actions.js'
 import { useParams } from 'react-router-dom'
@@ -34,15 +35,11 @@ export function StationDetails() {
   const [station, setStation] = useState(null)
 
   const user = useSelector((storeState) => storeState.userModule.user)
-  const currStation = useSelector(
-    (storeState) => storeState.stationModule.currStation
-  )
-  const playerStation = useSelector(
-    (storeState) => storeState.stationModule.station
-  )
-  const currSong = useSelector(
-    (storeState) => storeState.stationModule.currSong
-  )
+  const isPlaying = useSelector((storeState) => storeState.stationModule.isPlaying)
+  const currStation = useSelector((storeState) => storeState.stationModule.currStation)
+  const playerStation = useSelector((storeState) => storeState.stationModule.station)
+  const currSong = useSelector((storeState) => storeState.stationModule.currSong)
+  const player = useSelector((storeState) => storeState.stationModule.player)
   const [pageWidth, setPageWidth] = useState(window.innerWidth)
 
   useLayoutEffect(() => {
@@ -89,10 +86,16 @@ export function StationDetails() {
   }
 
   async function onClickPlay(song) {
+    if(isPlaying || currSong && isPlaying){
+      player.pauseVideo()
+      setIsPlaying(false)
+    } else {
+      player.playVideo()
+      setIsPlaying(true)
+    }
     if (!song.id) {
       song.id = await getVideoId(song.title)
     }
-    console.log(song)
     const songData = {
       title: song.title,
       id: song.id,
@@ -202,7 +205,7 @@ export function StationDetails() {
             onClick={() => onClickPlay(station.songs[0])}
             className='header-play-button'
           >
-            {playerStation?._id !== station?._id ? <PlayIcon /> : <PauseIcon />}
+            {isPlaying && playerStation._id === station._id ? <PauseIcon /> : <PlayIcon />}
           </button>
           <div
             className={`header-add-button ${

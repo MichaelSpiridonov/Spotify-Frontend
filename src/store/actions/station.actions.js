@@ -13,7 +13,9 @@ import {
     UPDATE_SONG_IDX,
     SET_CURR_STATION,
     UPDATE_STATION,
-    SET_ALBUMS
+    SET_ALBUMS,
+    SET_IS_PLAYING,
+    SET_PLAYER,
 } from '../reducers/station.reducer'
 import { stationService } from '../../services/station'
 
@@ -145,12 +147,29 @@ export async function removeSong(songId, station) {
 
 export async function updateSongIdx(songs, station) {
     try {
-        console.log('Songs', songs)
-        console.log('station:',station.songs);
         station.songs = songs
         await stationService.save(station)
         store.dispatch(getCmdUpdateSongIdx(songs))
     }catch (err) {
+        console.log('Cannot Update Song Idx', err)
+        throw err
+    }
+}
+
+export async function setIsPlaying(isPlaying) {
+    try {
+        store.dispatch(getCmdSetIsPlaying(isPlaying))
+    } catch (err) {
+        console.log('Cannot set isPlaying', err)
+        throw err
+    }
+}
+
+export async function setPlayer(player) {
+    try {
+        store.dispatch(getCmdSetPlayer(player))
+    } catch (err) {
+        console.log('Cannot set isPlaying', err)
         throw err
     }
 }
@@ -202,7 +221,7 @@ function getCmdSetAlbums(albums) {
         albums,
     }
 }
-function getCmdUpdateStations(stations, idx) {
+function getCmdUpdateStations(stations) {
     return {
         type: UPDATE_STATIONS,
         stations,
@@ -278,6 +297,20 @@ function getCmdSetCurrStation(station) {
     return {
         type: SET_CURR_STATION,
         station,
+    }
+}
+
+function getCmdSetIsPlaying(isPlaying) {
+    return {
+        type: SET_IS_PLAYING,
+        isPlaying,
+    }
+}
+
+function getCmdSetPlayer(player) {
+    return {
+        type: SET_PLAYER,
+        player,
     }
 }
 // function getCmdUpdateLikedSongs(likedSongs) {

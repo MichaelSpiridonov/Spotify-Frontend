@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import AddIcon from "../assets/icons/addsong.svg?react"
 import LikeIcon from "../assets/icons/likedsong.svg?react"
-import Player from "./Player.jsx"
+import { Player } from "./Player.jsx"
 import { ArtistCmp } from "./ArtistCmp.jsx"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { FastAverageColor } from "fast-average-color"
