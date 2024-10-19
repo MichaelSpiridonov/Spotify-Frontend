@@ -205,7 +205,7 @@ export function StationDetails() {
             onClick={() => onClickPlay(station.songs[0])}
             className='header-play-button'
           >
-            {isPlaying && playerStation._id === station._id ? <PauseIcon /> : <PlayIcon />}
+            {isPlaying && playerStation?._id === station?._id ? <PauseIcon /> : <PlayIcon />}
           </button>
           <div
             className={`header-add-button ${
